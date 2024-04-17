@@ -7,7 +7,6 @@ public class Main {
         janela.setResizable(false);
         janela.setTitle("Guardiões das Lendas Antigas");
 
-
         PainelJogo meuPainelJogo = new PainelJogo();
         janela.add(meuPainelJogo);
         janela.pack();
