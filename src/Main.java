@@ -7,10 +7,13 @@ public class Main {
         janela.setResizable(false);
         janela.setTitle("Guardiões das Lendas Antigas");
 
-        PainelJogo meuPainelJogo = new PainelJogo();
+
+
+        GamePanel meuPainelJogo = new GamePanel();
         janela.add(meuPainelJogo);
         janela.pack();
         janela.setLocationRelativeTo(null);
         janela.setVisible(true);
+        meuPainelJogo.iniciargameThread();
     }
 }
