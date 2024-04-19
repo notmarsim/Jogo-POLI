@@ -65,14 +65,14 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public void update() {
 
         System.out.println("funcionando");
-        if(keyH.upPressed == true) {
+        if(keyH.upPressed) {
             playerY = playerY - playerSpeed;
             
-        } else if(keyH.downPressed == true) {
+        } else if(keyH.downPressed ) {
             playerY = playerY + playerSpeed;
         } else if (keyH.leftPressed) {
             playerX = playerX - playerSpeed;
-        } else if (keyH.rightPressed == true) {
+        } else if (keyH.rightPressed) {
             playerX = playerX + playerSpeed;
         }
 
