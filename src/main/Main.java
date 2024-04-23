@@ -1,3 +1,5 @@
+package main;
+
 import javax.swing.*;
 
 public class Main {
@@ -9,11 +11,11 @@ public class Main {
 
 
 
-        GamePanel meuPainelJogo = new GamePanel();
-        janela.add(meuPainelJogo);
+        GamePanel gamePanel = new GamePanel();
+        janela.add(gamePanel);
         janela.pack();
         janela.setLocationRelativeTo(null);
         janela.setVisible(true);
-        meuPainelJogo.iniciargameThread();
+        gamePanel.iniciargameThread();
     }
 }

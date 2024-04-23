@@ -1,11 +1,15 @@
+package main;
+
+import entity.Player;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{ // subclasse jframe , config de tela, tempo tambem
 
-    final int tamanhooriginalJanela = 16; // bloco / janela = 16x16
-    final int escala = 3;
-    final int tamanhoJanela = tamanhooriginalJanela*escala; // 48x48 cada janela
+    final int tamanhooriginalJanela = 32; // bloco / janela = 32x32
+    final int escala = 2;
+    public final int tamanhoJanela = tamanhooriginalJanela*escala; // 48x48 cada janela
     final int tamanhomaxX = 16;
     final int tamanhomaxY = 12;
     final int larguraTela = tamanhomaxX*tamanhoJanela; // 768px
@@ -15,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler();
+    Player player = new Player(this,keyH);
 
     int playerX = 100;
     int playerY = 100;
@@ -63,26 +68,13 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     }
 
     public void update() {
-
-        System.out.println("funcionando");
-        if(keyH.upPressed) {
-            playerY = playerY - playerSpeed;
-            
-        } else if(keyH.downPressed ) {
-            playerY = playerY + playerSpeed;
-        } else if (keyH.leftPressed) {
-            playerX = playerX - playerSpeed;
-        } else if (keyH.rightPressed) {
-            playerX = playerX + playerSpeed;
-        }
-
+        player.update();
     }
 // pintar
     public void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D)g;
-            g2.setColor(Color.white);
-            g2.fillRect( playerX,playerY,tamanhoJanela,tamanhoJanela);
+            player.draw(g2);
             g2.dispose();
     }
 }
