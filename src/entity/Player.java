@@ -1,72 +1,43 @@
 package entity;
-
 import main.GamePanel;
 import main.KeyHandler;
-
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-public class Player extends Entity {
+public abstract class Player extends Entity {
      private KeyHandler keyH;
      private GamePanel gp;
-     private String movimentacao;
-     private int spriteCounter;
-     private int spriteNum;
-
-     private BufferedImage idle, idle2, idle3, idle4, run, run2, run3, run4, run5, costas, costas2, costas3, costas4, costas5, idleback, idle2back, idle3back, idle4back;
 
      public Player(GamePanel gp, KeyHandler keyH) {
           this.gp = gp;
           this.keyH = keyH;
           setDefaultValues();
-          getPlayerImage();
      }
 
-     private void setDefaultValues() {
+     protected void setDefaultValues() {
           x = 100;
           y = 100;
           speed = 4;
           direcao = "frente";
-          movimentacao = "parado";
-          spriteCounter = 0;
-          spriteNum = 1;
-     }
-
-     private void getPlayerImage() {
-          try {
-               idle = ImageIO.read(getClass().getResourceAsStream("/player/idle1.png"));
-               idle2 = ImageIO.read(getClass().getResourceAsStream("/player/idle2.png"));
-               idle3 = ImageIO.read(getClass().getResourceAsStream("/player/idle3.png"));
-               idle4 = ImageIO.read(getClass().getResourceAsStream("/player/idle4.png"));
-               run = ImageIO.read(getClass().getResourceAsStream("/player/run.png"));
-               run2 = ImageIO.read(getClass().getResourceAsStream("/player/run2.png"));
-               run3 = ImageIO.read(getClass().getResourceAsStream("/player/run3.png"));
-               run4 = ImageIO.read(getClass().getResourceAsStream("/player/run4.png"));
-               run5 = ImageIO.read(getClass().getResourceAsStream("/player/run5.png"));
-               costas = ImageIO.read(getClass().getResourceAsStream("/player/back.png"));
-               costas2 = ImageIO.read(getClass().getResourceAsStream("/player/back2.png"));
-               costas3 = ImageIO.read(getClass().getResourceAsStream("/player/back3.png"));
-               costas4 = ImageIO.read(getClass().getResourceAsStream("/player/back4.png"));
-               costas5 = ImageIO.read(getClass().getResourceAsStream("/player/back5.png"));
-               idleback = ImageIO.read(getClass().getResourceAsStream("/player/idleback.png"));
-               idle2back = ImageIO.read(getClass().getResourceAsStream("/player/idle2back.png"));
-               idle3back = ImageIO.read(getClass().getResourceAsStream("/player/idle3back.png"));
-               idle4back = ImageIO.read(getClass().getResourceAsStream("/player/idle4back.png"));
-
-          } catch (IOException e) {
-               e.printStackTrace();
-          }
      }
 
      public void update() {
           if (keyH.upPressed) {
-               direcao = "frente";
+
+               if (direcao.equals("frente")) {
+                    direcao = "frente";
+               } else if(direcao.equals("costas")) {
+                    direcao = "costas";
+               }
+
                movimentacao = "movendo";
                y = y - speed;
           } else if (keyH.downPressed) {
-               direcao = "frente";
+               if (direcao.equals("frente")) {
+                    direcao = "frente";
+               } else if(direcao.equals("costas")) {
+                    direcao = "costas";
+               }
                movimentacao = "movendo";
                y = y + speed;
           } else if (keyH.leftPressed) {
@@ -93,7 +64,7 @@ public class Player extends Entity {
      public void draw(Graphics2D g2) {
           BufferedImage image = null;
 
-          if (movimentacao.equals("parado")) {
+          if (movimentacao != null && movimentacao.equals("parado")) {
                if (spriteNum == 1) {
                     if (direcao.equals("frente")) {
                          image = idle;
@@ -154,5 +125,6 @@ public class Player extends Entity {
           }
 
           g2.drawImage(image, x, y, gp.tamanhoJanela, gp.tamanhoJanela, null);
+
      }
 }

@@ -1,5 +1,7 @@
 package main;
 
+import entity.Guerreiro;
+import entity.Mago;
 import entity.Player;
 
 import javax.swing.*;
@@ -19,7 +21,8 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler();
-    Player player = new Player(this,keyH);
+    Mago mago = new Mago(this,keyH);
+    Guerreiro guerreiro = new Guerreiro(this,keyH);
 
     int playerX = 100;
     int playerY = 100;
@@ -68,14 +71,14 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     }
 
     public void update() {
-        player.update();
+        mago.update();
     }
-// pintar
+    // pintar
     public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Graphics2D g2 = (Graphics2D)g;
-            player.draw(g2);
-            g2.dispose();
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+        mago.draw(g2);
+        g2.dispose();
     }
 }
 
