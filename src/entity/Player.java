@@ -17,7 +17,6 @@ public abstract class Player extends Entity {
      protected void setDefaultValues() {
           x = 100;
           y = 100;
-          speed = 4;
           direcao = "frente";
      }
 
@@ -52,7 +51,7 @@ public abstract class Player extends Entity {
                movimentacao = "parado";
           }
           spriteCounter++;
-          if (spriteCounter >= 5) {
+          if (spriteCounter >= 6) {
                spriteCounter = 0; // Reiniciar contador
                spriteNum++; // Avançar para o próximo sprite
                if (spriteNum > 5) {

@@ -24,9 +24,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     Mago mago = new Mago(this,keyH);
     Guerreiro guerreiro = new Guerreiro(this,keyH);
 
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
+
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(larguraTela,alturaTela));
@@ -71,7 +69,15 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     }
 
     public void update() {
-        mago.update();
+        Player jogadorEscolhido;
+        boolean jogadorEscolheuMago = true;
+        if (jogadorEscolheuMago) {
+            jogadorEscolhido = mago;
+        } else {
+            jogadorEscolhido = guerreiro;
+        }
+
+        jogadorEscolhido.update();
     }
     // pintar
     public void paintComponent(Graphics g) {
