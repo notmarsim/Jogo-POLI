@@ -1,28 +1,37 @@
 package main;
 
-import entity.Guerreiro;
-import entity.Mago;
+
+import entity.Pyroth;
+import entity.Aeris;
 import entity.Player;
+import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{ // subclasse jframe , config de tela, tempo tambem
 
-    final int tamanhooriginalJanela = 32; // bloco / janela = 32x32
-    final int escala = 2;
-    public final int tamanhoJanela = tamanhooriginalJanela*escala; // 48x48 cada janela
-    final int tamanhomaxX = 16;
-    final int tamanhomaxY = 12;
-    final int larguraTela = tamanhomaxX*tamanhoJanela; // 768px
+
+
+
+
+    final int tamanhooriginalJanelax = 16;
+    final int escala = 5;
+    public final int tamanhoJanela = tamanhooriginalJanelax *escala; //
+    public final int tamanhomaxX = 16;
+    public final int tamanhomaxY = 12;
+    public final int larguraTela = tamanhomaxX*tamanhoJanela;
     final int alturaTela = tamanhomaxY*tamanhoJanela;
 
+    TileManager tileManager = new TileManager(this);
     int fps = 60;
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler();
-    Mago mago = new Mago(this,keyH);
-    Guerreiro guerreiro = new Guerreiro(this,keyH);
+
+    // Personagens
+    Aeris aeris = new Aeris(this,keyH);
+    Pyroth pyroth = new Pyroth(this,keyH);
 
 
 
@@ -34,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
 
     }
 
-    public void iniciargameThread() {
+    public void iniciarGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
@@ -70,20 +79,22 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
 
     public void update() {
         Player jogadorEscolhido;
-        boolean jogadorEscolheuMago = true;
+        boolean jogadorEscolheuMago = false;
         if (jogadorEscolheuMago) {
-            jogadorEscolhido = mago;
+            jogadorEscolhido = aeris;
         } else {
-            jogadorEscolhido = guerreiro;
+            jogadorEscolhido = pyroth;
         }
 
         jogadorEscolhido.update();
     }
-    // pintar
+
+  // pintar
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        mago.draw(g2);
+        tileManager.draw(g2);
+        pyroth.draw(g2);
         g2.dispose();
     }
 }

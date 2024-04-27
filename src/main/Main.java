@@ -7,7 +7,7 @@ public class Main {
         JFrame janela = new JFrame();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setResizable(false);
-        janela.setTitle("Guardiões das Lendas Antigas");
+        janela.setTitle("Guardiões de Elemenvera");
 
 
 
@@ -16,6 +16,6 @@ public class Main {
         janela.pack();
         janela.setLocationRelativeTo(null);
         janela.setVisible(true);
-        gamePanel.iniciargameThread();
+        gamePanel.iniciarGameThread();
     }
 }

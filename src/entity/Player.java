@@ -18,6 +18,7 @@ public abstract class Player extends Entity {
           x = 100;
           y = 100;
           direcao = "frente";
+
      }
 
      public void update() {
@@ -54,7 +55,7 @@ public abstract class Player extends Entity {
           if (spriteCounter >= 6) {
                spriteCounter = 0; // Reiniciar contador
                spriteNum++; // Avançar para o próximo sprite
-               if (spriteNum > 5) {
+               if (spriteNum > 7) {
                     spriteNum = 1; // Reiniciar a sequência de sprites
                }
           }
@@ -90,9 +91,23 @@ public abstract class Player extends Entity {
                     }
                } else if (spriteNum == 5) {
                     if (direcao.equals("frente")) {
-                         image = idle;
+                         image = idle5;
                     } else if (direcao.equals("costas")) {
-                         image = idleback;
+                         image = idle5back;
+                    }
+               } else if(spriteNum==6) {
+                    if (direcao.equals("frente")) {
+                         image = idle6;
+
+                    } else if (direcao.equals("costas")) {
+                         image = idle6back;
+                    }
+
+               } else if (spriteNum ==7) {
+                    if(direcao.equals("frente")) {
+                         image = idle6;
+                    } else if (direcao.equals("costas")) {
+                         image = idle6back;
                     }
                }
           } else {
@@ -107,23 +122,31 @@ public abstract class Player extends Entity {
                          image = run4;
                     } else if (spriteNum == 5) {
                          image = run5;
+                    } else if (spriteNum == 6) {
+                         image = run6;
+                    } else if (spriteNum ==7) {
+                         image = run7;
                     }
                } else if (direcao.equals("costas")) {
                     if (spriteNum == 1) {
-                         image = costas;
+                         image = runcostas;
                     } else if (spriteNum == 2) {
-                         image = costas2;
+                         image = runcostas2;
                     } else if (spriteNum == 3) {
-                         image = costas3;
+                         image = runcostas3;
                     } else if (spriteNum == 4) {
-                         image = costas4;
+                         image = runcostas4;
                     } else if (spriteNum == 5) {
-                         image = costas5;
+                         image = runcostas5;
+                    } else if (spriteNum == 6 ) {
+                         image  = runcostas6;
+                    } else if (spriteNum == 7) {
+                         image =runcostas7;
                     }
                }
           }
 
-          g2.drawImage(image, x, y, gp.tamanhoJanela, gp.tamanhoJanela, null);
+          g2.drawImage(image, x, y, (gp.tamanhoJanela*3), (gp.tamanhoJanela*3), null);
 
      }
 }
