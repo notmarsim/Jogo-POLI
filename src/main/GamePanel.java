@@ -1,24 +1,47 @@
+package main;
+
+
+import capitulos.Prologo;
+import entity.Pyroth;
+import entity.Aeris;
+import entity.Player;
+import tile.TileManager;
+
 import javax.swing.*;
 import java.awt.*;
+import java.time.Period;
+import java.util.Currency;
 
 public class GamePanel extends JPanel implements Runnable{ // subclasse jframe , config de tela, tempo tambem
 
-    final int tamanhooriginalJanela = 16; // bloco / janela = 16x16
-    final int escala = 3;
-    final int tamanhoJanela = tamanhooriginalJanela*escala; // 48x48 cada janela
-    final int tamanhomaxX = 16;
-    final int tamanhomaxY = 12;
-    final int larguraTela = tamanhomaxX*tamanhoJanela; // 768px
+    public enum Capitulos {
+        Prologo,
+        chapter1,
+        chapter2
+    }
+
+    private Capitulos currentCapitulo = Capitulos.Prologo;
+
+
+    final int tamanhooriginalJanelax = 16;
+    final int escala = 5;
+    public final int tamanhoJanela = tamanhooriginalJanelax *escala; //
+    public final int tamanhomaxX = 16;
+    public final int tamanhomaxY = 12;
+    public final int larguraTela = tamanhomaxX*tamanhoJanela;
     final int alturaTela = tamanhomaxY*tamanhoJanela;
 
+    TileManager tileManager = new TileManager(this);
     int fps = 60;
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler();
 
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
+    // Personagens
+    Aeris aeris = new Aeris(this,keyH);
+    Pyroth pyroth = new Pyroth(this,keyH);
+
+
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(larguraTela,alturaTela));
@@ -28,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
 
     }
 
-    public void iniciargameThread() {
+    public void iniciarGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
@@ -62,28 +85,25 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
 
     }
 
-    public void update() {
+    Prologo prologo = new Prologo(this,keyH);
 
-        System.out.println("funcionando");
-        if(keyH.upPressed) {
-            playerY = playerY - playerSpeed;
-            
-        } else if(keyH.downPressed ) {
-            playerY = playerY + playerSpeed;
-        } else if (keyH.leftPressed) {
-            playerX = playerX - playerSpeed;
-        } else if (keyH.rightPressed) {
-            playerX = playerX + playerSpeed;
+
+    public void update() {
+        if(currentCapitulo == Capitulos.Prologo) {
+            System.out.println("PROLOGO");
+            prologo.up();
+
+        }
+    }
+
+    // pintar
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+        if(currentCapitulo == Capitulos.Prologo) {
+            prologo.draw(g2);
         }
 
-    }
-// pintar
-    public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Graphics2D g2 = (Graphics2D)g;
-            g2.setColor(Color.white);
-            g2.fillRect( playerX,playerY,tamanhoJanela,tamanhoJanela);
-            g2.dispose();
+        g2.dispose();
     }
 }
-

@@ -1,3 +1,5 @@
+package main;
+
 import javax.swing.*;
 
 public class Main {
@@ -5,15 +7,15 @@ public class Main {
         JFrame janela = new JFrame();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setResizable(false);
-        janela.setTitle("Guardiões das Lendas Antigas");
+        janela.setTitle("Guardiões de Elemenvera");
 
 
 
-        GamePanel meuPainelJogo = new GamePanel();
-        janela.add(meuPainelJogo);
+        GamePanel gamePanel = new GamePanel();
+        janela.add(gamePanel);
         janela.pack();
         janela.setLocationRelativeTo(null);
         janela.setVisible(true);
-        meuPainelJogo.iniciargameThread();
+        gamePanel.iniciarGameThread();
     }
 }
