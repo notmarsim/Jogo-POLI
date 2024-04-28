@@ -13,7 +13,7 @@ public class Pyroth extends Player {
         speed = 4;
     }
 
-    private void loadSprites() {
+    public void loadSprites() {
         try {
             idle = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle_1.png"));
             idle2 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle_2.png"));

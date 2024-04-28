@@ -1,6 +1,7 @@
 package main;
 
 
+import capitulos.Prologo;
 import entity.Pyroth;
 import entity.Aeris;
 import entity.Player;
@@ -8,11 +9,18 @@ import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.Period;
+import java.util.Currency;
 
 public class GamePanel extends JPanel implements Runnable{ // subclasse jframe , config de tela, tempo tambem
 
+    public enum Capitulos {
+        Prologo,
+        chapter1,
+        chapter2
+    }
 
-
+    private Capitulos currentCapitulo = Capitulos.Prologo;
 
 
     final int tamanhooriginalJanelax = 16;
@@ -77,25 +85,25 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
 
     }
 
-    public void update() {
-        Player jogadorEscolhido;
-        boolean jogadorEscolheuMago = false;
-        if (jogadorEscolheuMago) {
-            jogadorEscolhido = aeris;
-        } else {
-            jogadorEscolhido = pyroth;
-        }
+    Prologo prologo = new Prologo(this,keyH);
 
-        jogadorEscolhido.update();
+
+    public void update() {
+        if(currentCapitulo == Capitulos.Prologo) {
+            System.out.println("PROLOGO");
+            prologo.up();
+
+        }
     }
 
-  // pintar
+    // pintar
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        tileManager.draw(g2);
-        pyroth.draw(g2);
+        if(currentCapitulo == Capitulos.Prologo) {
+            prologo.draw(g2);
+        }
+
         g2.dispose();
     }
 }
-

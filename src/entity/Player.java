@@ -146,7 +146,7 @@ public abstract class Player extends Entity {
                }
           }
 
-          g2.drawImage(image, x, y, (gp.tamanhoJanela*3), (gp.tamanhoJanela*3), null);
+          g2.drawImage(image, x, y, (gp.tamanhoJanela*4), (gp.tamanhoJanela*4), null);
 
      }
 }
