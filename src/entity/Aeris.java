@@ -53,10 +53,7 @@ public class Aeris extends Player {
             runcostas7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_7back.png"));
             runcostas8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_8back.png"));
 
-            /*idleback = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idleback.png"));
-            idle2back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle2back.png"));
-            idle3back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle3back.png"));
-            idle4back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle4back.png"));*/
+
 
         } catch (IOException e) {
             e.printStackTrace();
