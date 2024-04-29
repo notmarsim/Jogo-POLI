@@ -11,7 +11,7 @@ public class Aeris extends Player {
     public Aeris(GamePanel gp, KeyHandler keyH) {
         super(gp, keyH);
         loadSprites();
-        speed = 4;
+        speed = 6;
     }
 
 
@@ -34,17 +34,26 @@ public class Aeris extends Player {
             idle6back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_6back.png"));
             idle7back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_7back.png"));
             idle8back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_8back.png"));
-            /*run = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/runmago.png"));
-            run2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/runmago2.png"));
-            run3 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/runmago3.png"));
-            run4 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/runmago4.png"));
-            run5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/runmago5.png"));
-            runcostas = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/runmagoback.png"));
-            runcostas2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/runmagoback2.png"));
-            runcostas3 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/runmagoback3.png"));
-            runcostas4 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/runmagoback4.png"));
-            runcostas5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/runmagoback5.png"));
-            idleback = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idleback.png"));
+
+            run = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_1.png"));
+            run2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_2.png"));
+            run3 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_3.png"));
+            run4 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_4.png"));
+            run5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_5.png"));
+            run6 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_6.png"));
+            run7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_7.png"));
+            run8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_8.png"));
+
+            runcostas = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_1back.png"));
+            runcostas2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_2back.png"));
+            runcostas3 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_3back.png"));
+            runcostas4 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_4back.png"));
+            runcostas5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_5back.png"));
+            runcostas6 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_6back.png"));
+            runcostas7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_7back.png"));
+            runcostas8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_8back.png"));
+
+            /*idleback = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idleback.png"));
             idle2back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle2back.png"));
             idle3back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle3back.png"));
             idle4back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle4back.png"));*/
