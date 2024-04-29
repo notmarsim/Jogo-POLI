@@ -91,7 +91,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public void update() {
         if(currentCapitulo == Capitulos.Prologo) {
             System.out.println("PROLOGO");
-            prologo.up();
+            aeris.update();
 
         }
     }
@@ -101,7 +101,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         if(currentCapitulo == Capitulos.Prologo) {
-            prologo.draw(g2);
+            aeris.draw(g2);
         }
 
         g2.dispose();

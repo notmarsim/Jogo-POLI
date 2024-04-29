@@ -52,7 +52,7 @@ public abstract class Player extends Entity {
                movimentacao = "parado";
           }
           spriteCounter++;
-          if (spriteCounter >= 6) {
+          if (spriteCounter >= 8) {
                spriteCounter = 0; // Reiniciar contador
                spriteNum++; // Avançar para o próximo sprite
                if (spriteNum > 7) {
@@ -105,7 +105,13 @@ public abstract class Player extends Entity {
 
                } else if (spriteNum ==7) {
                     if(direcao.equals("frente")) {
-                         image = idle6;
+                         image = idle7;
+                    } else if (direcao.equals("costas")) {
+                         image = idle6back;
+                    }
+               } else if (spriteNum ==8) {
+                    if(direcao.equals("frente")) {
+                         image = idle8;
                     } else if (direcao.equals("costas")) {
                          image = idle6back;
                     }
