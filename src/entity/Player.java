@@ -52,7 +52,7 @@ public abstract class Player extends Entity {
                movimentacao = "parado";
           }
           spriteCounter++;
-          if (spriteCounter >= 8) {
+          if (spriteCounter >= 6) {
                spriteCounter = 0; // Reiniciar contador
                spriteNum++; // Avançar para o próximo sprite
                if (spriteNum > 7) {
@@ -152,7 +152,7 @@ public abstract class Player extends Entity {
                }
           }
 
-          g2.drawImage(image, x, y, (gp.tamanhoJanela*4), (gp.tamanhoJanela*4), null);
+          g2.drawImage(image, x, y, (gp.tamanhoJanela*14/4), (gp.tamanhoJanela*14/4), null);
 
      }
 }

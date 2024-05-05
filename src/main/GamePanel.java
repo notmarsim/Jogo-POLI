@@ -1,6 +1,7 @@
 package main;
 
 
+import UI.UI;
 import capitulos.Prologo;
 import entity.Pyroth;
 import entity.Aeris;
@@ -20,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
         chapter2
     }
 
-    private Capitulos currentCapitulo = Capitulos.Prologo;
+    public Capitulos currentCapitulo = Capitulos.Prologo;
 
 
     final int tamanhooriginalJanelax = 16;
@@ -29,7 +30,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public final int tamanhomaxX = 16;
     public final int tamanhomaxY = 12;
     public final int larguraTela = tamanhomaxX*tamanhoJanela;
-    final int alturaTela = tamanhomaxY*tamanhoJanela;
+    public final int alturaTela = tamanhomaxY*tamanhoJanela;
 
     TileManager tileManager = new TileManager(this);
     int fps = 60;
@@ -91,7 +92,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public void update() {
         if(currentCapitulo == Capitulos.Prologo) {
             System.out.println("PROLOGO");
-            aeris.update();
+            prologo.up();
 
         }
     }
@@ -100,8 +101,10 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+
         if(currentCapitulo == Capitulos.Prologo) {
-            aeris.draw(g2);
+           prologo.draw(g2);
+
         }
 
         g2.dispose();

@@ -24,7 +24,7 @@ public class Aeris extends Player {
             idle5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_5.png"));
             idle6 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_6.png"));
             idle7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_7.png"));
-            idle8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_8.png"));
+            idle8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_1.png"));
 
             idleback = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_1back.png"));
             idle2back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_2back.png"));
