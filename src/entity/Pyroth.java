@@ -21,6 +21,8 @@ public class Pyroth extends Player {
             idle4 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle_4.png"));
             idle5 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle_5.png"));
             idle6 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle_6.png"));
+            idle7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle_7.png"));
+            idle8 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle_8.png"));
 
             run = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run1.png"));
             run2 =  ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run2.png"));
