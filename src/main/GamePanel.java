@@ -3,6 +3,7 @@ package main;
 
 import UI.UI;
 import capitulos.Prologo;
+import entity.Aquara;
 import entity.Pyroth;
 import entity.Aeris;
 import entity.Player;
@@ -41,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     // Personagens
     Aeris aeris = new Aeris(this,keyH);
     Pyroth pyroth = new Pyroth(this,keyH);
+    Aquara aquara = new Aquara(this,keyH);
 
 
 
@@ -93,7 +95,6 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
         if(currentCapitulo == Capitulos.Prologo) {
             System.out.println("PROLOGO");
             prologo.up();
-
         }
     }
 
