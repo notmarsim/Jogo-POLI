@@ -8,6 +8,7 @@ import entity.Pyroth;
 import entity.Aeris;
 import entity.Player;
 import tile.TileManager;
+import entity.Terranis;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,6 +44,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     Aeris aeris = new Aeris(this,keyH);
     Pyroth pyroth = new Pyroth(this,keyH);
     Aquara aquara = new Aquara(this,keyH);
+    Terranis terranis = new Terranis(this,keyH);
 
 
 

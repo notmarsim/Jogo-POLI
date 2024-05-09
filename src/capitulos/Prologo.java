@@ -10,6 +10,7 @@ import java.awt.*;
 
 public class Prologo {
     private Pyroth pyroth;
+
     private UI ui;
     private TileManager tileManager;
 
