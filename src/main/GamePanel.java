@@ -26,12 +26,12 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public Capitulos currentCapitulo = Capitulos.Prologo;
 
 
-    final int tamanhooriginalJanelax = 16;
+    final int tamanhooriginalJanelax = 16; // 16x16
     final int escala = 5;
-    public final int tamanhoJanela = tamanhooriginalJanelax *escala; //
+    public final int tamanhoJanela = tamanhooriginalJanelax *escala; // 32x32
     public final int tamanhomaxX = 16;
     public final int tamanhomaxY = 12;
-    public final int larguraTela = tamanhomaxX*tamanhoJanela;
+    public final int larguraTela = tamanhomaxX*tamanhoJanela; // 32 * 16 =
     public final int alturaTela = tamanhomaxY*tamanhoJanela;
 
     TileManager tileManager = new TileManager(this);
@@ -41,11 +41,18 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     KeyHandler keyH = new KeyHandler();
 
     // Personagens
+    public Player player = new Player(this,keyH);
     Aeris aeris = new Aeris(this,keyH);
     Pyroth pyroth = new Pyroth(this,keyH);
     Aquara aquara = new Aquara(this,keyH);
     Terranis terranis = new Terranis(this,keyH);
 
+
+    // world config
+    public final int maxWorldCol = 20;
+    public final int maxWorldRow = 20;
+    public final int worldWidth = tamanhoJanela *  maxWorldCol;
+    public final int worldHeight = tamanhoJanela *  maxWorldRow;
 
 
     public GamePanel() {
@@ -107,7 +114,6 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
 
         if(currentCapitulo == Capitulos.Prologo) {
            prologo.draw(g2);
-
         }
 
         g2.dispose();

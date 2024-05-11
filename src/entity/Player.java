@@ -4,20 +4,25 @@ import main.KeyHandler;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class Player extends Entity {
+public class Player extends Entity {
      private KeyHandler keyH;
      private GamePanel gp;
+     public int screenX;
+     public int screenY;
 
      public Player(GamePanel gp, KeyHandler keyH) {
           this.gp = gp;
           this.keyH = keyH;
           setDefaultValues();
+
      }
 
      protected void setDefaultValues() {
-          x = 100;
-          y = 100;
+          worldX = gp.tamanhoJanela*10;
+          worldY = gp.tamanhoJanela*10;
           direcao = "frente";
+          screenX = gp.larguraTela / 2 - (gp.tamanhoJanela/2);
+          screenY = gp.alturaTela / 2 - (gp.tamanhoJanela/2);
 
      }
 
@@ -31,7 +36,7 @@ public abstract class Player extends Entity {
                }
 
                movimentacao = "movendo";
-               y = y - speed;
+               worldY = worldY - speed;
           } else if (keyH.downPressed) {
                if (direcao.equals("frente")) {
                     direcao = "frente";
@@ -39,18 +44,20 @@ public abstract class Player extends Entity {
                     direcao = "costas";
                }
                movimentacao = "movendo";
-               y = y + speed;
+               worldY = worldY + speed;
           } else if (keyH.leftPressed) {
                direcao = "costas";
                movimentacao = "movendo";
-               x = x - speed;
+               worldX = worldX - speed;
           } else if (keyH.rightPressed) {
                direcao = "frente";
-               x = x + speed;
+               worldX = worldX + speed;
                movimentacao = "movendo";
           } else {
                movimentacao = "parado";
+
           }
+
           spriteCounter++;
           if (spriteCounter >= 6) {
                spriteCounter = 0; // Reiniciar contador
@@ -152,7 +159,7 @@ public abstract class Player extends Entity {
                }
           }
 
-          g2.drawImage(image, x, y, (gp.tamanhoJanela*14/4), (gp.tamanhoJanela*14/4), null);
+          g2.drawImage(image, screenX, screenY, (gp.tamanhoJanela), (gp.tamanhoJanela), null);
 
      }
 }

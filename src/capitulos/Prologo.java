@@ -21,7 +21,7 @@ public class Prologo {
     }
 
     public void up() {
-        ui.update();
+       // ui.update();
         pyroth.update();
         System.out.println("PEGOU");
     }
@@ -29,7 +29,7 @@ public class Prologo {
 
     public void draw(Graphics2D g2){
 
-        ui.draw(g2);
+      //  ui.draw(g2);
         if(ui.isPrologoDesaparecido()) {
             tileManager.draw(g2);
             pyroth.draw(g2);

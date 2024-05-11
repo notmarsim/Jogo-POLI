@@ -17,7 +17,7 @@ public class TileManager {
     public TileManager(GamePanel gp) {
         this.gp = gp;
         tile = new Tile[10];
-        mapTileNum = new int[gp.tamanhomaxX][gp.tamanhomaxY];
+        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
         loadMap();
     }
@@ -46,14 +46,14 @@ public class TileManager {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             int col = 0;
             int row = 0;
-            while(col < gp.tamanhomaxX && row < gp.tamanhomaxY) {
+            while(col < gp.maxWorldCol && row < gp.maxWorldRow) {
                 String line = bufferedReader.readLine();
-                while (col<gp.tamanhomaxY){
+                while (col<gp.maxWorldCol){
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
                     col++;
-                } if(col == gp.tamanhomaxY) {
+                } if(col == gp.maxWorldCol) {
                     col = 0;
                     row++;
                 }
@@ -64,26 +64,29 @@ public class TileManager {
         }
     }
     public void draw(Graphics2D g2){
-        int col = 0;
-        int row = 0;
-        int x = 0;
-        int y = 0;
+        int worldCol = 0;
+        int worldRow = 0;
 
-        while(col < gp.tamanhomaxX && row < gp.tamanhomaxY) {
-            int tileNum = mapTileNum[col][row];
-            g2.drawImage(tile[tileNum].image, x, y, gp.tamanhoJanela, gp.tamanhoJanela, null);
-            col++;
-            x = x + gp.tamanhoJanela;
-            if(col == gp.tamanhomaxX) {
-                col = 0;
-                x = 0;
-                row++;
-                y += gp.tamanhoJanela;
+
+        while(worldCol< gp.maxWorldCol && worldRow < gp.maxWorldRow) {
+            int tileNum = mapTileNum[worldCol][worldRow];
+
+            int worldX = worldCol*gp.tamanhoJanela;
+            int worldY = worldRow*gp.tamanhoJanela;
+            int screenX = worldX - gp.player.worldX+gp.player.screenX;
+            int screenY = worldY - gp.player.worldY+gp.player.screenY;
+
+            g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tamanhoJanela, gp.tamanhoJanela, null);
+            worldCol++;
+
+            if(worldCol == gp.maxWorldCol) {
+                worldCol = 0;
+                worldRow++;
             }
         }
 
         // Desenhar a árvore em cima de tudo
-        g2.drawImage(tile[1].image, 3 * gp.tamanhoJanela, 3 * gp.tamanhoJanela, 2*gp.tamanhoJanela, 2*gp.tamanhoJanela, null);
+        // g2.drawImage(tile[1].image, 3 * gp.tamanhoJanela, 3 * gp.tamanhoJanela, 2*gp.tamanhoJanela, 2*gp.tamanhoJanela, null);
     }
 
 }
