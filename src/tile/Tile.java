@@ -8,8 +8,9 @@ public class Tile {
     // MATERIAIS ESTATICOS
 
     public static Tile[] tiles = new Tile[100];
-    public static Tile pisoRock = new Pisorock(1);
-    public static Tile earthTile = new TileEarth(0);
+    public static Tile pisoTijoloPedra = new PisoTijoloPedra(1);
+    public static Tile pisoMadeira = new PisoMadeira(2);
+    public static Tile pisoElder = new PisoElder(3);
 
 
 

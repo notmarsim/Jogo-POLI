@@ -32,7 +32,7 @@ public class Maps {
         Tile t = Tile.tiles[tiles[x][y]];
         if(t == null) {
             System.out.println("nao carregou");
-            return Tile.earthTile;
+            return Tile.pisoMadeira;
 
         }
         return t;

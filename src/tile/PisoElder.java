@@ -4,19 +4,17 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class TileEarth extends Tile {
-    public TileEarth(int id) {
+public class PisoElder extends Tile {
+    public PisoElder(int id) {
         super(carregarImagem(), id);
     }
 
     private static BufferedImage carregarImagem() {
         try {
-            return ImageIO.read(Pisorock.class.getResourceAsStream("/tiles/earth.png"));
+            return ImageIO.read(PisoElder.class.getResourceAsStream("/tiles/water.png"));
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 }
-
-

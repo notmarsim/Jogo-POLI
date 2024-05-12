@@ -1,6 +1,7 @@
 package capitulos;
 
 import UI.UI;
+import entity.Elder;
 import entity.Pyroth;
 import main.GamePanel;
 import main.KeyHandler;
@@ -14,9 +15,11 @@ public class Prologo {
     private Pyroth pyroth;
     private UI ui;
     private Maps mapaPrologo; // Move a declaração aqui
+    private Elder elder;
 
     public Prologo(GamePanel gamePanel, KeyHandler keyHandler) {
         this.pyroth = new Pyroth(gamePanel, keyHandler);
+        this.elder = new Elder(gamePanel);
         this.ui = new UI(gamePanel,80);
         this.gamePanel = gamePanel;
         this.mapaPrologo = new Maps(gamePanel, "res/maps/mapaPrologo.txt");
@@ -26,6 +29,7 @@ public class Prologo {
         //  ui.update();
         mapaPrologo.update();
         pyroth.update();
+
         System.out.println("PEGOU");
     }
 
@@ -33,6 +37,7 @@ public class Prologo {
         // ui.draw(g2);
         if(ui.isPrologoDesaparecido()) {
             mapaPrologo.draw(g2);
+            elder.draw(g2);
             pyroth.draw(g2);
         }
     }
