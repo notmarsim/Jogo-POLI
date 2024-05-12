@@ -1,19 +1,18 @@
 package main;
 
 
-import UI.UI;
 import capitulos.Prologo;
 import entity.Aquara;
 import entity.Pyroth;
 import entity.Aeris;
-import entity.Player;
-import tile.TileManager;
+
 import entity.Terranis;
+import gfx.Camera;
+import mapas.Maps;
+import tile.Tile;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.Period;
-import java.util.Currency;
 
 public class GamePanel extends JPanel implements Runnable{ // subclasse jframe , config de tela, tempo tambem
 
@@ -26,33 +25,33 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public Capitulos currentCapitulo = Capitulos.Prologo;
 
 
-    final int tamanhooriginalJanelax = 16; // 16x16
+    final int tamanhooriginalJanelax = 16;
     final int escala = 5;
-    public final int tamanhoJanela = tamanhooriginalJanelax *escala; // 32x32
+    public final int tamanhoJanela = tamanhooriginalJanelax *escala; //
     public final int tamanhomaxX = 16;
     public final int tamanhomaxY = 12;
-    public final int larguraTela = tamanhomaxX*tamanhoJanela; // 32 * 16 =
+    public final int larguraTela = tamanhomaxX*tamanhoJanela;
     public final int alturaTela = tamanhomaxY*tamanhoJanela;
 
-    TileManager tileManager = new TileManager(this);
+
+
     int fps = 60;
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler();
 
+    // camera
+    Camera camera = new Camera(this,0,0);
+    public Camera getCamera() {
+        return camera;
+    }
+
     // Personagens
-    public Player player = new Player(this,keyH);
     Aeris aeris = new Aeris(this,keyH);
     Pyroth pyroth = new Pyroth(this,keyH);
     Aquara aquara = new Aquara(this,keyH);
     Terranis terranis = new Terranis(this,keyH);
 
-
-    // world config
-    public final int maxWorldCol = 20;
-    public final int maxWorldRow = 20;
-    public final int worldWidth = tamanhoJanela *  maxWorldCol;
-    public final int worldHeight = tamanhoJanela *  maxWorldRow;
 
 
     public GamePanel() {
@@ -103,7 +102,9 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public void update() {
         if(currentCapitulo == Capitulos.Prologo) {
             System.out.println("PROLOGO");
+
             prologo.up();
+
         }
     }
 
@@ -113,7 +114,9 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
         Graphics2D g2 = (Graphics2D)g;
 
         if(currentCapitulo == Capitulos.Prologo) {
-           prologo.draw(g2);
+
+            prologo.draw(g2);
+
         }
 
         g2.dispose();

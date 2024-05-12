@@ -10,7 +10,7 @@ public class Pyroth extends Player {
     public Pyroth(GamePanel gp, KeyHandler keyH) {
         super(gp, keyH);
         loadSprites();
-        speed = 4;
+        speed = 6;
     }
 
     public void loadSprites() {

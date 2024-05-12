@@ -4,36 +4,37 @@ import UI.UI;
 import entity.Pyroth;
 import main.GamePanel;
 import main.KeyHandler;
-import tile.TileManager;
+import mapas.Maps;
 
 import java.awt.*;
 
 public class Prologo {
-    private Pyroth pyroth;
 
+    private GamePanel gamePanel;
+    private Pyroth pyroth;
     private UI ui;
-    private TileManager tileManager;
+    private Maps mapaPrologo; // Move a declaração aqui
 
     public Prologo(GamePanel gamePanel, KeyHandler keyHandler) {
         this.pyroth = new Pyroth(gamePanel, keyHandler);
-        this.tileManager = new TileManager(gamePanel);
         this.ui = new UI(gamePanel,80);
+        this.gamePanel = gamePanel;
+        this.mapaPrologo = new Maps(gamePanel, "res/maps/mapaPrologo.txt");
     }
 
     public void up() {
-       // ui.update();
+        //  ui.update();
+        mapaPrologo.update();
         pyroth.update();
         System.out.println("PEGOU");
     }
 
-
     public void draw(Graphics2D g2){
-
-      //  ui.draw(g2);
+        // ui.draw(g2);
         if(ui.isPrologoDesaparecido()) {
-            tileManager.draw(g2);
+            mapaPrologo.draw(g2);
             pyroth.draw(g2);
-
         }
     }
 }
+

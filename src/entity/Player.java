@@ -4,25 +4,20 @@ import main.KeyHandler;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Player extends Entity {
+public abstract class Player extends Entity {
      private KeyHandler keyH;
      private GamePanel gp;
-     public int screenX;
-     public int screenY;
 
      public Player(GamePanel gp, KeyHandler keyH) {
           this.gp = gp;
           this.keyH = keyH;
           setDefaultValues();
-
      }
 
      protected void setDefaultValues() {
-          worldX = gp.tamanhoJanela*10;
-          worldY = gp.tamanhoJanela*10;
+          x = 100;
+          y = 100;
           direcao = "frente";
-          screenX = gp.larguraTela / 2 - (gp.tamanhoJanela/2);
-          screenY = gp.alturaTela / 2 - (gp.tamanhoJanela/2);
 
      }
 
@@ -36,7 +31,8 @@ public class Player extends Entity {
                }
 
                movimentacao = "movendo";
-               worldY = worldY - speed;
+               y = y - speed;
+               System.out.println("andando");
           } else if (keyH.downPressed) {
                if (direcao.equals("frente")) {
                     direcao = "frente";
@@ -44,28 +40,27 @@ public class Player extends Entity {
                     direcao = "costas";
                }
                movimentacao = "movendo";
-               worldY = worldY + speed;
+               y = y + speed;
           } else if (keyH.leftPressed) {
                direcao = "costas";
                movimentacao = "movendo";
-               worldX = worldX - speed;
+               x = x - speed;
           } else if (keyH.rightPressed) {
                direcao = "frente";
-               worldX = worldX + speed;
+               x = x + speed;
                movimentacao = "movendo";
           } else {
                movimentacao = "parado";
-
           }
-
           spriteCounter++;
-          if (spriteCounter >= 6) {
+          if (spriteCounter >= 5) {
                spriteCounter = 0; // Reiniciar contador
                spriteNum++; // Avançar para o próximo sprite
                if (spriteNum > 7) {
                     spriteNum = 1; // Reiniciar a sequência de sprites
                }
           }
+          gp.getCamera().centerOnEntity(this);
      }
 
      public void draw(Graphics2D g2) {
@@ -159,7 +154,12 @@ public class Player extends Entity {
                }
           }
 
-          g2.drawImage(image, screenX, screenY, (gp.tamanhoJanela), (gp.tamanhoJanela), null);
+          g2.drawImage(image,
+                  (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela * 9) / 4),
+                  (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 10) / 3),
+                  gp.tamanhoJanela * 4,
+                  gp.tamanhoJanela * 4,
+                  null);
 
      }
 }
