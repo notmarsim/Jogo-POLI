@@ -34,6 +34,7 @@ public class Tile {
 
     public void draw(Graphics2D g2, int x, int y){
         g2.drawImage(image,x,y,tileWidth,tileHeight,null);
+
     }
 
     public int getId() {

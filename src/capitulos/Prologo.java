@@ -6,6 +6,7 @@ import entity.Pyroth;
 import main.GamePanel;
 import main.KeyHandler;
 import mapas.Maps;
+import tile.Tile;
 
 import java.awt.*;
 
@@ -16,13 +17,15 @@ public class Prologo {
     private UI ui;
     private Maps mapaPrologo; // Move a declaração aqui
     private Elder elder;
+    private Maps maps;
 
     public Prologo(GamePanel gamePanel, KeyHandler keyHandler) {
         this.pyroth = new Pyroth(gamePanel, keyHandler);
-        this.elder = new Elder(gamePanel);
         this.ui = new UI(gamePanel,80);
         this.gamePanel = gamePanel;
         this.mapaPrologo = new Maps(gamePanel, "res/maps/mapaPrologo.txt");
+
+
     }
 
     public void up() {
@@ -37,7 +40,17 @@ public class Prologo {
         // ui.draw(g2);
         if(ui.isPrologoDesaparecido()) {
             mapaPrologo.draw(g2);
-            elder.draw(g2);
+
+            // Encontrar as coordenadas do tile com o ID 3
+            Point tileCoordinates = mapaPrologo.findTileCoordinates(3);
+            if (tileCoordinates != null) {
+                int x = tileCoordinates.x * Tile.tileWidth;
+                int y = tileCoordinates.y * Tile.tileHeight;
+                this.elder = new Elder(gamePanel, x, y);
+                elder.draw(g2);
+            } else {
+                this.elder = new Elder(gamePanel, 100, 100);
+            }
             pyroth.draw(g2);
         }
     }
