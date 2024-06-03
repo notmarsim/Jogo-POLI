@@ -102,7 +102,6 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public void update() {
         if(currentCapitulo == Capitulos.Prologo) {
             System.out.println("PROLOGO");
-
             prologo.up();
 
         }

@@ -14,12 +14,14 @@ public abstract class Player extends Entity {
           this.keyH = keyH;
           setDefaultValues();
           direcao = "frente";
+
+
      }
+
 
      protected void setDefaultValues() {
           x = gp.tamanhoJanela*10;
           y = gp.tamanhoJanela*10;
-
           vida = 20;
 
      }

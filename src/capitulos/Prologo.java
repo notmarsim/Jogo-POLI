@@ -29,7 +29,7 @@ public class Prologo {
     }
 
     public void up() {
-        //  ui.update();
+          ui.update();
         mapaPrologo.update();
         pyroth.update();
 
@@ -37,7 +37,7 @@ public class Prologo {
     }
 
     public void draw(Graphics2D g2){
-        // ui.draw(g2);
+         ui.draw(g2);
         if(ui.isPrologoDesaparecido()) {
             mapaPrologo.draw(g2);
 
