@@ -9,8 +9,8 @@ import java.awt.*;
 public class Maps {
     private int width, height;
     private int[][] tiles;
-   // private int targetX;
-   // private int targetY;
+    // private int targetX;
+    // private int targetY;
     public GamePanel gp;
 
 
