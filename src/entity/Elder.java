@@ -17,7 +17,7 @@ public class Elder extends Entity {
         loadSprites();
     }
 
-    public void loadSprites() {
+    private void loadSprites() {
         try {
             idle = ImageIO.read(getClass().getResourceAsStream("/npcs/elder.png"));
         } catch (IOException e) {

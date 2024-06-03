@@ -15,7 +15,7 @@ public class Terranis extends Player{
     }
 
 
-    public void loadSprites() {
+    private void loadSprites() {
         try {
             idle = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/idle/idle_1.png"));
             idle2 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/idle/idle_2.png"));
