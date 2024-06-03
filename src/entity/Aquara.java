@@ -15,7 +15,7 @@ public class Aquara extends Player {
     }
 
 
-    public void loadSprites() {
+    private void loadSprites() {
         try {
             idle = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/idle/idle_1.png"));
             idle2 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/idle/idle_2.png"));
@@ -60,4 +60,3 @@ public class Aquara extends Player {
         }
     }
 }
-
