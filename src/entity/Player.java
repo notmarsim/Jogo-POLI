@@ -7,17 +7,19 @@ import java.awt.image.BufferedImage;
 public abstract class Player extends Entity {
      private KeyHandler keyH;
      private GamePanel gp;
+     private int xp;
 
      public Player(GamePanel gp, KeyHandler keyH) {
           this.gp = gp;
           this.keyH = keyH;
           setDefaultValues();
+          direcao = "frente";
      }
 
      protected void setDefaultValues() {
           x = 100;
           y = 100;
-          direcao = "frente";
+          vida = 20;
 
      }
 
@@ -32,6 +34,7 @@ public abstract class Player extends Entity {
 
                movimentacao = "movendo";
                y = y - speed;
+               System.out.println("andando");
           } else if (keyH.downPressed) {
                if (direcao.equals("frente")) {
                     direcao = "frente";
@@ -52,13 +55,14 @@ public abstract class Player extends Entity {
                movimentacao = "parado";
           }
           spriteCounter++;
-          if (spriteCounter >= 6) {
+          if (spriteCounter >= 5) {
                spriteCounter = 0; // Reiniciar contador
                spriteNum++; // Avançar para o próximo sprite
                if (spriteNum > 7) {
                     spriteNum = 1; // Reiniciar a sequência de sprites
                }
           }
+          gp.getCamera().centerOnEntity(this);
      }
 
      public void draw(Graphics2D g2) {
@@ -152,7 +156,12 @@ public abstract class Player extends Entity {
                }
           }
 
-          g2.drawImage(image, x, y, (gp.tamanhoJanela*14/4), (gp.tamanhoJanela*14/4), null);
+          g2.drawImage(image,
+                  (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela * 9) / 4),
+                  (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 10) / 3),
+                  gp.tamanhoJanela * 4,
+                  gp.tamanhoJanela * 4,
+                  null);
 
      }
 }

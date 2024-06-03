@@ -1,19 +1,18 @@
 package main;
 
 
-import UI.UI;
 import capitulos.Prologo;
 import entity.Aquara;
 import entity.Pyroth;
 import entity.Aeris;
-import entity.Player;
-import tile.TileManager;
+
 import entity.Terranis;
+import gfx.Camera;
+import mapas.Maps;
+import tile.Tile;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.Period;
-import java.util.Currency;
 
 public class GamePanel extends JPanel implements Runnable{ // subclasse jframe , config de tela, tempo tambem
 
@@ -34,11 +33,18 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public final int larguraTela = tamanhomaxX*tamanhoJanela;
     public final int alturaTela = tamanhomaxY*tamanhoJanela;
 
-    TileManager tileManager = new TileManager(this);
+
+
     int fps = 60;
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler();
+
+    // camera
+    Camera camera = new Camera(this,0,0);
+    public Camera getCamera() {
+        return camera;
+    }
 
     // Personagens
     Aeris aeris = new Aeris(this,keyH);
@@ -96,7 +102,9 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public void update() {
         if(currentCapitulo == Capitulos.Prologo) {
             System.out.println("PROLOGO");
+
             prologo.up();
+
         }
     }
 
@@ -106,7 +114,8 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
         Graphics2D g2 = (Graphics2D)g;
 
         if(currentCapitulo == Capitulos.Prologo) {
-           prologo.draw(g2);
+
+            prologo.draw(g2);
 
         }
 
