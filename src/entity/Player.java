@@ -17,8 +17,9 @@ public abstract class Player extends Entity {
      }
 
      protected void setDefaultValues() {
-          x = 100;
-          y = 100;
+          x = gp.tamanhoJanela*10;
+          y = gp.tamanhoJanela*10;
+
           vida = 20;
 
      }

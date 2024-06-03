@@ -9,8 +9,8 @@ import java.awt.*;
 public class Maps {
     private int width, height;
     private int[][] tiles;
-   // private int targetX;
-   // private int targetY;
+    // private int targetX;
+    // private int targetY;
     public GamePanel gp;
 
 
@@ -23,9 +23,12 @@ public class Maps {
 
     }
     public void draw(Graphics2D g2) {
-        for (int y = 0; y <height; y++) {
-            for (int x = 0; x<width;x++){
-
+        int xStart = (int) Math.max(0,gp.getCamera().getxOffSet()/ Tile.tileWidth);
+        int yStart = (int) Math.max(0,gp.getCamera().getyOffSet()/ Tile.tileHeight);
+        int xEnd = (int) Math.min(width,(gp.getCamera().getxOffSet() + gp.larguraTela) / Tile.tileWidth +1);
+        int yEnd = (int) Math.min(height,(gp.getCamera().getyOffSet() + gp.alturaTela) / Tile.tileHeight + 1);
+        for (int y = yStart; y <yEnd; y++) {
+            for (int x = xStart; x<xEnd;x++){
                 getTile(x,y).draw(g2,(int)( x * Tile.tileWidth - gp.getCamera().getxOffSet()),(int) (y * Tile.tileHeight - gp.getCamera().getyOffSet()));
             }
         }
