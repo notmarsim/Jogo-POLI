@@ -15,7 +15,7 @@ public class Aeris extends Player {
     }
 
 
-    public void loadSprites() {
+    private void loadSprites() {
         try {
             idle = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_1.png"));
             idle2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_2.png"));
