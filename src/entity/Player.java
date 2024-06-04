@@ -6,16 +6,14 @@ import java.awt.image.BufferedImage;
 
 public abstract class Player extends Entity {
      private KeyHandler keyH;
-     private GamePanel gp;
+
      private int xp;
 
      public Player(GamePanel gp, KeyHandler keyH) {
-          this.gp = gp;
+          super(gp);
           this.keyH = keyH;
           setDefaultValues();
           direcao = "frente";
-
-
      }
 
 

@@ -8,10 +8,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Elder extends Entity {
-    private GamePanel gp;
+
 
     public Elder(GamePanel gp, int startX, int startY) {
-        this.gp = gp;
+        super(gp);
         this.x = startX;
         this.y = startY;
         loadSprites();

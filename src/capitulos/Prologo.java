@@ -29,7 +29,7 @@ public class Prologo {
     }
 
     public void up() {
-          ui.update();
+        ui.update();
         mapaPrologo.update();
         pyroth.update();
 
