@@ -1,62 +1,93 @@
 package entity;
 import main.GamePanel;
 import main.KeyHandler;
+import tile.Tile;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Scanner;
+import entity.Combate;
 
 public abstract class Player extends Entity {
      private KeyHandler keyH;
-     private GamePanel gp;
      private int xp;
+     private Combate combate;
 
      public Player(GamePanel gp, KeyHandler keyH) {
-          this.gp = gp;
+          super(gp);
           this.keyH = keyH;
           setDefaultValues();
+          bounds = new Rectangle();
           direcao = "frente";
-
+          this.combate = new Combate(vida,dano);
 
      }
 
+     public boolean iniciarCombate(int x, int y) {
+          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(3);
+          if (posicaoCombate != null && posicaoCombate.equals(new Point(x, y))) {
+             combate.iniciarTurnoCombate(vida,dano);
+               return true;
+          }
+          return false;
+     }
+
+
+
+
+     protected boolean collisionWithTile(int x, int y) {
+          return gp.getCurrentMap().getTile(x,y).isSolid();
+     }
 
      protected void setDefaultValues() {
-          x = gp.tamanhoJanela*10;
-          y = gp.tamanhoJanela*10;
+          x = gp.tamanhoJanela*15;
+          y = gp.tamanhoJanela*18;
           vida = 20;
+          dano = 5;
 
      }
 
      public void update() {
           if (keyH.upPressed) {
-
-               if (direcao.equals("frente")) {
-                    direcao = "frente";
-               } else if(direcao.equals("costas")) {
-                    direcao = "costas";
-               }
-
+               direcao = "frente";
                movimentacao = "movendo";
-               y = y - speed;
-               System.out.println("andando");
+
+               int ty = (int) ((y - speed + bounds.y) / Tile.tileHeight);
+               if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), ty) &&
+                       !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), ty)) {
+                    y = y - speed;
+               }
           } else if (keyH.downPressed) {
-               if (direcao.equals("frente")) {
-                    direcao = "frente";
-               } else if(direcao.equals("costas")) {
-                    direcao = "costas";
-               }
+               direcao = "frente";
                movimentacao = "movendo";
-               y = y + speed;
+
+               int by = (int) ((y + speed + bounds.y + bounds.height) / Tile.tileHeight);
+               if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), by) &&
+                       !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), by)) {
+                    y = y + speed;
+               }
           } else if (keyH.leftPressed) {
                direcao = "costas";
                movimentacao = "movendo";
-               x = x - speed;
+
+               int tx = (int) ((x - speed + bounds.x) / Tile.tileWidth);
+               if (!collisionWithTile(tx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
+                       !collisionWithTile(tx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
+                    x = x - speed;
+               }
           } else if (keyH.rightPressed) {
                direcao = "frente";
-               x = x + speed;
                movimentacao = "movendo";
+
+               int bx = (int) ((x + speed + bounds.x + bounds.width) / Tile.tileWidth);
+               if (!collisionWithTile(bx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
+                       !collisionWithTile(bx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
+                    x = x + speed;
+               }
           } else {
                movimentacao = "parado";
           }
+          iniciarCombate((int) x / Tile.tileWidth, (int) y / Tile.tileHeight);
           spriteCounter++;
           if (spriteCounter >= 5) {
                spriteCounter = 0; // Reiniciar contador
@@ -165,6 +196,7 @@ public abstract class Player extends Entity {
                   gp.tamanhoJanela * 4,
                   gp.tamanhoJanela * 4,
                   null);
+
 
      }
 }

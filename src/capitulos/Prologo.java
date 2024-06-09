@@ -28,16 +28,21 @@ public class Prologo {
 
     }
 
+    public Maps getMap() {
+        return mapaPrologo;
+    }
+
+
     public void up() {
-          ui.update();
+       // ui.update();
         mapaPrologo.update();
         pyroth.update();
 
-        System.out.println("PEGOU");
+
     }
 
     public void draw(Graphics2D g2){
-         ui.draw(g2);
+       //  ui.draw(g2);
         if(ui.isPrologoDesaparecido()) {
             mapaPrologo.draw(g2);
 
@@ -49,7 +54,7 @@ public class Prologo {
                 this.elder = new Elder(gamePanel, x, y);
                 elder.draw(g2);
             } else {
-                this.elder = new Elder(gamePanel, 100, 100);
+                this.elder = new Elder(gamePanel, 100, gamePanel.tamanhoJanela*20);
             }
             pyroth.draw(g2);
         }

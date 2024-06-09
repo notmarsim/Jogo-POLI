@@ -45,10 +45,14 @@ public class Maps {
         return null;
     }
     public Tile getTile(int x, int y) {
+        if (x<0 || y<0 || x>=width || y>=height) {
+            return Tile.pisoTijoloPedra;
+        }
+
         Tile t = Tile.tiles[tiles[x][y]];
         if(t == null) {
             System.out.println("nao carregou");
-            return Tile.pisoMadeira;
+            return Tile.pisoTijoloPedra;
 
         }
         return t;

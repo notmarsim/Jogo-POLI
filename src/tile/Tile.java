@@ -18,7 +18,7 @@ public class Tile {
     public BufferedImage image;
     protected final int id;
     public boolean colission = false;
-    public static final int tileWidth = 64, tileHeight = 64;
+    public static final int tileWidth = 80, tileHeight = 80;
 
 
     public Tile(BufferedImage image,int id) {
