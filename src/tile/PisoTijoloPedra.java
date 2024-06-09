@@ -9,6 +9,11 @@ public class PisoTijoloPedra extends Tile {
         super(carregarImagem(), id);
     }
 
+    @Override
+    public boolean isSolid() {
+        return true;
+    }
+
     private static BufferedImage carregarImagem() {
         try {
             return ImageIO.read(PisoTijoloPedra.class.getResourceAsStream("/tiles/pisoTijoloPedra.png"));

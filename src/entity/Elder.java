@@ -27,6 +27,6 @@ public class Elder extends Entity {
 
     public void draw(Graphics2D g2) {
         BufferedImage image = idle;
-        g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela *6) / 4), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 8) / 3), gp.tamanhoJanela * 3, gp.tamanhoJanela * 3, null);
+        g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela *15) / 14), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 8) / 5), gp.tamanhoJanela * 3, gp.tamanhoJanela * 3, null);
     }
 }

@@ -16,12 +16,13 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{ // subclasse jframe , config de tela, tempo tambem
 
+    private Maps currentMap;
+    private Prologo prologo;
     public enum Capitulos {
         Prologo,
         chapter1,
         chapter2
     }
-
     public Capitulos currentCapitulo = Capitulos.Prologo;
 
 
@@ -32,7 +33,6 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     public final int tamanhomaxY = 12;
     public final int larguraTela = tamanhomaxX*tamanhoJanela;
     public final int alturaTela = tamanhomaxY*tamanhoJanela;
-
 
 
     int fps = 60;
@@ -46,20 +46,30 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
         return camera;
     }
 
-    // Personagens
-    Aeris aeris = new Aeris(this,keyH);
-    Pyroth pyroth = new Pyroth(this,keyH);
-    Aquara aquara = new Aquara(this,keyH);
-    Terranis terranis = new Terranis(this,keyH);
-
-
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(larguraTela,alturaTela));
         this.setBackground(Color.BLACK);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        this.prologo = new Prologo(this,keyH);
+        setChapter(Capitulos.Prologo);
 
+    }
+
+
+    public void setChapter(Capitulos chapter) {
+        this.currentCapitulo = chapter;
+        switch (chapter) {
+            case Prologo:
+                this.currentMap = prologo.getMap();
+                break;
+            // Outros casos para outros capítulos
+        }
+    }
+
+    public Maps getCurrentMap() {
+        return currentMap;
     }
 
     public void iniciarGameThread() {
@@ -96,12 +106,11 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
 
     }
 
-    Prologo prologo = new Prologo(this,keyH);
+
 
 
     public void update() {
         if(currentCapitulo == Capitulos.Prologo) {
-            System.out.println("PROLOGO");
             prologo.up();
 
         }

@@ -3,6 +3,7 @@ package entity;
 import main.GamePanel;
 import main.KeyHandler;
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.IOException;
 
 public class Pyroth extends Player {
@@ -11,6 +12,11 @@ public class Pyroth extends Player {
         super(gp, keyH);
         loadSprites();
         speed = 6;
+        bounds.y = -30;
+        bounds.x = -45;
+        bounds.width = 50;
+        bounds.height = 70;
+
     }
 
     private void loadSprites() {
