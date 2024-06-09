@@ -3,15 +3,18 @@ import main.GamePanel;
 import main.KeyHandler;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import main.Fight;
 
 public abstract class Player extends Entity {
      private KeyHandler keyH;
      private GamePanel gp;
      private int xp;
+     private Fight fight;
 
-     public Player(GamePanel gp, KeyHandler keyH) {
+     public Player(GamePanel gp, KeyHandler keyH,Fight fight) {
           this.gp = gp;
           this.keyH = keyH;
+          this.fight = new Fight(keyH);
           setDefaultValues();
           direcao = "frente";
 
@@ -27,6 +30,9 @@ public abstract class Player extends Entity {
      }
 
      public void update() {
+          if(keyH.fPressed){
+               fight.luta();
+          }
           if (keyH.upPressed) {
 
                if (direcao.equals("frente")) {
@@ -37,7 +43,7 @@ public abstract class Player extends Entity {
 
                movimentacao = "movendo";
                y = y - speed;
-               System.out.println("andando");
+
           } else if (keyH.downPressed) {
                if (direcao.equals("frente")) {
                     direcao = "frente";

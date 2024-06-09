@@ -1,5 +1,6 @@
 package entity;
 
+import main.Fight;
 import main.GamePanel;
 import main.KeyHandler;
 
@@ -8,8 +9,8 @@ import java.io.IOException;
 
 public class Aquara extends Player {
 
-    public Aquara(GamePanel gp, KeyHandler keyH) {
-        super(gp, keyH);
+    public Aquara(GamePanel gp, KeyHandler keyH, Fight fight) {
+        super(gp, keyH, fight);
         loadSprites();
         speed = 6;
     }

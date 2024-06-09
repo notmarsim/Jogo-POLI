@@ -47,10 +47,6 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
     }
 
     // Personagens
-    Aeris aeris = new Aeris(this,keyH);
-    Pyroth pyroth = new Pyroth(this,keyH);
-    Aquara aquara = new Aquara(this,keyH);
-    Terranis terranis = new Terranis(this,keyH);
 
 
 
@@ -101,7 +97,7 @@ public class GamePanel extends JPanel implements Runnable{ // subclasse jframe ,
 
     public void update() {
         if(currentCapitulo == Capitulos.Prologo) {
-            System.out.println("PROLOGO");
+            //System.out.println("PROLOGO");
             prologo.up();
 
         }
