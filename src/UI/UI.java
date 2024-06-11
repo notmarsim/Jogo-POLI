@@ -7,12 +7,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class UI {
-
     Graphics2D g2;
     Font maruMonica;
     GamePanel gamePanel;
     int fontSize;
-    private int opacity;
+    private int prologoOpacity; // Opacidade específica para o prólogo
     private boolean fadingOut;
     long startTime;
     long duration;
@@ -20,12 +19,10 @@ public class UI {
     public UI(GamePanel gamePanel, int fontSize) {
         this.gamePanel = gamePanel;
         this.fontSize = fontSize;
-        this.opacity = 0;
+        this.prologoOpacity = 0; // Inicialize a opacidade do prólogo
         this.fadingOut = false;
         this.startTime = System.currentTimeMillis();
         this.duration = 3000;
-
-
 
         InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
         try {
@@ -40,10 +37,13 @@ public class UI {
     public void draw(Graphics2D g2) {
         this.g2 = g2;
         g2.setFont(maruMonica);
-        g2.setColor(new Color(255, 255, 255, opacity));
-        if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {
-            printarPrologo();
 
+        // Renderizar outros elementos da UI aqui, se necessário
+        // g2.setColor(new Color(255, 255, 255, opacity)); // Se necessário para outros elementos
+
+        if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {
+            g2.setColor(new Color(255, 255, 255, prologoOpacity)); // Use a opacidade específica do prólogo
+            printarPrologo();
         }
     }
 
@@ -55,15 +55,15 @@ public class UI {
         }
 
         if (fadingOut) {
-            opacity -= 5;
-            if (opacity <= 0) {
-                opacity = 0;
+            prologoOpacity -= 5;
+            if (prologoOpacity <= 0) {
+                prologoOpacity = 0;
             }
         } else {
-            if (opacity < 255) {
-                opacity += 5;
-                if (opacity >= 255) {
-                    opacity = 255;
+            if (prologoOpacity < 255) {
+                prologoOpacity += 5;
+                if (prologoOpacity >= 255) {
+                    prologoOpacity = 255;
                 }
             }
         }
@@ -83,13 +83,11 @@ public class UI {
         return x;
     }
 
-
     public void iniciarDesaparecimento() {
         fadingOut = true;
     }
 
-
     public boolean isPrologoDesaparecido() {
-        return opacity == 0;
+        return prologoOpacity == 0;
     }
 }
