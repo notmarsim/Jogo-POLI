@@ -39,9 +39,11 @@ public class UI {
         g2.setFont(maruMonica);
 
         // Renderizar outros elementos da UI aqui, se necessário
-        // g2.setColor(new Color(255, 255, 255, opacity)); // Se necessário para outros elementos
 
-        if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {
+        // Verificar o estado do jogo e desenhar o diálogo se necessário
+        if (gamePanel.getGameState() == GamePanel.GameState.Dialogo) {
+            drawDialogueScreen();
+        } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {
             g2.setColor(new Color(255, 255, 255, prologoOpacity)); // Use a opacidade específica do prólogo
             printarPrologo();
         }
@@ -89,5 +91,35 @@ public class UI {
 
     public boolean isPrologoDesaparecido() {
         return prologoOpacity == 0;
+    }
+
+    public void drawDialogueScreen() {
+        int x = gamePanel.tamanhoJanela * 2;
+        int y = gamePanel.tamanhoJanela / 2;
+        int width = gamePanel.larguraTela - gamePanel.tamanhoJanela * 4;
+        int height = gamePanel.tamanhoJanela * 5;
+
+        drawSubWindow(x, y, width, height);
+        String textoDialogo = "marcio viadinho";
+        drawTextoDialogo(textoDialogo, x + 20, y + 40);
+    }
+
+    public void drawSubWindow(int x, int y, int width, int height) {
+        Color color = new Color(0, 0, 0, 200); // Cor de fundo com transparência
+        g2.setColor(color);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+        color = new Color(255, 255, 255); // Cor da borda
+        g2.setColor(color);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+    }
+
+    private void drawTextoDialogo(String texto, int x, int y) {
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20)); // Tamanho do texto do diálogo
+        for (String linha : texto.split("\n")) {
+            g2.drawString(linha, x, y);
+            y += g2.getFontMetrics().getHeight(); // Avança para a próxima linha
+        }
     }
 }
