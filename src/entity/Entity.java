@@ -15,7 +15,8 @@ public class Entity {
     public int spriteNum = 1;
     public String movimentacao;
     protected Rectangle bounds;
-
+    protected String currentWeapon;
+    protected String currentShield;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
