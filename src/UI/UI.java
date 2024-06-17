@@ -15,7 +15,7 @@ public class UI {
     private boolean fadingOut;
     long startTime;
     long duration;
-    private Dialogues dialogues; // Novo atributo
+    private Dialogues dialogues;
 
     public UI(GamePanel gamePanel, int fontSize) {
         this.gamePanel = gamePanel;
@@ -25,7 +25,7 @@ public class UI {
         this.startTime = System.currentTimeMillis();
         this.duration = 3000;
 
-        this.dialogues = new Dialogues(gamePanel, fontSize); // Instanciar Dialogues
+        this.dialogues = new Dialogues(gamePanel, fontSize);
 
         InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
         try {
@@ -41,13 +41,12 @@ public class UI {
         this.g2 = g2;
         g2.setFont(maruMonica);
 
-        // Renderizar outros elementos da UI aqui, se necessário
 
-        // Verificar o estado do jogo e desenhar o diálogo se necessário
+
         if (gamePanel.getGameState() == GamePanel.GameState.Dialogo) {
-            dialogues.drawDialogueScreen(g2); // Use o método da classe Dialogues
+            dialogues.drawDialogueScreen(g2);
         } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {
-            g2.setColor(new Color(255, 255, 255, prologoOpacity)); // Use a opacidade específica do prólogo
+            g2.setColor(new Color(255, 255, 255, prologoOpacity));
             printarPrologo();
         }
     }
