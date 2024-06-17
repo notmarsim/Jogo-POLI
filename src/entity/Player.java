@@ -26,7 +26,7 @@ public abstract class Player extends Entity {
      public boolean iniciarCombate(int x, int y) {
           Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(4);
           if (posicaoCombate != null && posicaoCombate.equals(new Point(x, y))) {
-             combate.iniciarTurnoCombate(vida,dano);
+               combate.iniciarTurnoCombate(vida,dano);
                return true;
           }
           return false;

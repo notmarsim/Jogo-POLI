@@ -11,18 +11,21 @@ public class UI {
     Font maruMonica;
     GamePanel gamePanel;
     int fontSize;
-    private int prologoOpacity; // Opacidade específica para o prólogo
+    private int prologoOpacity;
     private boolean fadingOut;
     long startTime;
     long duration;
+    private Dialogues dialogues; // Novo atributo
 
     public UI(GamePanel gamePanel, int fontSize) {
         this.gamePanel = gamePanel;
         this.fontSize = fontSize;
-        this.prologoOpacity = 0; // Inicialize a opacidade do prólogo
+        this.prologoOpacity = 0;
         this.fadingOut = false;
         this.startTime = System.currentTimeMillis();
         this.duration = 3000;
+
+        this.dialogues = new Dialogues(gamePanel, fontSize); // Instanciar Dialogues
 
         InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
         try {
@@ -42,7 +45,7 @@ public class UI {
 
         // Verificar o estado do jogo e desenhar o diálogo se necessário
         if (gamePanel.getGameState() == GamePanel.GameState.Dialogo) {
-            drawDialogueScreen();
+            dialogues.drawDialogueScreen(g2); // Use o método da classe Dialogues
         } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {
             g2.setColor(new Color(255, 255, 255, prologoOpacity)); // Use a opacidade específica do prólogo
             printarPrologo();
@@ -91,35 +94,5 @@ public class UI {
 
     public boolean isPrologoDesaparecido() {
         return prologoOpacity == 0;
-    }
-
-    public void drawDialogueScreen() {
-        int x = gamePanel.tamanhoJanela * 2;
-        int y = gamePanel.tamanhoJanela / 2;
-        int width = gamePanel.larguraTela - gamePanel.tamanhoJanela * 4;
-        int height = gamePanel.tamanhoJanela * 5;
-
-        drawSubWindow(x, y, width, height);
-        String textoDialogo = "marcio viadinho";
-        drawTextoDialogo(textoDialogo, x + 20, y + 40);
-    }
-
-    public void drawSubWindow(int x, int y, int width, int height) {
-        Color color = new Color(0, 0, 0, 200); // Cor de fundo com transparência
-        g2.setColor(color);
-        g2.fillRoundRect(x, y, width, height, 35, 35);
-        color = new Color(255, 255, 255); // Cor da borda
-        g2.setColor(color);
-        g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
-    }
-
-    private void drawTextoDialogo(String texto, int x, int y) {
-        g2.setColor(Color.WHITE);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20)); // Tamanho do texto do diálogo
-        for (String linha : texto.split("\n")) {
-            g2.drawString(linha, x, y);
-            y += g2.getFontMetrics().getHeight(); // Avança para a próxima linha
-        }
     }
 }
