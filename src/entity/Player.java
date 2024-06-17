@@ -5,13 +5,14 @@ import tile.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
-import entity.Combate;
+import java.util.ArrayList;
 
 public abstract class Player extends Entity {
      private KeyHandler keyH;
      private int xp;
      private Combate combate;
+     public ArrayList<String> inventario = new ArrayList<String>();
+     public final int inventarioSize = 20;
 
      public Player(GamePanel gp, KeyHandler keyH) {
           super(gp);
@@ -41,6 +42,10 @@ public abstract class Player extends Entity {
           return false;
      }
 
+     public void setItems() {
+          inventario.add(currentWeapon);
+          inventario.add(currentShield);
+     }
 
 
 
@@ -104,6 +109,7 @@ public abstract class Player extends Entity {
           } else {
                movimentacao = "parado";
           }
+
           iniciarCombate((int) x / Tile.tileWidth, (int) y / Tile.tileHeight);
           iniciarDialogo(x/Tile.tileWidth,y/Tile.tileHeight);
           spriteCounter++;

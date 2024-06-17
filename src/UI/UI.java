@@ -43,6 +43,7 @@ public class UI {
 
 
 
+
         if (gamePanel.getGameState() == GamePanel.GameState.Dialogo) {
             dialogues.drawDialogueScreen(g2);
         } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {

@@ -4,6 +4,8 @@ import main.GamePanel;
 
 public class Inventory extends UI {
 
+    public int slotRow = 0;
+    public int slotCol = 0;
 
     public Inventory(GamePanel gamePanel, int fontSize) {
         super(gamePanel, fontSize);
@@ -20,5 +22,10 @@ public class Inventory extends UI {
         final int slotYstart = frameY +20;
         int slotX = slotXstart;
         int slotY = slotYstart;
+
+        int cursorX = slotXstart+gamePanel.tamanhoJanela*slotRow;
+        int cursorY = slotYstart+gamePanel.tamanhoJanela*slotCol;
+        int cursorWidth = gamePanel.tamanhoJanela;
+        int cursorHeight = gamePanel.tamanhoJanela;
     }
 }
