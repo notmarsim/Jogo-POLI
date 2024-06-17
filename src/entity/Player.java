@@ -24,9 +24,18 @@ public abstract class Player extends Entity {
      }
 
      public boolean iniciarCombate(int x, int y) {
-          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(3);
+          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(4);
           if (posicaoCombate != null && posicaoCombate.equals(new Point(x, y))) {
-             combate.iniciarTurnoCombate(vida,dano);
+               combate.iniciarTurnoCombate(vida,dano);
+               return true;
+          }
+          return false;
+     }
+
+     public boolean iniciarDialogo(int x, int y) {
+          Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(3);
+          if (posicaoDialogo != null && posicaoDialogo.equals(new Point(x, y))) {
+               gp.setGameState(gp.getGameState().Dialogo);
                return true;
           }
           return false;
@@ -49,7 +58,11 @@ public abstract class Player extends Entity {
 
      public void update() {
           if (keyH.upPressed) {
-               direcao = "frente";
+               if(direcao=="frente"){
+                    direcao = "frente";
+               } else {
+                    direcao = "costas";
+               }
                movimentacao = "movendo";
 
                int ty = (int) ((y - speed + bounds.y) / Tile.tileHeight);
@@ -58,7 +71,11 @@ public abstract class Player extends Entity {
                     y = y - speed;
                }
           } else if (keyH.downPressed) {
-               direcao = "frente";
+               if(direcao=="frente") {
+                    direcao = "frente";
+               } else {
+                    direcao = "costas";
+               }
                movimentacao = "movendo";
 
                int by = (int) ((y + speed + bounds.y + bounds.height) / Tile.tileHeight);
@@ -88,6 +105,7 @@ public abstract class Player extends Entity {
                movimentacao = "parado";
           }
           iniciarCombate((int) x / Tile.tileWidth, (int) y / Tile.tileHeight);
+          iniciarDialogo(x/Tile.tileWidth,y/Tile.tileHeight);
           spriteCounter++;
           if (spriteCounter >= 5) {
                spriteCounter = 0; // Reiniciar contador
