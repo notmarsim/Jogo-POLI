@@ -24,13 +24,13 @@ public class Dialogues {
 
         drawSubWindow(x, y, width, height);
 
-        // Exemplo de texto de diálogo
+
         String textoDialogo = "teste dialogo";
         drawTextoDialogo(textoDialogo, x + 20, y + 40);
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
-        Color color = new Color(0, 0, 0, 200); // Cor de fundo com transparência
+        Color color = new Color(0, 0, 0, 200);
         g2.setColor(color);
         g2.fillRoundRect(x, y, width, height, 35, 35);
         color = new Color(255, 255, 255); // Cor da borda
@@ -41,10 +41,10 @@ public class Dialogues {
 
     private void drawTextoDialogo(String texto, int x, int y) {
         g2.setColor(Color.WHITE);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20)); // Tamanho do texto do diálogo
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20));
         for (String linha : texto.split("\n")) {
             g2.drawString(linha, x, y);
-            y += g2.getFontMetrics().getHeight(); // Avança para a próxima linha
+            y += g2.getFontMetrics().getHeight();
         }
     }
 }
