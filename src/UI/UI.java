@@ -16,6 +16,8 @@ public class UI {
     long startTime;
     long duration;
     private Dialogues dialogues;
+    public int slotRow = 0;
+    public int slotCol = 0;
 
     public UI(GamePanel gamePanel, int fontSize) {
         this.gamePanel = gamePanel;
@@ -24,7 +26,6 @@ public class UI {
         this.fadingOut = false;
         this.startTime = System.currentTimeMillis();
         this.duration = 3000;
-
         this.dialogues = new Dialogues(gamePanel, fontSize);
 
         InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
@@ -42,11 +43,16 @@ public class UI {
         g2.setFont(maruMonica);
 
 
-
-
-        if (gamePanel.getGameState() == GamePanel.GameState.Dialogo) {
+        if (gamePanel.getCharacterState()==GamePanel.CharacterState.Dialogo) {
             dialogues.drawDialogueScreen(g2);
-        } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {
+            System.out.println("dialogo");
+        } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Inventario) {
+            drawInventory();
+            System.out.println("Estado Inventário Ativo");
+        }
+
+
+        if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {
             g2.setColor(new Color(255, 255, 255, prologoOpacity));
             printarPrologo();
         }
@@ -63,6 +69,8 @@ public class UI {
             prologoOpacity -= 5;
             if (prologoOpacity <= 0) {
                 prologoOpacity = 0;
+                gamePanel.setGameState(GamePanel.GameState.Jogando); // Muda o estado para Jogando
+
             }
         } else {
             if (prologoOpacity < 255) {
@@ -94,5 +102,38 @@ public class UI {
 
     public boolean isPrologoDesaparecido() {
         return prologoOpacity == 0;
+    }
+
+    public void drawInventory() {
+        int frameX = gamePanel.tamanhoJanela * 9;
+        int frameY = gamePanel.tamanhoJanela;
+        int frameWidth = gamePanel.tamanhoJanela * 6;
+        int frameHeight = gamePanel.tamanhoJanela * 5;
+
+        // Desenhe o quadro do inventário
+        g2.setColor(new Color(50, 50, 50, 200)); // Um fundo semitransparente
+        g2.fillRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
+
+        g2.setColor(Color.white);
+        g2.drawRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10); // Desenha a borda
+
+        // Slots
+        final int slotSize = gamePanel.tamanhoJanela;
+        final int slotXstart = frameX + 20;
+        final int slotYstart = frameY + 20;
+
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 5; col++) {
+                int slotX = slotXstart + (col * (slotSize + 10));
+                int slotY = slotYstart + (row * (slotSize + 10));
+                g2.drawRect(slotX, slotY, slotSize, slotSize);
+            }
+        }
+
+        // Cursor
+        int cursorX = slotXstart + (slotSize + 10) * slotCol;
+        int cursorY = slotYstart + (slotSize + 10) * slotRow;
+        g2.setColor(Color.yellow);
+        g2.drawRoundRect(cursorX, cursorY, slotSize, slotSize, 10, 10);
     }
 }

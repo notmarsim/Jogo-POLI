@@ -8,6 +8,11 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
 
     public boolean upPressed , downPressed , leftPressed , rightPressed;
+    private GamePanel gp;
+
+    public KeyHandler(GamePanel gp) {
+        this.gp = gp;
+    }
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -29,7 +34,18 @@ public class KeyHandler implements KeyListener {
            if(code==KeyEvent.VK_D || code==KeyEvent.VK_RIGHT) {
             rightPressed = true;
              }
+        if (code == KeyEvent.VK_I && gp.getGameState() == GamePanel.GameState.Jogando) {
+            gp.setCharacterState(GamePanel.CharacterState.Inventario);
+        }
+        if(code == KeyEvent.VK_X) {
+            gp.setGameState(GamePanel.GameState.Jogando);
+            gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+        }
+
+
     }
+
+
 
     @Override
     public void keyReleased(KeyEvent e) {
