@@ -36,7 +36,7 @@ public abstract class Player extends Entity {
      public boolean iniciarDialogo(int x, int y) {
           Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(3);
           if (posicaoDialogo != null && posicaoDialogo.equals(new Point(x, y))) {
-               gp.setGameState(gp.getGameState().Dialogo);
+               gp.setCharacterState(GamePanel.CharacterState.Dialogo);
                return true;
           }
           return false;
@@ -46,6 +46,8 @@ public abstract class Player extends Entity {
           inventario.add(currentWeapon);
           inventario.add(currentShield);
      }
+
+
 
 
 

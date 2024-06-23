@@ -25,14 +25,32 @@ public class GamePanel extends JPanel implements Runnable {
     public enum GameState {
         Menu,
         Pausado,
+        Jogando
+    }
+
+    public enum CharacterState {
         Dialogo,
-        Combate
+        Inventario,
+        Combate,
+        Ocioso
+    }
+
+    private CharacterState characterState = CharacterState.Ocioso;
+
+    public void setCharacterState(CharacterState newState) {
+        this.characterState = newState;
+
+    }
+
+    public CharacterState getCharacterState(){
+        return characterState;
     }
 
     public GameState gameState = GameState.Menu;
 
     public void setGameState(GameState newState) {
         this.gameState = newState;
+        repaint();
     }
 
     public GameState getGameState() {
@@ -50,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
     int fps = 60;
 
     Thread gameThread;
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
 
     // camera
     Camera camera = new Camera(this, 0, 0);
@@ -125,14 +143,17 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         if (currentCapitulo == Capitulos.Prologo) {
-            if (gameState == GameState.Dialogo) {
-                prologo.draw(g2);
-                ui.draw(g2); // Desenha o diálogo em cima do prólogo
-            } else {
-                prologo.draw(g2);
-            }
+            prologo.draw(g2);
         }
 
+
+        if (gameState == GameState.Jogando) {
+            if(characterState == CharacterState.Inventario){
+                ui.draw(g2);
+            } else if (characterState == CharacterState.Dialogo) {
+                ui.draw(g2);
+            }
+        }
         g2.dispose();
     }
 }
