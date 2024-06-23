@@ -13,7 +13,6 @@ public class Tile {
     public static Tile pisoElder = new PisoElder(3);
 
 
-
     // CLASSE
     public BufferedImage image;
     protected final int id;

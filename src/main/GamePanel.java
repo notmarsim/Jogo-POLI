@@ -1,7 +1,6 @@
 package main;
 
 import capitulos.Prologo;
-import entity.Pyroth;
 import gfx.Camera;
 import mapas.Maps;
 
