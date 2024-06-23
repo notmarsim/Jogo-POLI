@@ -26,9 +26,11 @@ public class Dialogues {
 
         drawSubWindow(x, y, width, height);
 
+
         String textoDialogo = "teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo " +
                 "teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo";
         drawTextoDialogo(textoDialogo, x + 20, y + 40, width - 40);
+
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
@@ -44,6 +46,7 @@ public class Dialogues {
     private void drawTextoDialogo(String texto, int x, int y, int maxWidth) {
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20));
+
         FontMetrics metrics = g2.getFontMetrics();
 
         List<String> linhas = new ArrayList<>();

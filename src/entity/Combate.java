@@ -27,6 +27,7 @@ public class Combate {
 
             while (vida > 0 && vidaInimigo > 0) {
                 if (turnoDoPersonagem) {
+                    System.out.println("teste");
                     System.out.println("Seu turno! Digite 1 para atacar ou 2 para defender:");
                     int escolha = scanner.nextInt();
 
