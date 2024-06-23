@@ -35,12 +35,13 @@ public class Prologo {
         ui.update();
         mapaPrologo.update();
         pyroth.update();
+        System.out.println(gamePanel.getGameState());
 
 
     }
 
     public void draw(Graphics2D g2){
-         ui.draw(g2);
+        ui.draw(g2);
         if(ui.isPrologoDesaparecido()) {
             mapaPrologo.draw(g2);
 
@@ -58,4 +59,3 @@ public class Prologo {
         }
     }
 }
-
