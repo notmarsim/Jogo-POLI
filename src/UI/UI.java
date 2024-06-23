@@ -51,7 +51,7 @@ public class UI {
             System.out.println("Estado Inventário Ativo");
         }
 
-        // Desenha o prólogo apenas se o capítulo for Prologo
+
         if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {
             g2.setColor(new Color(255, 255, 255, prologoOpacity));
             printarPrologo();

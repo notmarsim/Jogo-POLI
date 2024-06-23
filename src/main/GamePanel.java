@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setCharacterState(CharacterState newState) {
         this.characterState = newState;
+        repaint();
 
     }
 

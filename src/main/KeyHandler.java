@@ -37,6 +37,10 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_I && gp.getGameState() == GamePanel.GameState.Jogando) {
             gp.setCharacterState(GamePanel.CharacterState.Inventario);
         }
+        if(code == KeyEvent.VK_X) {
+            gp.setGameState(GamePanel.GameState.Jogando);
+            gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+        }
 
 
     }
