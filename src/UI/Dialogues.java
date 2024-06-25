@@ -27,8 +27,9 @@ public class Dialogues {
         drawSubWindow(x, y, width, height);
 
 
-        String textoDialogo = "teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo " +
-                "teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo teste dialogo";
+        String textoDialogo = "Elder: Seja bem-vindo, Guardião. A escuridão que temíamos há muito tempo finalmente retornou. O Lorde das Sombras, um mal antigo, despertou de seu sono eterno. Ele busca destruir Elemenvera e todos os seus elementos." +
+                "Você deve unir os Guardiões dos quatro elementos. Apenas juntos vocês possuem o poder de selar o Lorde das Sombras novamente."
+                ;
         drawTextoDialogo(textoDialogo, x + 20, y + 40, width - 40);
 
     }

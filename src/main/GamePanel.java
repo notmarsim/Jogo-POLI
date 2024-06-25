@@ -1,7 +1,9 @@
 package main;
 
+import Objetos.PocaoForca;
+import Objetos.SuperObject;
 import capitulos.Prologo;
-import entity.Pyroth;
+import entity.Player;
 import gfx.Camera;
 import mapas.Maps;
 
@@ -40,10 +42,9 @@ public class GamePanel extends JPanel implements Runnable {
     public void setCharacterState(CharacterState newState) {
         this.characterState = newState;
         repaint();
-
     }
 
-    public CharacterState getCharacterState(){
+    public CharacterState getCharacterState() {
         return characterState;
     }
 
@@ -70,6 +71,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler(this);
+    private static Player player;
+    private SuperObject superObject;
 
     // camera
     Camera camera = new Camera(this, 0, 0);
@@ -83,9 +86,18 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-        this.prologo = new Prologo(this, keyH);
+        player = new Player(this,keyH);
         this.ui = new UI(this, 80);
+        this.prologo = new Prologo(this, keyH);
         setChapter(Capitulos.Prologo);
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public UI getUi() {
+        return ui;
     }
 
     public void setChapter(Capitulos chapter) {
@@ -110,31 +122,29 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     // loop principal do game
     public void run() {
-        long horaAtual = System.nanoTime();
+        double drawInterval = 1000000000 / fps;
+        double delta = 0;
+        long lastTime = System.nanoTime();
+        long currentTime;
 
-        while (gameThread != null) {  //update para atualizar info e paint para desenhar
+        while (gameThread != null) {
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
+            lastTime = currentTime;
 
-            double drawInterval = 1000000000 / fps;
-            double delta = 0;
-            long lastTime = System.nanoTime();
-            long currentTime;
-            while (gameThread != null) {
-                currentTime = System.nanoTime();
-                delta += (currentTime - lastTime) / drawInterval;
-                lastTime = currentTime;
-
-                if (delta >= 1) {
-                    update();
-                    repaint();
-                    delta--;
-                }
+            if (delta >= 1) {
+                update();
+                repaint();
+                delta--;
             }
         }
     }
 
     public void update() {
+
         if (currentCapitulo == Capitulos.Prologo) {
             prologo.up();
+
         }
     }
 
@@ -147,9 +157,9 @@ public class GamePanel extends JPanel implements Runnable {
             prologo.draw(g2);
         }
 
-
         if (gameState == GameState.Jogando) {
-            if(characterState == CharacterState.Inventario){
+            ui.drawHealthBar(g2);
+            if (characterState == CharacterState.Inventario) {
                 ui.draw(g2);
             } else if (characterState == CharacterState.Dialogo) {
                 ui.draw(g2);

@@ -1,5 +1,6 @@
 package entity;
 
+import Objetos.SuperObject;
 import main.GamePanel;
 import main.KeyHandler;
 import javax.imageio.ImageIO;
@@ -11,8 +12,6 @@ public class Pyroth extends Player {
     public Pyroth(GamePanel gp, KeyHandler keyH) {
         super(gp, keyH);
         loadSprites();
-        currentWeapon = "EspadaBasica";
-        currentShield = "EscudoBasico";
         speed = 6;
         bounds.y = -30;
         bounds.x = -45;
