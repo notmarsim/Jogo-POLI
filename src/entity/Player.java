@@ -1,4 +1,6 @@
 package entity;
+import Objetos.PocaoForca;
+import Objetos.SuperObject;
 import main.GamePanel;
 import main.KeyHandler;
 import tile.Tile;
@@ -7,12 +9,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public abstract class Player extends Entity {
+public class Player extends Entity {
      private KeyHandler keyH;
      private int xp;
      private Combate combate;
-     public ArrayList<String> inventario = new ArrayList<String>();
-     public final int inventarioSize = 20;
+     public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
+     public final int maxInventarioSize = 20;
 
      public Player(GamePanel gp, KeyHandler keyH) {
           super(gp);
@@ -21,7 +23,7 @@ public abstract class Player extends Entity {
           bounds = new Rectangle();
           direcao = "frente";
           this.combate = new Combate(vida,dano);
-
+          setItems();
      }
 
      public boolean iniciarCombate(int x, int y) {
@@ -43,12 +45,13 @@ public abstract class Player extends Entity {
      }
 
      public void setItems() {
-          inventario.add(currentWeapon);
-          inventario.add(currentShield);
+          pegarPocao();
      }
 
-
-
+     public void pegarPocao() {
+          PocaoForca pocao = new PocaoForca();
+          inventario.add(pocao);
+     }
 
 
      protected boolean collisionWithTile(int x, int y) {

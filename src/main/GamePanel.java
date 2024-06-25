@@ -1,6 +1,7 @@
 package main;
 
 import capitulos.Prologo;
+import entity.Player;
 import entity.Pyroth;
 import gfx.Camera;
 import mapas.Maps;
@@ -13,6 +14,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Maps currentMap;
     private Prologo prologo;
     private UI ui;
+    private Player player;
 
     public enum Capitulos {
         Prologo,
@@ -45,6 +47,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public CharacterState getCharacterState(){
         return characterState;
+    }
+
+    public UI getUi() {
+        return ui;
     }
 
     public GameState gameState = GameState.Menu;
@@ -86,6 +92,11 @@ public class GamePanel extends JPanel implements Runnable {
         this.prologo = new Prologo(this, keyH);
         this.ui = new UI(this, 80);
         setChapter(Capitulos.Prologo);
+        this.player = new Player(this,keyH);
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 
     public void setChapter(Capitulos chapter) {

@@ -1,5 +1,6 @@
 package entity;
 
+import Objetos.SuperObject;
 import main.GamePanel;
 
 import java.awt.*;
@@ -17,9 +18,11 @@ public class Entity {
     protected Rectangle bounds;
     protected String currentWeapon;
     protected String currentShield;
+    private SuperObject superObject;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
+        superObject = new SuperObject();
     }
 
 
