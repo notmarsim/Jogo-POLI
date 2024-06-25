@@ -3,6 +3,8 @@ package UI;
 import Objetos.SuperObject;
 import entity.Player;
 import main.GamePanel;
+import main.KeyHandler;
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.*;
@@ -21,7 +23,7 @@ public class UI {
     private Dialogues dialogues;
     public int slotRow = 0;
     public int slotCol = 0;
-    ;
+
 
     public UI(GamePanel gamePanel, int fontSize) {
         this.gamePanel = gamePanel;
@@ -50,10 +52,10 @@ public class UI {
 
         if (gamePanel.getCharacterState()==GamePanel.CharacterState.Dialogo) {
             dialogues.drawDialogueScreen(g2);
-            System.out.println("dialogo");
+
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Inventario) {
             drawInventory();
-            System.out.println("Estado Inventário Ativo");
+
         }
 
 
@@ -65,7 +67,7 @@ public class UI {
 
     public void update() {
         long elapsedTime = System.currentTimeMillis() - startTime;
-        System.out.println(gamePanel.player.getVida());
+
 
 
 
@@ -143,12 +145,22 @@ public class UI {
         g2.drawString(vidaTexto, vidaTextoX, vidaTextoY);
     }
 
+    public void usarItemSelecionado() {
+        int selectedIndex = slotRow * 5 + slotCol; // Índice do item selecionado
+        if (selectedIndex >= 0 && selectedIndex < gamePanel.getPlayer().inventario.size()) {
+            SuperObject selectedItem = gamePanel.getPlayer().inventario.get(selectedIndex);
+            selectedItem.usouItem(gamePanel.getPlayer());
+            System.out.println("Dano:"+gamePanel.getPlayer().getDano());
+            gamePanel.getPlayer().inventario.remove(selectedIndex);
+            gamePanel.repaint();
+        }
+    }
 
     public void drawInventory() {
         int frameX = gamePanel.tamanhoJanela * 9;
         int frameY = gamePanel.tamanhoJanela;
         int frameWidth = gamePanel.tamanhoJanela * 6;
-        int frameHeight = gamePanel.tamanhoJanela *11/2;
+        int frameHeight = gamePanel.tamanhoJanela * 11 / 2;
 
         // Desenhe o quadro do inventário
         g2.setColor(new Color(50, 50, 50, 200)); // Um fundo semitransparente
@@ -169,8 +181,8 @@ public class UI {
         // Descrição do item selecionado
         g2.setFont(maruMonica.deriveFont(Font.PLAIN, 14)); // Fonte menor para a descrição
         int selectedIndex = slotRow * 5 + slotCol; // Índice do item selecionado
-        if (selectedIndex >= 0 && selectedIndex < gamePanel.player.inventario.size()) {
-            SuperObject selectedItem = gamePanel.player.inventario.get(selectedIndex);
+        if (selectedIndex >= 0 && selectedIndex < gamePanel.getPlayer().inventario.size()) {
+            SuperObject selectedItem = gamePanel.getPlayer().inventario.get(selectedIndex);
             String descricao = selectedItem.nome;
             int descricaoWidth = g2.getFontMetrics().stringWidth(descricao);
             int descricaoX = frameX + (frameWidth - descricaoWidth) / 2;
@@ -181,7 +193,7 @@ public class UI {
         // Slots
         final int slotSize = gamePanel.tamanhoJanela;
         final int slotXstart = frameX + 20;
-        final int slotYstart = frameY + 80; // Posição inicial dos slots, abaixo da descrição
+        final int slotYstart = frameY + 80;
 
         for (int row = 0; row < 4; row++) {
             for (int col = 0; col < 5; col++) {
@@ -191,11 +203,10 @@ public class UI {
 
                 // Índice do item no inventário
                 int index = row * 5 + col;
-                if (index < gamePanel.player.inventario.size()) {
+                if (index < gamePanel.getPlayer().inventario.size()) {
                     // Obtém o SuperObject do inventário
-                    SuperObject item = gamePanel.player.inventario.get(index);
+                    SuperObject item = gamePanel.getPlayer().inventario.get(index);
 
-                    // Verifica se o item possui uma imagem
                     if (item.image != null) {
                         // Converte BufferedImage para Image
                         Image img = (Image) item.image;
@@ -212,7 +223,6 @@ public class UI {
         int cursorY = slotYstart + (slotSize + 10) * slotRow;
         g2.setColor(Color.yellow);
         g2.drawRoundRect(cursorX, cursorY, slotSize, slotSize, 10, 10);
-
     }
 
 

@@ -1,5 +1,7 @@
 package main;
 
+import Objetos.PocaoForca;
+import Objetos.SuperObject;
 import capitulos.Prologo;
 import entity.Player;
 import gfx.Camera;
@@ -69,7 +71,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler(this);
-    public Player player = new Player(this, keyH);
+    private static Player player;
+    private SuperObject superObject;
 
     // camera
     Camera camera = new Camera(this, 0, 0);
@@ -83,6 +86,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        player = new Player(this,keyH);
         this.ui = new UI(this, 80);
         this.prologo = new Prologo(this, keyH);
         setChapter(Capitulos.Prologo);
@@ -137,9 +141,10 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
+
         if (currentCapitulo == Capitulos.Prologo) {
             prologo.up();
-            System.out.println("Vida do gp: " + player.getVida());
+
         }
     }
 

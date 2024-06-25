@@ -9,6 +9,7 @@ public class KeyHandler implements KeyListener {
 
     public boolean upPressed , downPressed , leftPressed , rightPressed;
     private GamePanel gp;
+    public boolean enter = false;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -67,8 +68,9 @@ public class KeyHandler implements KeyListener {
                 }
             }
         }
-
-
+        if (code == KeyEvent.VK_ENTER) {
+            gp.getUi().usarItemSelecionado();
+        }
 
     }
 

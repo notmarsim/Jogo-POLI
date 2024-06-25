@@ -1,4 +1,5 @@
 package entity;
+import Objetos.PocaoCura;
 import Objetos.PocaoForca;
 import Objetos.SuperObject;
 import main.GamePanel;
@@ -30,7 +31,7 @@ public class Player extends Entity {
      public boolean iniciarCombate(int x, int y) {
           Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(3);
           if (posicaoCombate != null && posicaoCombate.equals(new Point(x, y))) {
-               combate.iniciarTurnoCombate(dano);
+               combate.iniciarTurnoCombate();
                return true;
           }
           return false;
@@ -48,13 +49,19 @@ public class Player extends Entity {
 
      public void setItems() {
           pegarPocao();
+          pegarPocao();
+          pegarCura();
      }
-
 
 
      public void pegarPocao() {
           PocaoForca pocao = new PocaoForca();
           inventario.add(pocao);
+     }
+
+     public void pegarCura(){
+          PocaoCura pocaoCura = new PocaoCura();
+          inventario.add(pocaoCura);
      }
 
 
@@ -81,8 +88,20 @@ public class Player extends Entity {
           }
      }
 
+     public void curarVida(){
+          vida = vidaMaxima;
+     }
+
+     public int getDano(){
+          return dano;
+     }
+
+     public void aumentarDano(int aumento){
+          dano = dano + aumento;
+     }
+
      public void update() {
-          System.out.println(getVida() + "no player");
+
           if (keyH.upPressed) {
                if(direcao=="frente"){
                     direcao = "frente";

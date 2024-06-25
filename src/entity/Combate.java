@@ -19,7 +19,7 @@ public class Combate {
         this.jaCombateu = false;
     }
 
-    public void iniciarTurnoCombate(int dano) {
+    public void iniciarTurnoCombate() {
         if(!jaCombateu) {
             System.out.println("Combate iniciado!");
 
@@ -32,8 +32,8 @@ public class Combate {
                     int escolha = scanner.nextInt();
 
                     if (escolha == 1) {
-                        vidaInimigo -= dano;
-                        System.out.println("Você causou " + dano + " de dano. Vida do inimigo: " + vidaInimigo);
+                        vidaInimigo -= player.getDano();
+                        System.out.println("Você causou " + player.getDano() + " de dano. Vida do inimigo: " + vidaInimigo);
                         defendendo = false;
                     } else if (escolha == 2) {
                         System.out.println("Você está se defendendo!");
@@ -49,6 +49,7 @@ public class Combate {
                         System.out.println("Você defendeu. Dano reduzido para " + danoInimigo);
                     }
                     player.receberDamage(danoInimigo);
+                    gp.repaint();
                     System.out.println("O inimigo causou " + danoInimigo + " de dano. Sua vida: " + player.getVida());
                 }
                 turnoDoPersonagem = !turnoDoPersonagem;

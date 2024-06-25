@@ -37,8 +37,7 @@ public class Prologo {
         ui.update();
         mapaPrologo.update();
         pyroth.update();
-        System.out.println(gamePanel.getGameState());
-        System.out.println(gamePanel.getCharacterState());
+
     }
 
     public void draw(Graphics2D g2){
