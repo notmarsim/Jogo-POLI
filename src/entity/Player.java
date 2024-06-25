@@ -15,6 +15,7 @@ public class Player extends Entity {
      private Combate combate;
      public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
      public final int maxInventarioSize = 20;
+     private boolean jaDialogou = false;
 
      public Player(GamePanel gp, KeyHandler keyH) {
           super(gp);
@@ -22,23 +23,24 @@ public class Player extends Entity {
           setDefaultValues();
           bounds = new Rectangle();
           direcao = "frente";
-          this.combate = new Combate(vida,dano);
+          this.combate = new Combate(gp,vida,dano);
           setItems();
      }
 
      public boolean iniciarCombate(int x, int y) {
-          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(4);
+          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(3);
           if (posicaoCombate != null && posicaoCombate.equals(new Point(x, y))) {
-               combate.iniciarTurnoCombate(vida,dano);
+               combate.iniciarTurnoCombate(dano);
                return true;
           }
           return false;
      }
 
      public boolean iniciarDialogo(int x, int y) {
-          Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(3);
-          if (posicaoDialogo != null && posicaoDialogo.equals(new Point(x, y))) {
+          Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(4);
+          if (posicaoDialogo != null && posicaoDialogo.equals(new Point(x, y)) && !jaDialogou) {
                gp.setCharacterState(GamePanel.CharacterState.Dialogo);
+               jaDialogou = true;
                return true;
           }
           return false;
@@ -47,6 +49,8 @@ public class Player extends Entity {
      public void setItems() {
           pegarPocao();
      }
+
+
 
      public void pegarPocao() {
           PocaoForca pocao = new PocaoForca();
@@ -61,12 +65,24 @@ public class Player extends Entity {
      protected void setDefaultValues() {
           x = gp.tamanhoJanela*15;
           y = gp.tamanhoJanela*18;
-          vida = 20;
+          vida = 100;
+          vidaMaxima = 100;
           dano = 5;
 
      }
 
+     public int getVida(){
+          return vida;
+     }
+
+     public void receberDamage(int dano){
+          if(vida>0) {
+               this.vida = vida - dano;
+          }
+     }
+
      public void update() {
+          System.out.println(getVida() + "no player");
           if (keyH.upPressed) {
                if(direcao=="frente"){
                     direcao = "frente";

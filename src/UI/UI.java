@@ -1,8 +1,8 @@
 package UI;
 
 import Objetos.SuperObject;
+import entity.Player;
 import main.GamePanel;
-
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.*;
@@ -21,6 +21,7 @@ public class UI {
     private Dialogues dialogues;
     public int slotRow = 0;
     public int slotCol = 0;
+    ;
 
     public UI(GamePanel gamePanel, int fontSize) {
         this.gamePanel = gamePanel;
@@ -30,6 +31,7 @@ public class UI {
         this.startTime = System.currentTimeMillis();
         this.duration = 3000;
         this.dialogues = new Dialogues(gamePanel, fontSize);
+
 
         InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
         try {
@@ -63,6 +65,9 @@ public class UI {
 
     public void update() {
         long elapsedTime = System.currentTimeMillis() - startTime;
+        System.out.println(gamePanel.player.getVida());
+
+
 
         if (elapsedTime >= duration && !fadingOut) {
             iniciarDesaparecimento();
@@ -107,6 +112,38 @@ public class UI {
         return prologoOpacity == 0;
     }
 
+    public void drawHealthBar(Graphics2D g2) {
+        // Dimensões e posição da barra de vida
+        int barX = 50;
+        int barY = 50;
+        int barWidth = 200; // Largura total da barra
+        int barHeight = 20; // Altura da barra
+
+        // Calcula a largura proporcional da barra de vida baseada na vida atual
+        int currentBarWidth = (int) ((double) gamePanel.getPlayer().getVida() / gamePanel.getPlayer().vidaMaxima * barWidth);
+
+        // Desenha o contorno da barra de vida
+        g2.setColor(Color.gray); // Cor do fundo da barra
+        g2.fillRect(barX, barY, barWidth, barHeight);
+
+        // Desenha a barra de vida atual
+        g2.setColor(Color.red); // Cor da vida
+        g2.fillRect(barX, barY, currentBarWidth, barHeight);
+
+        // Desenha o contorno da barra
+        g2.setColor(Color.black);
+        g2.drawRect(barX, barY, barWidth, barHeight);
+
+        // Texto da vida
+        g2.setColor(Color.white);
+        g2.setFont(maruMonica.deriveFont(Font.BOLD, 14)); // Fonte do texto
+        String vidaTexto = gamePanel.getPlayer().getVida() + "/" + gamePanel.getPlayer().vidaMaxima;
+        int vidaTextoX = barX + (barWidth - g2.getFontMetrics().stringWidth(vidaTexto)) / 2;
+        int vidaTextoY = barY + barHeight - 5;
+        g2.drawString(vidaTexto, vidaTextoX, vidaTextoY);
+    }
+
+
     public void drawInventory() {
         int frameX = gamePanel.tamanhoJanela * 9;
         int frameY = gamePanel.tamanhoJanela;
@@ -132,12 +169,12 @@ public class UI {
         // Descrição do item selecionado
         g2.setFont(maruMonica.deriveFont(Font.PLAIN, 14)); // Fonte menor para a descrição
         int selectedIndex = slotRow * 5 + slotCol; // Índice do item selecionado
-        if (selectedIndex >= 0 && selectedIndex < gamePanel.getPlayer().inventario.size()) {
-            SuperObject selectedItem = gamePanel.getPlayer().inventario.get(selectedIndex);
-            String descricao = selectedItem.nome; // Utiliza o nome como descrição simplificada
+        if (selectedIndex >= 0 && selectedIndex < gamePanel.player.inventario.size()) {
+            SuperObject selectedItem = gamePanel.player.inventario.get(selectedIndex);
+            String descricao = selectedItem.nome;
             int descricaoWidth = g2.getFontMetrics().stringWidth(descricao);
             int descricaoX = frameX + (frameWidth - descricaoWidth) / 2;
-            int descricaoY = frameY + 50; // Posição abaixo do título
+            int descricaoY = frameY + 50;
             g2.drawString(descricao, descricaoX, descricaoY);
         }
 
@@ -154,9 +191,9 @@ public class UI {
 
                 // Índice do item no inventário
                 int index = row * 5 + col;
-                if (index < gamePanel.getPlayer().inventario.size()) {
+                if (index < gamePanel.player.inventario.size()) {
                     // Obtém o SuperObject do inventário
-                    SuperObject item = gamePanel.getPlayer().inventario.get(index);
+                    SuperObject item = gamePanel.player.inventario.get(index);
 
                     // Verifica se o item possui uma imagem
                     if (item.image != null) {
@@ -175,6 +212,7 @@ public class UI {
         int cursorY = slotYstart + (slotSize + 10) * slotRow;
         g2.setColor(Color.yellow);
         g2.drawRoundRect(cursorX, cursorY, slotSize, slotSize, 10, 10);
+
     }
 
 
