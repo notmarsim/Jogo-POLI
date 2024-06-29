@@ -1,4 +1,7 @@
 package entity;
+import Objetos.PocaoCura;
+import Objetos.PocaoForca;
+import Objetos.SuperObject;
 import main.GamePanel;
 import main.KeyHandler;
 import tile.Tile;
@@ -7,12 +10,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public abstract class Player extends Entity {
+public class Player extends Entity {
      private KeyHandler keyH;
      private int xp;
      private Combate combate;
-     public ArrayList<String> inventario = new ArrayList<String>();
-     public final int inventarioSize = 20;
+     public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
+     public final int maxInventarioSize = 20;
+     private boolean jaDialogou = false;
 
      public Player(GamePanel gp, KeyHandler keyH) {
           super(gp);
@@ -20,35 +24,45 @@ public abstract class Player extends Entity {
           setDefaultValues();
           bounds = new Rectangle();
           direcao = "frente";
-          this.combate = new Combate(vida,dano);
-
+          this.combate = new Combate(gp,vida,dano);
+          setItems();
      }
 
      public boolean iniciarCombate(int x, int y) {
-          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(4);
+          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(3);
           if (posicaoCombate != null && posicaoCombate.equals(new Point(x, y))) {
-               combate.iniciarTurnoCombate(vida,dano);
+               combate.iniciarTurnoCombate();
                return true;
           }
           return false;
      }
 
      public boolean iniciarDialogo(int x, int y) {
-          Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(3);
-          if (posicaoDialogo != null && posicaoDialogo.equals(new Point(x, y))) {
+          Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(4);
+          if (posicaoDialogo != null && posicaoDialogo.equals(new Point(x, y)) && !jaDialogou) {
                gp.setCharacterState(GamePanel.CharacterState.Dialogo);
+               jaDialogou = true;
                return true;
           }
           return false;
      }
 
      public void setItems() {
-          inventario.add(currentWeapon);
-          inventario.add(currentShield);
+          pegarPocao();
+          pegarPocao();
+          pegarCura();
      }
 
 
+     public void pegarPocao() {
+          PocaoForca pocao = new PocaoForca();
+          inventario.add(pocao);
+     }
 
+     public void pegarCura(){
+          PocaoCura pocaoCura = new PocaoCura();
+          inventario.add(pocaoCura);
+     }
 
 
      protected boolean collisionWithTile(int x, int y) {
@@ -58,12 +72,36 @@ public abstract class Player extends Entity {
      protected void setDefaultValues() {
           x = gp.tamanhoJanela*15;
           y = gp.tamanhoJanela*18;
-          vida = 20;
+          vida = 100;
+          vidaMaxima = 100;
           dano = 5;
 
      }
 
+     public int getVida(){
+          return vida;
+     }
+
+     public void receberDamage(int dano){
+          if(vida>0) {
+               this.vida = vida - dano;
+          }
+     }
+
+     public void curarVida(){
+          vida = vidaMaxima;
+     }
+
+     public int getDano(){
+          return dano;
+     }
+
+     public void aumentarDano(int aumento){
+          dano = dano + aumento;
+     }
+
      public void update() {
+
           if (keyH.upPressed) {
                if(direcao=="frente"){
                     direcao = "frente";

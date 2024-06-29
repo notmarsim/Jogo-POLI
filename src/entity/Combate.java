@@ -1,47 +1,46 @@
 package entity;
 
+import main.GamePanel;
+
 import java.util.Scanner;
 
 public class Combate {
-
+    private final Player player;
+    private GamePanel gp;
     private int vidaInimigo;
     private boolean defendendo;
     private boolean jaCombateu;
 
-
-    public Combate(int vida, int dano) {
-        vidaInimigo = 20;
+    public Combate(GamePanel gp, int vida, int dano) {
+        this.gp = gp;
+        this.player = gp.getPlayer();
+        this.vidaInimigo = 20;
         this.defendendo = false;
-        jaCombateu = false;
+        this.jaCombateu = false;
     }
 
-    public void iniciarTurnoCombate(int vida,int dano) {
+    public void iniciarTurnoCombate() {
         if(!jaCombateu) {
             System.out.println("Combate iniciado!");
 
-            int vidaInimigo = 10;
             boolean turnoDoPersonagem = true;
-            boolean defendendo = false; // Estado de defesa
-
             Scanner scanner = new Scanner(System.in);
 
-            while (vida > 0 && vidaInimigo > 0) {
+            while (player.getVida() > 0 && vidaInimigo > 0) {
                 if (turnoDoPersonagem) {
-                    System.out.println("teste");
                     System.out.println("Seu turno! Digite 1 para atacar ou 2 para defender:");
                     int escolha = scanner.nextInt();
 
                     if (escolha == 1) {
-                        int danoCausado = dano; // Combina o dano do personagem com o input do jogador
-                        vidaInimigo -= danoCausado;
-                        System.out.println("Você causou " + danoCausado + " de dano. Vida do inimigo: " + vidaInimigo);
-                        defendendo = false; // Reset defesa
+                        vidaInimigo -= player.getDano();
+                        System.out.println("Você causou " + player.getDano() + " de dano. Vida do inimigo: " + vidaInimigo);
+                        defendendo = false;
                     } else if (escolha == 2) {
                         System.out.println("Você está se defendendo!");
-                        defendendo = true; // Marca o estado de defesa
+                        defendendo = true;
                     } else {
                         System.out.println("Escolha inválida. O turno é perdido.");
-                        defendendo = false; // Reset defesa em caso de escolha inválida
+                        defendendo = false;
                     }
                 } else {
                     int danoInimigo = (int) (Math.random() * 10) + 1;
@@ -49,20 +48,19 @@ public class Combate {
                         danoInimigo /= 2;
                         System.out.println("Você defendeu. Dano reduzido para " + danoInimigo);
                     }
-                    vida -= danoInimigo;
-                    System.out.println("O inimigo causou " + danoInimigo + " de dano. Sua vida: " + vida);
+                    player.receberDamage(danoInimigo);
+                    gp.repaint();
+                    System.out.println("O inimigo causou " + danoInimigo + " de dano. Sua vida: " + player.getVida());
                 }
-                turnoDoPersonagem = !turnoDoPersonagem; // alterna o turno
+                turnoDoPersonagem = !turnoDoPersonagem;
             }
 
-            if (vida <= 0) {
+            if (player.getVida() <= 0) {
                 System.out.println("Você foi derrotado!");
-                jaCombateu = true;
             } else if (vidaInimigo <= 0) {
                 System.out.println("Você derrotou o inimigo!");
-                jaCombateu = true;
             }
+            jaCombateu = true;
         }
-
     }
 }

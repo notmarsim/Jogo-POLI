@@ -21,8 +21,8 @@ public class Prologo {
 
     public Prologo(GamePanel gamePanel, KeyHandler keyHandler) {
         this.pyroth = new Pyroth(gamePanel, keyHandler);
-        this.ui = new UI(gamePanel,80);
         this.gamePanel = gamePanel;
+        this.ui = gamePanel.getUi();
         this.mapaPrologo = new Maps(gamePanel, "res/maps/mapaPrologo.txt");
     }
 
@@ -35,8 +35,6 @@ public class Prologo {
         ui.update();
         mapaPrologo.update();
         pyroth.update();
-        System.out.println(gamePanel.getGameState());
-
 
     }
 
