@@ -13,6 +13,8 @@ public class Tile {
     public static Tile pisoTijoloPedra = new PisoTijoloPedra(1);
     public static Tile pisoMadeira = new PisoMadeira(2);
     public static Tile pisoElder = new PisoElder(3);
+    public static Tile pisoLava = new PisoLava(4);
+    public static Tile tijoloLava = new TijoloLava(5);
 
 
     // CLASSE
