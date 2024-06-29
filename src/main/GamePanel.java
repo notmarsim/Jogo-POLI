@@ -2,6 +2,7 @@ package main;
 
 import Objetos.PocaoForca;
 import Objetos.SuperObject;
+import capitulos.ChapterFogo;
 import capitulos.Prologo;
 import entity.Player;
 import gfx.Camera;
@@ -14,12 +15,15 @@ import UI.UI;
 public class GamePanel extends JPanel implements Runnable {
     private Maps currentMap;
     private Prologo prologo;
+    private ChapterFogo chapterFogo;
     private UI ui;
 
     public enum Capitulos {
         Prologo,
-        chapter1,
-        chapter2
+        chapterFogo,
+        chapterAqua,
+        chapterAir,
+        chapterEarth
     }
 
     public Capitulos currentCapitulo = Capitulos.Prologo;
@@ -89,7 +93,8 @@ public class GamePanel extends JPanel implements Runnable {
         player = new Player(this,keyH);
         this.ui = new UI(this, 80);
         this.prologo = new Prologo(this, keyH);
-        setChapter(Capitulos.Prologo);
+        this.chapterFogo = new ChapterFogo(this,keyH);
+        setChapter(Capitulos.chapterFogo);
     }
 
     public Player getPlayer() {
@@ -106,7 +111,9 @@ public class GamePanel extends JPanel implements Runnable {
             case Prologo:
                 this.currentMap = prologo.getMap();
                 break;
-            // Outros casos para outros capítulos
+            case chapterFogo:
+                this.currentMap = chapterFogo.getMap();
+                break;
         }
     }
 
@@ -146,6 +153,10 @@ public class GamePanel extends JPanel implements Runnable {
             prologo.up();
 
         }
+        if (currentCapitulo == Capitulos.chapterFogo) {
+            chapterFogo.up();
+        }
+
     }
 
     // pintar
@@ -155,6 +166,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (currentCapitulo == Capitulos.Prologo) {
             prologo.draw(g2);
+        }
+
+        if (currentCapitulo == Capitulos.chapterFogo) {
+            chapterFogo.draw(g2);
         }
 
         if (gameState == GameState.Jogando) {
