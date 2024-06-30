@@ -13,8 +13,8 @@ public class Pyroth extends Player {
         super(gp, keyH);
         loadSprites();
         speed = 6;
-        bounds.y = -60;
-        bounds.x = -70;
+        bounds.y = -45;
+        bounds.x = -50;
         bounds.width = 50;
         bounds.height = 70;
 

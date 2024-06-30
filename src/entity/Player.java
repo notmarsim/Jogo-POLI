@@ -257,8 +257,8 @@ public class Player extends Entity {
           g2.drawImage(image,
                   (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela * 9) / 4),
                   (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 10) / 3),
-                  gp.tamanhoJanela * 7/2,
-                  gp.tamanhoJanela * 7/2,
+                  gp.tamanhoJanela * 76/20,
+                  gp.tamanhoJanela * 76/20,
                   null);
           g2.setColor(Color.RED);
           g2.drawRect((int) (x - gp.getCamera().getxOffSet() + bounds.x),
