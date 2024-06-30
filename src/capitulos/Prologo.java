@@ -24,8 +24,6 @@ public class Prologo {
         this.gamePanel = gamePanel;
         this.ui = gamePanel.getUi();
         this.mapaPrologo = new Maps(gamePanel, "res/maps/mapaPrologo.txt");
-
-
     }
 
     public Maps getMap() {

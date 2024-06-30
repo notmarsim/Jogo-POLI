@@ -29,7 +29,7 @@ public class Player extends Entity {
      }
 
      public boolean iniciarCombate(int x, int y) {
-          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(3);
+          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(4);
           if (posicaoCombate != null && posicaoCombate.equals(new Point(x, y))) {
                combate.iniciarTurnoCombate();
                return true;
@@ -38,7 +38,7 @@ public class Player extends Entity {
      }
 
      public boolean iniciarDialogo(int x, int y) {
-          Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(4);
+          Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(3);
           if (posicaoDialogo != null && posicaoDialogo.equals(new Point(x, y)) && !jaDialogou) {
                gp.setCharacterState(GamePanel.CharacterState.Dialogo);
                jaDialogou = true;
