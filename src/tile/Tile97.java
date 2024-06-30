@@ -4,20 +4,19 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class TijoloLava extends Tile {
-    public TijoloLava(int id) {
+public class Tile97 extends Tile {
+    public Tile97(int id) {
         super(carregarImagem(), id);
     }
-    @Override
-    public boolean isSolid() {
-        return true;
-    }
+
     private static BufferedImage carregarImagem() {
         try {
-            return ImageIO.read(PisoLava.class.getResourceAsStream("/tiles/pisoLava.png"));
+            return ImageIO.read(PisoTijoloPedra.class.getResourceAsStream("/tiles/FogoTiles/tile97.png"));
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 }
+
+

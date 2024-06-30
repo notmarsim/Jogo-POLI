@@ -151,7 +151,7 @@ public class Player extends Entity {
           }
 
           iniciarCombate((int) x / Tile.tileWidth, (int) y / Tile.tileHeight);
-          iniciarDialogo(x/Tile.tileWidth,y/Tile.tileHeight);
+          iniciarDialogo(x/ Tile.tileWidth,y/ Tile.tileHeight);
           spriteCounter++;
           if (spriteCounter >= 5) {
                spriteCounter = 0; // Reiniciar contador
@@ -257,9 +257,13 @@ public class Player extends Entity {
           g2.drawImage(image,
                   (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela * 9) / 4),
                   (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 10) / 3),
-                  gp.tamanhoJanela * 4,
-                  gp.tamanhoJanela * 4,
+                  gp.tamanhoJanela * 7/2,
+                  gp.tamanhoJanela * 7/2,
                   null);
+          g2.setColor(Color.RED);
+          g2.drawRect((int) (x - gp.getCamera().getxOffSet() + bounds.x),
+                  (int) (y - gp.getCamera().getyOffSet() + bounds.y),
+                  bounds.width, bounds.height);
 
 
      }
