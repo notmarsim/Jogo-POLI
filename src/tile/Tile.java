@@ -1,43 +1,34 @@
 package tile;
 
-import main.GamePanel;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class Tile {
+    private BufferedImage image;
+    private final int id;
+    public boolean isSolid;
+    public static final int tileWidth = 80;
+    public static final int tileHeight = 80;
 
-    // MATERIAIS ESTATICOS
-    private static GamePanel gp;
-    public static Tile[] tiles = new Tile[100];
-    public static Tile pisoTijoloPedra = new PisoTijoloPedra(1);
-    public static Tile pisoMadeira = new PisoMadeira(2);
-    public static Tile pisoElder = new PisoElder(3);
-    public static Tile pisoLava = new PisoLava(4);
-    public static Tile tijoloLava = new TijoloLava(5);
-
-
-    // CLASSE
-    public BufferedImage image;
-    protected final int id;
-    public boolean colission = false;
-    public static final int tileWidth = gp.tamanhoJanela, tileHeight = gp.tamanhoJanela;
-
-
-    public Tile(BufferedImage image,int id) {
+    public Tile(String imagePath, int id, boolean isSolid) {
         this.id = id;
-        this.image = image;
-        this.gp = new GamePanel();
-        tiles[id] = this;
+        this.image = loadImage(imagePath);
+        this.isSolid = isSolid;
     }
 
-    public void update() {
-
+    private BufferedImage loadImage(String imagePath) {
+        try {
+            return ImageIO.read(getClass().getResourceAsStream(imagePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public void draw(Graphics2D g2, int x, int y){
-        g2.drawImage(image,x,y,tileWidth,tileHeight,null);
-
+    public void draw(Graphics2D g2, int x, int y) {
+        g2.drawImage(image, x, y, tileWidth, tileHeight, null);
     }
 
     public int getId() {
@@ -45,6 +36,6 @@ public class Tile {
     }
 
     public boolean isSolid() {
-        return false;
+        return isSolid;
     }
 }
