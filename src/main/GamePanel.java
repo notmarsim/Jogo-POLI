@@ -107,6 +107,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setChapter(Capitulos chapter) {
         this.currentCapitulo = chapter;
+        ui.iniciarCapitulo();
         switch (chapter) {
             case Prologo:
                 this.currentMap = prologo.getMap();
@@ -115,6 +116,7 @@ public class GamePanel extends JPanel implements Runnable {
                 this.currentMap = chapterFogo.getMap();
                 break;
         }
+
     }
 
     public Maps getCurrentMap() {

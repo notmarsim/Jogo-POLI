@@ -16,24 +16,31 @@ public class UI {
     Font maruMonica;
     GamePanel gamePanel;
     int fontSize;
-    private int prologoOpacity;
-    private boolean fadingOut;
+    private int prologoOpacity, fogoOpacity, aguaOpacity, terraOpacity, arOpacity;
+    private boolean fadingOutPrologo, fadingOutFogo, fadingOutAgua, fadingOutTerra, fadingOutAr;
     long startTime;
     long duration;
     private Dialogues dialogues;
     public int slotRow = 0;
     public int slotCol = 0;
 
-
+    // Construtor
     public UI(GamePanel gamePanel, int fontSize) {
         this.gamePanel = gamePanel;
         this.fontSize = fontSize;
         this.prologoOpacity = 0;
-        this.fadingOut = false;
+        this.fadingOutPrologo = false;
+        this.fogoOpacity = 0;
+        this.fadingOutFogo = false;
+        this.aguaOpacity = 0;
+        this.fadingOutAgua = false;
+        this.terraOpacity = 0;
+        this.fadingOutTerra = false;
+        this.arOpacity = 0;
+        this.fadingOutAr = false;
         this.startTime = System.currentTimeMillis();
         this.duration = 3000;
         this.dialogues = new Dialogues(gamePanel, fontSize);
-
 
         InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
         try {
@@ -49,38 +56,76 @@ public class UI {
         this.g2 = g2;
         g2.setFont(maruMonica);
 
-
-        if (gamePanel.getCharacterState()==GamePanel.CharacterState.Dialogo) {
+        if (gamePanel.getCharacterState() == GamePanel.CharacterState.Dialogo) {
             dialogues.drawDialogueScreen(g2);
-
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Inventario) {
             drawInventory();
-
         }
 
-
-        if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)) {
-            g2.setColor(new Color(255, 255, 255, prologoOpacity));
-            printarPrologo();
+        switch (gamePanel.currentCapitulo) {
+            case Prologo:
+                drawPrologo();
+                break;
+            case chapterFogo:
+                drawFogo();
+                break;
+            case chapterAqua:
+                drawAgua();
+                break;
+            case chapterEarth:
+                drawTerra();
+                break;
+            case chapterAir:
+                drawAr();
+                break;
         }
     }
 
     public void update() {
         long elapsedTime = System.currentTimeMillis() - startTime;
+        System.out.println("Capítulo atual: " + gamePanel.currentCapitulo);
+        System.out.println("Estado do jogo: " + gamePanel.getGameState());
 
-
-
-
-        if (elapsedTime >= duration && !fadingOut) {
-            iniciarDesaparecimento();
+        if (gamePanel.getGameState() == GamePanel.GameState.Menu) {
+            switch (gamePanel.currentCapitulo) {
+                case Prologo:
+                    updatePrologo(elapsedTime);
+                    break;
+                case chapterFogo:
+                    System.out.println("Atualizando Fogo");
+                    updateFogo(elapsedTime);
+                    break;
+                case chapterAqua:
+                    System.out.println("Atualizando Água");
+                    updateAgua(elapsedTime);
+                    break;
+                case chapterEarth:
+                    System.out.println("Atualizando Terra");
+                    updateTerra(elapsedTime);
+                    break;
+                case chapterAir:
+                    System.out.println("Atualizando Ar");
+                    updateAr(elapsedTime);
+                    break;
+            }
         }
+    }
 
-        if (fadingOut) {
+    private void drawPrologo() {
+        g2.setColor(new Color(255, 255, 255, prologoOpacity));
+        printarTexto("PROLOGO");
+    }
+
+    private void updatePrologo(long elapsedTime) {
+        if (elapsedTime >= duration && !fadingOutPrologo) {
+            iniciarDesaparecimentoPrologo();
+        }
+        if (fadingOutPrologo) {
             prologoOpacity -= 5;
             if (prologoOpacity <= 0) {
                 prologoOpacity = 0;
-                gamePanel.setGameState(GamePanel.GameState.Jogando); // Muda o estado para Jogando
-
+                System.out.println("prologo desaparece");
+                gamePanel.setGameState(GamePanel.GameState.Jogando);
             }
         } else {
             if (prologoOpacity < 255) {
@@ -92,8 +137,175 @@ public class UI {
         }
     }
 
-    public void printarPrologo() {
-        String text = "PROLOGO";
+    private void iniciarDesaparecimentoPrologo() {
+        fadingOutPrologo = true;
+    }
+
+    public boolean isPrologoDesaparecido() {
+        return prologoOpacity == 0;
+    }
+
+    private void drawFogo() {
+        g2.setColor(new Color(255, 100, 100, fogoOpacity));
+        printarTexto("FOGO");
+    }
+
+    private void updateFogo(long elapsedTime) {
+
+        if (elapsedTime >= duration && !fadingOutFogo) {
+            iniciarDesaparecimentoFogo();
+
+        }
+        if (fadingOutFogo) {
+            fogoOpacity -= 5;
+            if (fogoOpacity <= 0) {
+                fogoOpacity = 0;
+                System.out.println("desapareceu fogo");
+                gamePanel.setGameState(GamePanel.GameState.Jogando);
+            }
+        } else {
+            if (fogoOpacity < 255) {
+                fogoOpacity += 5;
+                if (fogoOpacity >= 255) {
+                    fogoOpacity = 255;
+                }
+            }
+        }
+    }
+
+    private void iniciarDesaparecimentoFogo() {
+        System.out.println("desaparecendo foogo");
+        fadingOutFogo = true;
+    }
+
+    public boolean isFogoDesaparecido() {
+        return fogoOpacity == 0;
+    }
+
+    private void drawAgua() {
+        g2.setColor(new Color(100, 100, 255, aguaOpacity));
+        printarTexto("AGUA");
+    }
+
+    private void updateAgua(long elapsedTime) {
+        if (elapsedTime >= duration && !fadingOutAgua) {
+            iniciarDesaparecimentoAgua();
+        }
+        if (fadingOutAgua) {
+            aguaOpacity -= 5;
+            if (aguaOpacity <= 0) {
+                aguaOpacity = 0;
+                gamePanel.setGameState(GamePanel.GameState.Jogando);
+            }
+        } else {
+            if (aguaOpacity < 255) {
+                aguaOpacity += 5;
+                if (aguaOpacity >= 255) {
+                    aguaOpacity = 255;
+                }
+            }
+        }
+    }
+
+    private void iniciarDesaparecimentoAgua() {
+        fadingOutAgua = true;
+    }
+
+    public boolean isAguaDesaparecido() {
+        return aguaOpacity == 0;
+    }
+
+    private void drawTerra() {
+        g2.setColor(new Color(150, 75, 0, terraOpacity));
+        printarTexto("TERRA");
+    }
+
+    private void updateTerra(long elapsedTime) {
+        if (elapsedTime >= duration && !fadingOutTerra) {
+            iniciarDesaparecimentoTerra();
+        }
+        if (fadingOutTerra) {
+            terraOpacity -= 5;
+            if (terraOpacity <= 0) {
+                terraOpacity = 0;
+                gamePanel.setGameState(GamePanel.GameState.Jogando);
+            }
+        } else {
+            if (terraOpacity < 255) {
+                terraOpacity += 5;
+                if (terraOpacity >= 255) {
+                    terraOpacity = 255;
+                }
+            }
+        }
+    }
+
+
+
+    private void iniciarDesaparecimentoTerra() {
+        fadingOutTerra = true;
+    }
+
+    private void drawAr() {
+        g2.setColor(new Color(200, 200, 255, arOpacity));
+        printarTexto("AR");
+    }
+
+    private void updateAr(long elapsedTime) {
+        if (elapsedTime >= duration && !fadingOutAr) {
+            iniciarDesaparecimentoAr();
+        }
+        if (fadingOutAr) {
+            arOpacity -= 5;
+            if (arOpacity <= 0) {
+                arOpacity = 0;
+                gamePanel.setGameState(GamePanel.GameState.Jogando);
+            }
+        } else {
+            if (arOpacity < 255) {
+                arOpacity += 5;
+                if (arOpacity >= 255) {
+                    arOpacity = 255;
+                }
+            }
+        }
+    }
+
+    private void resetTimer() {
+        startTime = System.currentTimeMillis();
+    }
+
+    public void iniciarCapitulo() {
+        switch (gamePanel.currentCapitulo) {
+            case Prologo:
+                prologoOpacity = 0;
+                fadingOutPrologo = false;
+                break;
+            case chapterFogo:
+                fogoOpacity = 0;
+                fadingOutFogo = false;
+                break;
+            case chapterAqua:
+                aguaOpacity = 0;
+                fadingOutAgua = false;
+                break;
+            case chapterEarth:
+                terraOpacity = 0;
+                fadingOutTerra = false;
+                break;
+            case chapterAir:
+                arOpacity = 0;
+                fadingOutAr = false;
+                break;
+        }
+        resetTimer();
+    }
+
+    private void iniciarDesaparecimentoAr() {
+        fadingOutAr = true;
+    }
+
+    private void printarTexto(String text) {
         int x = textoCentralizadoX(text);
         int y = gamePanel.alturaTela / 2;
         g2.drawString(text, x, y);
@@ -106,13 +318,6 @@ public class UI {
         return x;
     }
 
-    public void iniciarDesaparecimento() {
-        fadingOut = true;
-    }
-
-    public boolean isPrologoDesaparecido() {
-        return prologoOpacity == 0;
-    }
 
     public void drawHealthBar(Graphics2D g2) {
         // Dimensões e posição da barra de vida

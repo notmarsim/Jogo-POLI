@@ -36,6 +36,7 @@ public class KeyHandler implements KeyListener {
            if(code==KeyEvent.VK_D && gp.getCharacterState() == GamePanel.CharacterState.Ocioso || code==KeyEvent.VK_RIGHT && gp.getCharacterState() == GamePanel.CharacterState.Ocioso) {
             rightPressed = true;
              }
+           // INVENTARIO
         if (code == KeyEvent.VK_I && gp.getGameState() == GamePanel.GameState.Jogando) {
             // Verifica se o jogo está no estado Jogando e o inventário está fechado
             if (gp.getCharacterState() != GamePanel.CharacterState.Inventario) {
@@ -46,12 +47,16 @@ public class KeyHandler implements KeyListener {
                 gp.setCharacterState(GamePanel.CharacterState.Ocioso);
             }
         }
+        // SKIPAR DIALOGO
 
         if(code == KeyEvent.VK_ENTER && gp.getCharacterState() == GamePanel.CharacterState.Dialogo) {
+            gp.setGameState(GamePanel.GameState.Menu);
             gp.setChapter(GamePanel.Capitulos.chapterFogo);
             gp.setCharacterState(GamePanel.CharacterState.Ocioso);
 
         }
+
+        // INVENTARIO
         if(gp.getCharacterState() == GamePanel.CharacterState.Inventario) {
             if(code==KeyEvent.VK_W || code==KeyEvent.VK_UP) {
                 if (gp.getUi().slotRow != 0) {
@@ -74,8 +79,14 @@ public class KeyHandler implements KeyListener {
                 }
             }
         }
-        if (code == KeyEvent.VK_ENTER) {
+        // USAR ITEM
+        if (code == KeyEvent.VK_ENTER && gp.getCharacterState() == GamePanel.CharacterState.Inventario) {
             gp.getUi().usarItemSelecionado();
+        }
+
+        // TESTE CAPITULOS
+        if(code == KeyEvent.VK_F) {
+            gp.setChapter(GamePanel.Capitulos.chapterFogo);
         }
 
     }

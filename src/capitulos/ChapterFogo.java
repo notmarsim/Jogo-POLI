@@ -1,5 +1,6 @@
 package capitulos;
 
+import UI.UI;
 import entity.Pyroth;
 import main.GamePanel;
 import main.KeyHandler;
@@ -13,9 +14,11 @@ public class ChapterFogo {
     private GamePanel gp;
     private Maps mapaFogo;
     private Pyroth pyroth;
+    private UI ui;
 
     public ChapterFogo(GamePanel gp, KeyHandler keyHandler) {
         this.gp = gp;
+        this.ui  = gp.getUi();
         this.mapaFogo = new Maps(gp, "res/maps/mapaFogo.txt");
         initializeTreeMarkers();
         pyroth = new Pyroth(gp,keyHandler);
@@ -38,14 +41,19 @@ public class ChapterFogo {
     }
 
     public void up() {
+        ui.update();
         mapaFogo.update();
         pyroth.update();
     }
 
     public void draw(Graphics2D g2) {
-        mapaFogo.draw(g2);
-        drawTrees(g2);
-        pyroth.draw(g2);
+        ui.draw(g2);
+        if(ui.isFogoDesaparecido()){
+            mapaFogo.draw(g2);
+            drawTrees(g2);
+            pyroth.draw(g2);
+        }
+
     }
 
     private void drawTrees(Graphics2D g2) {
