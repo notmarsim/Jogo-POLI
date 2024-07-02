@@ -16,7 +16,7 @@ public class TileManager {
     private void loadTiles() {
         addTile(1, "/tiles/pisoTijoloPedra.png", true);
         addTile(2, "/tiles/pisoMadeira.png", false);
-        addTile(3, "/tiles/water.png", true);
+        addTile(3, "/tiles/water.png", false);
         addTile(4, "/tiles/pisoLava.png", true);
         addTile(5, "/tiles/FogoTiles/tile5.png", false);
         addTile(6, "/tiles/FogoTiles/bolha.png", false);
@@ -45,18 +45,24 @@ public class TileManager {
         addTile(60,"/tiles/FogoTiles/tile60.png",true);
         addTile(63,"/tiles/FogoTiles/tile63.png",false);
         addTile(65,"/tiles/FogoTiles/tile65.png",false);
+        addTile(66,"/tiles/FogoTiles/tile66.png",true);
+        addTile(67,"/tiles/FogoTiles/tile67.png",true);
         addTile(70,"/tiles/FogoTiles/tile70.png",false);
         addTile(71,"/tiles/FogoTiles/tile71.png",false);
         addTile(72,"/tiles/FogoTiles/tile72.png",true);
         addTile(73, "/tiles/FogoTiles/tile73.png",false);
+        addTile(75, "/tiles/FogoTiles/tile75.png",false);
         addTile(77,"/tiles/FogoTiles/tile77.png",false);
         addTile(79,"/tiles/FogoTiles/tile79.png",true);
         addTile(80,"/tiles/FogoTiles/tile80.png",true);
         addTile(81,"/tiles/FogoTiles/tile81.png",false);
+        addTile(83,"/tiles/FogoTiles/tile83.png",true);
         addTile(85,"/tiles/FogoTiles/tile85.png",false);
         addTile(86,"/tiles/FogoTiles/tile86.png",false);
+        addTile(87,"/tiles/FogoTiles/tile87.png",true);
         addTile(89,"/tiles/FogoTiles/tile89.png",false);
         addTile(97,"/tiles/FogoTiles/tile97.png",false);
+        addTile(108,"/tiles/FogoTiles/tile108.png",true);
 
     }
 

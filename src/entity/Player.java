@@ -70,6 +70,7 @@ public class Player extends Entity {
      }
 
      protected void setDefaultValues() {
+
           x = gp.tamanhoJanela*15;
           y = gp.tamanhoJanela*18;
           vida = 100;
@@ -260,10 +261,7 @@ public class Player extends Entity {
                   gp.tamanhoJanela * 76/20,
                   gp.tamanhoJanela * 76/20,
                   null);
-          g2.setColor(Color.RED);
-          g2.drawRect((int) (x - gp.getCamera().getxOffSet() + bounds.x),
-                  (int) (y - gp.getCamera().getyOffSet() + bounds.y),
-                  bounds.width, bounds.height);
+
 
 
      }

@@ -46,6 +46,12 @@ public class KeyHandler implements KeyListener {
                 gp.setCharacterState(GamePanel.CharacterState.Ocioso);
             }
         }
+
+        if(code == KeyEvent.VK_ENTER && gp.getCharacterState() == GamePanel.CharacterState.Dialogo) {
+            gp.setChapter(GamePanel.Capitulos.chapterFogo);
+            gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+
+        }
         if(gp.getCharacterState() == GamePanel.CharacterState.Inventario) {
             if(code==KeyEvent.VK_W || code==KeyEvent.VK_UP) {
                 if (gp.getUi().slotRow != 0) {

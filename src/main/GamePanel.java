@@ -94,7 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.ui = new UI(this, 80);
         this.prologo = new Prologo(this, keyH);
         this.chapterFogo = new ChapterFogo(this,keyH);
-        setChapter(Capitulos.chapterFogo);
+        setChapter(Capitulos.Prologo);
     }
 
     public Player getPlayer() {
