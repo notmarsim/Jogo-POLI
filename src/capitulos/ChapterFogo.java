@@ -5,7 +5,7 @@ import entity.Pyroth;
 import main.GamePanel;
 import main.KeyHandler;
 import mapas.Maps;
-
+ 
 import java.awt.*;
 
 public class ChapterFogo {
