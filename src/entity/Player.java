@@ -29,7 +29,7 @@ public class Player extends Entity {
      }
 
      public boolean iniciarCombate(int x, int y) {
-          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(3);
+          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(4);
           if (posicaoCombate != null && posicaoCombate.equals(new Point(x, y))) {
                combate.iniciarTurnoCombate();
                return true;
@@ -38,7 +38,7 @@ public class Player extends Entity {
      }
 
      public boolean iniciarDialogo(int x, int y) {
-          Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(4);
+          Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(3);
           if (posicaoDialogo != null && posicaoDialogo.equals(new Point(x, y)) && !jaDialogou) {
                gp.setCharacterState(GamePanel.CharacterState.Dialogo);
                jaDialogou = true;
@@ -70,6 +70,7 @@ public class Player extends Entity {
      }
 
      protected void setDefaultValues() {
+
           x = gp.tamanhoJanela*15;
           y = gp.tamanhoJanela*18;
           vida = 100;
@@ -151,7 +152,7 @@ public class Player extends Entity {
           }
 
           iniciarCombate((int) x / Tile.tileWidth, (int) y / Tile.tileHeight);
-          iniciarDialogo(x/Tile.tileWidth,y/Tile.tileHeight);
+          iniciarDialogo(x/ Tile.tileWidth,y/ Tile.tileHeight);
           spriteCounter++;
           if (spriteCounter >= 5) {
                spriteCounter = 0; // Reiniciar contador
@@ -257,9 +258,10 @@ public class Player extends Entity {
           g2.drawImage(image,
                   (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela * 9) / 4),
                   (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 10) / 3),
-                  gp.tamanhoJanela * 4,
-                  gp.tamanhoJanela * 4,
+                  gp.tamanhoJanela * 76/20,
+                  gp.tamanhoJanela * 76/20,
                   null);
+
 
 
      }

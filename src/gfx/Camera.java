@@ -2,7 +2,6 @@ package gfx;
 
 import entity.Entity;
 import main.GamePanel;
-import mapas.Maps;
 import tile.Tile;
 
 public class Camera {
@@ -26,8 +25,8 @@ public class Camera {
         }
         if(yOffSet<0) {
             yOffSet = 0;
-        } else if (yOffSet>gp.getCurrentMap().getHeight()*Tile.tileHeight- gp.alturaTela) {
-            yOffSet = gp.getCurrentMap().getHeight()*Tile.tileHeight- gp.alturaTela;
+        } else if (yOffSet>gp.getCurrentMap().getHeight()* Tile.tileHeight- gp.alturaTela) {
+            yOffSet = gp.getCurrentMap().getHeight()* Tile.tileHeight- gp.alturaTela;
         }
     }
 
