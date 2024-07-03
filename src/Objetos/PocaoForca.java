@@ -15,6 +15,7 @@ public class PocaoForca extends SuperObject{
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/pocaoForca.png"));
         } catch (IOException e) {
             e.printStackTrace();
+            
         }
         aumentoForca = 2;
     }

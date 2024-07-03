@@ -1,6 +1,5 @@
 package main;
 
-import Objetos.PocaoForca;
 import Objetos.SuperObject;
 import capitulos.ChapterFogo;
 import capitulos.Prologo;
@@ -25,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
         chapterAir,
         chapterEarth
     }
+
 
     public Capitulos currentCapitulo = Capitulos.Prologo;
 
@@ -176,6 +176,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (gameState == GameState.Jogando) {
             ui.drawHealthBar(g2);
+            ui.desenharMissao();
             if (characterState == CharacterState.Inventario) {
                 ui.draw(g2);
             } else if (characterState == CharacterState.Dialogo) {
