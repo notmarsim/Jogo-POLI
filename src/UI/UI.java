@@ -56,6 +56,7 @@ public class UI {
         this.g2 = g2;
         g2.setFont(maruMonica);
 
+
         if (gamePanel.getCharacterState() == GamePanel.CharacterState.Dialogo) {
             dialogues.drawDialogueScreen(g2);
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Inventario) {
@@ -79,6 +80,10 @@ public class UI {
                 drawAr();
                 break;
         }
+        if(gamePanel.getGameState() != GamePanel.GameState.Menu){
+            desenharMissao();
+        }
+
     }
 
     public void update() {
@@ -430,7 +435,26 @@ public class UI {
         g2.drawRoundRect(cursorX, cursorY, slotSize, slotSize, 10, 10);
     }
 
+    public void desenharMissao() {
+        String missao = "";
+        if (gamePanel.currentCapitulo == GamePanel.Capitulos.Prologo) {
+            missao = "Missão: Fale com o Elder.";
+        } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterFogo) {
+            missao = "Missão: Encontre os monstros infiltrados na vila.";
+        } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAqua) {
+            missao = "Missão: Limpe a fonte da vila.";
+        } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterEarth) {
+            missao = "Missão: Construa a defesa da vila.";
+        } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAir) {
+            missao = "Missão: Investigue o templo do vento.";
+        }
 
+        g2.setFont(maruMonica.deriveFont(Font.PLAIN, 19));
+        g2.setColor(Color.WHITE);
+        int x = 50; // Posição x do texto
+        int y = gamePanel.alturaTela - 50;
+        g2.drawString(missao, x, y);
+    }
 
 
 }
