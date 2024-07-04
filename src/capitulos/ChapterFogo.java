@@ -1,13 +1,10 @@
 package capitulos;
 
 import UI.UI;
-import entity.CasaVermelha;
-import entity.Pyroth;
-import entity.Tocha;
+import entity.*;
 import main.GamePanel;
 import main.KeyHandler;
 import mapas.Maps;
-import entity.DeathTree;
 import tile.Tile;
 import java.awt.*;
 import java.util.ArrayList;
@@ -20,15 +17,19 @@ public class ChapterFogo {
     private UI ui;
     private List<Tocha> tochas; // Lista para armazenar as tochas
     private CasaVermelha casaVermelha;
+    private EntityManager entityManager;
+    private NPC_Fogo blacksmith;
 
     public ChapterFogo(GamePanel gp, KeyHandler keyHandler) {
         this.gp = gp;
         this.ui = gp.getUi();
         this.mapaFogo = new Maps(gp, "res/maps/mapaFogo.txt");
-        this.tochas = new ArrayList<>(); // Inicialize a lista de tochas
+        this.tochas = new ArrayList<>();
         initializeTreeMarkers();
         inicializarTochas();
-        pyroth = new Pyroth(gp, keyHandler);
+        this.pyroth = new Pyroth(gp, keyHandler);
+        entityManager = new EntityManager(gp, pyroth);
+        entityManager.addEntity(new NPC_Fogo(gp, gp.tamanhoJanela*13, gp.tamanhoJanela*16));
         pyroth.x = gp.tamanhoJanela*2;
         pyroth.y = gp.tamanhoJanela*18;
     }
@@ -74,9 +75,10 @@ public class ChapterFogo {
     public void up() {
         ui.update();
         mapaFogo.update();
-        pyroth.update();
+        entityManager.update();
 
-        // Atualize cada tocha
+
+
         for (Tocha tocha : tochas) {
             tocha.update();
         }
@@ -87,9 +89,9 @@ public class ChapterFogo {
         if (ui.isFogoDesaparecido()) {
             mapaFogo.draw(g2);
             drawTrees(g2);
+            entityManager.desenhar(g2);
             desenharCasas(g2);
             desenharTochas(g2);
-            pyroth.draw(g2);
         }
     }
 

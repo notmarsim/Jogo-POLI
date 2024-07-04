@@ -20,6 +20,8 @@ public class Pyroth extends Player {
 
     }
 
+
+
     private void loadSprites() {
         try {
             idle = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle_1.png"));

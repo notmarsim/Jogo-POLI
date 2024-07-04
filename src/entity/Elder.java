@@ -6,19 +6,21 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Elder extends Entity {
-
 
     public Elder(GamePanel gp, int startX, int startY) {
         super(gp);
         this.x = startX;
         this.y = startY;
-
         loadSprites();
+        bounds = new Rectangle();
+        bounds.x = -50;
+        bounds.y = -70;
+        bounds.width = 200;
+        bounds.height = 300;
     }
+
 
     private void loadSprites() {
         try {
@@ -28,8 +30,21 @@ public class Elder extends Entity {
         }
     }
 
+
     public void draw(Graphics2D g2) {
+        // Desenhe o sprite do Elder
         BufferedImage image = idle;
-        g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela *15) / 14), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 8) / 5), gp.tamanhoJanela * 3, gp.tamanhoJanela * 3, null);
+        g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela * 15) / 14),
+                (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 8) / 5),
+                gp.tamanhoJanela * 3,
+                gp.tamanhoJanela * 3,
+                null);
+
+        // Desenhe o retângulo de colisão para depuração
+        g2.setColor(Color.RED); // Use uma cor visível
+        g2.drawRect((int) (x - gp.getCamera().getxOffSet() + bounds.x),
+                (int) (y - gp.getCamera().getyOffSet() + bounds.y),
+                bounds.width, bounds.height);
     }
+
 }
