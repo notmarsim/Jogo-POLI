@@ -56,6 +56,10 @@ public abstract class Entity {
             image = image7;
         }
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela, gp.tamanhoJanela, null);
+        g2.setColor(Color.RED);
+        g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
+                (int) (y + bounds.y - gp.getCamera().getyOffSet()),
+                bounds.width, bounds.height);
     }
 
     public boolean checkEntityColissions(float xOffSet, float yOffSet) {

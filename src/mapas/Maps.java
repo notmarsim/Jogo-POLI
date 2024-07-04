@@ -18,33 +18,8 @@ public class Maps {
         this.gp = gp;
         tileManager  = new TileManager(gp);
         loadMap(path);
-        initializeTreeMarkers();
-        inicializarTochas();
     }
 
-    private void initializeTreeMarkers() {
-        treeMarkers = new boolean[width][height];
-    }
-
-    private void inicializarTochas() {
-        tochasPosicao = new boolean[width][height];
-    }
-
-    public void setTochasPosicao(boolean[][] posicoes) {
-        if(posicoes.length == width && posicoes[0].length == height) {
-            this.tochasPosicao = posicoes;
-        } else {
-            System.err.println("Erro: O tamanho dos marcadores de tocha não corresponde ao tamanho do mapa.");
-        }
-    }
-
-    public void setTreeMarkers(boolean[][] markers) {
-        if (markers.length == width && markers[0].length == height) {
-            this.treeMarkers = markers;
-        } else {
-            System.err.println("Erro: O tamanho dos marcadores de árvore não corresponde ao tamanho do mapa.");
-        }
-    }
 
     public void update() {
         // Atualização do mapa, se necessário
