@@ -17,7 +17,7 @@ public class Dialogues {
     public Dialogues(GamePanel gamePanel, int fontSize) {
         this.gamePanel = gamePanel;
         this.fontSize = fontSize;
-        this.elder = new Elder(gamePanel, 0, 0);
+
 
     }
 

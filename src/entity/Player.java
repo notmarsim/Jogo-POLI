@@ -101,58 +101,73 @@ public class Player extends Entity {
           dano = dano + aumento;
      }
 
+     @Override
      public void update() {
-
           if (keyH.upPressed) {
-               if(direcao=="frente"){
+               if (direcao.equals("frente")) {
                     direcao = "frente";
                } else {
                     direcao = "costas";
                }
                movimentacao = "movendo";
 
-               int ty = (int) ((y - speed + bounds.y) / Tile.tileHeight);
-               if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), ty) &&
-                       !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), ty)) {
-                    y = y - speed;
+               // Verificação de colisão
+               if (!checkEntityColissions(0, -speed)) {
+                    int ty = (int) ((y - speed + bounds.y) / Tile.tileHeight);
+                    if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), ty) &&
+                            !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), ty)) {
+                         y = y - speed;
+                    }
                }
           } else if (keyH.downPressed) {
-               if(direcao=="frente") {
+               if (direcao.equals("frente")) {
                     direcao = "frente";
                } else {
                     direcao = "costas";
                }
                movimentacao = "movendo";
 
-               int by = (int) ((y + speed + bounds.y + bounds.height) / Tile.tileHeight);
-               if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), by) &&
-                       !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), by)) {
-                    y = y + speed;
+               // Verificação de colisão
+               if (!checkEntityColissions(0, speed)) {
+                    int by = (int) ((y + speed + bounds.y + bounds.height) / Tile.tileHeight);
+                    if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), by) &&
+                            !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), by)) {
+                         y = y + speed;
+                    }
                }
           } else if (keyH.leftPressed) {
                direcao = "costas";
                movimentacao = "movendo";
 
-               int tx = (int) ((x - speed + bounds.x) / Tile.tileWidth);
-               if (!collisionWithTile(tx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
-                       !collisionWithTile(tx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
-                    x = x - speed;
+               // Verificação de colisão
+               if (!checkEntityColissions(-speed, 0)) {
+                    int tx = (int) ((x - speed + bounds.x) / Tile.tileWidth);
+                    if (!collisionWithTile(tx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
+                            !collisionWithTile(tx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
+                         x = x - speed;
+                    }
                }
           } else if (keyH.rightPressed) {
                direcao = "frente";
                movimentacao = "movendo";
 
-               int bx = (int) ((x + speed + bounds.x + bounds.width) / Tile.tileWidth);
-               if (!collisionWithTile(bx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
-                       !collisionWithTile(bx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
-                    x = x + speed;
+               // Verificação de colisão
+               if (!checkEntityColissions(speed, 0)) {
+                    int bx = (int) ((x + speed + bounds.x + bounds.width) / Tile.tileWidth);
+                    if (!collisionWithTile(bx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
+                            !collisionWithTile(bx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
+                         x = x + speed;
+                    }
                }
           } else {
                movimentacao = "parado";
           }
 
+          // Iniciar combate e diálogo
           iniciarCombate((int) x / Tile.tileWidth, (int) y / Tile.tileHeight);
-          iniciarDialogo(x/ Tile.tileWidth,y/ Tile.tileHeight);
+          iniciarDialogo(x / Tile.tileWidth, y / Tile.tileHeight);
+
+          // Atualizar animação do sprite
           spriteCounter++;
           if (spriteCounter >= 5) {
                spriteCounter = 0; // Reiniciar contador
@@ -161,9 +176,13 @@ public class Player extends Entity {
                     spriteNum = 1; // Reiniciar a sequência de sprites
                }
           }
+
+          // Centralizar câmera na entidade
           gp.getCamera().centerOnEntity(this);
      }
 
+
+     @Override
      public void draw(Graphics2D g2) {
           BufferedImage image = null;
 
@@ -262,6 +281,12 @@ public class Player extends Entity {
                   gp.tamanhoJanela * 76/20,
                   null);
 
+
+        // DEBUG
+         g2.setColor(Color.RED);
+          g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
+                  (int) (y + bounds.y - gp.getCamera().getyOffSet()),
+                  bounds.width, bounds.height);
 
 
      }

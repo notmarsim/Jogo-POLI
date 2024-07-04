@@ -3,6 +3,7 @@ package main;
 import Objetos.SuperObject;
 import capitulos.ChapterFogo;
 import capitulos.Prologo;
+import entity.EntityManager;
 import entity.Player;
 import gfx.Camera;
 import mapas.Maps;
@@ -16,6 +17,9 @@ public class GamePanel extends JPanel implements Runnable {
     private Prologo prologo;
     private ChapterFogo chapterFogo;
     private UI ui;
+    private EntityManager entityManager;
+
+
 
     public enum Capitulos {
         Prologo,
@@ -92,9 +96,14 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
         player = new Player(this,keyH);
         this.ui = new UI(this, 80);
+        this.entityManager = new EntityManager(this,getPlayer());
         this.prologo = new Prologo(this, keyH);
         this.chapterFogo = new ChapterFogo(this,keyH);
         setChapter(Capitulos.Prologo);
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 
     public Player getPlayer() {
