@@ -23,17 +23,19 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
             int code = e.getKeyCode();
 
-            if(code==KeyEvent.VK_W && gp.getCharacterState() == GamePanel.CharacterState.Ocioso || code==KeyEvent.VK_UP && gp.getCharacterState() == GamePanel.CharacterState.Ocioso) {
+            // MOVIMENTACAO
+
+            if(code==KeyEvent.VK_W && gp.getCharacterState() == GamePanel.CharacterState.Ocioso && gp.getGameState() == GamePanel.GameState.Jogando || code==KeyEvent.VK_UP && gp.getCharacterState() == GamePanel.CharacterState.Ocioso  && gp.getGameState() == GamePanel.GameState.Jogando) {
             upPressed = true;
 
             }
-            if(code==KeyEvent.VK_A && gp.getCharacterState() == GamePanel.CharacterState.Ocioso || code==KeyEvent.VK_LEFT && gp.getCharacterState() == GamePanel.CharacterState.Ocioso) {
+            if(code==KeyEvent.VK_A && gp.getCharacterState() == GamePanel.CharacterState.Ocioso  && gp.getGameState() == GamePanel.GameState.Jogando || code==KeyEvent.VK_LEFT && gp.getCharacterState() == GamePanel.CharacterState.Ocioso  && gp.getGameState() == GamePanel.GameState.Jogando) {
             leftPressed = true;
             }
-           if(code==KeyEvent.VK_S && gp.getCharacterState() == GamePanel.CharacterState.Ocioso || code==KeyEvent.VK_DOWN && gp.getCharacterState() == GamePanel.CharacterState.Ocioso) {
+           if(code==KeyEvent.VK_S && gp.getCharacterState() == GamePanel.CharacterState.Ocioso   && gp.getGameState() == GamePanel.GameState.Jogando || code==KeyEvent.VK_DOWN && gp.getCharacterState() == GamePanel.CharacterState.Ocioso  && gp.getGameState() == GamePanel.GameState.Jogando) {
             downPressed = true;
              }
-           if(code==KeyEvent.VK_D && gp.getCharacterState() == GamePanel.CharacterState.Ocioso || code==KeyEvent.VK_RIGHT && gp.getCharacterState() == GamePanel.CharacterState.Ocioso) {
+           if(code==KeyEvent.VK_D && gp.getCharacterState() == GamePanel.CharacterState.Ocioso  && gp.getGameState() == GamePanel.GameState.Jogando || code==KeyEvent.VK_RIGHT && gp.getCharacterState() == GamePanel.CharacterState.Ocioso  && gp.getGameState() == GamePanel.GameState.Jogando) {
             rightPressed = true;
              }
            // INVENTARIO

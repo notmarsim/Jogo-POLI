@@ -32,39 +32,5 @@ public class Tocha extends Entity{
         }
     }
 
-    public void update() {
-        spriteCounter++;
-        if (spriteCounter >= 5) {
-            spriteCounter = 0;
-            spriteNum++;
-            if (spriteNum > 7) {
-                spriteNum = 1;
-            }
-        }
-    }
-
-    public void draw(Graphics2D g2) {
-        if (gp == null) {
-            System.err.println("Erro: GamePanel é null em Tocha.draw()");
-            return;
-        }
-        BufferedImage image = null;
-        if(spriteNum == 1) {
-            image = image1;
-        } else if(spriteNum == 2) {
-            image = image2;
-        } else if (spriteNum == 3) {
-            image = image3;
-        } else if (spriteNum == 4) {
-            image = image4;
-        } else if(spriteNum == 5) {
-            image = image5;
-        } else if (spriteNum == 6 ) {
-            image = image6;
-        } else if (spriteNum ==7) {
-            image = image7;
-        }
-        g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela ) ), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela , gp.tamanhoJanela , null);
-    }
 
 }

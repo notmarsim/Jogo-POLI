@@ -88,7 +88,7 @@ public class UI {
 
     public void update() {
         long elapsedTime = System.currentTimeMillis() - startTime;
-        System.out.println("Capítulo atual: " + gamePanel.currentCapitulo);
+        System.out.println(gamePanel.getCharacterState());
         System.out.println("Estado do jogo: " + gamePanel.getGameState());
 
         if (gamePanel.getGameState() == GamePanel.GameState.Menu) {
