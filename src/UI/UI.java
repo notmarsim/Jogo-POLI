@@ -88,8 +88,8 @@ public class UI {
 
     public void update() {
         long elapsedTime = System.currentTimeMillis() - startTime;
-        System.out.println(gamePanel.getCharacterState());
-        System.out.println("Estado do jogo: " + gamePanel.getGameState());
+        //System.out.println(gamePanel.getCharacterState());
+        //System.out.println("Estado do jogo: " + gamePanel.getGameState());
 
         if (gamePanel.getGameState() == GamePanel.GameState.Menu) {
             switch (gamePanel.currentCapitulo) {
@@ -97,7 +97,7 @@ public class UI {
                     updatePrologo(elapsedTime);
                     break;
                 case chapterFogo:
-                    System.out.println("Atualizando Fogo");
+                    //System.out.println("Atualizando Fogo");
                     updateFogo(elapsedTime);
                     break;
                 case chapterAqua:
