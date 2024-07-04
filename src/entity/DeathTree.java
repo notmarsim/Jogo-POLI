@@ -27,6 +27,6 @@ public class DeathTree extends Entity {
 
     public void draw(Graphics2D g2) {
         BufferedImage image = idle;
-        g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela *15) / 14), (int) (y - gp.getCamera().getyOffSet()- (gp.tamanhoJanela ) ), gp.tamanhoJanela*2, gp.tamanhoJanela*2, null);
+        g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela ) ), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*2 , gp.tamanhoJanela*2 , null);
     }
 }

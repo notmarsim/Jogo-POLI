@@ -6,6 +6,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Elder extends Entity {
 
@@ -14,6 +16,7 @@ public class Elder extends Entity {
         super(gp);
         this.x = startX;
         this.y = startY;
+
         loadSprites();
     }
 
