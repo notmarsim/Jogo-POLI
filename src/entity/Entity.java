@@ -56,24 +56,39 @@ public abstract class Entity {
             image = image7;
         }
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela, gp.tamanhoJanela, null);
+
     }
 
-    public boolean checkEntityColissions(float xOffSet, float yOffSet) {
+    public int checkEntityColissions(float xOffSet, float yOffSet) {
         for(Entity e : gp.getEntityManager().getEntities()) {
             if(e.equals(this)){
                 continue;
             }
             if(e.getBoundsCollision(0f,0f).intersects(getBoundsCollision(xOffSet,yOffSet))) {
                 System.out.println("colidiu");
-                return true;
+                return e.tipo();
             }
-
         }
-        return false;
+        return 0;
     }
 
     public Rectangle getBoundsCollision(float xOffset, float yOffset) {
         return new Rectangle((int)(x+ bounds.x+ xOffset), (int) (y + yOffset + bounds.y ), bounds.width,bounds.height);
     }
-}
 
+
+    public int getX() {
+        return x;
+    }
+
+
+    public int getY() {
+        return y;
+    }
+
+    public int getHeightBounds() {
+        return bounds.height;
+    }
+
+    public abstract int tipo(); // 1 para colisao normal , 2 para npcs com dialogo e 3 para viloes com combate
+}

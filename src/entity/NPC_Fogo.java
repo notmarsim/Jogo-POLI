@@ -17,8 +17,8 @@ public class NPC_Fogo extends Entity{
         this.y = startY;
         loadSprites();
         bounds = new Rectangle();
-        bounds.x = -50;
-        bounds.y = -50;
+        bounds.x = -60;
+        bounds.y = -70;
         bounds.width = 80;
         bounds.height = 100;
     }
@@ -39,7 +39,7 @@ public class NPC_Fogo extends Entity{
     @Override
     public void update() {
         spriteCounter++;
-        if (spriteCounter >= 5) {
+        if (spriteCounter >= 8) {
             spriteCounter = 0;
             spriteNum++;
             if (spriteNum > 5) {
@@ -64,7 +64,6 @@ public class NPC_Fogo extends Entity{
         }
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*13/10, gp.tamanhoJanela*13/10, null);
 
-
         g2.setColor(Color.RED);
         g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
                 (int) (y + bounds.y - gp.getCamera().getyOffSet()),
@@ -73,6 +72,8 @@ public class NPC_Fogo extends Entity{
     }
 
 
-
+    public int tipo() {
+        return 2;
+    }
 
 }

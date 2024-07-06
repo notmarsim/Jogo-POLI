@@ -29,4 +29,8 @@ public class CasaVermelha extends Entity {
         BufferedImage image = image1;
         g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)*4), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)*7), gp.tamanhoJanela*8 , gp.tamanhoJanela *8, null);
     }
+
+    public int tipo(){
+        return 1;
+    }
 }

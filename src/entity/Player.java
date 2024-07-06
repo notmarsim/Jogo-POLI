@@ -28,24 +28,33 @@ public class Player extends Entity {
           setItems();
      }
 
-     public boolean iniciarCombate(int x, int y) {
-          Point posicaoCombate = gp.getCurrentMap().findTileCoordinates(4);
-          if (posicaoCombate != null && posicaoCombate.equals(new Point(x, y))) {
-               combate.iniciarTurnoCombate();
-               return true;
-          }
-          return false;
+     public void iniciarCombate() {
+          combate.iniciarTurnoCombate();
      }
 
-     public boolean iniciarDialogo(int x, int y) {
-          Point posicaoDialogo = gp.getCurrentMap().findTileCoordinates(3);
-          if (posicaoDialogo != null && posicaoDialogo.equals(new Point(x, y)) && !jaDialogou) {
-               gp.setCharacterState(GamePanel.CharacterState.Dialogo);
-               jaDialogou = true;
-               return true;
-          }
-          return false;
+     public void iniciarDialogo() {
+          gp.setCharacterState(GamePanel.CharacterState.Dialogo);
      }
+
+     private void handleCollision(int entityType) {
+          switch (entityType) {
+               case 1:
+
+                    break;
+               case 2:
+
+                    if (!jaDialogou) {
+                         iniciarDialogo();
+                         jaDialogou = true;
+                    }
+                    break;
+               case 3:
+                    // Inicia combate
+                    iniciarCombate();
+                    break;
+          }
+     }
+
 
      public void setItems() {
           pegarPocao();
@@ -103,6 +112,7 @@ public class Player extends Entity {
 
      @Override
      public void update() {
+          int entityType = 0;
           if (keyH.upPressed) {
                if (direcao.equals("frente")) {
                     direcao = "frente";
@@ -111,12 +121,12 @@ public class Player extends Entity {
                }
                movimentacao = "movendo";
 
-               // Verificação de colisão
-               if (!checkEntityColissions(0, -speed)) {
+               entityType = checkEntityColissions(0, -speed);
+               if (entityType == 0) {
                     int ty = (int) ((y - speed + bounds.y) / Tile.tileHeight);
                     if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), ty) &&
                             !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), ty)) {
-                         y = y - speed;
+                         y -= speed;
                     }
                }
           } else if (keyH.downPressed) {
@@ -127,47 +137,48 @@ public class Player extends Entity {
                }
                movimentacao = "movendo";
 
-               // Verificação de colisão
-               if (!checkEntityColissions(0, speed)) {
+               entityType = checkEntityColissions(0, speed);
+               if (entityType == 0) {
                     int by = (int) ((y + speed + bounds.y + bounds.height) / Tile.tileHeight);
                     if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), by) &&
                             !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), by)) {
-                         y = y + speed;
+                         y += speed;
                     }
                }
           } else if (keyH.leftPressed) {
                direcao = "costas";
                movimentacao = "movendo";
 
-               // Verificação de colisão
-               if (!checkEntityColissions(-speed, 0)) {
+               entityType = checkEntityColissions(-speed, 0);
+               if (entityType == 0) {
                     int tx = (int) ((x - speed + bounds.x) / Tile.tileWidth);
                     if (!collisionWithTile(tx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
                             !collisionWithTile(tx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
-                         x = x - speed;
+                         x -= speed;
                     }
                }
           } else if (keyH.rightPressed) {
                direcao = "frente";
                movimentacao = "movendo";
 
-               // Verificação de colisão
-               if (!checkEntityColissions(speed, 0)) {
+
+               entityType = checkEntityColissions(speed, 0);
+               if (entityType == 0) {
                     int bx = (int) ((x + speed + bounds.x + bounds.width) / Tile.tileWidth);
                     if (!collisionWithTile(bx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
                             !collisionWithTile(bx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
-                         x = x + speed;
+                         x += speed;
                     }
                }
           } else {
                movimentacao = "parado";
           }
 
-          // Iniciar combate e diálogo
-          iniciarCombate((int) x / Tile.tileWidth, (int) y / Tile.tileHeight);
-          iniciarDialogo(x / Tile.tileWidth, y / Tile.tileHeight);
+          if (entityType != 0) {
+               handleCollision(entityType);
+          }
 
-          // Atualizar animação do sprite
+
           spriteCounter++;
           if (spriteCounter >= 5) {
                spriteCounter = 0; // Reiniciar contador
@@ -283,11 +294,15 @@ public class Player extends Entity {
 
 
         // DEBUG
+          /*
          g2.setColor(Color.RED);
           g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
                   (int) (y + bounds.y - gp.getCamera().getyOffSet()),
                   bounds.width, bounds.height);
 
-
+*/
+     }
+     public int tipo() {
+          return 1;
      }
 }

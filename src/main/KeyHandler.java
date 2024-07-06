@@ -88,6 +88,7 @@ public class KeyHandler implements KeyListener {
 
         // TESTE CAPITULOS
         if(code == KeyEvent.VK_F) {
+            gp.getEntityManager().getEntities().clear();
             gp.setChapter(GamePanel.Capitulos.chapterFogo);
         }
 
