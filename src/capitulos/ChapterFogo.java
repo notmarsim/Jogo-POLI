@@ -24,11 +24,12 @@ public class ChapterFogo {
         this.ui = gp.getUi();
         this.mapaFogo = new Maps(gp, "res/maps/mapaFogo.txt");
         this.pyroth = new Pyroth(gp, keyHandler);
-        entityManager = gp.getEntityManager();
+        entityManager = new EntityManager(gp,new Player(gp,keyHandler));
         entityManager.addEntity(pyroth);
         entityManager.addEntity(new NPC_Fogo(gp, gp.tamanhoJanela*13, gp.tamanhoJanela*16));
         inicializarTochas();
         initializeTreeMarkers();
+        entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*6, gp.tamanhoJanela*16 ));
         pyroth.x = gp.tamanhoJanela*2;
         pyroth.y = gp.tamanhoJanela*18;
     }
@@ -61,6 +62,7 @@ public class ChapterFogo {
         ui.update();
         mapaFogo.update();
         entityManager.update();
+        gp.getEntityManager().setEntities(entityManager.getEntities());
     }
 
     public void draw(Graphics2D g2) {

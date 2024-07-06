@@ -72,6 +72,8 @@ public class NPC_Fogo extends Entity{
     }
 
 
-
+    public int tipo() {
+        return 2;
+    }
 
 }

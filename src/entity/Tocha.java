@@ -37,5 +37,8 @@ public class Tocha extends Entity{
         }
     }
 
+    public int tipo() {
+        return 1;
+    }
 
 }

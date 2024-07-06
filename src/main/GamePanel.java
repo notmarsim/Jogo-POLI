@@ -162,6 +162,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (currentCapitulo == Capitulos.Prologo) {
             prologo.up();
+            System.out.println("No gp: " + entityManager.getEntities());
 
         }
         if (currentCapitulo == Capitulos.chapterFogo) {

@@ -1,10 +1,7 @@
 package capitulos;
 
 import UI.UI;
-import entity.Elder;
-import entity.EntityManager;
-import entity.Player;
-import entity.Pyroth;
+import entity.*;
 import main.GamePanel;
 import main.KeyHandler;
 import mapas.Maps;
@@ -24,7 +21,10 @@ public class Prologo {
 
     public Prologo(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
-        entityManager = new EntityManager(gamePanel, new Pyroth(gamePanel,keyHandler));
+        entityManager = new EntityManager(gamePanel, new Player(gamePanel,keyHandler));
+        this.pyroth = new Pyroth(gamePanel, keyHandler);
+        entityManager.addEntity(pyroth);
+        entityManager.addEntity(new Elder(gamePanel, gamePanel.tamanhoJanela*15, gamePanel.tamanhoJanela*11));
         this.ui = gamePanel.getUi();
         this.mapaPrologo = new Maps(gamePanel, "res/maps/mapaPrologo.txt");
     }
@@ -38,6 +38,8 @@ public class Prologo {
         ui.update();
         mapaPrologo.update();
         entityManager.update();
+        System.out.println("No prologo: " + entityManager.getEntities());
+        gamePanel.getEntityManager().setEntities(entityManager.getEntities());
 
     }
 
@@ -45,17 +47,6 @@ public class Prologo {
         ui.draw(g2);
         if(ui.isPrologoDesaparecido()) {
             mapaPrologo.draw(g2);
-
-            // Encontrar as coordenadas do tile com o ID 3
-            Point tileCoordinates = mapaPrologo.findTileCoordinates(3);
-            if (tileCoordinates != null) {
-                int x = tileCoordinates.x * Tile.tileWidth;
-                int y = tileCoordinates.y * Tile.tileHeight;
-                this.elder = new Elder(gamePanel, x, y);
-                elder.draw(g2);
-            } else {
-                this.elder = new Elder(gamePanel, 100, gamePanel.tamanhoJanela*20);
-            }
             entityManager.desenhar(g2);
         }
     }
