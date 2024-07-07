@@ -14,11 +14,7 @@ public class Elder extends Entity {
         this.x = startX;
         this.y = startY;
         loadSprites();
-        bounds = new Rectangle();
-        bounds.x = -50;
-        bounds.y = -70;
-        bounds.width = 200;
-        bounds.height = 300;
+        bounds = new Rectangle(-50,-70,200,200);
     }
 
 

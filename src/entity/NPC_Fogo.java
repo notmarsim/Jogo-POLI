@@ -16,11 +16,8 @@ public class NPC_Fogo extends Entity{
         this.x = startX;
         this.y = startY;
         loadSprites();
-        bounds = new Rectangle();
-        bounds.x = -50;
-        bounds.y = -50;
-        bounds.width = 80;
-        bounds.height = 100;
+        bounds = new Rectangle(-50,-50,80,100);
+
     }
 
     private void loadSprites() {

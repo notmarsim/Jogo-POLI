@@ -25,6 +25,7 @@ public abstract class Entity {
 
     public Entity(GamePanel gp) {
         this.gp = gp;
+        Rectangle bounds = new Rectangle(); // Inicialize os limites de colisão com valores padrão
     }
 
     public void update() {
@@ -59,21 +60,22 @@ public abstract class Entity {
     }
 
     public boolean checkEntityColissions(float xOffSet, float yOffSet) {
-        for(Entity e : gp.getEntityManager().getEntities()) {
-            if(e.equals(this)){
+        for (Entity e : gp.getEntityManager().getEntities()) {
+            if (e.equals(this)) {
+                System.out.println("aaa");
                 continue;
             }
-            if(e.getBoundsCollision(0f,0f).intersects(getBoundsCollision(xOffSet,yOffSet))) {
+            if (e.getBoundsCollision(0f, 0f).intersects(getBoundsCollision(xOffSet, yOffSet))) {
                 System.out.println("colidiu");
                 return true;
             }
-
         }
         return false;
     }
 
     public Rectangle getBoundsCollision(float xOffset, float yOffset) {
-        return new Rectangle((int)(x+ bounds.x+ xOffset), (int) (y + yOffset + bounds.y ), bounds.width,bounds.height);
+        Rectangle bounds = new Rectangle((int)(x + this.bounds.x + xOffset), (int)(y + this.bounds.y + yOffset), this.bounds.width, this.bounds.height);
+
+        return bounds;
     }
 }
-

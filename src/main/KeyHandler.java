@@ -90,6 +90,9 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_F) {
             gp.setChapter(GamePanel.Capitulos.chapterFogo);
         }
+        if(code == KeyEvent.VK_P) {
+            gp.setChapter(GamePanel.Capitulos.Prologo);
+        }
 
     }
 
