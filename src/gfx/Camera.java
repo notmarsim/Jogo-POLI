@@ -39,6 +39,7 @@ public class Camera {
     public void move(float xAmt, float yAmt) {
         xOffSet = xOffSet + xAmt;
         yOffSet = yOffSet + yAmt;
+        System.out.println("Mudar Camera");
         checkVoidSpace();
     }
 

@@ -4,40 +4,61 @@ import main.GamePanel;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class EntityManager {
     private GamePanel gp;
-    private ArrayList<Entity> npcs;
+    private ArrayList<Entity> entities;
     private Player player;
 
+    // Comparator para ordenar entidades pela coordenada Y
+    private Comparator<Entity> ordemRender = new Comparator<Entity>() {
+        @Override
+        public int compare(Entity o1, Entity o2) {
+            int y1 = o1.getY() + o1.getHeightBounds();
+            int y2 = o2.getY() + o2.getHeightBounds();
+            return Integer.compare(y1, y2);
+        }
+    };
+
     public EntityManager(GamePanel gp, Player player) {
-        this.gp  = gp;
+        this.gp = gp;
         this.player = player;
-        npcs = new ArrayList<Entity>();
-        addEntity(player);
+        entities = new ArrayList<>();
     }
 
     public void update() {
-        for(int i = 0; i< npcs.size(); i++) {
-            Entity e = npcs.get(i);
+
+        player.update();
+
+        // Atualiza as outras entidades
+        for (Entity e : entities) {
             e.update();
         }
-
     }
 
     public void desenhar(Graphics2D g2) {
-        for(Entity e : npcs) {
+
+        player.draw(g2);
+
+
+        entities.sort(ordemRender);
+        for (Entity e : entities) {
             e.draw(g2);
         }
+    }
 
+
+    public void setEntities(ArrayList<Entity> entities) {
+        this.entities = entities;
     }
 
     public void addEntity(Entity e) {
-        npcs.add(e);
+        entities.add(e);
+        entities.sort(ordemRender);
     }
 
     public ArrayList<Entity> getEntities() {
-        return npcs;
+        return entities;
     }
-
 }

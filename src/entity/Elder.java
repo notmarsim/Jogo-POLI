@@ -14,7 +14,11 @@ public class Elder extends Entity {
         this.x = startX;
         this.y = startY;
         loadSprites();
-        bounds = new Rectangle(-50,-70,200,200);
+        bounds = new Rectangle();
+        bounds.x = -50;
+        bounds.y = -70;
+        bounds.width = 200;
+        bounds.height = 200;
     }
 
 
@@ -30,17 +34,17 @@ public class Elder extends Entity {
     public void draw(Graphics2D g2) {
         // Desenhe o sprite do Elder
         BufferedImage image = idle;
-        g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela * 15) / 14),
-                (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 8) / 5),
-                gp.tamanhoJanela * 3,
-                gp.tamanhoJanela * 3,
-                null);
+        g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*3, gp.tamanhoJanela*3, null);
 
         // Desenhe o retângulo de colisão para depuração
         g2.setColor(Color.RED); // Use uma cor visível
         g2.drawRect((int) (x - gp.getCamera().getxOffSet() + bounds.x),
                 (int) (y - gp.getCamera().getyOffSet() + bounds.y),
                 bounds.width, bounds.height);
+    }
+
+    public int tipo(){
+        return 2;
     }
 
 }

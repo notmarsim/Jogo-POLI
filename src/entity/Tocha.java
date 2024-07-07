@@ -17,6 +17,11 @@ public class Tocha extends Entity{
         this.x = startX;
         this.y = startY;
         loadSprites();
+        bounds = new Rectangle();
+        bounds.x = -80;
+        bounds.y = -80;
+        bounds.width = 80;
+        bounds.height = 80;
     }
     private void loadSprites() {
         try {
@@ -32,5 +37,8 @@ public class Tocha extends Entity{
         }
     }
 
+    public int tipo() {
+        return 1;
+    }
 
 }

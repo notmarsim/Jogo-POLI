@@ -15,6 +15,11 @@ public class DeathTree extends Entity {
         this.x = startX;
         this.y = startY;
         loadSprites();
+        bounds = new Rectangle();
+        bounds.x = -60;
+        bounds.y = -50;
+        bounds.width = 110;
+        bounds.height = 120;
     }
 
     private void loadSprites() {
@@ -28,5 +33,10 @@ public class DeathTree extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage image = idle;
         g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela ) ), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*2 , gp.tamanhoJanela*2 , null);
+
+    }
+
+    public int tipo() {
+        return 1;
     }
 }
