@@ -11,6 +11,7 @@ public class KeyHandler implements KeyListener {
     private GamePanel gp;
     public boolean enter = false;
 
+
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
@@ -85,11 +86,29 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER && gp.getCharacterState() == GamePanel.CharacterState.Inventario) {
             gp.getUi().usarItemSelecionado();
         }
+        if (code == KeyEvent.VK_ENTER && gp.getCharacterState() == GamePanel.CharacterState.Combate) {
+            gp.getUi().usarAtaqueSelecionado();
+        }
 
         // TESTE CAPITULOS
         if(code == KeyEvent.VK_F) {
             gp.getEntityManager().getEntities().clear();
             gp.setChapter(GamePanel.Capitulos.chapterFogo);
+        }
+        if(code == KeyEvent.VK_P) {
+            gp.setChapter(GamePanel.Capitulos.Prologo);
+        }
+        if(gp.getCharacterState() == GamePanel.CharacterState.Combate) {
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+                if (gp.getUi().selectedOption != 0) {
+                    gp.getUi().selectedOption--;
+                }
+            }
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+                if (gp.getUi().selectedOption != 1) {
+                    gp.getUi().selectedOption++;
+                }
+            }
         }
 
     }

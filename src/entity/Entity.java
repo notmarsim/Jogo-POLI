@@ -59,14 +59,14 @@ public abstract class Entity {
 
     }
 
-    public int checkEntityColissions(float xOffSet, float yOffSet) {
+    public int checkEntityColissions(float xOffSet, float yOffSet) { // tipo Entity
         for(Entity e : gp.getEntityManager().getEntities()) {
             if(e.equals(this)){
                 continue;
             }
             if(e.getBoundsCollision(0f,0f).intersects(getBoundsCollision(xOffSet,yOffSet))) {
                 System.out.println("colidiu");
-                return e.tipo();
+                return e.tipo(); // retornar e
             }
         }
         return 0;

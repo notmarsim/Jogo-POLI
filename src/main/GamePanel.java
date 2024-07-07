@@ -3,6 +3,7 @@ package main;
 import Objetos.SuperObject;
 import capitulos.ChapterFogo;
 import capitulos.Prologo;
+import entity.Combate;
 import entity.EntityManager;
 import entity.Player;
 import gfx.Camera;
@@ -18,7 +19,7 @@ public class GamePanel extends JPanel implements Runnable {
     private ChapterFogo chapterFogo;
     private UI ui;
     private EntityManager entityManager;
-
+    private Combate combate;
 
 
     public enum Capitulos {
@@ -100,6 +101,8 @@ public class GamePanel extends JPanel implements Runnable {
         this.prologo = new Prologo(this, keyH);
         this.chapterFogo = new ChapterFogo(this,keyH);
         setChapter(Capitulos.Prologo);
+        this.combate = new Combate(this,getPlayer().getVida(),getPlayer().getDano());
+
     }
 
     public EntityManager getEntityManager() {
@@ -109,10 +112,13 @@ public class GamePanel extends JPanel implements Runnable {
     public Player getPlayer() {
         return player;
     }
-
+    public Combate getCombate(){
+        return combate;
+    }
     public UI getUi() {
         return ui;
     }
+
 
     public void setChapter(Capitulos chapter) {
         this.currentCapitulo = chapter;
@@ -191,6 +197,8 @@ public class GamePanel extends JPanel implements Runnable {
             if (characterState == CharacterState.Inventario) {
                 ui.draw(g2);
             } else if (characterState == CharacterState.Dialogo) {
+                ui.draw(g2);
+            } else if (characterState == CharacterState.Combate) {
                 ui.draw(g2);
             }
         }

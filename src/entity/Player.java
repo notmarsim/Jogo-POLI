@@ -29,7 +29,7 @@ public class Player extends Entity {
      }
 
      public void iniciarCombate() {
-          combate.iniciarTurnoCombate();
+          gp.setCharacterState(GamePanel.CharacterState.Combate);
      }
 
      public void iniciarDialogo() {

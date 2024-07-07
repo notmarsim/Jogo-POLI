@@ -1,6 +1,8 @@
 package UI;
 
 import Objetos.SuperObject;
+import entity.Combate;
+import entity.Entity;
 import entity.Player;
 import main.GamePanel;
 import main.KeyHandler;
@@ -23,6 +25,8 @@ public class UI {
     private Dialogues dialogues;
     public int slotRow = 0;
     public int slotCol = 0;
+    public int selectedOption = 0;
+
 
     // Construtor
     public UI(GamePanel gamePanel, int fontSize) {
@@ -61,6 +65,9 @@ public class UI {
             dialogues.drawDialogueScreen(g2);
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Inventario) {
             drawInventory();
+
+        } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Combate){
+            drawCombate();
         }
 
         switch (gamePanel.currentCapitulo) {
@@ -88,8 +95,8 @@ public class UI {
 
     public void update() {
         long elapsedTime = System.currentTimeMillis() - startTime;
-        System.out.println(gamePanel.getCharacterState());
-        System.out.println("Estado do jogo: " + gamePanel.getGameState());
+        //System.out.println(gamePanel.getCharacterState());
+        //System.out.println("Estado do jogo: " + gamePanel.getGameState());
 
         if (gamePanel.getGameState() == GamePanel.GameState.Menu) {
             switch (gamePanel.currentCapitulo) {
@@ -97,7 +104,7 @@ public class UI {
                     updatePrologo(elapsedTime);
                     break;
                 case chapterFogo:
-                    System.out.println("Atualizando Fogo");
+                    //System.out.println("Atualizando Fogo");
                     updateFogo(elapsedTime);
                     break;
                 case chapterAqua:
@@ -365,6 +372,66 @@ public class UI {
             gamePanel.repaint();
         }
     }
+    public void usarAtaqueSelecionado() {
+        if (selectedOption == 0){
+           // gamePanel.getCombate().golpeFraco(Entity);
+            System.out.println("golpe fraco");
+        }
+        else if (selectedOption == 1){
+            System.out.println("golpe forte");
+        }
+    }
+
+
+    public void drawCombate() {
+        int screenWidth = gamePanel.getWidth();
+        int screenHeight = gamePanel.getHeight();
+
+        int frameWidth = gamePanel.tamanhoJanela * 4;
+        int frameHeight = gamePanel.tamanhoJanela * 2;
+
+        int frameX = (screenWidth - frameWidth) / 2;
+        int frameY = screenHeight - frameHeight - 50;
+
+        // Desenhe o quadro do combate
+        g2.setColor(new Color(50, 50, 50, 200));
+        g2.fillRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
+
+        g2.setColor(Color.white);
+        g2.drawRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
+
+        // Título do combate
+        g2.setColor(Color.white);
+        g2.setFont(maruMonica.deriveFont(Font.BOLD, 25)); // Fonte em negrito com tamanho reduzido
+        String titulo = "Combate";
+        int tituloWidth = g2.getFontMetrics().stringWidth(titulo);
+        int tituloX = frameX + (frameWidth - tituloWidth) / 2;
+        int tituloY = frameY + 30; // Ajuste vertical para colocar acima das opções
+        g2.drawString(titulo, tituloX, tituloY);
+
+        // Opções de combate
+        g2.setFont(maruMonica.deriveFont(Font.PLAIN, 20)); // Fonte para as opções
+        String[] opcoes = {"Golpe Fraco", "Golpe Forte"};
+        int opcaoYstart = frameY + 80; // Ponto de início vertical para as opções
+
+        for (int i = 0; i < opcoes.length; i++) {
+            String opcao = opcoes[i];
+            int opcaoWidth = g2.getFontMetrics().stringWidth(opcao);
+            int opcaoX = frameX + (frameWidth - opcaoWidth) / 2;
+            int opcaoY = opcaoYstart + (i * 40); // Ajuste vertical entre opções
+            g2.drawString(opcao, opcaoX, opcaoY);
+
+            // Desenha a borda ao redor da opção selecionada
+            if (i == selectedOption) { // 'selectedOption' deve ser uma variável que guarda a opção selecionada
+                g2.setColor(Color.yellow);
+                g2.drawRoundRect(opcaoX - 10, opcaoY - 20, opcaoWidth + 20, 30, 10, 10);
+                g2.setColor(Color.white); // Restaura a cor branca para o texto
+            }
+
+        }
+    }
+
+
 
     public void drawInventory() {
         int frameX = gamePanel.tamanhoJanela * 9;

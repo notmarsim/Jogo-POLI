@@ -20,6 +20,7 @@ public class Demonio extends Entity{
         bounds.y = 120;
         bounds.width = 160;
         bounds.height = 170;
+        vida = 50;
     }
 
     private void loadSprites() {
@@ -60,7 +61,9 @@ public class Demonio extends Entity{
                 bounds.width, bounds.height);
     }
 
-
+    public int getVida(){
+        return vida;
+    }
     public int tipo() {
         return 3;
     }
