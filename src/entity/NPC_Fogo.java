@@ -64,16 +64,17 @@ public class NPC_Fogo extends Entity{
         }
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*13/10, gp.tamanhoJanela*13/10, null);
 
-        g2.setColor(Color.RED);
-        g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
-                (int) (y + bounds.y - gp.getCamera().getyOffSet()),
-                bounds.width, bounds.height);
+
 
     }
 
 
     public int tipo() {
         return 2;
+    }
+
+    public String getFala(){
+        return "Ah, olá Guardião. Ouvi falar que monstros andam causando confusão por aí. Coisa feia, não? Mas, quer saber? Não tenho tempo pra me preocupar com essas bobagens. Já vi coisas piores em meus dias, e enquanto o ferro estiver quente, o martelo não para. Se precisar de uma espada afiada ou um escudo resistente, sou o homem certo. Enquanto o mundo pega fogo, eu forjo o que for preciso. E se os monstros chegarem aqui? Bom, eles que tragam suas armas também, porque não vou parar de trabalhar por causa de uns boatos. Agora, se me dá licença, tenho mais um lote de ferraduras pra terminar.";
     }
 
 }

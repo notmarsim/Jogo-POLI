@@ -4,6 +4,7 @@ import Objetos.SuperObject;
 import capitulos.ChapterFogo;
 import capitulos.Prologo;
 import entity.Combate;
+import UI.Dialogues;
 import entity.EntityManager;
 import entity.Player;
 import gfx.Camera;
@@ -20,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
     private UI ui;
     private EntityManager entityManager;
     private Combate combate;
+    public Dialogues dialogues;
 
 
     public enum Capitulos {
@@ -95,6 +97,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        dialogues = new Dialogues(this,25);
         player = new Player(this,keyH);
         this.ui = new UI(this, 80);
         this.entityManager = new EntityManager(this,getPlayer());
@@ -103,6 +106,10 @@ public class GamePanel extends JPanel implements Runnable {
         setChapter(Capitulos.Prologo);
         this.combate = new Combate(this,getPlayer().getVida(),getPlayer().getDano());
 
+    }
+
+    public Dialogues getDialogues(){
+        return dialogues;
     }
 
     public EntityManager getEntityManager() {
@@ -168,12 +175,12 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (currentCapitulo == Capitulos.Prologo) {
             prologo.up();
-            System.out.println("No gp: " + entityManager.getEntities());
+
 
         }
         if (currentCapitulo == Capitulos.chapterFogo) {
             chapterFogo.up();
-            System.out.println("No gp: " + entityManager.getEntities());
+
         }
 
     }
@@ -198,6 +205,9 @@ public class GamePanel extends JPanel implements Runnable {
                 ui.draw(g2);
             } else if (characterState == CharacterState.Dialogo) {
                 ui.draw(g2);
+
+                System.out.println("gp: " + dialogues.getDialogueText());
+                dialogues.drawDialogueScreen(g2);
             } else if (characterState == CharacterState.Combate) {
                 ui.draw(g2);
             }

@@ -26,6 +26,7 @@ public class UI {
     public int slotRow = 0;
     public int slotCol = 0;
     public int selectedOption = 0;
+    private String currentDialogueText;
 
 
     // Construtor
@@ -95,6 +96,7 @@ public class UI {
 
     public void update() {
         long elapsedTime = System.currentTimeMillis() - startTime;
+       // System.out.println(gamePanel.getPlayer().atualEntidade);
         //System.out.println(gamePanel.getCharacterState());
         //System.out.println("Estado do jogo: " + gamePanel.getGameState());
 
@@ -122,6 +124,7 @@ public class UI {
             }
         }
     }
+
 
     private void drawPrologo() {
         g2.setColor(new Color(255, 255, 255, prologoOpacity));

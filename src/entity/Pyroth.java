@@ -13,8 +13,8 @@ public class Pyroth extends Player {
         super(gp, keyH);
         loadSprites();
         speed = 6;
-        bounds.y = -45;
-        bounds.x = -50;
+        bounds.y = -40;
+        bounds.x = -30;
         bounds.width = 50;
         bounds.height = 70;
 
@@ -33,13 +33,13 @@ public class Pyroth extends Player {
             idle7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle_7.png"));
             idle8 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle_8.png"));
 
-            run = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run1.png"));
-            run2 =  ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run2.png"));
-            run3 =  ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run3.png"));
-            run4 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run4.png"));
-            run5 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run5.png"));
-            run6 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run6.png"));
-            run7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run7.png"));
+            run = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run_1.png"));
+            run2 =  ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run_2.png"));
+            run3 =  ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run_3.png"));
+            run4 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run_4.png"));
+            run5 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run_5.png"));
+            run6 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run_6.png"));
+            run7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run_7.png"));
 
 
             runcostas = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/run/run1costas.png"));
@@ -56,6 +56,18 @@ public class Pyroth extends Player {
             idle4back = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle4back.png"));
             idle5back = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle5back.png"));
             idle6back = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle6back.png"));
+
+            attack1 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_1.png"));
+            attack2 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_2.png"));
+            attack3 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_3.png"));
+            attack4 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_4.png"));
+            attack5 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_5.png"));
+            attack6 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_6.png"));
+            attack7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_7.png"));
+            attack8 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_8.png"));
+            attack9 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_1.png"));
+            attack10 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_1.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }

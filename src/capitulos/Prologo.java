@@ -21,10 +21,10 @@ public class Prologo {
 
     public Prologo(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
-        entityManager = new EntityManager(gamePanel, new Player(gamePanel,keyHandler));
+        entityManager = new EntityManager(gamePanel, gamePanel.getPlayer());
         this.pyroth = new Pyroth(gamePanel, keyHandler);
         entityManager.addEntity(pyroth);
-        entityManager.addEntity(new Elder(gamePanel, gamePanel.tamanhoJanela*15, gamePanel.tamanhoJanela*11));
+        entityManager.addEntity(new Elder(gamePanel, gamePanel.tamanhoJanela*14, gamePanel.tamanhoJanela*8));
         this.ui = gamePanel.getUi();
         this.mapaPrologo = new Maps(gamePanel, "res/maps/mapaPrologo.txt");
     }
@@ -38,7 +38,6 @@ public class Prologo {
         ui.update();
         mapaPrologo.update();
         entityManager.update();
-        System.out.println("No prologo: " + entityManager.getEntities());
         gamePanel.getEntityManager().setEntities(entityManager.getEntities());
 
     }

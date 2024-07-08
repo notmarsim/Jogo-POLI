@@ -13,6 +13,7 @@ public abstract class Entity {
     public int vidaMaxima;
     public int speed;
     public BufferedImage image1, image2, image3, image4, image5, image6, image7;
+    public BufferedImage attack1, attack2, attack3, attack4, attack5, attack6, attack7,attack8,attack9,attack10;
     public BufferedImage idle, idle2, idle3, idle4, idle5, idle6, idle7, idle8, run, run2, run3, run4, run5, run6, run7, run8, runcostas, runcostas2, runcostas3, runcostas4, runcostas5, runcostas6, runcostas7, runcostas8, idleback, idle2back, idle3back, idle4back, idle5back, idle6back, idle7back, idle8back;
     public String direcao;
     public int spriteCounter = 0;
@@ -59,17 +60,17 @@ public abstract class Entity {
 
     }
 
-    public int checkEntityColissions(float xOffSet, float yOffSet) { // tipo Entity
+    public Entity checkEntityColissions(float xOffSet, float yOffSet) { // tipo Entity
         for(Entity e : gp.getEntityManager().getEntities()) {
             if(e.equals(this)){
                 continue;
             }
             if(e.getBoundsCollision(0f,0f).intersects(getBoundsCollision(xOffSet,yOffSet))) {
-                System.out.println("colidiu");
-                return e.tipo(); // retornar e
+                System.out.println("colidiu com " + e.getClass().getSimpleName());
+                return e; // retornar e
             }
         }
-        return 0;
+        return null;
     }
 
     public Rectangle getBoundsCollision(float xOffset, float yOffset) {
@@ -91,4 +92,8 @@ public abstract class Entity {
     }
 
     public abstract int tipo(); // 1 para colisao normal , 2 para npcs com dialogo e 3 para viloes com combate
+
+    protected String getFala(){
+        return "";
+    }
 }

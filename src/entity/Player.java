@@ -16,7 +16,7 @@ public class Player extends Entity {
      private Combate combate;
      public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
      public final int maxInventarioSize = 20;
-     private boolean jaDialogou = false;
+
 
      public Player(GamePanel gp, KeyHandler keyH) {
           super(gp);
@@ -28,29 +28,38 @@ public class Player extends Entity {
           setItems();
      }
 
-     public void iniciarCombate() {
+     public void iniciarCombate(Entity entity) {
+          int yEntidade = entity.getY();
+          int xEntidade = entity.getX();
+          y = yEntidade + gp.tamanhoJanela*33/10;
+          x = xEntidade + 5;
           gp.setCharacterState(GamePanel.CharacterState.Combate);
+
      }
 
      public void iniciarDialogo() {
           gp.setCharacterState(GamePanel.CharacterState.Dialogo);
      }
 
-     private void handleCollision(int entityType) {
+     private void handleCollision(Entity entity) {
+          int entityType = entity.tipo();
+          boolean jaDialogou = false;
           switch (entityType) {
                case 1:
 
                     break;
                case 2:
-
                     if (!jaDialogou) {
                          iniciarDialogo();
+                         String fala = entity.getFala();
+                         System.out.println("no player:" + entity.getFala());
+                         gp.getDialogues().setDialogueText(fala);
                          jaDialogou = true;
                     }
                     break;
                case 3:
                     // Inicia combate
-                    iniciarCombate();
+                    iniciarCombate(entity);
                     break;
           }
      }
@@ -112,7 +121,12 @@ public class Player extends Entity {
 
      @Override
      public void update() {
-          int entityType = 0;
+          Entity collidedEntity = null;
+
+          if (gp.getCharacterState() == GamePanel.CharacterState.Combate) {
+               direcao = "frente";
+          }
+
           if (keyH.upPressed) {
                if (direcao.equals("frente")) {
                     direcao = "frente";
@@ -121,8 +135,8 @@ public class Player extends Entity {
                }
                movimentacao = "movendo";
 
-               entityType = checkEntityColissions(0, -speed);
-               if (entityType == 0) {
+               collidedEntity = checkEntityColissions(0, -speed);
+               if (collidedEntity == null) {
                     int ty = (int) ((y - speed + bounds.y) / Tile.tileHeight);
                     if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), ty) &&
                             !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), ty)) {
@@ -137,8 +151,8 @@ public class Player extends Entity {
                }
                movimentacao = "movendo";
 
-               entityType = checkEntityColissions(0, speed);
-               if (entityType == 0) {
+               collidedEntity = checkEntityColissions(0, speed);
+               if (collidedEntity == null) {
                     int by = (int) ((y + speed + bounds.y + bounds.height) / Tile.tileHeight);
                     if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), by) &&
                             !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), by)) {
@@ -149,8 +163,8 @@ public class Player extends Entity {
                direcao = "costas";
                movimentacao = "movendo";
 
-               entityType = checkEntityColissions(-speed, 0);
-               if (entityType == 0) {
+               collidedEntity = checkEntityColissions(-speed, 0);
+               if (collidedEntity == null) {
                     int tx = (int) ((x - speed + bounds.x) / Tile.tileWidth);
                     if (!collisionWithTile(tx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
                             !collisionWithTile(tx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
@@ -161,9 +175,8 @@ public class Player extends Entity {
                direcao = "frente";
                movimentacao = "movendo";
 
-
-               entityType = checkEntityColissions(speed, 0);
-               if (entityType == 0) {
+               collidedEntity = checkEntityColissions(speed, 0);
+               if (collidedEntity == null) {
                     int bx = (int) ((x + speed + bounds.x + bounds.width) / Tile.tileWidth);
                     if (!collisionWithTile(bx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
                             !collisionWithTile(bx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
@@ -174,10 +187,9 @@ public class Player extends Entity {
                movimentacao = "parado";
           }
 
-          if (entityType != 0) {
-               handleCollision(entityType);
+          if (collidedEntity != null) {
+               handleCollision(collidedEntity);
           }
-
 
           spriteCounter++;
           if (spriteCounter >= 5) {
@@ -286,21 +298,22 @@ public class Player extends Entity {
           }
 
           g2.drawImage(image,
-                  (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela * 9) / 4),
+                  (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela*9/2)),
                   (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 10) / 3),
-                  gp.tamanhoJanela * 76/20,
-                  gp.tamanhoJanela * 76/20,
+                  gp.tamanhoJanela*9,
+                  gp.tamanhoJanela*4 ,
                   null);
 
 
-        // DEBUG
-          /*
+          // DEBUG
+/*
          g2.setColor(Color.RED);
           g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
                   (int) (y + bounds.y - gp.getCamera().getyOffSet()),
                   bounds.width, bounds.height);
 
-*/
+
+ */
      }
      public int tipo() {
           return 1;

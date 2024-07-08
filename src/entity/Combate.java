@@ -22,10 +22,12 @@ public class Combate {
     }
 
     public void golpeFraco(Entity e){
+
         e.vida -= player.getDano() + rand.nextInt(6); // 6 exclusivo
     }
 
     public void golpeForte(Entity e){
+
         e.vida -= player.getDano()*2 + rand.nextInt(6);
     }
 
