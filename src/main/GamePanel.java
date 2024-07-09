@@ -7,6 +7,7 @@ import entity.Combate;
 import UI.Dialogues;
 import entity.EntityManager;
 import entity.Player;
+import entity.Pyroth;
 import gfx.Camera;
 import mapas.Maps;
 
@@ -22,6 +23,9 @@ public class GamePanel extends JPanel implements Runnable {
     private EntityManager entityManager;
     private Combate combate;
     public Dialogues dialogues;
+    private Player player;
+    public boolean attacking;
+
 
 
     public enum Capitulos {
@@ -82,7 +86,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler(this);
-    private static Player player;
     private SuperObject superObject;
 
     // camera
@@ -100,12 +103,17 @@ public class GamePanel extends JPanel implements Runnable {
         dialogues = new Dialogues(this,25);
         player = new Player(this,keyH);
         this.ui = new UI(this, 80);
-        this.entityManager = new EntityManager(this,getPlayer());
+        this.entityManager = new EntityManager(this,player);
         this.prologo = new Prologo(this, keyH);
         this.chapterFogo = new ChapterFogo(this,keyH);
         setChapter(Capitulos.Prologo);
-        this.combate = new Combate(this,getPlayer().getVida(),getPlayer().getDano());
+        this.combate = new Combate(this,player.getVida(),player.getDano());
 
+    }
+
+
+    public int getMana(){
+        return getPlayer().mana;
     }
 
     public Dialogues getDialogues(){
@@ -180,7 +188,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (currentCapitulo == Capitulos.chapterFogo) {
             chapterFogo.up();
-
+            System.out.println("no gp:"+attacking);
         }
 
     }

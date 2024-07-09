@@ -65,6 +65,7 @@ public class KeyHandler implements KeyListener {
 
         }
 
+
         // INVENTARIO
         if(gp.getCharacterState() == GamePanel.CharacterState.Inventario) {
             if(code==KeyEvent.VK_W || code==KeyEvent.VK_UP) {
@@ -104,6 +105,7 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_P) {
             gp.setChapter(GamePanel.Capitulos.Prologo);
         }
+        //COMBATE
         if(gp.getCharacterState() == GamePanel.CharacterState.Combate) {
             if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
                 if (gp.getUi().selectedOption != 0) {
@@ -111,10 +113,14 @@ public class KeyHandler implements KeyListener {
                 }
             }
             if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-                if (gp.getUi().selectedOption != 1) {
+                if (gp.getUi().selectedOption != 2) {
                     gp.getUi().selectedOption++;
                 }
             }
+        }
+
+        if(code == KeyEvent.VK_X) {
+            gp.setCharacterState(GamePanel.CharacterState.Ocioso);
         }
 
     }
