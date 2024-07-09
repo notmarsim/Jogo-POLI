@@ -1,8 +1,7 @@
 package UI;
 
 import Objetos.SuperObject;
-import entity.Combate;
-import entity.Entity;
+
 import entity.Player;
 import main.GamePanel;
 import main.KeyHandler;
@@ -26,11 +25,14 @@ public class UI {
     public int slotRow = 0;
     public int slotCol = 0;
     public int selectedOption = 0;
+    private String currentDialogueText;
+    private Player player;
 
 
     // Construtor
     public UI(GamePanel gamePanel, int fontSize) {
         this.gamePanel = gamePanel;
+        player = gamePanel.getPlayer();
         this.fontSize = fontSize;
         this.prologoOpacity = 0;
         this.fadingOutPrologo = false;
@@ -95,6 +97,7 @@ public class UI {
 
     public void update() {
         long elapsedTime = System.currentTimeMillis() - startTime;
+       // System.out.println(gamePanel.getPlayer().atualEntidade);
         //System.out.println(gamePanel.getCharacterState());
         //System.out.println("Estado do jogo: " + gamePanel.getGameState());
 
@@ -122,6 +125,7 @@ public class UI {
             }
         }
     }
+
 
     private void drawPrologo() {
         g2.setColor(new Color(255, 255, 255, prologoOpacity));
@@ -374,7 +378,7 @@ public class UI {
     }
     public void usarAtaqueSelecionado() {
         if (selectedOption == 0){
-           // gamePanel.getCombate().golpeFraco(Entity);
+            gamePanel.getCombate().golpeFraco();
             System.out.println("golpe fraco");
         }
         else if (selectedOption == 1){
@@ -387,8 +391,8 @@ public class UI {
         int screenWidth = gamePanel.getWidth();
         int screenHeight = gamePanel.getHeight();
 
-        int frameWidth = gamePanel.tamanhoJanela * 4;
-        int frameHeight = gamePanel.tamanhoJanela * 2;
+        int frameWidth = gamePanel.tamanhoJanela * 5;
+        int frameHeight = gamePanel.tamanhoJanela * 3;
 
         int frameX = (screenWidth - frameWidth) / 2;
         int frameY = screenHeight - frameHeight - 50;
@@ -402,23 +406,23 @@ public class UI {
 
         // Título do combate
         g2.setColor(Color.white);
-        g2.setFont(maruMonica.deriveFont(Font.BOLD, 25)); // Fonte em negrito com tamanho reduzido
+        g2.setFont(maruMonica.deriveFont(Font.BOLD, 25));
         String titulo = "Combate";
         int tituloWidth = g2.getFontMetrics().stringWidth(titulo);
         int tituloX = frameX + (frameWidth - tituloWidth) / 2;
-        int tituloY = frameY + 30; // Ajuste vertical para colocar acima das opções
+        int tituloY = frameY + 30;
         g2.drawString(titulo, tituloX, tituloY);
 
         // Opções de combate
         g2.setFont(maruMonica.deriveFont(Font.PLAIN, 20)); // Fonte para as opções
-        String[] opcoes = {"Golpe Fraco", "Golpe Forte"};
+        String[] opcoes = {"Golpe Fraco | Custo : 3 de mana", "Golpe Especial | Custo : 7 de mana", "Defender | + 5 de mana"};
         int opcaoYstart = frameY + 80; // Ponto de início vertical para as opções
 
         for (int i = 0; i < opcoes.length; i++) {
             String opcao = opcoes[i];
             int opcaoWidth = g2.getFontMetrics().stringWidth(opcao);
             int opcaoX = frameX + (frameWidth - opcaoWidth) / 2;
-            int opcaoY = opcaoYstart + (i * 40); // Ajuste vertical entre opções
+            int opcaoY = opcaoYstart + (i * 55); // Ajuste vertical entre opções
             g2.drawString(opcao, opcaoX, opcaoY);
 
             // Desenha a borda ao redor da opção selecionada

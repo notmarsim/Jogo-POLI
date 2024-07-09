@@ -24,12 +24,12 @@ public class ChapterFogo {
         this.ui = gp.getUi();
         this.mapaFogo = new Maps(gp, "res/maps/mapaFogo.txt");
         this.pyroth = new Pyroth(gp, keyHandler);
-        entityManager = new EntityManager(gp,new Player(gp,keyHandler));
+        entityManager = new EntityManager(gp ,gp.getPlayer());
         entityManager.addEntity(pyroth);
         entityManager.addEntity(new NPC_Fogo(gp, gp.tamanhoJanela*13, gp.tamanhoJanela*16));
         inicializarTochas();
         initializeTreeMarkers();
-        entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*6, gp.tamanhoJanela*16 ));
+        entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
         pyroth.x = gp.tamanhoJanela*2;
         pyroth.y = gp.tamanhoJanela*18;
     }
@@ -66,7 +66,7 @@ public class ChapterFogo {
     }
 
     public void draw(Graphics2D g2) {
-         ui.draw(g2);
+        ui.draw(g2);
         if (ui.isFogoDesaparecido()) {
             mapaFogo.draw(g2);
             entityManager.desenhar(g2);

@@ -16,7 +16,9 @@ public class Player extends Entity {
      private Combate combate;
      public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
      public final int maxInventarioSize = 20;
-     private boolean jaDialogou = false;
+     private int attackSpriteCounter = 0;
+     private int attackSpriteNum = 1;
+
 
      public Player(GamePanel gp, KeyHandler keyH) {
           super(gp);
@@ -25,32 +27,47 @@ public class Player extends Entity {
           bounds = new Rectangle();
           direcao = "frente";
           this.combate = new Combate(gp,vida,dano);
+          System.out.println("Player instance created");
           setItems();
      }
 
-     public void iniciarCombate() {
+     public void iniciarCombate(Entity entity) {
           gp.setCharacterState(GamePanel.CharacterState.Combate);
+          System.out.println(entity.x);
+          System.out.println(entity);
+          int yEntidade = entity.getY();
+          int xEntidade = entity.getX();
+          y = yEntidade + gp.tamanhoJanela*33/10;
+          x = xEntidade + gp.tamanhoJanela*15/10;
+          entity.x = xEntidade + (gp.tamanhoJanela);
+
+
+
      }
 
      public void iniciarDialogo() {
           gp.setCharacterState(GamePanel.CharacterState.Dialogo);
      }
 
-     private void handleCollision(int entityType) {
+     private void handleCollision(Entity entity) {
+          int entityType = entity.tipo();
+          boolean jaDialogou = false;
           switch (entityType) {
                case 1:
 
                     break;
                case 2:
-
                     if (!jaDialogou) {
                          iniciarDialogo();
+                         String fala = entity.getFala();
+                         System.out.println("no player:" + entity.getFala());
+                         gp.getDialogues().setDialogueText(fala);
                          jaDialogou = true;
                     }
                     break;
                case 3:
                     // Inicia combate
-                    iniciarCombate();
+                    iniciarCombate(entity);
                     break;
           }
      }
@@ -85,6 +102,7 @@ public class Player extends Entity {
           vida = 100;
           vidaMaxima = 100;
           dano = 5;
+          mana = 10;
 
      }
 
@@ -112,79 +130,99 @@ public class Player extends Entity {
 
      @Override
      public void update() {
-          int entityType = 0;
-          if (keyH.upPressed) {
-               if (direcao.equals("frente")) {
-                    direcao = "frente";
-               } else {
-                    direcao = "costas";
-               }
-               movimentacao = "movendo";
+          Entity collidedEntity = null;
+          System.out.println("mana player:"+mana);
+          System.out.println("mana player do gp:"+gp.getMana());
 
-               entityType = checkEntityColissions(0, -speed);
-               if (entityType == 0) {
-                    int ty = (int) ((y - speed + bounds.y) / Tile.tileHeight);
-                    if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), ty) &&
-                            !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), ty)) {
-                         y -= speed;
-                    }
-               }
-          } else if (keyH.downPressed) {
-               if (direcao.equals("frente")) {
-                    direcao = "frente";
-               } else {
-                    direcao = "costas";
-               }
-               movimentacao = "movendo";
-
-               entityType = checkEntityColissions(0, speed);
-               if (entityType == 0) {
-                    int by = (int) ((y + speed + bounds.y + bounds.height) / Tile.tileHeight);
-                    if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), by) &&
-                            !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), by)) {
-                         y += speed;
-                    }
-               }
-          } else if (keyH.leftPressed) {
-               direcao = "costas";
-               movimentacao = "movendo";
-
-               entityType = checkEntityColissions(-speed, 0);
-               if (entityType == 0) {
-                    int tx = (int) ((x - speed + bounds.x) / Tile.tileWidth);
-                    if (!collisionWithTile(tx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
-                            !collisionWithTile(tx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
-                         x -= speed;
-                    }
-               }
-          } else if (keyH.rightPressed) {
+          if (gp.getCharacterState() == GamePanel.CharacterState.Combate) {
                direcao = "frente";
-               movimentacao = "movendo";
+               System.out.println("no player:"+gp.attacking);
+          }
 
-
-               entityType = checkEntityColissions(speed, 0);
-               if (entityType == 0) {
-                    int bx = (int) ((x + speed + bounds.x + bounds.width) / Tile.tileWidth);
-                    if (!collisionWithTile(bx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
-                            !collisionWithTile(bx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
-                         x += speed;
+          if (gp.attacking) {
+               System.out.println("no update");
+               attackSpriteCounter++;
+               if (attackSpriteCounter >= 5) {
+                    attackSpriteCounter = 0;
+                    attackSpriteNum++;
+                    if (attackSpriteNum > 10) {
+                         System.out.println("no 2");
+                         attackSpriteNum = 1;
+                         gp.attacking = false;
                     }
                }
           } else {
-               movimentacao = "parado";
-          }
+               if (keyH.upPressed) {
+                    if (direcao.equals("frente")) {
+                         direcao = "frente";
+                    } else {
+                         direcao = "costas";
+                    }
+                    movimentacao = "movendo";
 
-          if (entityType != 0) {
-               handleCollision(entityType);
-          }
+                    collidedEntity = checkEntityColissions(0, -speed);
+                    if (collidedEntity == null) {
+                         int ty = (int) ((y - speed + bounds.y) / Tile.tileHeight);
+                         if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), ty) &&
+                                 !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), ty)) {
+                              y -= speed;
+                         }
+                    }
+               } else if (keyH.downPressed) {
+                    if (direcao.equals("frente")) {
+                         direcao = "frente";
+                    } else {
+                         direcao = "costas";
+                    }
+                    movimentacao = "movendo";
 
+                    collidedEntity = checkEntityColissions(0, speed);
+                    if (collidedEntity == null) {
+                         int by = (int) ((y + speed + bounds.y + bounds.height) / Tile.tileHeight);
+                         if (!collisionWithTile((int) ((x + bounds.x) / Tile.tileWidth), by) &&
+                                 !collisionWithTile((int) ((x + bounds.x + bounds.width) / Tile.tileWidth), by)) {
+                              y += speed;
+                         }
+                    }
+               } else if (keyH.leftPressed) {
+                    direcao = "costas";
+                    movimentacao = "movendo";
 
-          spriteCounter++;
-          if (spriteCounter >= 5) {
-               spriteCounter = 0; // Reiniciar contador
-               spriteNum++; // Avançar para o próximo sprite
-               if (spriteNum > 7) {
-                    spriteNum = 1; // Reiniciar a sequência de sprites
+                    collidedEntity = checkEntityColissions(-speed, 0);
+                    if (collidedEntity == null) {
+                         int tx = (int) ((x - speed + bounds.x) / Tile.tileWidth);
+                         if (!collisionWithTile(tx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
+                                 !collisionWithTile(tx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
+                              x -= speed;
+                         }
+                    }
+               } else if (keyH.rightPressed) {
+                    direcao = "frente";
+                    movimentacao = "movendo";
+
+                    collidedEntity = checkEntityColissions(speed, 0);
+                    if (collidedEntity == null) {
+                         int bx = (int) ((x + speed + bounds.x + bounds.width) / Tile.tileWidth);
+                         if (!collisionWithTile(bx, (int) ((y + bounds.y) / Tile.tileHeight)) &&
+                                 !collisionWithTile(bx, (int) ((y + bounds.y + bounds.height) / Tile.tileHeight))) {
+                              x += speed;
+                         }
+                    }
+               } else {
+                    movimentacao = "parado";
+               }
+
+               if (collidedEntity != null) {
+                    handleCollision(collidedEntity);
+               }
+
+               spriteCounter++;
+               if (spriteCounter >= 5) {
+                    spriteCounter = 0; // Reiniciar contador
+                    spriteNum++; // Avançar para o próximo sprite
+                    if (spriteNum > 7) {
+                         spriteNum = 1; // Reiniciar a sequência de sprites
+                    }
                }
           }
 
@@ -193,114 +231,134 @@ public class Player extends Entity {
      }
 
 
+
      @Override
      public void draw(Graphics2D g2) {
           BufferedImage image = null;
 
-          if (movimentacao != null && movimentacao.equals("parado")) {
-               if (spriteNum == 1) {
-                    if (direcao.equals("frente")) {
-                         image = idle;
-                    } else if (direcao.equals("costas")) {
-                         image = idleback;
-                    }
-               } else if (spriteNum == 2) {
-                    if (direcao.equals("frente")) {
-                         image = idle2;
-                    } else if (direcao.equals("costas")) {
-                         image = idle2back;
-                    }
-               } else if (spriteNum == 3) {
-                    if (direcao.equals("frente")) {
-                         image = idle3;
-                    } else if (direcao.equals("costas")) {
-                         image = idle3back;
-                    }
-               } else if (spriteNum == 4) {
-                    if (direcao.equals("frente")) {
-                         image = idle4;
-                    } else if (direcao.equals("costas")) {
-                         image = idle4back;
-                    }
-               } else if (spriteNum == 5) {
-                    if (direcao.equals("frente")) {
-                         image = idle5;
-                    } else if (direcao.equals("costas")) {
-                         image = idle5back;
-                    }
-               } else if(spriteNum==6) {
-                    if (direcao.equals("frente")) {
-                         image = idle6;
+          if (gp.attacking) {
+               switch (attackSpriteNum) {
 
-                    } else if (direcao.equals("costas")) {
-                         image = idle6back;
-                    }
-
-               } else if (spriteNum ==7) {
-                    if(direcao.equals("frente")) {
-                         image = idle7;
-                    } else if (direcao.equals("costas")) {
-                         image = idle6back;
-                    }
-               } else if (spriteNum ==8) {
-                    if(direcao.equals("frente")) {
-                         image = idle8;
-                    } else if (direcao.equals("costas")) {
-                         image = idle6back;
-                    }
+                    case 1: image = attack1; break;
+                    case 2: image = attack2; break;
+                    case 3: image = attack3; break;
+                    case 4: image = attack4; break;
+                    case 5: image = attack5; break;
+                    case 6: image = attack6; break;
+                    case 7: image = attack7; break;
+                    case 8: image = attack8; break;
+                    case 9: image = attack9; break;
+                    case 10: image = attack10; break;
                }
           } else {
-               if (direcao.equals("frente")) {
+               if (movimentacao != null && movimentacao.equals("parado")) {
                     if (spriteNum == 1) {
-                         image = run;
+                         if (direcao.equals("frente")) {
+                              image = idle;
+                         } else if (direcao.equals("costas")) {
+                              image = idleback;
+                         }
                     } else if (spriteNum == 2) {
-                         image = run2;
+                         if (direcao.equals("frente")) {
+                              image = idle2;
+                         } else if (direcao.equals("costas")) {
+                              image = idle2back;
+                         }
                     } else if (spriteNum == 3) {
-                         image = run3;
+                         if (direcao.equals("frente")) {
+                              image = idle3;
+                         } else if (direcao.equals("costas")) {
+                              image = idle3back;
+                         }
                     } else if (spriteNum == 4) {
-                         image = run4;
+                         if (direcao.equals("frente")) {
+                              image = idle4;
+                         } else if (direcao.equals("costas")) {
+                              image = idle4back;
+                         }
                     } else if (spriteNum == 5) {
-                         image = run5;
-                    } else if (spriteNum == 6) {
-                         image = run6;
+                         if (direcao.equals("frente")) {
+                              image = idle5;
+                         } else if (direcao.equals("costas")) {
+                              image = idle5back;
+                         }
+                    } else if(spriteNum==6) {
+                         if (direcao.equals("frente")) {
+                              image = idle6;
+
+                         } else if (direcao.equals("costas")) {
+                              image = idle6back;
+                         }
+
                     } else if (spriteNum ==7) {
-                         image = run7;
+                         if(direcao.equals("frente")) {
+                              image = idle7;
+                         } else if (direcao.equals("costas")) {
+                              image = idle6back;
+                         }
+                    } else if (spriteNum ==8) {
+                         if(direcao.equals("frente")) {
+                              image = idle8;
+                         } else if (direcao.equals("costas")) {
+                              image = idle6back;
+                         }
                     }
-               } else if (direcao.equals("costas")) {
-                    if (spriteNum == 1) {
-                         image = runcostas;
-                    } else if (spriteNum == 2) {
-                         image = runcostas2;
-                    } else if (spriteNum == 3) {
-                         image = runcostas3;
-                    } else if (spriteNum == 4) {
-                         image = runcostas4;
-                    } else if (spriteNum == 5) {
-                         image = runcostas5;
-                    } else if (spriteNum == 6 ) {
-                         image  = runcostas6;
-                    } else if (spriteNum == 7) {
-                         image =runcostas7;
+               } else {
+                    if (direcao.equals("frente")) {
+                         if (spriteNum == 1) {
+                              image = run;
+                         } else if (spriteNum == 2) {
+                              image = run2;
+                         } else if (spriteNum == 3) {
+                              image = run3;
+                         } else if (spriteNum == 4) {
+                              image = run4;
+                         } else if (spriteNum == 5) {
+                              image = run5;
+                         } else if (spriteNum == 6) {
+                              image = run6;
+                         } else if (spriteNum ==7) {
+                              image = run7;
+                         }
+                    } else if (direcao.equals("costas")) {
+                         if (spriteNum == 1) {
+                              image = runcostas;
+                         } else if (spriteNum == 2) {
+                              image = runcostas2;
+                         } else if (spriteNum == 3) {
+                              image = runcostas3;
+                         } else if (spriteNum == 4) {
+                              image = runcostas4;
+                         } else if (spriteNum == 5) {
+                              image = runcostas5;
+                         } else if (spriteNum == 6 ) {
+                              image  = runcostas6;
+                         } else if (spriteNum == 7) {
+                              image =runcostas7;
+                         }
                     }
                }
           }
 
+
+
           g2.drawImage(image,
-                  (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela * 9) / 4),
+                  (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela*9/2)),
                   (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela * 10) / 3),
-                  gp.tamanhoJanela * 76/20,
-                  gp.tamanhoJanela * 76/20,
+                  gp.tamanhoJanela*9,
+                  gp.tamanhoJanela*4 ,
                   null);
 
 
-        // DEBUG
-          /*
+
+/*
+          DEBUG
          g2.setColor(Color.RED);
           g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
                   (int) (y + bounds.y - gp.getCamera().getyOffSet()),
                   bounds.width, bounds.height);
+ */
 
-*/
      }
      public int tipo() {
           return 1;

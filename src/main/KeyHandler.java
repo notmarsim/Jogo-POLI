@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
 
     public boolean upPressed , downPressed , leftPressed , rightPressed;
+
     private GamePanel gp;
     public boolean enter = false;
 
@@ -54,10 +55,16 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_ENTER && gp.getCharacterState() == GamePanel.CharacterState.Dialogo) {
             gp.setGameState(GamePanel.GameState.Menu);
-            gp.setChapter(GamePanel.Capitulos.chapterFogo);
             gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+            gp.getPlayer().x = gp.getPlayer().x - gp.tamanhoJanela;
+            if (gp.getDialogues().getDialogueText().contains("Pyroth, Guardião do Fogo, ouça as antigas palavras esquecidas há milênios e agora trazidas à luz. A escuridão que uma vez ameaçou Elemenvera ressurgiu. Nas profundezas das sombras, um ser corrompido, outrora apenas uma lenda, conhecido como Necromancer, desperta com a intenção de devorar a essência dos nossos elementos e mergulhar o mundo em trevas eternas.\n" +
+                    "\n" +
+                    "Sua missão é restaurar a paz em cada reino de Elemenvera, agora sob ataque pelos monstros criados por Necromancer. Comece pelo seu domínio, o Reino do Fogo, e alerte os outros guardiões para que protejam e salvem seus próprios reinos também. Boa sorte, Guardião.")){
+                gp.setChapter(GamePanel.Capitulos.chapterFogo);
+            }
 
         }
+
 
         // INVENTARIO
         if(gp.getCharacterState() == GamePanel.CharacterState.Inventario) {
@@ -98,6 +105,7 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_P) {
             gp.setChapter(GamePanel.Capitulos.Prologo);
         }
+        //COMBATE
         if(gp.getCharacterState() == GamePanel.CharacterState.Combate) {
             if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
                 if (gp.getUi().selectedOption != 0) {
@@ -105,10 +113,14 @@ public class KeyHandler implements KeyListener {
                 }
             }
             if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-                if (gp.getUi().selectedOption != 1) {
+                if (gp.getUi().selectedOption != 2) {
                     gp.getUi().selectedOption++;
                 }
             }
+        }
+
+        if(code == KeyEvent.VK_X) {
+            gp.setCharacterState(GamePanel.CharacterState.Ocioso);
         }
 
     }

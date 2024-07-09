@@ -12,13 +12,20 @@ public class Dialogues {
     private GamePanel gamePanel;
     private int fontSize;
     private Graphics2D g2;
-    private Elder elder;
+    private String currentDialogueText = ""; // Inicializa com string vazia
 
     public Dialogues(GamePanel gamePanel, int fontSize) {
         this.gamePanel = gamePanel;
         this.fontSize = fontSize;
+    }
 
+    // Método para configurar o texto atual do diálogo
+    public void setDialogueText(String text) {
+        this.currentDialogueText = text;
+    }
 
+    public String getDialogueText() {
+        return currentDialogueText;
     }
 
     public void drawDialogueScreen(Graphics2D g2) {
@@ -29,16 +36,15 @@ public class Dialogues {
         int height = gamePanel.tamanhoJanela * 4;
 
         drawSubWindow(x, y, width, height);
+        System.out.println("no dialogues: " + currentDialogueText);
 
-
-        String textoDialogo = "Pyroth, Guardião do Fogo, ouça as antigas palavras esquecidas há milênios e agora trazidas à luz. A escuridão que uma vez ameaçou Elemenvera ressurgiu. Nas profundezas das sombras, um ser corrompido, outrora apenas uma lenda, conhecido como Necromancer, desperta com a intenção de devorar a essência dos nossos elementos e mergulhar o mundo em trevas eternas.\n" +
-                "\n" +
-                "Sua missão é restaurar a paz em cada reino de Elemenvera, agora sob ataque pelos monstros criados por Necromancer. Comece pelo seu domínio, o Reino do Fogo, e alerte os outros guardiões para que protejam e salvem seus próprios reinos também. Boa sorte, Guardião.";
-        drawTextoDialogo(textoDialogo, x + 20, y + 40, width - 40);
-
+        // Usar o texto atual do diálogo
+        if (currentDialogueText != null && !currentDialogueText.isEmpty()) {
+            drawTextoDialogo(currentDialogueText, x + 20, y + 40, width - 40);
+        }
     }
 
-    public void drawSubWindow(int x, int y, int width, int height) {
+    private void drawSubWindow(int x, int y, int width, int height) {
         Color color = new Color(0, 0, 0, 200);
         g2.setColor(color);
         g2.fillRoundRect(x, y, width, height, 35, 35);
@@ -50,7 +56,7 @@ public class Dialogues {
 
     private void drawTextoDialogo(String texto, int x, int y, int maxWidth) {
         g2.setColor(Color.WHITE);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 25));
 
         FontMetrics metrics = g2.getFontMetrics();
 

@@ -4,8 +4,10 @@ import Objetos.SuperObject;
 import capitulos.ChapterFogo;
 import capitulos.Prologo;
 import entity.Combate;
+import UI.Dialogues;
 import entity.EntityManager;
 import entity.Player;
+import entity.Pyroth;
 import gfx.Camera;
 import mapas.Maps;
 
@@ -20,6 +22,10 @@ public class GamePanel extends JPanel implements Runnable {
     private UI ui;
     private EntityManager entityManager;
     private Combate combate;
+    public Dialogues dialogues;
+    private Player player;
+    public boolean attacking;
+
 
 
     public enum Capitulos {
@@ -80,7 +86,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler(this);
-    private static Player player;
     private SuperObject superObject;
 
     // camera
@@ -95,14 +100,24 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        dialogues = new Dialogues(this,25);
         player = new Player(this,keyH);
         this.ui = new UI(this, 80);
-        this.entityManager = new EntityManager(this,getPlayer());
+        this.entityManager = new EntityManager(this,player);
         this.prologo = new Prologo(this, keyH);
         this.chapterFogo = new ChapterFogo(this,keyH);
         setChapter(Capitulos.Prologo);
-        this.combate = new Combate(this,getPlayer().getVida(),getPlayer().getDano());
+        this.combate = new Combate(this,player.getVida(),player.getDano());
 
+    }
+
+
+    public int getMana(){
+        return getPlayer().mana;
+    }
+
+    public Dialogues getDialogues(){
+        return dialogues;
     }
 
     public EntityManager getEntityManager() {
@@ -168,12 +183,12 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (currentCapitulo == Capitulos.Prologo) {
             prologo.up();
-            System.out.println("No gp: " + entityManager.getEntities());
+
 
         }
         if (currentCapitulo == Capitulos.chapterFogo) {
             chapterFogo.up();
-            System.out.println("No gp: " + entityManager.getEntities());
+            System.out.println("no gp:"+attacking);
         }
 
     }
@@ -198,6 +213,9 @@ public class GamePanel extends JPanel implements Runnable {
                 ui.draw(g2);
             } else if (characterState == CharacterState.Dialogo) {
                 ui.draw(g2);
+
+                System.out.println("gp: " + dialogues.getDialogueText());
+                dialogues.drawDialogueScreen(g2);
             } else if (characterState == CharacterState.Combate) {
                 ui.draw(g2);
             }

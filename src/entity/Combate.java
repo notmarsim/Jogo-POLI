@@ -1,32 +1,35 @@
 package entity;
-import java.util.Random;
 
+import java.util.Random;
 import main.GamePanel;
-import UI.UI;
-import java.util.Scanner;
+import main.KeyHandler;
 
 public class Combate {
-    private final Player player;
     private GamePanel gp;
     private int vidaInimigo;
     private boolean defendendo;
     private boolean jaCombateu;
     Random rand = new Random();
+    private Player player;
 
     public Combate(GamePanel gp, int vida, int dano) {
         this.gp = gp;
-        this.player = gp.getPlayer();
         this.vidaInimigo = 20;
         this.defendendo = false;
         this.jaCombateu = false;
+
     }
 
-    public void golpeFraco(Entity e){
-        e.vida -= player.getDano() + rand.nextInt(6); // 6 exclusivo
+    public void golpeFraco() {
+        if(gp.getPlayer().mana >=3){
+            // e.vida -= gp.getPlayer().getDano() + rand.nextInt(6); // 6 exclusivo
+            gp.attacking = true;
+            gp.getPlayer().mana -= 3;
+        }
+
     }
 
-    public void golpeForte(Entity e){
-        e.vida -= player.getDano()*2 + rand.nextInt(6);
+    public void golpeForte(Entity e) {
+        //e.vida -= gp.getPlayer().getDano() * 2 + rand.nextInt(6);
     }
-
 }
