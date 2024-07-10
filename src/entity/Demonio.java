@@ -21,6 +21,7 @@ public class Demonio extends Entity{
         bounds.width = 160;
         bounds.height = 170;
         vida = 50;
+        dano = 40;
     }
 
     private void loadSprites() {
