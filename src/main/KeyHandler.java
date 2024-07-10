@@ -119,6 +119,13 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+        if(gp.getCharacterState().equals(GamePanel.CharacterState.Combate)){
+            upPressed = false;
+            downPressed = false;
+            leftPressed = false;
+            rightPressed = false;
+        }
+
         if(code == KeyEvent.VK_X) {
             gp.setCharacterState(GamePanel.CharacterState.Ocioso);
         }

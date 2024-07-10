@@ -16,8 +16,8 @@ public class Player extends Entity {
      private Combate combate;
      public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
      public final int maxInventarioSize = 20;
-     private int attackSpriteCounter = 0;
-     private int attackSpriteNum = 1;
+     public int attackSpriteCounter = 0;
+     public int attackSpriteNum = 1;
 
 
      public Player(GamePanel gp, KeyHandler keyH) {
@@ -30,19 +30,13 @@ public class Player extends Entity {
           System.out.println("Player instance created");
           setItems();
      }
-
      public void iniciarCombate(Entity entity) {
-          gp.setCharacterState(GamePanel.CharacterState.Combate);
           System.out.println(entity.x);
           System.out.println(entity);
-          int yEntidade = entity.getY();
-          int xEntidade = entity.getX();
-          y = yEntidade + gp.tamanhoJanela*33/10;
-          x = xEntidade + gp.tamanhoJanela*15/10;
-          entity.x = xEntidade + (gp.tamanhoJanela);
 
-
-
+          y = entity.y + gp.tamanhoJanela * 30 / 10;
+          x = entity.x + gp.tamanhoJanela * 17 / 10;
+          entity.x += (gp.tamanhoJanela);
      }
 
      public void iniciarDialogo() {
@@ -54,7 +48,6 @@ public class Player extends Entity {
           boolean jaDialogou = false;
           switch (entityType) {
                case 1:
-
                     break;
                case 2:
                     if (!jaDialogou) {
@@ -66,7 +59,13 @@ public class Player extends Entity {
                     }
                     break;
                case 3:
-                    // Inicia combate
+                    // Desativa as teclas de movimento
+                    keyH.upPressed = false;
+                    keyH.downPressed = false;
+                    keyH.leftPressed = false;
+                    keyH.rightPressed = false;
+                    gp.playMusic(0);
+                    gp.setCharacterState(GamePanel.CharacterState.Combate);
                     iniciarCombate(entity);
                     break;
           }
@@ -131,24 +130,23 @@ public class Player extends Entity {
      @Override
      public void update() {
           Entity collidedEntity = null;
-          System.out.println("mana player:"+mana);
-          System.out.println("mana player do gp:"+gp.getMana());
+          System.out.println("mana: "+ gp.getMana());
 
           if (gp.getCharacterState() == GamePanel.CharacterState.Combate) {
                direcao = "frente";
-               System.out.println("no player:"+gp.attacking);
           }
 
           if (gp.attacking) {
-               System.out.println("no update");
-               attackSpriteCounter++;
-               if (attackSpriteCounter >= 5) {
-                    attackSpriteCounter = 0;
-                    attackSpriteNum++;
-                    if (attackSpriteNum > 10) {
-                         System.out.println("no 2");
-                         attackSpriteNum = 1;
-                         gp.attacking = false;
+               // pra nao ter mais de uma instancia atualizando / gambiarra
+               if (this == gp.getPlayer()) {
+                    attackSpriteCounter++;
+                    if (attackSpriteCounter >= 5) {
+                         attackSpriteCounter = 0;
+                         attackSpriteNum++;
+                         if (attackSpriteNum > 10) {
+                              attackSpriteNum = 1;
+                              gp.attacking = false;
+                         }
                     }
                }
           } else {
@@ -237,6 +235,7 @@ public class Player extends Entity {
           BufferedImage image = null;
 
           if (gp.attacking) {
+               attackSpriteNum = gp.getPlayer().attackSpriteNum;
                switch (attackSpriteNum) {
 
                     case 1: image = attack1; break;

@@ -6,6 +6,7 @@ import entity.Player;
 import main.GamePanel;
 import main.KeyHandler;
 
+import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.*;
@@ -27,6 +28,8 @@ public class UI {
     public int selectedOption = 0;
     private String currentDialogueText;
     private Player player;
+    private BufferedImage enterImage;
+
 
 
     // Construtor
@@ -47,6 +50,7 @@ public class UI {
         this.startTime = System.currentTimeMillis();
         this.duration = 3000;
         this.dialogues = new Dialogues(gamePanel, fontSize);
+        loadInputsImage();
 
         InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
         try {
@@ -65,8 +69,10 @@ public class UI {
 
         if (gamePanel.getCharacterState() == GamePanel.CharacterState.Dialogo) {
             dialogues.drawDialogueScreen(g2);
+            drawPrompt();
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Inventario) {
             drawInventory();
+
 
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Combate){
             drawCombate();
@@ -383,6 +389,9 @@ public class UI {
         }
         else if (selectedOption == 1){
             System.out.println("golpe forte");
+        } else if (selectedOption == 2) {
+            gamePanel.getCombate().defender();
+            System.out.println("defendeu");
         }
     }
 
@@ -527,5 +536,20 @@ public class UI {
         g2.drawString(missao, x, y);
     }
 
+    private void loadInputsImage(){
+        try{
+            enterImage = ImageIO.read(getClass().getResourceAsStream("/prompts/enter.png"));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    private void drawPrompt() {
+        BufferedImage promptImage = enterImage;
+        if (promptImage != null) {
+            int promptX = gamePanel.larguraTela - promptImage.getWidth() - gamePanel.tamanhoJanela;
+            int promptY = gamePanel.alturaTela - promptImage.getHeight() - gamePanel.tamanhoJanela;
+            g2.drawImage(promptImage, promptX, promptY, gamePanel.tamanhoJanela, gamePanel.tamanhoJanela/2,null);
+        }
+    }
 
 }
