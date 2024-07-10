@@ -41,6 +41,7 @@ public class ChapterFogo {
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*22,gp.tamanhoJanela*26));
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*37,gp.tamanhoJanela));
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*31,gp.tamanhoJanela));
+        entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*40,gp.tamanhoJanela*3));
     }
 
 

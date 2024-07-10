@@ -128,6 +128,7 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_X) {
             gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+            gp.stopMusic();
         }
 
     }

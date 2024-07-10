@@ -31,10 +31,10 @@ public class Player extends Entity {
           setItems();
      }
      public void iniciarCombate(Entity entity) {
-          System.out.println(entity.x);
-          System.out.println(entity);
+          //System.out.println(entity.x);
+          //System.out.println(entity);
 
-          y = entity.y + gp.tamanhoJanela * 30 / 10;
+          y = entity.y + gp.tamanhoJanela * 32 / 10;
           x = entity.x + gp.tamanhoJanela * 17 / 10;
           entity.x += (gp.tamanhoJanela);
      }
