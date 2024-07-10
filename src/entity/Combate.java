@@ -12,6 +12,8 @@ public class Combate {
     Random rand = new Random();
     private Player player;
 
+
+
     public Combate(GamePanel gp, int vida, int dano) {
         this.gp = gp;
         this.vidaInimigo = 20;
@@ -21,15 +23,25 @@ public class Combate {
     }
 
     public void golpeFraco() {
-        if(gp.getPlayer().mana >=3){
+        if(gp.getMana() >=3){
             // e.vida -= gp.getPlayer().getDano() + rand.nextInt(6); // 6 exclusivo
             gp.attacking = true;
             gp.getPlayer().mana -= 3;
+            gp.getPlayer().attackSpriteNum = 1; // Reseta o sprite de ataque
+            gp.getPlayer().attackSpriteCounter = 0;
         }
 
     }
 
     public void golpeForte(Entity e) {
         //e.vida -= gp.getPlayer().getDano() * 2 + rand.nextInt(6);
+    }
+
+    public void defender(){
+        if(gp.getPlayer().mana<=5){
+            gp.getPlayer().mana += 5;
+        } else {
+            gp.getPlayer().mana = 10;
+        }
     }
 }
