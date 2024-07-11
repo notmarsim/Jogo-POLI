@@ -6,12 +6,13 @@ import main.GamePanel;
 public class Combate {
     private GamePanel gp;
     private Entity inimigo;
-    private boolean defendendo;
+    public boolean defendendo;
     private boolean turnoDoJogador;
     private Random rand = new Random();
     private Player player;
     private int danoInimigo;
     public boolean golpeSimples;
+    public boolean golpeEspecial;
 
     public Combate(GamePanel gp, Entity inimigo) {
         this.gp = gp;
@@ -25,6 +26,10 @@ public class Combate {
         if (turnoDoJogador) {
             if (gp.getCombate().golpeSimples) {
                 golpeFraco();
+            } else if (gp.getCombate().golpeEspecial){
+                golpeForte();
+            } else if (gp.getCombate().defendendo) {
+                defender();
             }
         }
     }
@@ -32,7 +37,7 @@ public class Combate {
     public void turnoInimigo() {
         if (!turnoDoJogador) {
             if (defendendo) {
-                danoInimigo = inimigo.dano / 2;
+                danoInimigo = inimigo.dano;
             } else {
                 danoInimigo = rand.nextInt(5) + inimigo.dano;
             }
@@ -55,14 +60,13 @@ public class Combate {
     }
 
     public void golpeForte() {
-        if (gp.getPlayer().mana >= 5) {
+        if (gp.getPlayer().mana >= 7) {
             gp.lutando = true;
-            gp.getPlayer().mana -= 5;
-            gp.getPlayer().attackSpriteNum = 1; // Reseta o sprite de ataque
-            gp.getPlayer().attackSpriteCounter = 0;
+            gp.getPlayer().mana -= 7;
             inimigo.receberDamage((gp.getPlayer().getDano() * 2) + rand.nextInt(6));
             System.out.println("Vida do inimigo: " + inimigo.getVida());
             turnoDoJogador = false;
+            gp.getCombate().golpeEspecial = false;
         }
     }
 
@@ -73,7 +77,8 @@ public class Combate {
         } else {
             gp.getPlayer().mana = 10;
         }
-        turnoDoJogador = false; // Finaliza o turno do jogador
+        turnoDoJogador = false;
+        gp.getCombate().defendendo = false;
     }
 
     public boolean fimCombate() {
