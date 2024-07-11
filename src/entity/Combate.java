@@ -93,6 +93,9 @@ public class Combate {
             gp.setCharacterState(GamePanel.CharacterState.Ocioso);
             System.out.println("Combate terminado com: " + inimigo);
             gp.stopMusic();
+            if(inimigo.getVida()<=0){
+                gp.getEntityManager().getEntities().remove(inimigo);
+            }
             return;
         }
 

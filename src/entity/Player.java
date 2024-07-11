@@ -99,7 +99,7 @@ public class Player extends Entity {
           y = gp.tamanhoJanela*18;
           vida = 100;
           vidaMaxima = 100;
-          dano = 5;
+          dano = 7;
           mana = 10;
 
      }
