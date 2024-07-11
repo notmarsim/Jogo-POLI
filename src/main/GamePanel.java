@@ -226,8 +226,14 @@ public class GamePanel extends JPanel implements Runnable {
         g2.dispose();
     }
 
-    public void setGolpe(){
-        getCombate().golpeSimples = true;
+    public void setAcao(String golpe){
+        if(golpe.equals("simples")){
+            getCombate().golpeSimples = true;
+        } else if (golpe.equals("especial")) {
+            getCombate().golpeEspecial = true;
+        } else if (golpe.equals("defesa")) {
+            getCombate().defendendo = true;
+        }
     }
 
     public void playMusic(int i) {
