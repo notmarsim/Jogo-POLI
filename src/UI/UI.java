@@ -4,7 +4,6 @@ import Objetos.SuperObject;
 
 import entity.Player;
 import main.GamePanel;
-import main.KeyHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.Image;
@@ -103,7 +102,7 @@ public class UI {
 
     public void update() {
         long elapsedTime = System.currentTimeMillis() - startTime;
-       // System.out.println(gamePanel.getPlayer().atualEntidade);
+        // System.out.println(gamePanel.getPlayer().atualEntidade);
         //System.out.println(gamePanel.getCharacterState());
         //System.out.println("Estado do jogo: " + gamePanel.getGameState());
 
@@ -384,13 +383,14 @@ public class UI {
     }
     public void usarAtaqueSelecionado() {
         if (selectedOption == 0){
-            gamePanel.setGolpe();
+            gamePanel.setAcao("simples");
             System.out.println("golpe fraco");
         }
         else if (selectedOption == 1){
             System.out.println("golpe forte");
+            gamePanel.setAcao("especial");
         } else if (selectedOption == 2) {
-            gamePanel.getCombate().defender();
+            gamePanel.setAcao("defesa");
             System.out.println("defendeu");
         }
     }
