@@ -18,6 +18,7 @@ public class Player extends Entity {
      public final int maxInventarioSize = 20;
      public int attackSpriteCounter = 0;
      public int attackSpriteNum = 1;
+     public Entity atualEntity;
 
 
      public Player(GamePanel gp, KeyHandler keyH) {
@@ -26,14 +27,13 @@ public class Player extends Entity {
           setDefaultValues();
           bounds = new Rectangle();
           direcao = "frente";
-          this.combate = new Combate(gp,vida,dano);
-          System.out.println("Player instance created");
           setItems();
+
      }
      public void iniciarCombate(Entity entity) {
           //System.out.println(entity.x);
           //System.out.println(entity);
-
+          combate = new Combate(gp, entity);
           y = entity.y + gp.tamanhoJanela * 32 / 10;
           x = entity.x + gp.tamanhoJanela * 17 / 10;
           entity.x += (gp.tamanhoJanela);
@@ -53,13 +53,12 @@ public class Player extends Entity {
                     if (!jaDialogou) {
                          iniciarDialogo();
                          String fala = entity.getFala();
-                         System.out.println("no player:" + entity.getFala());
                          gp.getDialogues().setDialogueText(fala);
                          jaDialogou = true;
                     }
                     break;
                case 3:
-                    // Desativa as teclas de movimento
+                    atualEntity = entity;
                     keyH.upPressed = false;
                     keyH.downPressed = false;
                     keyH.leftPressed = false;
@@ -130,13 +129,14 @@ public class Player extends Entity {
      @Override
      public void update() {
           Entity collidedEntity = null;
-          System.out.println("mana: "+ gp.getMana());
+          System.out.println("mana: " + gp.getMana());
 
-          if (gp.getCharacterState() == GamePanel.CharacterState.Combate) {
+          if (gp.getCharacterState() == GamePanel.CharacterState.Combate  && combate != null) {
                direcao = "frente";
+               combate.update();
           }
 
-          if (gp.attacking) {
+          if (gp.lutando) {
                // pra nao ter mais de uma instancia atualizando / gambiarra
                if (this == gp.getPlayer()) {
                     attackSpriteCounter++;
@@ -145,7 +145,7 @@ public class Player extends Entity {
                          attackSpriteNum++;
                          if (attackSpriteNum > 10) {
                               attackSpriteNum = 1;
-                              gp.attacking = false;
+                              gp.lutando = false;
                          }
                     }
                }
@@ -234,21 +234,41 @@ public class Player extends Entity {
      public void draw(Graphics2D g2) {
           BufferedImage image = null;
 
-          if (gp.attacking) {
+          if (gp.lutando) {
                attackSpriteNum = gp.getPlayer().attackSpriteNum;
-               switch (attackSpriteNum) {
+                         switch (attackSpriteNum) {
+                              case 1:
+                                   image = attack1;
+                                   break;
+                              case 2:
+                                   image = attack2;
+                                   break;
+                              case 3:
+                                   image = attack3;
+                                   break;
+                              case 4:
+                                   image = attack4;
+                                   break;
+                              case 5:
+                                   image = attack5;
+                                   break;
+                              case 6:
+                                   image = attack6;
+                                   break;
+                              case 7:
+                                   image = attack7;
+                                   break;
+                              case 8:
+                                   image = attack8;
+                                   break;
+                              case 9:
+                                   image = attack9;
+                                   break;
+                              case 10:
+                                   image = attack10;
+                                   break;
 
-                    case 1: image = attack1; break;
-                    case 2: image = attack2; break;
-                    case 3: image = attack3; break;
-                    case 4: image = attack4; break;
-                    case 5: image = attack5; break;
-                    case 6: image = attack6; break;
-                    case 7: image = attack7; break;
-                    case 8: image = attack8; break;
-                    case 9: image = attack9; break;
-                    case 10: image = attack10; break;
-               }
+                    }
           } else {
                if (movimentacao != null && movimentacao.equals("parado")) {
                     if (spriteNum == 1) {

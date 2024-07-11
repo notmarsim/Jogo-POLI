@@ -14,12 +14,12 @@ public class Maps {
     public boolean[][] tochasPosicao;
     private TileManager tileManager;
 
-    public Maps(GamePanel gp, String path) {
+    public Maps(GamePanel gp, String path, GamePanel.Capitulos chapter) {
         this.gp = gp;
-        tileManager  = new TileManager(gp);
+        tileManager = new TileManager(gp);
+        tileManager.carregarTile(chapter);
         loadMap(path);
     }
-
 
     public void update() {
         // Atualização do mapa, se necessário
@@ -62,12 +62,12 @@ public class Maps {
 
     public Tile getTile(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height) {
-            return TileManager.getTile(1); // Supondo que 1 é o ID para pisoTijoloPedra
+            return TileManager.getTile(1);
         }
         Tile t = TileManager.getTile(tiles[x][y]);
         if (t == null) {
             System.err.println("Tile não carregado em (" + x + ", " + y + "). Usando tile padrão.");
-            return TileManager.getTile(1); // Supondo que 1 é o ID para pisoTijoloPedra
+            return TileManager.getTile(1);
         }
         return t;
     }

@@ -96,4 +96,16 @@ public abstract class Entity {
     protected String getFala(){
         return "";
     }
+    
+    public int getVida(){
+        return vida;
+    }
+
+    public void receberDamage(int i) {
+        if(vida>=i) {
+            vida-=i;
+        } else {
+            vida = 0;
+        }
+    }
 }

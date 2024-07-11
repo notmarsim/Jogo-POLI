@@ -10,14 +10,24 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        loadTiles();
     }
 
-    private void loadTiles() {
+    public void carregarTile(GamePanel.Capitulos capitulo) {
+        if (capitulo.equals(GamePanel.Capitulos.Prologo)) {
+            carregarTilePrologo();
+        } else if (capitulo.equals(GamePanel.Capitulos.chapterFogo)) {
+            carregarTilesChapterFogo();
+        }
+    }
+
+    private void carregarTilePrologo() {
         addTile(1, "/tiles/PrologoTiles/pisoTijoloPedra.png", true);
         addTile(2, "/tiles/PrologoTiles/pisoMadeira.png", false);
         addTile(3, "/tiles/PrologoTiles/water.png", false);
         addTile(4, "/tiles/PrologoTiles/pisoLava.png", true);
+    }
+
+    private void carregarTilesChapterFogo() {
         addTile(5, "/tiles/FogoTiles/tile5.png", false);
         addTile(6, "/tiles/FogoTiles/bolha.png", false);
         addTile(7,"/tiles/FogoTiles/genericoColisao.png",true);
@@ -75,24 +85,20 @@ public class TileManager {
         addTile(90,"/tiles/FogoTiles/tile90.png",false);
         addTile(97,"/tiles/FogoTiles/tile97.png",false);
         addTile(108,"/tiles/FogoTiles/tile108.png",true);
-
     }
 
     private void addTile(int id, String imagePath, boolean isSolid) {
-        Tile tile = new Tile(imagePath, id, isSolid);
-        if (tile != null) {
+        if (!tiles.containsKey(id)) {
+            Tile tile = new Tile(imagePath, id, isSolid);
             tiles.put(id, tile);
-        } else {
-            System.err.println("Falha ao carregar tile com ID " + id);
         }
     }
-
 
     public static Tile getTile(int id) {
         Tile tile = tiles.get(id);
         if (tile == null) {
-            System.err.println("Tile com ID " + id + " não encontrado. Usando tile padrão.");
-            return tiles.get(1); // Supondo que 1 é o ID para o pisoTijoloPedra
+            System.err.println("tile nao carregado: " + id);
+            return tiles.get(1);
         }
         return tile;
     }

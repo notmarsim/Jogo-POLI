@@ -26,7 +26,7 @@ public class Prologo {
         entityManager.addEntity(pyroth);
         entityManager.addEntity(new Elder(gamePanel, gamePanel.tamanhoJanela*14, gamePanel.tamanhoJanela*8));
         this.ui = gamePanel.getUi();
-        this.mapaPrologo = new Maps(gamePanel, "res/maps/mapaPrologo.txt");
+        this.mapaPrologo = new Maps(gamePanel, "res/maps/mapaPrologo.txt", GamePanel.Capitulos.Prologo);
     }
 
     public Maps getMap() {
