@@ -22,7 +22,7 @@ public class ChapterFogo {
     public ChapterFogo(GamePanel gp, KeyHandler keyHandler) {
         this.gp = gp;
         this.ui = gp.getUi();
-        this.mapaFogo = new Maps(gp, "res/maps/mapaFogo.txt");
+        this.mapaFogo = new Maps(gp, "res/maps/mapaFogo.txt", GamePanel.Capitulos.chapterFogo);
         this.pyroth = new Pyroth(gp, keyHandler);
         entityManager = new EntityManager(gp ,gp.getPlayer());
         entityManager.addEntity(pyroth);

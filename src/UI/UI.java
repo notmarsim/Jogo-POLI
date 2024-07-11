@@ -384,7 +384,7 @@ public class UI {
     }
     public void usarAtaqueSelecionado() {
         if (selectedOption == 0){
-            gamePanel.getCombate().golpeFraco();
+            gamePanel.setGolpe();
             System.out.println("golpe fraco");
         }
         else if (selectedOption == 1){

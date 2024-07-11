@@ -7,7 +7,6 @@ import entity.Combate;
 import UI.Dialogues;
 import entity.EntityManager;
 import entity.Player;
-import entity.Pyroth;
 import gfx.Camera;
 import mapas.Maps;
 
@@ -25,8 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
     EntityManager entityManager = new EntityManager(this,player);
     private Combate combate;
     public Dialogues dialogues;
-
-    public boolean attacking;
+    public boolean lutando;
     private Sound sound = new Sound();
 
 
@@ -108,10 +106,12 @@ public class GamePanel extends JPanel implements Runnable {
         this.prologo = new Prologo(this, keyH);
         this.chapterFogo = new ChapterFogo(this,keyH);
         setChapter(Capitulos.Prologo);
-        this.combate = new Combate(this,player.getVida(),player.getDano());
+        this.combate = new Combate(this,player.atualEntity);
 
     }
-
+    public Combate getCombate(){
+        return combate;
+    }
 
     public int getMana(){
         return getPlayer().mana;
@@ -132,9 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player getPlayer() {
         return player;
     }
-    public Combate getCombate(){
-        return combate;
-    }
+
     public UI getUi() {
         return ui;
     }
@@ -226,6 +224,10 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         g2.dispose();
+    }
+
+    public void setGolpe(){
+        getCombate().golpeSimples = true;
     }
 
     public void playMusic(int i) {
