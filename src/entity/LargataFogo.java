@@ -7,9 +7,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Demonio extends Entity{
+public class LargataFogo extends Entity{
     private GamePanel gp;
-    public Demonio(GamePanel gp, int startX, int startY){
+    public LargataFogo(GamePanel gp, int startX, int startY){
         super(gp);
         this.gp = gp;
         this.x = startX;
@@ -20,8 +20,8 @@ public class Demonio extends Entity{
         bounds.y = 120;
         bounds.width = 160;
         bounds.height = 170;
-        vida = 70;
-        dano = 10;
+        vida = 60;
+        dano = 8;
     }
 
     private void loadSprites() {
@@ -58,12 +58,12 @@ public class Demonio extends Entity{
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*9, gp.tamanhoJanela*5, null);
 
 
-      /*  g2.setColor(Color.RED);
+        g2.setColor(Color.RED);
         g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
                 (int) (y + bounds.y - gp.getCamera().getyOffSet()),
                 bounds.width, bounds.height);
 
-       */
+
     }
 
 
