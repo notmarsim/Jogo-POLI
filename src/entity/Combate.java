@@ -56,6 +56,7 @@ public class Combate {
             System.out.println("vida inimigo: " + inimigo.getVida());
             turnoDoJogador = false;
             gp.getCombate().golpeSimples = false;
+
         }
     }
 
@@ -71,7 +72,6 @@ public class Combate {
     }
 
     public void defender() {
-        defendendo = true;
         gp.getPlayer().mana += 5;
         if(gp.getMana()>10){
             gp.getPlayer().mana  = 10;
@@ -92,7 +92,7 @@ public class Combate {
                 inimigo.setShouldBeRemoved(true);
                 gp.getPlayer().mana = 10;
             }
-            System.out.println("eu:" + player.getVida() + "inimigo: " + inimigo.getVida());
+            System.out.println("player:" + player.getVida() + "inimigo: " + inimigo.getVida());
             gp.setCharacterState(GamePanel.CharacterState.Ocioso);
             System.out.println("Combate terminado com: " + inimigo);
             gp.stopMusic();
