@@ -41,7 +41,7 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
              }
            // INVENTARIO
-        if (code == KeyEvent.VK_I && gp.getGameState() == GamePanel.GameState.Jogando) {
+        if (code == KeyEvent.VK_I && gp.getGameState() == GamePanel.GameState.Jogando && gp.getCharacterState() != GamePanel.CharacterState.Combate) {
             // Verifica se o jogo está no estado Jogando e o inventário está fechado
             if (gp.getCharacterState() != GamePanel.CharacterState.Inventario) {
                 gp.setCharacterState(GamePanel.CharacterState.Inventario);
@@ -68,6 +68,7 @@ public class KeyHandler implements KeyListener {
 
         // INVENTARIO
         if(gp.getCharacterState() == GamePanel.CharacterState.Inventario) {
+
             if(code==KeyEvent.VK_W || code==KeyEvent.VK_UP) {
                 if (gp.getUi().slotRow != 0) {
                     gp.getUi().slotRow--;

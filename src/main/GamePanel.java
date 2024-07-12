@@ -116,6 +116,9 @@ public class GamePanel extends JPanel implements Runnable {
     public int getMana(){
         return getPlayer().mana;
     }
+    public int getManaMax(){
+        return getPlayer().manaMax;
+    }
 
 
     public Dialogues getDialogues(){
@@ -180,7 +183,10 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-
+        getPlayer().setXpMax();
+        getPlayer().setVidaMax();
+        getPlayer().subirDeLevel();
+        System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel());
         if (currentCapitulo == Capitulos.Prologo) {
             prologo.up();
 
@@ -207,7 +213,8 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if (gameState == GameState.Jogando) {
-            ui.drawHealthBar(g2);
+            //ui.drawHealthBar(g2);
+            ui.drawHealthAndManaBars(g2);
             ui.desenharMissao();
             if (characterState == CharacterState.Inventario) {
                 ui.draw(g2);
