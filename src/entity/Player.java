@@ -12,13 +12,15 @@ import java.util.ArrayList;
 
 public class Player extends Entity {
      private KeyHandler keyH;
-     private int xp;
+     public int xp;
      private Combate combate;
      public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
      public final int maxInventarioSize = 20;
      public int attackSpriteCounter = 0;
      public int attackSpriteNum = 1;
      public Entity atualEntity;
+     public int mana,manaMax;
+     public int xpMax;
 
 
      public Player(GamePanel gp, KeyHandler keyH) {
@@ -106,13 +108,42 @@ public class Player extends Entity {
           vidaMaxima = 100;
           dano = 7;
           mana = 10;
-
+          manaMax = 10;
+          xp = 0;
+          xpMax = 10;
+          level = 1;
      }
-
+     public void ganharXp(int xpGanho){
+          xp += xpGanho;
+     }
      public int getVida(){
           return vida;
      }
-
+     public void setVidaMax(){
+          if (level > 1){
+               vidaMaxima += level*2;
+          }
+     }
+     public void subirDeLevel(){
+          if (xp == xpMax) {
+               level += 1;
+               xp -= xpMax;
+          }
+     }
+     public int getXp(){
+          return xp;
+     }
+     public int getLevel(){
+          return level;
+     }
+     public void setXpMax(){
+          if (level > 1){
+               xpMax += level*15/10;
+          }
+     }
+     public int getXpMax(){
+          return xpMax;
+     }
      public void receberDamage(int dano){
           int vidaTeste = vida - dano;
           if(vidaTeste < 0 ) {

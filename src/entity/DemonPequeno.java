@@ -7,32 +7,30 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class LargataFogo extends Entity{
+public class DemonPequeno extends Entity{
     private GamePanel gp;
-    public LargataFogo(GamePanel gp, int startX, int startY){
+    public DemonPequeno(GamePanel gp, int startX, int startY){
         super(gp);
         this.gp = gp;
         this.x = startX;
         this.y = startY;
         loadSprites();
         bounds = new Rectangle();
-        bounds.x = 220;
-        bounds.y = 120;
-        bounds.width = 160;
-        bounds.height = 170;
-        vida = 60;
-        dano = 8;
+        bounds.x = -60;
+        bounds.y = -70;
+        bounds.width = 80;
+        bounds.height = 100;
+        vida = 20;
+        dano = 4;
     }
 
     private void loadSprites() {
         try {
-            // PARADO
-            idle = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon_idle_1.png"));
-            idle2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon_idle_2.png"));
-            idle3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon_idle_3.png"));
-            idle4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon_idle_4.png"));
-            idle5 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon_idle_5.png"));
 
+            idle = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon/tile0.png"));
+            idle2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon/tile1.png"));
+            idle3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon/tile2.png"));
+            idle4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon/tile3.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,15 +45,15 @@ public class LargataFogo extends Entity{
         } else if (spriteNum == 3) {
             image = idle2;
         } else if (spriteNum == 4) {
-            image = idle3;
+            image = idle2;
         } else if (spriteNum == 5) {
-            image = idle4;
+            image = idle3;
         } else if (spriteNum == 6) {
-            image = idle4;
+            image = idle3;
         } else if (spriteNum == 7) {
-            image = idle5;
+            image = idle3;
         }
-        g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*9, gp.tamanhoJanela*5, null);
+        g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*13/10, gp.tamanhoJanela*13/10, null);
 
 
         g2.setColor(Color.RED);

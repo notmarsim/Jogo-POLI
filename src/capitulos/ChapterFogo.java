@@ -30,6 +30,9 @@ public class ChapterFogo {
         inicializarTochas();
         initializeTreeMarkers();
         entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
+        entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*5, gp.tamanhoJanela*5));
+        //entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*10, gp.tamanhoJanela*5));
+        //entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*20, gp.tamanhoJanela*10));
         pyroth.x = gp.tamanhoJanela*2;
         pyroth.y = gp.tamanhoJanela*18;
     }

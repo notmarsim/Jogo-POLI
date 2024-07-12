@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Entity {
     GamePanel gp;
-    public int x, y, mana, level;
+    public int x, y,level;
     protected int vida, dano;
     public int vidaMaxima;
     public int speed;

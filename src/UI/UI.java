@@ -340,15 +340,20 @@ public class UI {
     }
 
 
-    public void drawHealthBar(Graphics2D g2) {
-        // Dimensões e posição da barra de vida
+
+    public void drawHealthAndManaBars(Graphics2D g2) {
+        // Dimensões e posição das barras
         int barX = 50;
         int barY = 50;
-        int barWidth = 200; // Largura total da barra
-        int barHeight = 20; // Altura da barra
+        int barWidth = 200; // Largura total das barras
+        int barHeight = 20; // Altura das barras
+        int spacing = 10; // Espaçamento entre as barras
 
         // Calcula a largura proporcional da barra de vida baseada na vida atual
-        int currentBarWidth = (int) ((double) gamePanel.getPlayer().getVida() / gamePanel.getPlayer().vidaMaxima * barWidth);
+        int currentHealthBarWidth = (int) ((double) gamePanel.getPlayer().getVida() / gamePanel.getPlayer().vidaMaxima * barWidth);
+
+        // Calcula a largura proporcional da barra de mana baseada na mana atual
+        int currentManaBarWidth = (int) ((double) gamePanel.getPlayer().mana / gamePanel.getPlayer().manaMax * barWidth);
 
         // Desenha o contorno da barra de vida
         g2.setColor(Color.gray); // Cor do fundo da barra
@@ -356,9 +361,9 @@ public class UI {
 
         // Desenha a barra de vida atual
         g2.setColor(Color.red); // Cor da vida
-        g2.fillRect(barX, barY, currentBarWidth, barHeight);
+        g2.fillRect(barX, barY, currentHealthBarWidth, barHeight);
 
-        // Desenha o contorno da barra
+        // Desenha o contorno da barra de vida
         g2.setColor(Color.black);
         g2.drawRect(barX, barY, barWidth, barHeight);
 
@@ -369,7 +374,31 @@ public class UI {
         int vidaTextoX = barX + (barWidth - g2.getFontMetrics().stringWidth(vidaTexto)) / 2;
         int vidaTextoY = barY + barHeight - 5;
         g2.drawString(vidaTexto, vidaTextoX, vidaTextoY);
+
+        // Posição da barra de mana (abaixo da barra de vida)
+        int manaBarY = barY + barHeight + spacing;
+
+        // Desenha o contorno da barra de mana
+        g2.setColor(Color.gray); // Cor do fundo da barra
+        g2.fillRect(barX, manaBarY, barWidth, barHeight);
+
+        // Desenha a barra de mana atual
+        g2.setColor(Color.blue); // Cor da mana
+        g2.fillRect(barX, manaBarY, currentManaBarWidth, barHeight);
+
+        // Desenha o contorno da barra de mana
+        g2.setColor(Color.black);
+        g2.drawRect(barX, manaBarY, barWidth, barHeight);
+
+        // Texto da mana
+        g2.setColor(Color.white);
+        g2.setFont(maruMonica.deriveFont(Font.BOLD, 14)); // Fonte do texto
+        String manaTexto = gamePanel.getPlayer().mana + "/" + gamePanel.getPlayer().manaMax;
+        int manaTextoX = barX + (barWidth - g2.getFontMetrics().stringWidth(manaTexto)) / 2;
+        int manaTextoY = manaBarY + barHeight - 5;
+        g2.drawString(manaTexto, manaTextoX, manaTextoY);
     }
+
 
     public void usarItemSelecionado() {
         int selectedIndex = slotRow * 5 + slotCol; // Índice do item selecionado
