@@ -23,6 +23,7 @@ public abstract class Entity {
     protected String currentWeapon;
     protected String currentShield;
     private SuperObject superObject;
+    private boolean shouldBeRemoved;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -107,5 +108,12 @@ public abstract class Entity {
         } else {
             vida = 0;
         }
+    }
+    public boolean shouldBeRemoved() {
+        return shouldBeRemoved;
+    }
+
+    public void setShouldBeRemoved(boolean shouldBeRemoved) {
+        this.shouldBeRemoved = shouldBeRemoved;
     }
 }
