@@ -32,7 +32,7 @@ public class Player extends Entity {
      }
 
      public void alinharPersonagensCombate(Entity entity){
-          y = entity.y + gp.tamanhoJanela * 32 / 10;
+          y = entity.y + gp.tamanhoJanela * 33 / 10;
           x = entity.x + gp.tamanhoJanela * 12 / 10;
      }
 
@@ -114,7 +114,10 @@ public class Player extends Entity {
      }
 
      public void receberDamage(int dano){
-          if(vida>0) {
+          int vidaTeste = vida - dano;
+          if(vidaTeste < 0 ) {
+               this.vida = 0;
+          } else {
                this.vida = vida - dano;
           }
      }

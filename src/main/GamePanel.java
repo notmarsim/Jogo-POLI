@@ -117,9 +117,6 @@ public class GamePanel extends JPanel implements Runnable {
         return getPlayer().mana;
     }
 
-    public void setMana(int mana){
-        getPlayer().mana = mana;
-    }
 
     public Dialogues getDialogues(){
         return dialogues;
@@ -226,12 +223,12 @@ public class GamePanel extends JPanel implements Runnable {
         g2.dispose();
     }
 
-    public void setAcao(String golpe){
-        if(golpe.equals("simples")){
+    public void setAcao(String acao){
+        if(acao.equals("simples")){
             getCombate().golpeSimples = true;
-        } else if (golpe.equals("especial")) {
+        } else if (acao.equals("especial")) {
             getCombate().golpeEspecial = true;
-        } else if (golpe.equals("defesa")) {
+        } else if (acao.equals("defesa")) {
             getCombate().defendendo = true;
         }
     }
