@@ -5,11 +5,13 @@ import main.GamePanel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class EntityManager {
     private GamePanel gp;
     private ArrayList<Entity> entities;
     private Player player;
+    private boolean shouldBeRemoved;
 
     // Comparator para ordenar entidades pela coordenada Y
     private Comparator<Entity> ordemRender = new Comparator<Entity>() {
@@ -28,14 +30,20 @@ public class EntityManager {
     }
 
     public void update() {
-
         player.update();
 
-        // Atualiza as outras entidades
-        for (Entity e : entities) {
-            e.update();
+        // Use um Iterator para atualizar e remover entidades com segurança
+        Iterator<Entity> iterator = entities.iterator();
+        while (iterator.hasNext()) {
+            Entity entity = iterator.next();
+            entity.update();
+            if (entity.shouldBeRemoved()) {
+                iterator.remove();
+            }
         }
     }
+
+
 
     public void desenhar(Graphics2D g2) {
 
