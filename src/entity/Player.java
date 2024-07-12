@@ -30,12 +30,17 @@ public class Player extends Entity {
           setItems();
 
      }
+
+     public void alinharPersonagensCombate(Entity entity){
+          y = entity.y + gp.tamanhoJanela * 32 / 10;
+          x = entity.x + gp.tamanhoJanela * 12 / 10;
+     }
+
      public void iniciarCombate(Entity entity) {
           //System.out.println(entity.x);
           //System.out.println(entity);
+          gp.getPlayer().atualEntity = entity;
           combate = new Combate(gp, entity);
-          y = entity.y + gp.tamanhoJanela * 32 / 10;
-          x = entity.x + gp.tamanhoJanela * 17 / 10;
           entity.x += (gp.tamanhoJanela);
      }
 
@@ -134,6 +139,7 @@ public class Player extends Entity {
           if (gp.getCharacterState() == GamePanel.CharacterState.Combate  && combate != null) {
                direcao = "frente";
                combate.update();
+               alinharPersonagensCombate(atualEntity);
           }
 
           if (gp.lutando) {
