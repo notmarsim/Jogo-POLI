@@ -87,10 +87,16 @@ public class Combate {
     public void update() {
         System.out.println(inimigo.getVida());
         System.out.println(golpeSimples);
+
         if (fimCombate()) {
             if(inimigo.getVida()<=0){
                 inimigo.setShouldBeRemoved(true);
                 gp.getPlayer().mana = 10;
+                gp.getPlayer().ganharXp(15);
+//                if (gp.getPlayer().getXp() == gp.getPlayer().getXpMax()){
+//                    gp.getPlayer().subirDeLevel();
+//                }
+
             }
             System.out.println("player:" + player.getVida() + "inimigo: " + inimigo.getVida());
             gp.setCharacterState(GamePanel.CharacterState.Ocioso);
