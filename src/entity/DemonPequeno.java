@@ -20,17 +20,17 @@ public class DemonPequeno extends Entity{
         bounds.y = -70;
         bounds.width = 80;
         bounds.height = 100;
-        vida = 20;
-        dano = 4;
+        vida = 40;
+        dano = 8;
     }
 
     private void loadSprites() {
         try {
 
-            idle = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon/tile0.png"));
-            idle2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon/tile1.png"));
-            idle3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon/tile2.png"));
-            idle4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon/tile3.png"));
+            idle = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demonMini/tile0.png"));
+            idle2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demonMini/tile1.png"));
+            idle3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demonMini/tile2.png"));
+            idle4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demonMini/tile3.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,12 +55,12 @@ public class DemonPequeno extends Entity{
         }
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*13/10, gp.tamanhoJanela*13/10, null);
 
-
+/*
         g2.setColor(Color.RED);
         g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
                 (int) (y + bounds.y - gp.getCamera().getyOffSet()),
                 bounds.width, bounds.height);
-
+*/
 
     }
 

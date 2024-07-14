@@ -30,8 +30,8 @@ public class ChapterFogo {
         inicializarTochas();
         initializeTreeMarkers();
         entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
-        entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*5, gp.tamanhoJanela*5));
-        //entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*10, gp.tamanhoJanela*5));
+        entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*33, gp.tamanhoJanela*4));
+        entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*36, gp.tamanhoJanela*5));
         //entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*20, gp.tamanhoJanela*10));
         pyroth.x = gp.tamanhoJanela*2;
         pyroth.y = gp.tamanhoJanela*18;
@@ -44,7 +44,9 @@ public class ChapterFogo {
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*22,gp.tamanhoJanela*26));
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*37,gp.tamanhoJanela));
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*31,gp.tamanhoJanela));
+        entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*28,gp.tamanhoJanela*4));
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*40,gp.tamanhoJanela*3));
+        entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*38,gp.tamanhoJanela*7));
     }
 
 
@@ -52,6 +54,13 @@ public class ChapterFogo {
         entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela, gp.tamanhoJanela*3));
         entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela, gp.tamanhoJanela*13));
         entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*3, gp.tamanhoJanela*10));
+        entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*6, gp.tamanhoJanela*10));
+        entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*15, gp.tamanhoJanela*6));
+        entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*12, gp.tamanhoJanela*6));
+        entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*15, gp.tamanhoJanela*4));
+        entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*10, gp.tamanhoJanela*2));
+        entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*18, gp.tamanhoJanela*12));
+        entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*17, gp.tamanhoJanela*13));
         entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*7, gp.tamanhoJanela*7));
         entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*33, gp.tamanhoJanela*35));
         entityManager.addEntity(new DeathTree(gp, gp.tamanhoJanela*3, gp.tamanhoJanela*12));

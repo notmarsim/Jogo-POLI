@@ -411,15 +411,15 @@ public class UI {
         }
     }
     public void usarAtaqueSelecionado() {
-        if (selectedOption == 0){
-            gamePanel.setAcao("simples");
+        if (selectedOption == 0){  // 0 = golpe simples
+            gamePanel.setAcao(0);
             System.out.println("golpe fraco");
         }
         else if (selectedOption == 1){
-            System.out.println("golpe forte");
-            gamePanel.setAcao("especial");
+            System.out.println("golpe forte"); // 1 == golpe forte
+            gamePanel.setAcao(1);
         } else if (selectedOption == 2) {
-            gamePanel.setAcao("defesa");
+            gamePanel.setAcao(2);
             System.out.println("defendeu");
         }
     }
