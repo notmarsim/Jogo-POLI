@@ -21,6 +21,9 @@ public class Player extends Entity {
      public Entity atualEntity;
      public int mana,manaMax;
      public int xpMax;
+     private boolean isSpecialAttack = false;
+     public int specialAttackSpriteCounter = 0;
+     public int specialAttackSpriteNum = 1;
 
 
      public Player(GamePanel gp, KeyHandler keyH) {
@@ -33,9 +36,28 @@ public class Player extends Entity {
 
      }
 
+     public int getMana(){
+          return mana;
+     }
+
+     public void setSpecialAttack(boolean valor){
+          this.isSpecialAttack = valor;
+     }
+
+     public boolean getSpecialAttack(){
+          return isSpecialAttack;
+     }
+
      public void alinharPersonagensCombate(Entity entity){
-          y = entity.y + gp.tamanhoJanela * 33 / 10;
-          x = entity.x + gp.tamanhoJanela * 12 / 10;
+          if (entity instanceof Demonio){
+               System.out.println("alinhou");
+               y = entity.y + gp.tamanhoJanela * 33 / 10;
+               x = entity.x + gp.tamanhoJanela * 12 / 10;
+          }
+     }
+
+     public void setMana(int mana) {
+          this.mana = mana;
      }
 
      public void iniciarCombate(Entity entity) {
@@ -114,7 +136,8 @@ public class Player extends Entity {
           level = 1;
      }
      public void ganharXp(int xpGanho){
-          xp += xpGanho;
+          gp.getPlayer().xp += xpGanho;
+          subirDeLevel();
      }
      public int getVida(){
           return vida;
@@ -125,9 +148,9 @@ public class Player extends Entity {
           }
      }
      public void subirDeLevel(){
-          if (xp == xpMax) {
-               level += 1;
-               xp -= xpMax;
+          if (gp.getPlayer().xp == gp.getPlayer().xpMax) {
+               gp.getPlayer().level += 1;
+               gp.getPlayer().xp -= gp.getPlayer().xpMax;
           }
      }
      public int getXp(){
@@ -168,24 +191,39 @@ public class Player extends Entity {
      @Override
      public void update() {
           Entity collidedEntity = null;
-          System.out.println("mana: " + gp.getMana());
+        //  System.out.println("mana: " + gp.getMana());
 
           if (gp.getCharacterState() == GamePanel.CharacterState.Combate  && combate != null) {
                direcao = "frente";
                combate.update();
                alinharPersonagensCombate(atualEntity);
+               System.out.println(isSpecialAttack + "player");
+               System.out.println(gp.getPlayer().isSpecialAttack + "gp");
           }
 
           if (gp.lutando) {
                // pra nao ter mais de uma instancia atualizando / gambiarra
                if (this == gp.getPlayer()) {
-                    attackSpriteCounter++;
-                    if (attackSpriteCounter >= 5) {
-                         attackSpriteCounter = 0;
-                         attackSpriteNum++;
-                         if (attackSpriteNum > 10) {
-                              attackSpriteNum = 1;
-                              gp.lutando = false;
+                    if (gp.getPlayer().isSpecialAttack) {
+                         specialAttackSpriteCounter++;
+                         if (specialAttackSpriteCounter >= 5) {
+                              specialAttackSpriteCounter = 0;
+                              specialAttackSpriteNum++;
+                              if (specialAttackSpriteNum > 18) {
+                                   specialAttackSpriteNum = 1;
+                                   gp.lutando = false;
+                                   isSpecialAttack = false;
+                              }
+                         }
+                    } else {
+                         attackSpriteCounter++;
+                         if (attackSpriteCounter >= 5) {
+                              attackSpriteCounter = 0;
+                              attackSpriteNum++;
+                              if (attackSpriteNum > 10) {
+                                   attackSpriteNum = 1;
+                                   gp.lutando = false;
+                              }
                          }
                     }
                }
@@ -275,40 +313,99 @@ public class Player extends Entity {
           BufferedImage image = null;
 
           if (gp.lutando) {
-               attackSpriteNum = gp.getPlayer().attackSpriteNum;
-                         switch (attackSpriteNum) {
-                              case 1:
-                                   image = attack1;
-                                   break;
-                              case 2:
-                                   image = attack2;
-                                   break;
-                              case 3:
-                                   image = attack3;
-                                   break;
-                              case 4:
-                                   image = attack4;
-                                   break;
-                              case 5:
-                                   image = attack5;
-                                   break;
-                              case 6:
-                                   image = attack6;
-                                   break;
-                              case 7:
-                                   image = attack7;
-                                   break;
-                              case 8:
-                                   image = attack8;
-                                   break;
-                              case 9:
-                                   image = attack9;
-                                   break;
-                              case 10:
-                                   image = attack10;
-                                   break;
-
+               if (gp.getPlayer().isSpecialAttack) {
+                    specialAttackSpriteNum = gp.getPlayer().specialAttackSpriteNum;
+                    switch (specialAttackSpriteNum) {
+                         case 1:
+                              image = specialAttack1;
+                              break;
+                         case 2:
+                              image = specialAttack2;
+                              break;
+                         case 3:
+                              image = specialAttack3;
+                              break;
+                         case 4:
+                              image = specialAttack4;
+                              break;
+                         case 5:
+                              image = specialAttack5;
+                              break;
+                         case 6:
+                              image = specialAttack6;
+                              break;
+                         case 7:
+                              image = specialAttack7;
+                              break;
+                         case 8:
+                              image = specialAttack8;
+                              break;
+                         case 9:
+                              image = specialAttack9;
+                              break;
+                         case 10:
+                              image = specialAttack10;
+                              break;
+                         case 11:
+                              image = specialAttack11;
+                              break;
+                         case 12:
+                              image = specialAttack12;
+                              break;
+                         case 13:
+                              image = specialAttack13;
+                              break;
+                         case 14:
+                              image = specialAttack14;
+                              break;
+                         case 15:
+                              image = specialAttack15;
+                              break;
+                         case 16:
+                              image = specialAttack16;
+                              break;
+                         case 17:
+                              image = specialAttack17;
+                              break;
+                         case 18:
+                              image = specialAttack18;
+                              break;
                     }
+               } else {
+                    attackSpriteNum = gp.getPlayer().attackSpriteNum;
+                    switch (attackSpriteNum) {
+                         case 1:
+                              image = attack1;
+                              break;
+                         case 2:
+                              image = attack2;
+                              break;
+                         case 3:
+                              image = attack3;
+                              break;
+                         case 4:
+                              image = attack4;
+                              break;
+                         case 5:
+                              image = attack5;
+                              break;
+                         case 6:
+                              image = attack6;
+                              break;
+                         case 7:
+                              image = attack7;
+                              break;
+                         case 8:
+                              image = attack8;
+                              break;
+                         case 9:
+                              image = attack9;
+                              break;
+                         case 10:
+                              image = attack10;
+                              break;
+                    }
+               }
           } else {
                if (movimentacao != null && movimentacao.equals("parado")) {
                     if (spriteNum == 1) {
