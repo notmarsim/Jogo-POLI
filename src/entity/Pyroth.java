@@ -1,10 +1,8 @@
 package entity;
 
-import Objetos.SuperObject;
 import main.GamePanel;
 import main.KeyHandler;
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.IOException;
 
 public class Pyroth extends Player {
@@ -12,7 +10,7 @@ public class Pyroth extends Player {
     public Pyroth(GamePanel gp, KeyHandler keyH) {
         super(gp, keyH);
         loadSprites();
-        speed = 6;
+        speed = 12;
         bounds.y = -40;
         bounds.x = -30;
         bounds.width = 50;
@@ -57,16 +55,38 @@ public class Pyroth extends Player {
             idle5back = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle5back.png"));
             idle6back = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/idle/idle6back.png"));
 
-            attack1 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_1.png"));
-            attack2 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_2.png"));
-            attack3 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_3.png"));
-            attack4 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_4.png"));
-            attack5 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_5.png"));
-            attack6 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_6.png"));
-            attack7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_7.png"));
-            attack8 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_8.png"));
-            attack9 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_1.png"));
-            attack10 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/1_atk_1.png"));
+            attack1 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_1.png"));
+            attack2 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_2.png"));
+            attack3 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_3.png"));
+            attack4 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_4.png"));
+            attack5 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_5.png"));
+            attack6 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_6.png"));
+            attack7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_7.png"));
+            attack8 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_8.png"));
+            attack9 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_1.png"));
+            attack10 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_1.png"));
+
+
+            specialAttack1 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_1.png"));
+            specialAttack2 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_2.png"));
+            specialAttack3 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_3.png"));
+            specialAttack4 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_4.png"));
+            specialAttack5 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_5.png"));
+            specialAttack6 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_6.png"));
+            specialAttack7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_7.png"));
+            specialAttack8 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_8.png"));
+            specialAttack9 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_9.png"));
+            specialAttack10 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_10.png"));
+            specialAttack11 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_11.png"));
+            specialAttack12 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_12.png"));
+            specialAttack13 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_13.png"));
+            specialAttack14 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_14.png"));
+            specialAttack15 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_15.png"));
+            specialAttack16 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_16.png"));
+            specialAttack17 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_17.png"));
+            specialAttack18 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_18.png"));
+
+
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -96,6 +96,8 @@ public class GamePanel extends JPanel implements Runnable {
         return camera;
     }
 
+    // COMBATE
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(larguraTela, alturaTela));
         this.setBackground(Color.BLACK);
@@ -112,14 +114,6 @@ public class GamePanel extends JPanel implements Runnable {
     public Combate getCombate(){
         return combate;
     }
-
-    public int getMana(){
-        return getPlayer().mana;
-    }
-    public int getManaMax(){
-        return getPlayer().manaMax;
-    }
-
 
     public Dialogues getDialogues(){
         return dialogues;
@@ -186,7 +180,7 @@ public class GamePanel extends JPanel implements Runnable {
         getPlayer().setXpMax();
         getPlayer().setVidaMax();
         getPlayer().subirDeLevel();
-        System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel());
+       // System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel());
         if (currentCapitulo == Capitulos.Prologo) {
             prologo.up();
 
@@ -198,6 +192,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
     }
+
 
     // pintar
     public void paintComponent(Graphics g) {
@@ -220,8 +215,6 @@ public class GamePanel extends JPanel implements Runnable {
                 ui.draw(g2);
             } else if (characterState == CharacterState.Dialogo) {
                 ui.draw(g2);
-
-                System.out.println("gp: " + dialogues.getDialogueText());
                 dialogues.drawDialogueScreen(g2);
             } else if (characterState == CharacterState.Combate) {
                 ui.draw(g2);
@@ -230,13 +223,13 @@ public class GamePanel extends JPanel implements Runnable {
         g2.dispose();
     }
 
-    public void setAcao(String acao){
-        if(acao.equals("simples")){
+    public void setAcao(int acao){
+        if(acao == 0){
             getCombate().golpeSimples = true;
-        } else if (acao.equals("especial")) {
+        } else if (acao == 1) {
             getCombate().golpeEspecial = true;
-        } else if (acao.equals("defesa")) {
-            getCombate().defendendo = true;
+        } else if (acao == 2) {
+           getCombate().defendendo = true;
         }
     }
 

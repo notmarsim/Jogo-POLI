@@ -15,6 +15,7 @@ public abstract class Entity {
     public BufferedImage image1, image2, image3, image4, image5, image6, image7;
     public BufferedImage attack1, attack2, attack3, attack4, attack5, attack6, attack7,attack8,attack9,attack10;
     public BufferedImage idle, idle2, idle3, idle4, idle5, idle6, idle7, idle8, run, run2, run3, run4, run5, run6, run7, run8, runcostas, runcostas2, runcostas3, runcostas4, runcostas5, runcostas6, runcostas7, runcostas8, idleback, idle2back, idle3back, idle4back, idle5back, idle6back, idle7back, idle8back;
+    protected BufferedImage specialAttack1,specialAttack2,specialAttack3,specialAttack4,specialAttack5,specialAttack6,specialAttack7,specialAttack8,specialAttack9,specialAttack10,specialAttack11,specialAttack12,specialAttack13,specialAttack14,specialAttack15,specialAttack16,specialAttack17,specialAttack18;
     public String direcao;
     public int spriteCounter = 0;
     public int spriteNum = 1;

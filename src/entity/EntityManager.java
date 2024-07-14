@@ -32,16 +32,19 @@ public class EntityManager {
     public void update() {
         player.update();
 
-        // Use um Iterator para atualizar e remover entidades com segurança
-        Iterator<Entity> iterator = entities.iterator();
-        while (iterator.hasNext()) {
-            Entity entity = iterator.next();
+        // Primeiro, atualiza todas as entidades
+        for (Entity entity : entities) {
             entity.update();
-            if (entity.shouldBeRemoved()) {
-                iterator.remove();
+        }
+
+        // Em seguida, remove as entidades que devem ser removidas
+        for (int i = entities.size() - 1; i >= 0; i--) {
+            if (entities.get(i).shouldBeRemoved()) {
+                entities.remove(i);
             }
         }
     }
+
 
 
 

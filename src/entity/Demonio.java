@@ -21,17 +21,17 @@ public class Demonio extends Entity{
         bounds.width = 160;
         bounds.height = 170;
         vida = 70;
-        dano = 10;
+        dano = 15;
     }
 
     private void loadSprites() {
         try {
             // PARADO
-            idle = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon_idle_1.png"));
-            idle2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon_idle_2.png"));
-            idle3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon_idle_3.png"));
-            idle4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon_idle_4.png"));
-            idle5 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/demon_idle_5.png"));
+            idle = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/demon_idle_1.png"));
+            idle2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/demon_idle_2.png"));
+            idle3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/demon_idle_3.png"));
+            idle4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/demon_idle_4.png"));
+            idle5 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/demon_idle_5.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
