@@ -32,7 +32,7 @@ public class EntityManager {
     public void update() {
         player.update();
 
-        // Primeiro, atualiza todas as entidades
+
         for (Entity entity : entities) {
             entity.update();
         }
