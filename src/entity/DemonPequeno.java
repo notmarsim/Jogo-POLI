@@ -21,7 +21,7 @@ public class DemonPequeno extends Entity{
         bounds.width = 80;
         bounds.height = 100;
         vida = 40;
-        dano = 8;
+        dano = 10;
     }
 
     private void loadSprites() {
