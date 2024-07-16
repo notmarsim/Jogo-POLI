@@ -16,8 +16,6 @@ public class Player extends Entity {
      private Combate combate;
      public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
      public final int maxInventarioSize = 20;
-     public int attackSpriteCounter = 0;
-     public int attackSpriteNum = 1;
      public Entity atualEntity;
      public int mana,manaMax;
      public int xpMax;

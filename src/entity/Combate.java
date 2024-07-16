@@ -6,7 +6,7 @@ import main.GamePanel;
 public class Combate {
     private GamePanel gp;
     private Entity inimigo;
-    private boolean turnoDoJogador;
+    public boolean turnoDoJogador;
     private Random rand = new Random();
     private Player player;
     private int danoInimigo;
@@ -19,16 +19,15 @@ public class Combate {
         this.player = gp.getPlayer();
         this.inimigo = inimigo;
         this.turnoDoJogador = true;
-        this.defendendo  = false;
     }
 
     public void turnoJogador() {
-        if (turnoDoJogador) {
+        if (turnoDoJogador ) {
             if (gp.getCombate().golpeSimples) {
                 golpeFraco();
             } else if (gp.getCombate().golpeEspecial){
                 golpeForte();
-            } else if (gp.getCombate().defendendo) {
+            } else if (gp.defendendo) {
                 System.out.println("DEFENDEU!");
                 defender();
             }
@@ -37,17 +36,18 @@ public class Combate {
 
     public void turnoInimigo() {
         if (!turnoDoJogador) {
-            if (gp.getCombate().defendendo) {
+            if (gp.defendendo) {
                 danoInimigo = inimigo.dano / 2;
                 System.out.println("dano com defesa");
             } else {
                 danoInimigo = rand.nextInt(5) + inimigo.dano;
                 System.out.println("dano sem defesa");
             }
+            inimigo.atacando = true;
             player.receberDamage(danoInimigo);
             System.out.println("Inimigo atacou e causou " + danoInimigo + " de dano.");
             turnoDoJogador = true;
-            gp.getCombate().defendendo = false;
+            gp.defendendo = false;
         }
     }
 
@@ -86,7 +86,7 @@ public class Combate {
             }
             turnoDoJogador = false;
         }
-        gp.getCombate().defendendo = false;
+
     }
 
     public boolean fimCombate() {
@@ -94,18 +94,14 @@ public class Combate {
     }
 
     public void update() {
-        System.out.println(inimigo.getVida());
-        System.out.println(golpeSimples);
+        System.out.println(inimigo.atacando+"atacando do combate");
+
 
         if (fimCombate()) {
             if(inimigo.getVida() <= 0) {
-                inimigo.setShouldBeRemoved(true);
+                inimigo.morrendo = true;
                 gp.getPlayer().mana = 10;
                 gp.getPlayer().ganharXp(15);
-//                if (gp.getPlayer().getXp() == gp.getPlayer().getXpMax()){
-//                    gp.getPlayer().subirDeLevel();
-//                }
-
             }
             System.out.println("player:" + player.getVida() + "inimigo: " + inimigo.getVida());
             gp.setCharacterState(GamePanel.CharacterState.Ocioso);

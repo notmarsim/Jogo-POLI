@@ -24,8 +24,11 @@ public class GamePanel extends JPanel implements Runnable {
     EntityManager entityManager = new EntityManager(this,player);
     private Combate combate;
     public Dialogues dialogues;
-    public boolean lutando;
     private Sound sound = new Sound();
+
+    // combate
+    public boolean lutando;
+    public boolean defendendo;
 
 
     public enum Capitulos {
@@ -229,7 +232,7 @@ public class GamePanel extends JPanel implements Runnable {
         } else if (acao == 1) {
             getCombate().golpeEspecial = true;
         } else if (acao == 2) {
-           getCombate().defendendo = true;
+           defendendo = true;
         }
     }
 
