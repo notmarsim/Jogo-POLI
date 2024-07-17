@@ -19,7 +19,7 @@ public abstract class Entity {
     public int xpDrop, moedaDrop;
 
     // sprites
-    public BufferedImage image1, image2, image3, image4, image5, image6, image7;
+    public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9,image10,image11,image12, image13,image14;
     public BufferedImage death1, death2, death3, death4, death5, death6, death7, death8, death9,death10, death11, death12, death13, death14, death15, death16, death17, death18;
     public BufferedImage attack1, attack2, attack3, attack4, attack5, attack6, attack7,attack8,attack9,attack10,attack11,attack12,attack13,attack14,attack15;
     public BufferedImage idle, idle2, idle3, idle4, idle5, idle6, idle7, idle8, run, run2, run3, run4, run5, run6, run7, run8, runcostas, runcostas2, runcostas3, runcostas4, runcostas5, runcostas6, runcostas7, runcostas8, idleback, idle2back, idle3back, idle4back, idle5back, idle6back, idle7back, idle8back;

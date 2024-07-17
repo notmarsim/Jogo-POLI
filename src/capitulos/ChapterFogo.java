@@ -29,6 +29,7 @@ public class ChapterFogo {
         entityManager.addEntity(new NPC_Fogo(gp, gp.tamanhoJanela*13, gp.tamanhoJanela*16));
         inicializarTochas();
         initializeTreeMarkers();
+        entityManager.addEntity(new Mercante(gp,gp.tamanhoJanela*5,gp.tamanhoJanela*15));
         entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*33, gp.tamanhoJanela*4));
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*36, gp.tamanhoJanela*5));
