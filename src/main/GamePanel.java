@@ -181,9 +181,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         getPlayer().setXpMax();
-        getPlayer().setVidaMax();
         getPlayer().subirDeLevel();
-       // System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel());
+        System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel());
         if (currentCapitulo == Capitulos.Prologo) {
             prologo.up();
 
