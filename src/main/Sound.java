@@ -11,7 +11,9 @@ public class Sound {
 
     public Sound() {
         soundUrl[0] = getClass().getResource("/sound/encounterelite.wav");
+        soundUrl[1] = getClass().getResource("/sound/fogo.wav");
     }
+
 
     public void setFile(int i) {
         try {

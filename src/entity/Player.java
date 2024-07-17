@@ -90,6 +90,7 @@ public class Player extends Entity {
                     keyH.downPressed = false;
                     keyH.leftPressed = false;
                     keyH.rightPressed = false;
+//                    gp.stopMusic();
                     gp.playMusic(0);
                     gp.setCharacterState(GamePanel.CharacterState.Combate);
                     iniciarCombate(entity);
@@ -140,11 +141,7 @@ public class Player extends Entity {
      public int getVida(){
           return vida;
      }
-//     public void setVidaMax(){
-//          if (level > 1){
-//               vidaMaxima = vidaMaxima + level*2;
-//          }
-//     }
+
      public void subirDeLevel(){
           if (gp.getPlayer().xp >= gp.getPlayer().xpMax) {
                gp.getPlayer().level += 1;
@@ -153,6 +150,9 @@ public class Player extends Entity {
                vida = vidaMaxima;
                gp.getPlayer().manaMax += level*2;
                mana = manaMax;
+               dano += 1;
+               // defesa += 1;
+               setXpMax();
           }
      }
      public int getXp(){
@@ -164,6 +164,7 @@ public class Player extends Entity {
      public void setXpMax(){
           if (level > 1){
                xpMax += level*15/10;
+
           }
      }
      public int getXpMax(){

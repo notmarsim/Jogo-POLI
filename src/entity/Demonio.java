@@ -21,8 +21,8 @@ public class Demonio extends Entity{
         bounds.y = 120;
         bounds.width = 160;
         bounds.height = 170;
-        vida = 70;
-        dano = 15;
+        vida = 30;
+        dano = 10;
     }
 
     private void loadSprites() {
@@ -201,6 +201,7 @@ public class Demonio extends Entity{
                 morrendo = false;
                 morto = true;
                 setShouldBeRemoved(true);
+                gp.stopMusic();
             }
         } else {
             spriteCounter++;
