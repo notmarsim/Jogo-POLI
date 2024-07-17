@@ -140,15 +140,19 @@ public class Player extends Entity {
      public int getVida(){
           return vida;
      }
-     public void setVidaMax(){
-          if (level > 1){
-               vidaMaxima += level*2;
-          }
-     }
+//     public void setVidaMax(){
+//          if (level > 1){
+//               vidaMaxima = vidaMaxima + level*2;
+//          }
+//     }
      public void subirDeLevel(){
-          if (gp.getPlayer().xp == gp.getPlayer().xpMax) {
+          if (gp.getPlayer().xp >= gp.getPlayer().xpMax) {
                gp.getPlayer().level += 1;
                gp.getPlayer().xp -= gp.getPlayer().xpMax;
+               vidaMaxima += level*2;
+               vida = vidaMaxima;
+               gp.getPlayer().manaMax += level*2;
+               mana = manaMax;
           }
      }
      public int getXp(){
