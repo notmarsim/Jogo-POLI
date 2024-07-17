@@ -95,17 +95,21 @@ public class Combate {
 
     public void update() {
         System.out.println(inimigo.atacando+"atacando do combate");
-
-
         if (fimCombate()) {
             if(inimigo.getVida() <= 0) {
                 inimigo.morrendo = true;
-                gp.getPlayer().ganharXp(15);
+
+
             }
             System.out.println("player:" + player.getVida() + "inimigo: " + inimigo.getVida());
-            gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+            if(inimigo.morto){
+                gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+                gp.getPlayer().ganharXp(15);
+                //gp.stopMusic();
+                //gp.playMusic(1);
+            }
+            //gp.setCharacterState(GamePanel.CharacterState.Ocioso);
             System.out.println("Combate terminado com: " + inimigo);
-            gp.stopMusic();
 
             return;
         }

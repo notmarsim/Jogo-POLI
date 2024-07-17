@@ -143,6 +143,7 @@ public class GamePanel extends JPanel implements Runnable {
                 this.currentMap = prologo.getMap();
                 break;
             case chapterFogo:
+                //playMusic(1);
                 this.currentMap = chapterFogo.getMap();
                 break;
         }
@@ -180,10 +181,10 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        getPlayer().setXpMax();
         getPlayer().subirDeLevel();
-        System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel());
+        System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel() + " xp max: " + getPlayer().xpMax);
         if (currentCapitulo == Capitulos.Prologo) {
+
             prologo.up();
 
 
