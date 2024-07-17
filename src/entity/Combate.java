@@ -81,8 +81,8 @@ public class Combate {
     public void defender() {
         if(!gp.getPlayer().getSpecialAttack() && !gp.getCombate().golpeSimples && !gp.getCombate().golpeEspecial) {
             gp.getPlayer().mana += 5;
-            if(gp.getPlayer().mana > 10) {
-                gp.getPlayer().mana = 10;
+            if(gp.getPlayer().mana > gp.getPlayer().manaMax) {
+                gp.getPlayer().mana = gp.getPlayer().manaMax;
             }
             turnoDoJogador = false;
         }
@@ -100,7 +100,6 @@ public class Combate {
         if (fimCombate()) {
             if(inimigo.getVida() <= 0) {
                 inimigo.morrendo = true;
-                gp.getPlayer().mana = 10;
                 gp.getPlayer().ganharXp(15);
             }
             System.out.println("player:" + player.getVida() + "inimigo: " + inimigo.getVida());
