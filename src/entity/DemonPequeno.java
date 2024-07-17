@@ -66,6 +66,7 @@ public class DemonPequeno extends Entity{
 
 
 
+
     public int getVida(){
         return vida;
     }

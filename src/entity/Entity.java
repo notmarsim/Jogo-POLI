@@ -46,6 +46,11 @@ public abstract class Entity {
     }
 
     public void update() {
+        if(morrendo){
+            morto = true;
+            setShouldBeRemoved(true);
+            gp.stopMusic();
+        }
         spriteCounter++;
         if (spriteCounter >= 5) {
             spriteCounter = 0;
@@ -78,15 +83,19 @@ public abstract class Entity {
     }
 
     public Entity checkEntityColissions(float xOffSet, float yOffSet) { // tipo Entity
+
         for(Entity e : gp.getEntityManager().getEntities()) {
+
             if(e.equals(this)){
                 continue;
             }
-            if(e.getBoundsCollision(0f,0f).intersects(getBoundsCollision(xOffSet,yOffSet))) {
-                System.out.println("colidiu com " + e.getClass().getSimpleName());
-                return e; // retornar e
+
+                if (e.getBoundsCollision(0f, 0f).intersects(getBoundsCollision(xOffSet, yOffSet))) {
+                    System.out.println("colidiu com " + e.getClass().getSimpleName());
+                    return e; // retornar e
+                }
             }
-        }
+
         return null;
     }
 
