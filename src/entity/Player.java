@@ -22,7 +22,7 @@ public class Player extends Entity {
      private boolean isSpecialAttack = false;
      public int specialAttackSpriteCounter = 0;
      public int specialAttackSpriteNum = 1;
-
+     public int moeda,dano;
 
      public Player(GamePanel gp, KeyHandler keyH) {
           super(gp);
@@ -90,7 +90,6 @@ public class Player extends Entity {
                     keyH.downPressed = false;
                     keyH.leftPressed = false;
                     keyH.rightPressed = false;
-//                    gp.stopMusic();
                     gp.playMusic(0);
                     gp.setCharacterState(GamePanel.CharacterState.Combate);
                     iniciarCombate(entity);
@@ -133,10 +132,14 @@ public class Player extends Entity {
           xp = 0;
           xpMax = 10;
           level = 1;
+          moeda = 0;
      }
      public void ganharXp(int xpGanho){
           gp.getPlayer().xp += xpGanho;
           subirDeLevel();
+     }
+     public void ganharMoeda(int moedaGanha){
+          gp.getPlayer().moeda += moedaGanha;
      }
      public int getVida(){
           return vida;

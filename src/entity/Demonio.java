@@ -24,6 +24,7 @@ public class Demonio extends Entity{
         vida = 100;
         dano = 30;
         xpDrop = 50;
+        moedaDrop = 100;
     }
 
     private void loadSprites() {
