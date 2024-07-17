@@ -21,6 +21,7 @@ public class DemonPequeno extends Entity{
         bounds.y = -70;
         bounds.width = 80;
         bounds.height = 100;
+
         vida = 40;
         dano = 10;
         xpDrop = 10;

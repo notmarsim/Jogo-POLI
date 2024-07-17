@@ -105,7 +105,9 @@ public class Combate {
             if(inimigo.morto){
                 gp.setCharacterState(GamePanel.CharacterState.Ocioso);
                 gp.getPlayer().ganharXp(inimigo.xpDrop);
+
                 gp.getPlayer().ganharMoeda(inimigo.moedaDrop);
+
                 //gp.stopMusic();
                 //gp.playMusic(1);
             }
