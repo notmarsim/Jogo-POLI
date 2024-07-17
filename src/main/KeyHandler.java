@@ -57,13 +57,23 @@ public class KeyHandler implements KeyListener {
             gp.setGameState(GamePanel.GameState.Menu);
             gp.setCharacterState(GamePanel.CharacterState.Ocioso);
             gp.getPlayer().x = gp.getPlayer().x - gp.tamanhoJanela;
-            if (gp.getDialogues().getDialogueText().contains("Pyroth, Guardião do Fogo, ouça as antigas palavras esquecidas há milênios e agora trazidas à luz. A escuridão que uma vez ameaçou Elemenvera ressurgiu. Nas profundezas das sombras, um ser corrompido, outrora apenas uma lenda, conhecido como Necromancer, desperta com a intenção de devorar a essência dos nossos elementos e mergulhar o mundo em trevas eternas.\n" +
-                    "\n" +
-                    "Sua missão é restaurar a paz em cada reino de Elemenvera, agora sob ataque pelos monstros criados por Necromancer. Comece pelo seu domínio, o Reino do Fogo, e alerte os outros guardiões para que protejam e salvem seus próprios reinos também. Boa sorte, Guardião.")){
+            if (gp.getDialogues().getDialogueText().contains("Pyroth, Guardião do Fogo, ouça as antigas palavras esquecidas há milênios e agora trazidas à luz. A escuridão que uma vez ameaçou Elemenvera ressurgiu. Nas profundezas das sombras, um ser corrompido, outrora apenas uma lenda, conhecido como Necromancer, desperta com a intenção de devorar a essência dos nossos elementos e mergulhar o mundo em trevas eternas. Sua missão é restaurar a paz em cada reino de Elemenvera, agora sob ataque dos monstros criados por Necromancer. Comece pelo seu domínio, o Reino do Fogo, e alerte os outros guardiões para que protejam e salvem seus próprios reinos também. Boa sorte, Guardião.")){
                 gp.setChapter(GamePanel.Capitulos.chapterFogo);
             }
 
         }
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Deseja comprar algo? \n" +
+                "1 - Poção de Força\n" +
+                "2 - Poção de Cura\n")){
+            if(code == KeyEvent.VK_1){
+                gp.getPlayer().pegarPocao();
+            } else if (code == KeyEvent.VK_2) {
+                gp.getPlayer().pegarCura();
+            }
+        }
+
+
+
         // Profile
         if (code == KeyEvent.VK_C && gp.getGameState() == GamePanel.GameState.Jogando && gp.getCharacterState() != GamePanel.CharacterState.Combate) {
 

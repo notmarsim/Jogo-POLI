@@ -21,7 +21,7 @@ public class Demonio extends Entity{
         bounds.y = 120;
         bounds.width = 160;
         bounds.height = 170;
-        vida = 100;
+        vida = 90;
         dano = 30;
         xpDrop = 50;
         moedaDrop = 100;

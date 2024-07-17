@@ -17,7 +17,7 @@ public class Mercante extends Entity{
         this.y = startY;
         loadSprites();
         bounds = new Rectangle();
-        bounds.x = -60;
+        bounds.x = -45;
         bounds.y = -70;
         bounds.width = 80;
         bounds.height = 100;
@@ -102,7 +102,9 @@ public class Mercante extends Entity{
     }
 
     public String getFala(){
-        return "Deseja comprar algo?";
+        return "Deseja comprar algo? \n" +
+                "1 - Poção de Força\n" +
+                "2 - Poção de Cura\n";
     }
 
 }

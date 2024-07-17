@@ -28,6 +28,9 @@ public class UI {
     private String currentDialogueText;
     private Player player;
     private BufferedImage enterImage;
+    private BufferedImage facePyroth;
+    private BufferedImage faceAquara;
+    BufferedImage image;
 
 
 
@@ -50,7 +53,7 @@ public class UI {
         this.duration = 3000;
         this.dialogues = new Dialogues(gamePanel, fontSize);
         loadInputsImage();
-
+        loadFaces();
         InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
         try {
             maruMonica = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(Font.PLAIN, fontSize);
@@ -474,30 +477,51 @@ public class UI {
 
         }
     }
+
+    public void loadFaces(){
+        try {
+            faceAquara = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/faceAquara.png"));
+            facePyroth = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/face.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void drawProfile() {
         // Obtém a largura e altura da tela
         int screenWidth = gamePanel.getWidth();
         int screenHeight = gamePanel.getHeight();
 
-
-        int profileWidth = 300; // largura
-        int profileHeight = 250; // altura
+        // Dimensões do perfil
+        int profileWidth = 370; // largura
+        int profileHeight = 270; // altura
         int profileX = (screenWidth - profileWidth) / 2;
         int profileY = (screenHeight - profileHeight) / 2;
         int spacing = 15;
+        Color backgroundColor = new Color(0, 0, 0, 128);
 
 
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f)); // Fundo transparente
-        g2.setColor(new Color(0, 0, 0, 128)); // Cor semitransparente
+        if(gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo) || gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterAqua)){
+            image = facePyroth;
+            backgroundColor = new Color(255, 0, 0, 80);
+        } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterFogo)) {
+            image = faceAquara;
+            backgroundColor = new Color(0, 0, 255, 128);
+        }
+
+
+        // Desenha o fundo semitransparente
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f));
+        g2.setColor(backgroundColor);
         g2.fillRect(profileX, profileY, profileWidth, profileHeight);
 
         // Desenha a borda dourada do perfil
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f)); // Opacidade total para a borda
-        g2.setColor(new Color(255, 215, 0)); // Cor dourada
+        g2.setColor(new Color(0, 0, 0));
         g2.drawRect(profileX, profileY, profileWidth, profileHeight);
 
         // Define a fonte para o texto
-        g2.setFont(maruMonica.deriveFont(Font.BOLD, 18));
+        g2.setFont(maruMonica.deriveFont(Font.BOLD, 20));
         g2.setColor(Color.white);
 
         // Informações do jogador
@@ -508,8 +532,15 @@ public class UI {
         String moedaTexto = "Moeda: " + gamePanel.getPlayer().moeda;
         String danoTexto = "Dano: " + gamePanel.getPlayer().dano;
 
+
+        int imageWidth = gamePanel.tamanhoJanela * 2;
+        int imageHeight = gamePanel.tamanhoJanela * 2;
+        int imageX = profileX + spacing;
+        int imageY = profileY + spacing;
+        g2.drawImage(image, imageX, imageY, imageWidth, imageHeight, null);
+
         // Calcula as posições dos textos
-        int textX = profileX + (profileWidth - g2.getFontMetrics().stringWidth(levelTexto)) / 2;
+        int textX = imageX + imageWidth + spacing + 35;
         int levelTextoY = profileY + spacing + g2.getFontMetrics().getHeight();
         int vidaTextoY = levelTextoY + g2.getFontMetrics().getHeight() + spacing;
         int manaTextoY = vidaTextoY + g2.getFontMetrics().getHeight() + spacing;
@@ -518,8 +549,8 @@ public class UI {
         int danoTextoY = moedaTextoY + g2.getFontMetrics().getHeight() + spacing;
 
         // Desenha os textos das informações
-        g2.drawString(levelTexto, textX, levelTextoY);
-        g2.drawString(vidaTexto, textX, vidaTextoY);
+        g2.drawString(levelTexto, textX , levelTextoY);
+        g2.drawString(vidaTexto, textX , vidaTextoY);
         g2.drawString(manaTexto, textX, manaTextoY);
         g2.drawString(xpTexto, textX, xpTextoY);
         g2.drawString(moedaTexto, textX, moedaTextoY);

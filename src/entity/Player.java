@@ -6,8 +6,10 @@ import main.GamePanel;
 import main.KeyHandler;
 import tile.Tile;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Player extends Entity {
@@ -22,7 +24,6 @@ public class Player extends Entity {
      private boolean isSpecialAttack = false;
      public int specialAttackSpriteCounter = 0;
      public int specialAttackSpriteNum = 1;
-
      public int moeda,dano;
 
 
@@ -32,9 +33,10 @@ public class Player extends Entity {
           setDefaultValues();
           bounds = new Rectangle();
           direcao = "frente";
-          setItems();
+
 
      }
+
 
      public int getMana(){
           return mana;
@@ -102,9 +104,7 @@ public class Player extends Entity {
 
 
      public void setItems() {
-          pegarPocao();
-          pegarPocao();
-          pegarCura();
+
      }
 
 
