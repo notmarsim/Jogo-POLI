@@ -54,7 +54,8 @@ public class GamePanel extends JPanel implements Runnable {
         Dialogo,
         Inventario,
         Combate,
-        Ocioso
+        Ocioso,
+        Profile,
     }
 
     private CharacterState characterState = CharacterState.Ocioso;
@@ -220,6 +221,8 @@ public class GamePanel extends JPanel implements Runnable {
                 ui.draw(g2);
                 dialogues.drawDialogueScreen(g2);
             } else if (characterState == CharacterState.Combate) {
+                ui.draw(g2);
+            }else if (characterState == characterState.Profile){
                 ui.draw(g2);
             }
         }

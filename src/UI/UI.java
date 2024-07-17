@@ -75,6 +75,8 @@ public class UI {
 
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Combate){
             drawCombate();
+        } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Profile){
+            drawProfile();
         }
 
         switch (gamePanel.currentCapitulo) {
@@ -472,6 +474,60 @@ public class UI {
 
         }
     }
+    public void drawProfile() {
+        // Obtém a largura e altura da tela
+        int screenWidth = gamePanel.getWidth();
+        int screenHeight = gamePanel.getHeight();
+
+
+        int profileWidth = 300; // largura
+        int profileHeight = 250; // altura
+        int profileX = (screenWidth - profileWidth) / 2;
+        int profileY = (screenHeight - profileHeight) / 2;
+        int spacing = 15;
+
+
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f)); // Fundo transparente
+        g2.setColor(new Color(0, 0, 0, 128)); // Cor semitransparente
+        g2.fillRect(profileX, profileY, profileWidth, profileHeight);
+
+        // Desenha a borda dourada do perfil
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f)); // Opacidade total para a borda
+        g2.setColor(new Color(255, 215, 0)); // Cor dourada
+        g2.drawRect(profileX, profileY, profileWidth, profileHeight);
+
+        // Define a fonte para o texto
+        g2.setFont(maruMonica.deriveFont(Font.BOLD, 18));
+        g2.setColor(Color.white);
+
+        // Informações do jogador
+        String levelTexto = "Level " + gamePanel.getPlayer().getLevel();
+        String vidaTexto = "Vida: " + gamePanel.getPlayer().getVida() + "/" + gamePanel.getPlayer().vidaMaxima;
+        String manaTexto = "Mana: " + gamePanel.getPlayer().mana + "/" + gamePanel.getPlayer().manaMax;
+        String xpTexto = "XP: " + gamePanel.getPlayer().xp + "/" + gamePanel.getPlayer().xpMax;
+        String moedaTexto = "Moeda: " + gamePanel.getPlayer().moeda;
+        String danoTexto = "Dano: " + gamePanel.getPlayer().dano;
+
+        // Calcula as posições dos textos
+        int textX = profileX + (profileWidth - g2.getFontMetrics().stringWidth(levelTexto)) / 2;
+        int levelTextoY = profileY + spacing + g2.getFontMetrics().getHeight();
+        int vidaTextoY = levelTextoY + g2.getFontMetrics().getHeight() + spacing;
+        int manaTextoY = vidaTextoY + g2.getFontMetrics().getHeight() + spacing;
+        int xpTextoY = manaTextoY + g2.getFontMetrics().getHeight() + spacing;
+        int moedaTextoY = xpTextoY + g2.getFontMetrics().getHeight() + spacing;
+        int danoTextoY = moedaTextoY + g2.getFontMetrics().getHeight() + spacing;
+
+        // Desenha os textos das informações
+        g2.drawString(levelTexto, textX, levelTextoY);
+        g2.drawString(vidaTexto, textX, vidaTextoY);
+        g2.drawString(manaTexto, textX, manaTextoY);
+        g2.drawString(xpTexto, textX, xpTextoY);
+        g2.drawString(moedaTexto, textX, moedaTextoY);
+        g2.drawString(danoTexto, textX, danoTextoY);
+    }
+
+
+
 
 
 

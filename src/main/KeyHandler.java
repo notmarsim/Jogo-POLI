@@ -64,8 +64,19 @@ public class KeyHandler implements KeyListener {
             }
 
         }
+        // Profile
+        if (code == KeyEvent.VK_C && gp.getGameState() == GamePanel.GameState.Jogando && gp.getCharacterState() != GamePanel.CharacterState.Combate) {
 
-
+            if (gp.getCharacterState() != GamePanel.CharacterState.Profile) {
+                gp.setCharacterState(GamePanel.CharacterState.Profile);
+            } else {
+                gp.setGameState(GamePanel.GameState.Jogando);
+                gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+            }
+        }
+//        if(gp.getCharacterState() == GamePanel.CharacterState.Profile) {
+//
+//        }
         // INVENTARIO
         if(gp.getCharacterState() == GamePanel.CharacterState.Inventario) {
 
