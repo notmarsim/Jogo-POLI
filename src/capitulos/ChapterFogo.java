@@ -32,6 +32,8 @@ public class ChapterFogo {
         entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*33, gp.tamanhoJanela*4));
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*36, gp.tamanhoJanela*5));
+        entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*34, gp.tamanhoJanela*8));
+        entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*36, gp.tamanhoJanela*10));
         //entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*20, gp.tamanhoJanela*10));
         pyroth.x = gp.tamanhoJanela*2;
         pyroth.y = gp.tamanhoJanela*18;
