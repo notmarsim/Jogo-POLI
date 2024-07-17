@@ -15,7 +15,7 @@ public abstract class Entity {
     public boolean atacando;
     public boolean morrendo;
     public boolean morto;
-
+    public int xpDrop;
     // sprites
     public BufferedImage image1, image2, image3, image4, image5, image6, image7;
     public BufferedImage death1, death2, death3, death4, death5, death6, death7, death8, death9,death10, death11, death12, death13, death14, death15, death16, death17, death18;
