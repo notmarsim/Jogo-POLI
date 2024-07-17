@@ -60,23 +60,29 @@ public class Dialogues {
 
         FontMetrics metrics = g2.getFontMetrics();
 
-        List<String> linhas = new ArrayList<>();
-        String[] palavras = texto.split(" ");
-        StringBuilder linhaAtual = new StringBuilder();
-
-        for (String palavra : palavras) {
-            if (metrics.stringWidth(linhaAtual + palavra) < maxWidth) {
-                linhaAtual.append(palavra).append(" ");
-            } else {
-                linhas.add(linhaAtual.toString());
-                linhaAtual = new StringBuilder(palavra).append(" ");
-            }
-        }
-        linhas.add(linhaAtual.toString());
+        // Divide o texto nas quebras de linha
+        String[] linhas = texto.split("\n");
 
         for (String linha : linhas) {
-            g2.drawString(linha, x, y);
-            y += metrics.getHeight();
+            List<String> linhasQuebradas = new ArrayList<>();
+            String[] palavras = linha.split(" ");
+            StringBuilder linhaAtual = new StringBuilder();
+
+            for (String palavra : palavras) {
+                if (metrics.stringWidth(linhaAtual + palavra) < maxWidth) {
+                    linhaAtual.append(palavra).append(" ");
+                } else {
+                    linhasQuebradas.add(linhaAtual.toString());
+                    linhaAtual = new StringBuilder(palavra).append(" ");
+                }
+            }
+            linhasQuebradas.add(linhaAtual.toString());
+
+            for (String linhaQuebrada : linhasQuebradas) {
+                g2.drawString(linhaQuebrada, x, y);
+                y += metrics.getHeight();
+            }
         }
     }
+
 }
