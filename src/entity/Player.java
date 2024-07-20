@@ -6,10 +6,8 @@ import main.GamePanel;
 import main.KeyHandler;
 import tile.Tile;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Player extends Entity {
@@ -108,14 +106,22 @@ public class Player extends Entity {
      }
 
 
-     public void pegarPocao() {
-          PocaoForca pocao = new PocaoForca();
-          inventario.add(pocao);
+     public void comprarPocaoForca() {
+          if(moeda>=15){
+               PocaoForca pocao = new PocaoForca();
+               inventario.add(pocao);
+               moeda -= 15;
+          }
+
      }
 
-     public void pegarCura(){
-          PocaoCura pocaoCura = new PocaoCura();
-          inventario.add(pocaoCura);
+     public void comprarCura(){
+          if(moeda>=10){
+               PocaoCura pocaoCura = new PocaoCura();
+               inventario.add(pocaoCura);
+               moeda -= 10;
+          }
+
      }
 
 

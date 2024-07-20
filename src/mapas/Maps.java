@@ -13,9 +13,11 @@ public class Maps {
     public boolean[][] treeMarkers;
     public boolean[][] tochasPosicao;
     private TileManager tileManager;
+    private GamePanel.Capitulos chapter;
 
     public Maps(GamePanel gp, String path, GamePanel.Capitulos chapter) {
         this.gp = gp;
+        this.chapter = chapter;
         tileManager = new TileManager(gp);
         tileManager.carregarTile(chapter);
         loadMap(path);
@@ -38,7 +40,7 @@ public class Maps {
                     tile.draw(g2, (int) (x * Tile.tileWidth - gp.getCamera().getxOffSet()), (int) (y * Tile.tileHeight - gp.getCamera().getyOffSet()));
                 } else {
                     System.err.println("Tile em (" + x + ", " + y + ") é nulo. Usando tile padrão.");
-                    Tile defaultTile = TileManager.getTile(1);
+                    Tile defaultTile = TileManager.getTile(chapter, 1);
                     if (defaultTile != null) {
                         defaultTile.draw(g2, (int) (x * Tile.tileWidth - gp.getCamera().getxOffSet()), (int) (y * Tile.tileHeight - gp.getCamera().getyOffSet()));
                     } else {
@@ -62,12 +64,12 @@ public class Maps {
 
     public Tile getTile(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height) {
-            return TileManager.getTile(1);
+            return TileManager.getTile(chapter, 1);
         }
-        Tile t = TileManager.getTile(tiles[x][y]);
+        Tile t = TileManager.getTile(chapter, tiles[x][y]);
         if (t == null) {
             System.err.println("Tile não carregado em (" + x + ", " + y + "). Usando tile padrão.");
-            return TileManager.getTile(1);
+            return TileManager.getTile(chapter, 1);
         }
         return t;
     }

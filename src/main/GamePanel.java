@@ -1,6 +1,7 @@
 package main;
 
 import Objetos.SuperObject;
+import capitulos.ChapterAqua;
 import capitulos.ChapterFogo;
 import capitulos.Prologo;
 import entity.Combate;
@@ -18,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Maps currentMap;
     private Prologo prologo;
     private ChapterFogo chapterFogo;
+    private ChapterAqua chapterAqua;
     private UI ui;
     KeyHandler keyH = new KeyHandler(this);
     Player player = new Player(this,keyH);
@@ -111,6 +113,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.ui = new UI(this, 80);
         this.prologo = new Prologo(this, keyH);
         this.chapterFogo = new ChapterFogo(this,keyH);
+        this.chapterAqua = new ChapterAqua(this,keyH);
         setChapter(Capitulos.Prologo);
         this.combate = new Combate(this,player.atualEntity);
 
@@ -146,6 +149,9 @@ public class GamePanel extends JPanel implements Runnable {
             case chapterFogo:
                 //playMusic(1);
                 this.currentMap = chapterFogo.getMap();
+                break;
+            case chapterAqua:
+                this.currentMap = chapterAqua.getMap();
                 break;
         }
 
@@ -185,14 +191,12 @@ public class GamePanel extends JPanel implements Runnable {
         getPlayer().subirDeLevel();
         System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel() + " xp max: " + getPlayer().xpMax);
         if (currentCapitulo == Capitulos.Prologo) {
-
             prologo.up();
-
-
-        }
-        if (currentCapitulo == Capitulos.chapterFogo) {
+        } else if (currentCapitulo == Capitulos.chapterFogo) {
             chapterFogo.up();
 
+        } else if (currentCapitulo == Capitulos.chapterAqua) {
+            chapterAqua.up();
         }
 
     }
@@ -205,10 +209,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (currentCapitulo == Capitulos.Prologo) {
             prologo.draw(g2);
-        }
-
-        if (currentCapitulo == Capitulos.chapterFogo) {
+        }else if (currentCapitulo == Capitulos.chapterFogo) {
             chapterFogo.draw(g2);
+        } else if (currentCapitulo == Capitulos.chapterAqua) {
+            chapterAqua.draw(g2);
         }
 
         if (gameState == GameState.Jogando) {
