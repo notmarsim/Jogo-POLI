@@ -501,11 +501,14 @@ public class UI {
         Color backgroundColor = new Color(0, 0, 0, 128);
 
 
-        if(gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo) || gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterAqua)){
+        if(gamePanel.currentCapitulo.equals(GamePanel.Capitulos.Prologo)){
             image = facePyroth;
             backgroundColor = new Color(255, 0, 0, 80);
         } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterFogo)) {
-            image = faceAquara;
+            image = facePyroth;
+            backgroundColor = new Color(255, 0, 0, 80);
+        } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterAqua)) {
+            image =  faceAquara;
             backgroundColor = new Color(0, 0, 255, 128);
         }
 

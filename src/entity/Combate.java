@@ -103,6 +103,7 @@ public class Combate {
             }
             System.out.println("player:" + player.getVida() + "inimigo: " + inimigo.getVida());
             if(inimigo.morto){
+
                 gp.setCharacterState(GamePanel.CharacterState.Ocioso);
                 gp.getPlayer().ganharXp(inimigo.xpDrop);
 

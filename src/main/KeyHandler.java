@@ -66,9 +66,9 @@ public class KeyHandler implements KeyListener {
                 "1 - Poção de Força\n" +
                 "2 - Poção de Cura\n")){
             if(code == KeyEvent.VK_1){
-                gp.getPlayer().pegarPocao();
+                gp.getPlayer().comprarPocaoForca();
             } else if (code == KeyEvent.VK_2) {
-                gp.getPlayer().pegarCura();
+                gp.getPlayer().comprarCura();
             }
         }
 
@@ -126,6 +126,10 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_P) {
             gp.setChapter(GamePanel.Capitulos.Prologo);
+        }
+
+        if(code == KeyEvent.VK_L) {
+            gp.setChapter(GamePanel.Capitulos.chapterAqua);
         }
         //COMBATE
         if(gp.getCharacterState() == GamePanel.CharacterState.Combate) {
