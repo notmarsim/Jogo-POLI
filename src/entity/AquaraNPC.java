@@ -70,7 +70,7 @@ public class AquaraNPC extends Entity {
     }
 
     public String getFala(){
-        return "Deseja ir para o reino da água? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n";
+        return "Vamos para o reino da água? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n";
     }
     public String getResposta(){
         return "Ok";

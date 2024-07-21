@@ -2,6 +2,7 @@ package main;
 
 import Objetos.SuperObject;
 import capitulos.ChapterAqua;
+import capitulos.ChapterAr;
 import capitulos.ChapterFogo;
 import capitulos.Prologo;
 import entity.Combate;
@@ -20,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Prologo prologo;
     private ChapterFogo chapterFogo;
     private ChapterAqua chapterAqua;
+    private ChapterAr chapterAr;
     private UI ui;
     KeyHandler keyH = new KeyHandler(this);
     Player player = new Player(this,keyH);
@@ -37,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
         Prologo,
         chapterFogo,
         chapterAqua,
-        chapterAir,
+        chapterAr,
         chapterEarth
     }
 
@@ -114,6 +116,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.prologo = new Prologo(this, keyH);
         this.chapterFogo = new ChapterFogo(this,keyH);
         this.chapterAqua = new ChapterAqua(this,keyH);
+        this.chapterAr = new ChapterAr(this,keyH);
         setChapter(Capitulos.Prologo);
         this.combate = new Combate(this,player.atualEntity);
 
@@ -152,6 +155,9 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             case chapterAqua:
                 this.currentMap = chapterAqua.getMap();
+                break;
+            case chapterAr:
+                this.currentMap = chapterAr.getMap();
                 break;
         }
 
@@ -197,6 +203,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         } else if (currentCapitulo == Capitulos.chapterAqua) {
             chapterAqua.up();
+        } else if (currentCapitulo == Capitulos.chapterAr){
+            chapterAr.up();
         }
 
     }
@@ -213,6 +221,8 @@ public class GamePanel extends JPanel implements Runnable {
             chapterFogo.draw(g2);
         } else if (currentCapitulo == Capitulos.chapterAqua) {
             chapterAqua.draw(g2);
+        } else if(currentCapitulo == Capitulos.chapterAr){
+            chapterAr.draw(g2);
         }
 
         if (gameState == GameState.Jogando) {
@@ -239,7 +249,7 @@ public class GamePanel extends JPanel implements Runnable {
         } else if (acao == 1) {
             getCombate().golpeEspecial = true;
         } else if (acao == 2) {
-           defendendo = true;
+            defendendo = true;
         }
     }
 
