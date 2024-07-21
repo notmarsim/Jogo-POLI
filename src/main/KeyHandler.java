@@ -157,7 +157,7 @@ public class KeyHandler implements KeyListener {
         }
 
         if(code == KeyEvent.VK_L) {
-            gp.setChapter(GamePanel.Capitulos.chapterAqua);
+            gp.setChapter(GamePanel.Capitulos.chapterAr);
         }
         //COMBATE
         if(gp.getCharacterState() == GamePanel.CharacterState.Combate) {
