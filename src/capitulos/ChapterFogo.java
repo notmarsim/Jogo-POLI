@@ -27,6 +27,9 @@ public class ChapterFogo {
         entityManager = new EntityManager(gp ,gp.getPlayer());
         entityManager.addEntity(pyroth);
         entityManager.addEntity(new NPC_Fogo(gp, gp.tamanhoJanela*13, gp.tamanhoJanela*16));
+        entityManager.addEntity(new AquaraNPC(gp, gp.tamanhoJanela*15, gp.tamanhoJanela*16));
+        entityManager.addEntity(new Mendigo(gp, gp.tamanhoJanela*2, gp.tamanhoJanela*9));
+        entityManager.addEntity(new Aldeao(gp, gp.tamanhoJanela*22, gp.tamanhoJanela*15));
         inicializarTochas();
         initializeTreeMarkers();
         entityManager.addEntity(new Mercante(gp,gp.tamanhoJanela*5,gp.tamanhoJanela*15));
@@ -35,6 +38,8 @@ public class ChapterFogo {
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*36, gp.tamanhoJanela*5));
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*34, gp.tamanhoJanela*8));
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*36, gp.tamanhoJanela*10));
+        entityManager.addEntity(new CasaVermelha(gp,gp.tamanhoJanela*9,gp.tamanhoJanela*15));
+        entityManager.addEntity(new CasaVermelha(gp,gp.tamanhoJanela*18,gp.tamanhoJanela*15));
         //entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*20, gp.tamanhoJanela*10));
         pyroth.x = gp.tamanhoJanela*2;
         pyroth.y = gp.tamanhoJanela*18;
@@ -86,15 +91,15 @@ public class ChapterFogo {
         if (ui.isFogoDesaparecido()) {
             mapaFogo.draw(g2);
             entityManager.desenhar(g2);
-            desenharCasas(g2);
+//            desenharCasas(g2);
 
         }
     }
 
-    public void desenharCasas(Graphics2D g2) {
-        for(int x = 9; x<18; x = x + 8) {
-            CasaVermelha casaVermelha = new CasaVermelha(gp, gp.tamanhoJanela*x, gp.tamanhoJanela*15);
-            casaVermelha.draw(g2);
-        }
-    }
+//    public void desenharCasas(Graphics2D g2) {
+//        for(int x = 9; x<18; x = x + 8) {
+//            CasaVermelha casaVermelha = new CasaVermelha(gp, gp.tamanhoJanela*x, gp.tamanhoJanela*15);
+//            casaVermelha.draw(g2);
+//        }
+//    }
 }

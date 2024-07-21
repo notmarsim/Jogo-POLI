@@ -1,6 +1,7 @@
 package entity;
 import Objetos.PocaoCura;
 import Objetos.PocaoForca;
+import Objetos.Rum;
 import Objetos.SuperObject;
 import main.GamePanel;
 import main.KeyHandler;
@@ -53,6 +54,9 @@ public class Player extends Entity {
                System.out.println("alinhou");
                y = entity.y + gp.tamanhoJanela * 33 / 10;
                x = entity.x + gp.tamanhoJanela * 12 / 10;
+          }else if (entity instanceof GolemGelo){
+               y = entity.y + gp.tamanhoJanela * 24 / 10;
+               x = entity.x + gp.tamanhoJanela * 12 / 10;
           }
      }
 
@@ -82,7 +86,9 @@ public class Player extends Entity {
                     if (!jaDialogou) {
                          iniciarDialogo();
                          String fala = entity.getFala();
+
                          gp.getDialogues().setDialogueText(fala);
+
                          jaDialogou = true;
                     }
                     break;
@@ -113,6 +119,24 @@ public class Player extends Entity {
                moeda -= 40;
           }
 
+     }
+     public void ganharRumLendario(){
+          if(moeda >= 99){
+               Rum rum = new Rum();
+               inventario.add(rum);
+               moeda -= 99;
+          }
+     }
+     public void irParaReinoAqua(){
+          if(gp.getCombate().bossMorto){
+               gp.setChapter(GamePanel.Capitulos.chapterAqua);
+               gp.getCombate().bossMorto = false;
+               System.out.println("boss morto: "+ gp.getCombate().bossMorto);
+          }
+     }
+     public void irParaReinoFogo(){
+          gp.getCombate().bossMorto = true;
+          gp.setChapter(GamePanel.Capitulos.chapterFogo);
      }
 
      public void comprarCura(){
@@ -196,7 +220,7 @@ public class Player extends Entity {
      }
 
      public void curarVida(){
-          vida = vidaMaxima;
+          vida = vidaMaxima*75/100;
      }
 
      public int getDano(){

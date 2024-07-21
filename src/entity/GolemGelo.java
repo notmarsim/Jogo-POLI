@@ -7,9 +7,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Demonio extends Entity{
+public class GolemGelo extends Entity{
     private GamePanel gp;
-    public Demonio(GamePanel gp, int startX, int startY){
+    public GolemGelo(GamePanel gp, int startX, int startY){
         super(gp);
         this.gp = gp;
         this.x = startX;
@@ -31,48 +31,46 @@ public class Demonio extends Entity{
     private void loadSprites() {
         try {
             // PARADO
-            idle = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/idle/demon_idle_1.png"));
-            idle2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/idle/demon_idle_2.png"));
-            idle3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/idle/demon_idle_3.png"));
-            idle4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/idle/demon_idle_4.png"));
-            idle5 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/idle/demon_idle_5.png"));
+            idle = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/idle/idle_1.png"));
+            idle2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/idle/idle_2.png"));
+            idle3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/idle/idle_3.png"));
+            idle4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/idle/idle_4.png"));
+            idle5 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/idle/idle_5.png"));
+            idle6 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/idle/idle_6.png"));
 
             //ATACK
-            attack1 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_1.png"));
-            attack2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_2.png"));
-            attack3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_3.png"));
-            attack4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_4.png"));
-            attack5 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_5.png"));
-            attack6 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_6.png"));
-            attack7 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_7.png"));
-            attack8 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_8.png"));
-            attack9 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_9.png"));
-            attack10 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_10.png"));
-            attack11 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_11.png"));
-            attack12 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_12.png"));
-            attack13 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_13.png"));
-            attack14 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_14.png"));
-            attack15 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/atack/demon_cleave_15.png"));
+            attack1 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_1.png"));
+            attack2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_2.png"));
+            attack3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_3.png"));
+            attack4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_4.png"));
+            attack5 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_5.png"));
+            attack6 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_6.png"));
+            attack7 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_7.png"));
+            attack8 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_8.png"));
+            attack9 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_9.png"));
+            attack10 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_10.png"));
+            attack11 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_11.png"));
+            attack12 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_12.png"));
+            attack13 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_13.png"));
+            attack14 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/atack/1_atk_14.png"));
 
             // MORRENDO
-            death1 =  ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_1.png"));
-            death2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_2.png"));
-            death3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_3.png"));
-            death4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_4.png"));
-            death5 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_5.png"));
-            death6 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_6.png"));
-            death7 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_7.png"));
-            death8 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_8.png"));
-            death9 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_9.png"));
-            death10 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_10.png"));
-            death11 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_11.png"));
-            death12 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_12.png"));
-            death13 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_13.png"));
-            death14 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_14.png"));
-            death15 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_15.png"));
-            death16 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_16.png"));
-            death17 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_17.png"));
-            death18 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesFogo/Demonio/morrendo/demon_death_18.png"));
+            death1 =  ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_1.png"));
+            death2 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_2.png"));
+            death3 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_3.png"));
+            death4 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_4.png"));
+            death5 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_5.png"));
+            death6 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_6.png"));
+            death7 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_7.png"));
+            death8 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_8.png"));
+            death9 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_9.png"));
+            death10 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_10.png"));
+            death11 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_11.png"));
+            death12 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_12.png"));
+            death13 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_13.png"));
+            death14 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_14.png"));
+            death15 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_15.png"));
+            death16 = ImageIO.read(getClass().getResourceAsStream("/viloes/viloesGelo/golemGelo/morrendo/death_16.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,8 +108,6 @@ public class Demonio extends Entity{
                 image = attack13;
             } else if (attackSpriteNum == 14) {
                 image = attack14;
-            } else if (attackSpriteNum == 15) {
-                image = attack15;
             }
         } else if (morrendo) {
             if (deathSpriteNum == 1) {
@@ -167,18 +163,13 @@ public class Demonio extends Entity{
                 image = idle4;
             } else if (spriteNum == 7) {
                 image = idle5;
+            } else if (spriteNum == 8){
+                image = idle6;
             }
         }
 
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*9, gp.tamanhoJanela*5, null);
 
-
-      /*  g2.setColor(Color.RED);
-        g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
-                (int) (y + bounds.y - gp.getCamera().getyOffSet()),
-                bounds.width, bounds.height);
-
-       */
     }
 
     @Override
@@ -189,7 +180,7 @@ public class Demonio extends Entity{
                 attackSpriteCounter = 0;
                 attackSpriteNum++;
             }
-            if (attackSpriteNum > 15) {
+            if (attackSpriteNum > 14) {
                 attackSpriteNum = 1;
                 atacando = false;
             }
@@ -208,10 +199,10 @@ public class Demonio extends Entity{
             }
         } else {
             spriteCounter++;
-            if (spriteCounter >= 5) {
+            if (spriteCounter >= 6) {
                 spriteCounter = 0;
                 spriteNum++;
-                if (spriteNum > 7) {
+                if (spriteNum > 8) {
                     spriteNum = 1;
                 }
             }

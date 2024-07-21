@@ -13,12 +13,14 @@ public class Combate {
     public boolean golpeSimples;
     public boolean golpeEspecial;
     public boolean defendendo;
+    public boolean bossMorto;
 
     public Combate(GamePanel gp, Entity inimigo) {
         this.gp = gp;
         this.player = gp.getPlayer();
         this.inimigo = inimigo;
         this.turnoDoJogador = true;
+        this.bossMorto = false;
     }
 
     public void turnoJogador() {
@@ -109,7 +111,8 @@ public class Combate {
 
                 gp.getPlayer().ganharMoeda(inimigo.moedaDrop);
                 if(inimigo.boss){
-                    gp.setChapter(GamePanel.Capitulos.chapterAqua);
+                    gp.getCombate().bossMorto = true;
+                    System.out.println("inimigo morto: "+ bossMorto);
                 }
                 //gp.stopMusic();
                 //gp.playMusic(1);
