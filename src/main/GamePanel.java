@@ -249,7 +249,7 @@ public class GamePanel extends JPanel implements Runnable {
         } else if (acao == 1) {
             getCombate().golpeEspecial = true;
         } else if (acao == 2) {
-           defendendo = true;
+            defendendo = true;
         }
     }
 
