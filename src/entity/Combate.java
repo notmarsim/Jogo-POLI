@@ -108,7 +108,9 @@ public class Combate {
                 gp.getPlayer().ganharXp(inimigo.xpDrop);
 
                 gp.getPlayer().ganharMoeda(inimigo.moedaDrop);
-
+                if(inimigo.boss){
+                    gp.setChapter(GamePanel.Capitulos.chapterAqua);
+                }
                 //gp.stopMusic();
                 //gp.playMusic(1);
             }

@@ -107,19 +107,19 @@ public class Player extends Entity {
 
 
      public void comprarPocaoForca() {
-          if(moeda>=15){
+          if(moeda>=40){
                PocaoForca pocao = new PocaoForca();
                inventario.add(pocao);
-               moeda -= 15;
+               moeda -= 40;
           }
 
      }
 
      public void comprarCura(){
-          if(moeda>=10){
+          if(moeda>=60){
                PocaoCura pocaoCura = new PocaoCura();
                inventario.add(pocaoCura);
-               moeda -= 10;
+               moeda -= 60;
           }
 
      }
@@ -142,7 +142,7 @@ public class Player extends Entity {
           xpMax = 10;
           level = 1;
 
-          moeda = 0;
+          moeda = 100;
 
      }
      public void ganharXp(int xpGanho){

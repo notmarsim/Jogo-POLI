@@ -48,14 +48,14 @@ public class Aquara extends Player {
             run7 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_7.png"));
             run8 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_8.png"));
 
-            runcostas = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_1back.png"));
-            runcostas2 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_2back.png"));
-            runcostas3 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_3back.png"));
-            runcostas4 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_4back.png"));
-            runcostas5 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_5back.png"));
-            runcostas6 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_6back.png"));
-            runcostas7 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_7back.png"));
-            runcostas8 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_8back.png"));
+            runcostas = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_back1.png"));
+            runcostas2 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_back2.png"));
+            runcostas3 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_back3.png"));
+            runcostas4 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_back4.png"));
+            runcostas5 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_back5.png"));
+            runcostas6 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_back6.png"));
+            runcostas7 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_back7.png"));
+            runcostas8 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_back8.png"));
 
 
 

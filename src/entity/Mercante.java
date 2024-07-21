@@ -103,8 +103,8 @@ public class Mercante extends Entity{
 
     public String getFala(){
         return "Deseja comprar algo? \n" +
-                "1 - Poção de Força\n" +
-                "2 - Poção de Cura\n";
+                "1 - Poção de Força  (G 40)\n" +
+                "2 - Poção de Cura (G 60)\n";
     }
 
 }

@@ -1,5 +1,6 @@
 package entity;
 
+import capitulos.ChapterAqua;
 import main.GamePanel;
 
 import javax.imageio.ImageIO;
@@ -21,10 +22,11 @@ public class Demonio extends Entity{
         bounds.y = 120;
         bounds.width = 160;
         bounds.height = 170;
-        vida = 90;
-        dano = 30;
+        vida = 20;
+        dano = 10;
         xpDrop = 50;
         moedaDrop = 100;
+        boss = true;
     }
 
     private void loadSprites() {
@@ -80,7 +82,6 @@ public class Demonio extends Entity{
     @Override
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
-
         if (atacando) {
             if (attackSpriteNum == 1) {
                 image = attack1;
@@ -150,6 +151,7 @@ public class Demonio extends Entity{
                 image = death17;
             } else if (deathSpriteNum == 18) {
                 image = death18;
+
             }
         } else {
             if (spriteNum == 1) {
