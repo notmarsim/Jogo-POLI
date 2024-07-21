@@ -3,8 +3,8 @@ package tile;
 import main.GamePanel;
 
 public class TileManager {
-    private static final int MAX_CAPITULOS = 6; // Número máximo de capítulos, ajuste conforme necessário
-    private static final int MAX_TILES = 256;  // Número máximo de tiles por capítulo
+    private static final int MAX_CAPITULOS = 6;
+    private static final int MAX_TILES = 3000;
     private static Tile[][] tiles = new Tile[MAX_CAPITULOS][MAX_TILES];
     private GamePanel gp;
 
@@ -21,6 +21,8 @@ public class TileManager {
             carregarTilesAqua();
         }else if(capitulo.equals(GamePanel.Capitulos.chapterAr)){
             carregarTilesAr();
+        } else if (capitulo.equals(GamePanel.Capitulos.chapterEarth)) {
+            carregarTilesTerra();
         }
     }
 
@@ -134,6 +136,47 @@ public class TileManager {
         addTile(GamePanel.Capitulos.chapterAr, 166, "/tiles/ArTiles/tile165.png", true);
         addTile(GamePanel.Capitulos.chapterAr, 167, "/tiles/ArTiles/tile166.png", true);
         addTile(GamePanel.Capitulos.chapterAr, 168, "/tiles/ArTiles/tile167.png", true);
+    }
+
+    public void carregarTilesTerra(){
+        addTile(GamePanel.Capitulos.chapterEarth,1,"/tiles/PrologoTiles/pisoTijoloPedra.png", true);
+        addTile(GamePanel.Capitulos.chapterEarth,2,"/tiles/TerraTiles/tile02.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,3,"/tiles/TerraTiles/tile03.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,4,"/tiles/TerraTiles/tile04.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,5,"/tiles/TerraTiles/tile5.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,6,"/tiles/TerraTiles/tile06.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,7,"/tiles/TerraTiles/tile07.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,8,"/tiles/TerraTiles/tile08.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,9,"/tiles/TerraTiles/tile09.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,10,"/tiles/TerraTiles/tile10.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,11,"/tiles/TerraTiles/tile11.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,12,"/tiles/TerraTiles/tile12.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,13,"/tiles/TerraTiles/tile13.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,14,"/tiles/TerraTiles/tile14.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,15,"/tiles/TerraTiles/tile15.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,16,"/tiles/TerraTiles/tile16.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,17,"/tiles/TerraTiles/tile17.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,18,"/tiles/TerraTiles/tile18.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,19,"/tiles/TerraTiles/tile19.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,20,"/tiles/TerraTiles/tile20.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,21,"/tiles/TerraTiles/tile21.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,22,"/tiles/TerraTiles/tile22.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,23,"/tiles/TerraTiles/tile23.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,24,"/tiles/TerraTiles/tile24.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,25,"/tiles/TerraTiles/tile25.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,27,"/tiles/TerraTiles/tile27.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,155,"/tiles/TerraTiles/tile154.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,156,"/tiles/TerraTiles/tile155.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,157,"/tiles/TerraTiles/tile156.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,177,"/tiles/TerraTiles/tile176.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,178,"/tiles/TerraTiles/tile177.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,179,"/tiles/TerraTiles/tile178.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,199,"/tiles/TerraTiles/tile198.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,200,"/tiles/TerraTiles/tile199.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,201,"/tiles/TerraTiles/tile200.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,246,"/tiles/TerraTiles/tile245.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,265,"/tiles/TerraTiles/tile264.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,201,"/tiles/TerraTiles/tile200.png",false);
     }
 
     private void addTile(GamePanel.Capitulos chapter, int id, String imagePath, boolean isSolid) {

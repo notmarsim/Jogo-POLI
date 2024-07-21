@@ -1,10 +1,7 @@
 package main;
 
 import Objetos.SuperObject;
-import capitulos.ChapterAqua;
-import capitulos.ChapterAr;
-import capitulos.ChapterFogo;
-import capitulos.Prologo;
+import capitulos.*;
 import entity.Combate;
 import UI.Dialogues;
 import entity.EntityManager;
@@ -20,6 +17,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Maps currentMap;
     private Prologo prologo;
     private ChapterFogo chapterFogo;
+    private ChapterTerra chapterTerra;
     private ChapterAqua chapterAqua;
     private ChapterAr chapterAr;
     private UI ui;
@@ -117,6 +115,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.chapterFogo = new ChapterFogo(this,keyH);
         this.chapterAqua = new ChapterAqua(this,keyH);
         this.chapterAr = new ChapterAr(this,keyH);
+        this.chapterTerra = new ChapterTerra(this,keyH);
         setChapter(Capitulos.Prologo);
         this.combate = new Combate(this,player.atualEntity);
 
@@ -159,6 +158,9 @@ public class GamePanel extends JPanel implements Runnable {
             case chapterAr:
                 this.currentMap = chapterAr.getMap();
                 break;
+            case chapterEarth:
+                this.currentMap = chapterTerra.getMap();
+                break;
         }
 
     }
@@ -200,11 +202,12 @@ public class GamePanel extends JPanel implements Runnable {
             prologo.up();
         } else if (currentCapitulo == Capitulos.chapterFogo) {
             chapterFogo.up();
-
         } else if (currentCapitulo == Capitulos.chapterAqua) {
             chapterAqua.up();
         } else if (currentCapitulo == Capitulos.chapterAr){
             chapterAr.up();
+        } else if(currentCapitulo == Capitulos.chapterEarth){
+            chapterTerra.up();
         }
 
     }
@@ -223,6 +226,8 @@ public class GamePanel extends JPanel implements Runnable {
             chapterAqua.draw(g2);
         } else if(currentCapitulo == Capitulos.chapterAr){
             chapterAr.draw(g2);
+        }  else if(currentCapitulo == Capitulos.chapterEarth){
+            chapterTerra.draw(g2);
         }
 
         if (gameState == GameState.Jogando) {
