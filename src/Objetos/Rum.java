@@ -1,28 +1,29 @@
 package Objetos;
 
 import entity.Player;
-import main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class PocaoForca extends SuperObject{
+public class Rum extends SuperObject{
     private int aumentoForca;
 
-    public PocaoForca() {
+    public Rum() {
 
-        nome = "Poção de Aumento de Força";
+        nome = "Rum lendário do mendigo";
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/objetos/pocaoForca.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/objetos/Rum.png"));
         } catch (IOException e) {
             e.printStackTrace();
-            
+
         }
-        aumentoForca = 2;
+        aumentoForca = 10;
+
     }
     @Override
     public void usouItem(Player player) {
         player.aumentarDano(aumentoForca);
+        player.vidaMaxima += 30;
     }
 
 }

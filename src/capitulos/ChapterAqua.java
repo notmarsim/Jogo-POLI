@@ -23,7 +23,8 @@ public class ChapterAqua {
         entityManager = new EntityManager(gp ,gp.getPlayer());
         entityManager.addEntity(aquara);
         entityManager.addEntity(new Mercante(gp,gp.tamanhoJanela*5,gp.tamanhoJanela*15));
-        //entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*20, gp.tamanhoJanela*10));
+        entityManager.addEntity(new GolemGelo(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*35));
+        entityManager.addEntity(new PyrothNPC(gp, gp.tamanhoJanela*15, gp.tamanhoJanela*16));
 
     }
 

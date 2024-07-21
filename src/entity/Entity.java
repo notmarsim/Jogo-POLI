@@ -23,7 +23,7 @@ public abstract class Entity {
     public BufferedImage death1, death2, death3, death4, death5, death6, death7, death8, death9,death10, death11, death12, death13, death14, death15, death16, death17, death18;
     public BufferedImage attack1, attack2, attack3, attack4, attack5, attack6, attack7,attack8,attack9,attack10,attack11,attack12,attack13,attack14,attack15;
     public BufferedImage idle, idle2, idle3, idle4, idle5, idle6, idle7, idle8, run, run2, run3, run4, run5, run6, run7, run8, runcostas, runcostas2, runcostas3, runcostas4, runcostas5, runcostas6, runcostas7, runcostas8, idleback, idle2back, idle3back, idle4back, idle5back, idle6back, idle7back, idle8back;
-    protected BufferedImage specialAttack1,specialAttack2,specialAttack3,specialAttack4,specialAttack5,specialAttack6,specialAttack7,specialAttack8,specialAttack9,specialAttack10,specialAttack11,specialAttack12,specialAttack13,specialAttack14,specialAttack15,specialAttack16,specialAttack17,specialAttack18;
+    protected BufferedImage specialAttack1,specialAttack2,specialAttack3,specialAttack4,specialAttack5,specialAttack6,specialAttack7,specialAttack8,specialAttack9,specialAttack10,specialAttack11,specialAttack12,specialAttack13,specialAttack14,specialAttack15,specialAttack16,specialAttack17,specialAttack18, specialAttack19, specialAttack20, specialAttack21, specialAttack22, specialAttack23, specialAttack24, specialAttack25, specialAttack26, specialAttack27, specialAttack28, specialAttack29, specialAttack30, specialAttack31, specialAttack32;
     public String direcao;
 
     // sprites counters
@@ -122,6 +122,9 @@ public abstract class Entity {
     public abstract int tipo(); // 1 para colisao normal , 2 para npcs com dialogo e 3 para viloes com combate
 
     protected String getFala(){
+        return "";
+    }
+    protected String getResposta(){
         return "";
     }
     

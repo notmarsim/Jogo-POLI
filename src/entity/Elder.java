@@ -25,6 +25,7 @@ public class Elder extends Entity {
     private void loadSprites() {
         try {
             idle = ImageIO.read(getClass().getResourceAsStream("/npcs/elder.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,7 +48,7 @@ public class Elder extends Entity {
     }
 
     public String getFala(){
-        return "Pyroth, Guardião do Fogo, ouça as antigas palavras esquecidas há milênios e agora trazidas à luz. A escuridão que uma vez ameaçou Elemenvera ressurgiu. Nas profundezas das sombras, um ser corrompido, outrora apenas uma lenda, conhecido como Necromancer, desperta com a intenção de devorar a essência dos nossos elementos e mergulhar o mundo em trevas eternas. Sua missão é restaurar a paz em cada reino de Elemenvera, agora sob ataque dos monstros criados por Necromancer. Comece pelo seu domínio, o Reino do Fogo, e alerte os outros guardiões para que protejam e salvem seus próprios reinos também. Boa sorte, Guardião.";
+        return "Pyroth, Guardião do Fogo, ouça as antigas palavras esquecidas há milênios e agora trazidas à luz. A escuridão que uma vez ameaçou Elemenvera ressurgiu. Nas profundezas das sombras, um ser corrompido, outrora apenas uma lenda, conhecido como Necromancer, desperta com a intenção de devorar a essência dos nossos elementos e mergulhar o mundo em trevas eternas. Sua missão é restaurar a paz em cada reino de Elemenvera, agora sob ataque dos monstros criados por Necromancer. Comece pelo seu domínio, o Reino do Fogo, e reúna os outros guardiões para que juntos protejam e salvem o nosso mundo";
 
     }
 

@@ -33,7 +33,7 @@ public class Dialogues {
         int x = gamePanel.tamanhoJanela * 2;
         int y = gamePanel.tamanhoJanela / 2;
         int width = gamePanel.larguraTela - gamePanel.tamanhoJanela * 4;
-        int height = gamePanel.tamanhoJanela * 4;
+        int height = gamePanel.tamanhoJanela * 3;
 
         drawSubWindow(x, y, width, height);
         System.out.println("no dialogues: " + currentDialogueText);
@@ -56,7 +56,7 @@ public class Dialogues {
 
     private void drawTextoDialogo(String texto, int x, int y, int maxWidth) {
         g2.setColor(Color.WHITE);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 25));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 23));
 
         FontMetrics metrics = g2.getFontMetrics();
 

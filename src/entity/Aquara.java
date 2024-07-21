@@ -57,7 +57,51 @@ public class Aquara extends Player {
             runcostas7 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_back7.png"));
             runcostas8 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/run/surf_back8.png"));
 
+            attack1 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/AtkNormal/1_atk_1.png"));
+            attack2 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/AtkNormal/1_atk_2.png"));
+            attack3 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/AtkNormal/1_atk_3.png"));
+            attack4 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/AtkNormal/1_atk_4.png"));
+            attack5 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/AtkNormal/1_atk_4.png"));
+            attack6 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/AtkNormal/1_atk_5.png"));
+            attack7 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/AtkNormal/1_atk_5.png"));
+            attack8 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/AtkNormal/1_atk_6.png"));
+            attack9 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/AtkNormal/1_atk_6.png"));
+            attack10 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/AtkNormal/1_atk_7.png"));
 
+
+            specialAttack1 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_1.png"));
+            specialAttack2 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_2.png"));
+            specialAttack3 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_3.png"));
+            specialAttack4 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_4.png"));
+            specialAttack5 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_5.png"));
+            specialAttack6 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_6.png"));
+            specialAttack7 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_7.png"));
+            specialAttack8 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_8.png"));
+            specialAttack9 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_9.png"));
+            specialAttack10 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_10.png"));
+            specialAttack11 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_11.png"));
+            specialAttack12 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_12.png"));
+            specialAttack13 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_13.png"));
+            specialAttack14 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_14.png"));
+            specialAttack15 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_15.png"));
+            specialAttack16 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_16.png"));
+            specialAttack17 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_17.png"));
+            specialAttack18 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_18.png"));
+
+            specialAttack19 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_19.png"));
+            specialAttack20 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_20.png"));
+            specialAttack21 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_21.png"));
+            specialAttack22 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_22.png"));
+            specialAttack23 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_23.png"));
+            specialAttack24 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_24.png"));
+            specialAttack25 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_25.png"));
+            specialAttack26 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_26.png"));
+            specialAttack27 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_27.png"));
+            specialAttack28 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_28.png"));
+            specialAttack29 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_29.png"));
+            specialAttack30 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_30.png"));
+            specialAttack31 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_31.png"));
+            specialAttack32 = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/combate/Especial/sp_atk_32.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

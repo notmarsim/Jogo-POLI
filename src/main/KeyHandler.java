@@ -1,5 +1,7 @@
 package main;
 
+import entity.Entity;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -57,7 +59,7 @@ public class KeyHandler implements KeyListener {
             gp.setGameState(GamePanel.GameState.Menu);
             gp.setCharacterState(GamePanel.CharacterState.Ocioso);
             gp.getPlayer().x = gp.getPlayer().x - gp.tamanhoJanela;
-            if (gp.getDialogues().getDialogueText().contains("Pyroth, Guardião do Fogo, ouça as antigas palavras esquecidas há milênios e agora trazidas à luz. A escuridão que uma vez ameaçou Elemenvera ressurgiu. Nas profundezas das sombras, um ser corrompido, outrora apenas uma lenda, conhecido como Necromancer, desperta com a intenção de devorar a essência dos nossos elementos e mergulhar o mundo em trevas eternas. Sua missão é restaurar a paz em cada reino de Elemenvera, agora sob ataque dos monstros criados por Necromancer. Comece pelo seu domínio, o Reino do Fogo, e alerte os outros guardiões para que protejam e salvem seus próprios reinos também. Boa sorte, Guardião.")){
+            if (gp.getDialogues().getDialogueText().contains("Pyroth, Guardião do Fogo, ouça as antigas palavras esquecidas há milênios e agora trazidas à luz. A escuridão que uma vez ameaçou Elemenvera ressurgiu. Nas profundezas das sombras, um ser corrompido, outrora apenas uma lenda, conhecido como Necromancer, desperta com a intenção de devorar a essência dos nossos elementos e mergulhar o mundo em trevas eternas. Sua missão é restaurar a paz em cada reino de Elemenvera, agora sob ataque dos monstros criados por Necromancer. Comece pelo seu domínio, o Reino do Fogo, e reúna os outros guardiões para que juntos protejam e salvem o nosso mundo")){
                 gp.setChapter(GamePanel.Capitulos.chapterFogo);
             }
 
@@ -71,6 +73,32 @@ public class KeyHandler implements KeyListener {
                 gp.getPlayer().comprarCura();
             }
         }
+
+        // aquara npc
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Deseja ir para o reino da água? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n")){
+            if(code == KeyEvent.VK_1){
+                //System.out.println("1boss morto?? " + gp.getCombate().bossMorto);
+                gp.getPlayer().irParaReinoAqua();
+                //System.out.println("2boss morto?? " + gp.getCombate().bossMorto);
+            } else if (code == KeyEvent.VK_2) {
+                gp.getDialogues().setDialogueText("Ok");
+            }
+        }
+        // pyroth npc
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Deseja voltar para o reino do fogo? \n" + "1 - Sim\n" + "2 - Não\n")){
+            if(code == KeyEvent.VK_1){
+                gp.getPlayer().irParaReinoFogo();
+            } else if (code == KeyEvent.VK_2) {
+                gp.getDialogues().setDialogueText("Ok");
+            }
+        }
+        // mendigo npc
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("M...Me...D-dá dinheiro por favor...")){
+            if(code == KeyEvent.VK_5){
+                gp.getPlayer().ganharRumLendario();
+            }
+        }
+
 
 
 
