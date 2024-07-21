@@ -11,7 +11,6 @@ public class EntityManager {
     private GamePanel gp;
     private ArrayList<Entity> entities;
     private Player player;
-    private boolean shouldBeRemoved;
 
     // Comparator para ordenar entidades pela coordenada Y
     private Comparator<Entity> ordemRender = new Comparator<Entity>() {
@@ -32,44 +31,47 @@ public class EntityManager {
     public void update() {
         player.update();
 
-
-        for (Entity entity : entities) {
-            entity.update();
-        }
-
-        // Em seguida, remove as entidades que devem ser removidas
-        for (int i = entities.size() - 1; i >= 0; i--) {
-            if (entities.get(i).shouldBeRemoved()) {
-                entities.remove(i);
+        // Sincroniza a iteração sobre a lista de entidades
+        synchronized (entities) {
+            Iterator<Entity> iterator = entities.iterator();
+            while (iterator.hasNext()) {
+                Entity entity = iterator.next();
+                entity.update();
+                if (entity.shouldBeRemoved()) {
+                    iterator.remove();  // Remove de maneira segura usando Iterator
+                }
             }
         }
     }
 
-
-
-
     public void desenhar(Graphics2D g2) {
-
         player.draw(g2);
 
-
-        entities.sort(ordemRender);
-        for (Entity e : entities) {
-            e.draw(g2);
+        // Sincroniza a ordenação e a iteração sobre a lista de entidades
+        synchronized (entities) {
+            entities.sort(ordemRender);
+            for (Entity e : entities) {
+                e.draw(g2);
+            }
         }
     }
 
-
     public void setEntities(ArrayList<Entity> entities) {
-        this.entities = entities;
+        synchronized (this.entities) {
+            this.entities = entities;
+        }
     }
 
     public void addEntity(Entity e) {
-        entities.add(e);
-        entities.sort(ordemRender);
+        synchronized (entities) {
+            entities.add(e);
+            entities.sort(ordemRender);
+        }
     }
 
     public ArrayList<Entity> getEntities() {
-        return entities;
+        synchronized (entities) {
+            return new ArrayList<>(entities); // Retorna uma cópia da lista
+        }
     }
 }

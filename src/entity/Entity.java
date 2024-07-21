@@ -15,7 +15,7 @@ public abstract class Entity {
     public boolean atacando;
     public boolean morrendo;
     public boolean morto;
-
+    public boolean boss;
     public int xpDrop, moedaDrop;
 
     // sprites

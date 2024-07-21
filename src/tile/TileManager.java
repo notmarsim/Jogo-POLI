@@ -90,7 +90,10 @@ public class TileManager {
     }
 
     private void carregarTilesAqua(){
-        addTile(GamePanel.Capitulos.chapterAqua, 1, "/tiles/PrologoTiles/pisoMadeira.png", false);
+        addTile(GamePanel.Capitulos.chapterAqua, 1, "/tiles/GeloTiles/caminho.png", false);
+        //addTile(GamePanel.Capitulos.chapterAqua, 4, "/tiles/GeloTiles/snow.png", false);
+        addTile(GamePanel.Capitulos.chapterAqua, 2, "/tiles/GeloTiles/agua.png", true);
+        addTile(GamePanel.Capitulos.chapterAqua, 3, "/tiles/GeloTiles/snow.png", false);
     }
 
     private void addTile(GamePanel.Capitulos chapter, int id, String imagePath, boolean isSolid) {

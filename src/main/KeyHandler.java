@@ -63,8 +63,8 @@ public class KeyHandler implements KeyListener {
 
         }
         if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Deseja comprar algo? \n" +
-                "1 - Poção de Força\n" +
-                "2 - Poção de Cura\n")){
+                "1 - Poção de Força  (G 40)\n" +
+                "2 - Poção de Cura (G 60)\n")){
             if(code == KeyEvent.VK_1){
                 gp.getPlayer().comprarPocaoForca();
             } else if (code == KeyEvent.VK_2) {
