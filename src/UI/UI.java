@@ -95,7 +95,7 @@ public class UI {
             case chapterEarth:
                 drawTerra();
                 break;
-            case chapterAir:
+            case chapterAr:
                 drawAr();
                 break;
         }
@@ -128,7 +128,7 @@ public class UI {
                     System.out.println("Atualizando Terra");
                     updateTerra(elapsedTime);
                     break;
-                case chapterAir:
+                case chapterAr:
                     System.out.println("Atualizando Ar");
                     updateAr(elapsedTime);
                     break;
@@ -319,7 +319,7 @@ public class UI {
                 terraOpacity = 0;
                 fadingOutTerra = false;
                 break;
-            case chapterAir:
+            case chapterAr:
                 arOpacity = 0;
                 fadingOutAr = false;
                 break;
@@ -644,7 +644,7 @@ public class UI {
             missao = "Missão: Limpe a fonte da vila.";
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterEarth) {
             missao = "Missão: Construa a defesa da vila.";
-        } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAir) {
+        } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAr) {
             missao = "Missão: Investigue o templo do vento.";
         }
 

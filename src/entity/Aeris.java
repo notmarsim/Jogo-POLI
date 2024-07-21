@@ -11,7 +11,11 @@ public class Aeris extends Player {
     public Aeris(GamePanel gp, KeyHandler keyH) {
         super(gp, keyH);
         loadSprites();
-        speed = 6;
+        speed = 10;
+        bounds.y = -40;
+        bounds.x = -30;
+        bounds.width = 50;
+        bounds.height = 80;
     }
 
 
@@ -24,16 +28,16 @@ public class Aeris extends Player {
             idle5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_5.png"));
             idle6 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_6.png"));
             idle7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_7.png"));
-            idle8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_1.png"));
+            idle8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_8.png"));
 
-            idleback = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_1back.png"));
-            idle2back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_2back.png"));
-            idle3back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_3back.png"));
-            idle4back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_4back.png"));
-            idle5back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_5back.png"));
-            idle6back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_6back.png"));
-            idle7back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_7back.png"));
-            idle8back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_8back.png"));
+            idleback = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_back1.png"));
+            idle2back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_back2.png"));
+            idle3back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_back3.png"));
+            idle4back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_back4.png"));
+            idle5back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_back5.png"));
+            idle6back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_back6.png"));
+            idle7back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_back7.png"));
+            idle8back = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/idle/idle_back8.png"));
 
             run = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_1.png"));
             run2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_2.png"));
@@ -44,16 +48,58 @@ public class Aeris extends Player {
             run7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_7.png"));
             run8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_8.png"));
 
-            runcostas = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_1back.png"));
-            runcostas2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_2back.png"));
-            runcostas3 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_3back.png"));
-            runcostas4 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_4back.png"));
-            runcostas5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_5back.png"));
-            runcostas6 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_6back.png"));
-            runcostas7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_7back.png"));
-            runcostas8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_8back.png"));
+            runcostas = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_back1.png"));
+            runcostas2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_back2.png"));
+            runcostas3 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_back3.png"));
+            runcostas4 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_back4.png"));
+            runcostas5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_back5.png"));
+            runcostas6 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_back6.png"));
+            runcostas7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_back7.png"));
+            runcostas8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/run/run_back8.png"));
+
+            attack1 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/AtkNormal/1_atk_1.png"));
+            attack2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/AtkNormal/1_atk_2.png"));
+            attack3 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/AtkNormal/1_atk_3.png"));
+            attack4 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/AtkNormal/1_atk_4.png"));
+            attack5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/AtkNormal/1_atk_5.png"));
+            attack6 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/AtkNormal/1_atk_6.png"));
+            attack7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/AtkNormal/1_atk_7.png"));
+            attack8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/AtkNormal/1_atk_7.png"));
+            attack9 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/AtkNormal/1_atk_8.png"));
+            attack10 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/AtkNormal/1_atk_8.png"));
 
 
+            specialAttack1 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_1.png"));
+            specialAttack2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_2.png"));
+            specialAttack3 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_3.png"));
+            specialAttack4 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_4.png"));
+            specialAttack5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_5.png"));
+            specialAttack6 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_6.png"));
+            specialAttack7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_7.png"));
+            specialAttack8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_8.png"));
+            specialAttack9 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_9.png"));
+            specialAttack10 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_10.png"));
+            specialAttack11 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_11.png"));
+            specialAttack12 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_12.png"));
+            specialAttack13 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_13.png"));
+            specialAttack14 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_14.png"));
+            specialAttack15 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_15.png"));
+            specialAttack16 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_16.png"));
+            specialAttack17 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_17.png"));
+            specialAttack18 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_18.png"));
+
+            specialAttack19 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_19.png"));
+            specialAttack20 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_20.png"));
+            specialAttack21 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_21.png"));
+            specialAttack22 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_22.png"));
+            specialAttack23 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_23.png"));
+            specialAttack24 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_24.png"));
+            specialAttack25 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_25.png"));
+            specialAttack26 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_26.png"));
+            specialAttack27 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_27.png"));
+            specialAttack28 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_28.png"));
+            specialAttack29 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_29.png"));
+            specialAttack30 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_30.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

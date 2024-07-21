@@ -3,7 +3,7 @@ package tile;
 import main.GamePanel;
 
 public class TileManager {
-    private static final int MAX_CAPITULOS = 3; // Número máximo de capítulos, ajuste conforme necessário
+    private static final int MAX_CAPITULOS = 6; // Número máximo de capítulos, ajuste conforme necessário
     private static final int MAX_TILES = 256;  // Número máximo de tiles por capítulo
     private static Tile[][] tiles = new Tile[MAX_CAPITULOS][MAX_TILES];
     private GamePanel gp;
@@ -19,6 +19,8 @@ public class TileManager {
             carregarTilesChapterFogo();
         } else if(capitulo.equals(GamePanel.Capitulos.chapterAqua)){
             carregarTilesAqua();
+        }else if(capitulo.equals(GamePanel.Capitulos.chapterAr)){
+            carregarTilesAr();
         }
     }
 
@@ -94,6 +96,44 @@ public class TileManager {
         //addTile(GamePanel.Capitulos.chapterAqua, 4, "/tiles/GeloTiles/snow.png", false);
         addTile(GamePanel.Capitulos.chapterAqua, 2, "/tiles/GeloTiles/agua.png", true);
         addTile(GamePanel.Capitulos.chapterAqua, 3, "/tiles/GeloTiles/snow.png", false);
+    }
+
+    private void carregarTilesAr(){
+        addTile(GamePanel.Capitulos.chapterAr, 3, "/tiles/ArTiles/tile002.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 17, "/tiles/ArTiles/tile016.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 22, "/tiles/ArTiles/tile021.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 29, "/tiles/ArTiles/tile028.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 30, "/tiles/ArTiles/tile029.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 44, "/tiles/ArTiles/tile043.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 46, "/tiles/ArTiles/tile045.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 48, "/tiles/ArTiles/tile047.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 50, "/tiles/ArTiles/tile049.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 51, "/tiles/ArTiles/tile050.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 54, "/tiles/ArTiles/tile053.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 60, "/tiles/ArTiles/tile059.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 62, "/tiles/ArTiles/tile061.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 71, "/tiles/ArTiles/tile070.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 72, "/tiles/ArTiles/tile071.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 73, "/tiles/ArTiles/tile072.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 85, "/tiles/ArTiles/tile084.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 86, "/tiles/ArTiles/tile085.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 87, "/tiles/ArTiles/tile086.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 99, "/tiles/ArTiles/tile098.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 101, "/tiles/ArTiles/tile100.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 103, "/tiles/ArTiles/tile102.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 110, "/tiles/ArTiles/tile109.png", false);
+        addTile(GamePanel.Capitulos.chapterAr, 113, "/tiles/ArTiles/tile112.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 115, "/tiles/ArTiles/tile114.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 117, "/tiles/ArTiles/tile116.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 138, "/tiles/ArTiles/tile137.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 139, "/tiles/ArTiles/tile138.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 140, "/tiles/ArTiles/tile139.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 152, "/tiles/ArTiles/tile151.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 153, "/tiles/ArTiles/tile152.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 154, "/tiles/ArTiles/tile153.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 166, "/tiles/ArTiles/tile165.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 167, "/tiles/ArTiles/tile166.png", true);
+        addTile(GamePanel.Capitulos.chapterAr, 168, "/tiles/ArTiles/tile167.png", true);
     }
 
     private void addTile(GamePanel.Capitulos chapter, int id, String imagePath, boolean isSolid) {
