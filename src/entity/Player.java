@@ -32,7 +32,7 @@ public class Player extends Entity {
           setDefaultValues();
           bounds = new Rectangle();
           direcao = "frente";
-
+          System.out.println("instancia criada");
 
      }
 
