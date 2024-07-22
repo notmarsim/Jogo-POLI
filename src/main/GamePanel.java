@@ -19,6 +19,10 @@ public class GamePanel extends JPanel implements Runnable {
     private ChapterAqua chapterAqua;
     private ChapterAr chapterAr;
     private ChapterVoid chapterVoid;
+    private Pyroth pyroth;
+    private Aquara aquara;
+    private Aeris aeris;
+    private Terranis terranis;
     private UI ui;
     KeyHandler keyH = new KeyHandler(this);
     Player player = new Player(this, keyH);
@@ -128,6 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
         return player;
     }
 
+
     public UI getUi() {
         return ui;
     }
@@ -135,6 +140,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setPlayer(Player player){
         this.player = player;
     }
+
 
     public void setChapter(Capitulos chapter) {
         this.currentCapitulo = chapter;
@@ -149,35 +155,53 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             case chapterFogo:
                 if (chapterFogo == null) {
-                    Pyroth pyroth = new Pyroth(this,keyH);
+                    if(pyroth == null){
+                        pyroth = new Pyroth(this,keyH);
+                    }
                     setPlayer(pyroth);
-                    pyroth.x = tamanhoJanela*2;
-                    pyroth.y = tamanhoJanela*18;
+                    pyroth.x = tamanhoJanela * 2;
+                    pyroth.y = tamanhoJanela * 18;
                     chapterFogo = new ChapterFogo(this, keyH);
+                } else {
+                    setPlayer(pyroth);
                 }
                 this.currentMap = chapterFogo.getMap();
                 break;
             case chapterAqua:
-                setPlayer(new Aquara(this,keyH));
                 if (chapterAqua == null) {
+                    if(aquara == null){
+                        aquara = new Aquara(this,keyH);
+                    }
+                    setPlayer(aquara);
                     chapterAqua = new ChapterAqua(this, keyH);
+                } else {
+                    setPlayer(aquara);
                 }
                 this.currentMap = chapterAqua.getMap();
                 break;
             case chapterAr:
                 if (chapterAr == null) {
-                    setPlayer(new Aeris(this,keyH));
+                    if(aeris == null){
+                        aeris = new Aeris(this,keyH);
+                    }
+                    setPlayer(aeris);
                     chapterAr = new ChapterAr(this, keyH);
+                } else {
+                    setPlayer(aeris);
                 }
                 this.currentMap = chapterAr.getMap();
                 break;
             case chapterEarth:
-                Terranis terranis = new Terranis(this,keyH);
-                setPlayer(terranis);
-                terranis.x = tamanhoJanela*25;
-                terranis.y = tamanhoJanela*2;
                 if (chapterTerra == null) {
+                    if(terranis == null){
+                        terranis = new Terranis(this,keyH);
+                    }
+                    setPlayer(terranis);
+                    terranis.x = tamanhoJanela * 25;
+                    terranis.y = tamanhoJanela * 2;
                     chapterTerra = new ChapterTerra(this, keyH);
+                } else {
+                    setPlayer(terranis);
                 }
                 this.currentMap = chapterTerra.getMap();
                 break;
@@ -189,6 +213,7 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
         }
     }
+
 
     public Maps getCurrentMap() {
         return currentMap;
