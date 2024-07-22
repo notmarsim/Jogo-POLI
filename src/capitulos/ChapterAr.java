@@ -22,7 +22,7 @@ public class ChapterAr {
         this.aeris = new Aeris(gp, keyHandler);
         entityManager = new EntityManager(gp ,gp.getPlayer());
         entityManager.addEntity(aeris);
-        entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
+        entityManager.addEntity(new Guerreiro(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
     }
 
 
