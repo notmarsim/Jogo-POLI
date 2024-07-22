@@ -106,7 +106,7 @@ public class Combate {
             }
             System.out.println("player:" + player.getVida() + "inimigo: " + inimigo.getVida());
             if(inimigo.morto){
-                gp.getUi().addMensagem("Você matou o "+inimigo.getClass().getSimpleName());
+                gp.getUi().addMensagem("Você matou o "+inimigo.getClass().getSimpleName()+ " !");
                 gp.setCharacterState(GamePanel.CharacterState.Ocioso);
                 gp.getPlayer().ganharXp(inimigo.xpDrop);
 

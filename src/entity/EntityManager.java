@@ -26,10 +26,10 @@ public class EntityManager {
         this.gp = gp;
         this.player = player;
         entities = new ArrayList<>();
+        addEntity(player);
     }
 
     public void update() {
-        player.update();
 
         // Sincroniza a iteração sobre a lista de entidades
         synchronized (entities) {
@@ -45,7 +45,7 @@ public class EntityManager {
     }
 
     public void desenhar(Graphics2D g2) {
-        player.draw(g2);
+
 
         // Sincroniza a ordenação e a iteração sobre a lista de entidades
         synchronized (entities) {

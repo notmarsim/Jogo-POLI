@@ -19,12 +19,8 @@ public class ChapterTerra {
         this.gp = gp;
         this.ui = gp.getUi();
         this.mapaTerra = new Maps(gp, "res/maps/mapaTerra.txt", GamePanel.Capitulos.chapterEarth);
-        this.terranis = new Terranis(gp, keyHandler);
         entityManager = new EntityManager(gp ,gp.getPlayer());
-        entityManager.addEntity(terranis);
         inicializarArvores();
-        terranis.x = gp.tamanhoJanela*25;
-        terranis.y = gp.tamanhoJanela*2;
         inicializarConstruções();
         inicializarMonstros();
         inicializarNPCs();
@@ -33,7 +29,7 @@ public class ChapterTerra {
 
     public void inicializarConstruções(){
         entityManager.addEntity(new Lojinha(gp, gp.tamanhoJanela*40, gp.tamanhoJanela*3 ));
-        entityManager.addEntity(new EntradaDungeon(gp, gp.tamanhoJanela*7, gp.tamanhoJanela));
+        entityManager.addEntity(new EntradaDungeon(gp, gp.tamanhoJanela*8, gp.tamanhoJanela));
         entityManager.addEntity(new GrandeRochas(gp, gp.tamanhoJanela*2, gp.tamanhoJanela));
         entityManager.addEntity(new GrandeRochas(gp, gp.tamanhoJanela, gp.tamanhoJanela*4));
     }

@@ -19,9 +19,7 @@ public class ChapterAqua {
         this.gp = gp;
         this.ui = gp.getUi();
         this.mapaAqua = new Maps(gp, "res/maps/mapaAqua.txt", GamePanel.Capitulos.chapterAqua);
-        this.aquara = new Aquara(gp, keyHandler);
         entityManager = new EntityManager(gp ,gp.getPlayer());
-        entityManager.addEntity(aquara);
         entityManager.addEntity(new Mercante(gp,gp.tamanhoJanela*5,gp.tamanhoJanela*15));
         entityManager.addEntity(new GolemGelo(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*35));
         entityManager.addEntity(new PyrothNPC(gp, gp.tamanhoJanela*15, gp.tamanhoJanela*16));

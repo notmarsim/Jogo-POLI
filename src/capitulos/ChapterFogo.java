@@ -23,28 +23,36 @@ public class ChapterFogo {
         this.gp = gp;
         this.ui = gp.getUi();
         this.mapaFogo = new Maps(gp, "res/maps/mapaFogo.txt", GamePanel.Capitulos.chapterFogo);
-        this.pyroth = new Pyroth(gp, keyHandler);
         entityManager = new EntityManager(gp ,gp.getPlayer());
-        entityManager.addEntity(pyroth);
+        inicializarTochas();
+        initializeTreeMarkers();
+        NPCs();
+        inicializarInimigos();
+        entityManager.addEntity(new CasaVermelha(gp,gp.tamanhoJanela*9,gp.tamanhoJanela*15));
+        entityManager.addEntity(new CasaVermelha(gp,gp.tamanhoJanela*18,gp.tamanhoJanela*15));
+        //entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*20, gp.tamanhoJanela*10));
+//        pyroth.x = gp.tamanhoJanela*2;
+//        pyroth.y = gp.tamanhoJanela*18;
+    }
+
+
+
+    private void NPCs(){
+        entityManager.addEntity(new Mercante(gp,gp.tamanhoJanela*5,gp.tamanhoJanela*15));
         entityManager.addEntity(new NPC_Fogo(gp, gp.tamanhoJanela*13, gp.tamanhoJanela*16));
         entityManager.addEntity(new AquaraNPC(gp, gp.tamanhoJanela*15, gp.tamanhoJanela*16));
         entityManager.addEntity(new Mendigo(gp, gp.tamanhoJanela*2, gp.tamanhoJanela*9));
         entityManager.addEntity(new Aldeao(gp, gp.tamanhoJanela*22, gp.tamanhoJanela*15));
-        inicializarTochas();
-        initializeTreeMarkers();
-        entityManager.addEntity(new Mercante(gp,gp.tamanhoJanela*5,gp.tamanhoJanela*15));
+    }
+
+
+    private void inicializarInimigos(){
         entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*33, gp.tamanhoJanela*4));
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*36, gp.tamanhoJanela*5));
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*34, gp.tamanhoJanela*8));
         entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*36, gp.tamanhoJanela*10));
-        entityManager.addEntity(new CasaVermelha(gp,gp.tamanhoJanela*9,gp.tamanhoJanela*15));
-        entityManager.addEntity(new CasaVermelha(gp,gp.tamanhoJanela*18,gp.tamanhoJanela*15));
-        //entityManager.addEntity(new DemonPequeno(gp, gp.tamanhoJanela*20, gp.tamanhoJanela*10));
-        pyroth.x = gp.tamanhoJanela*2;
-        pyroth.y = gp.tamanhoJanela*18;
     }
-
 
     private void inicializarTochas() {
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*22,gp.tamanhoJanela*22));

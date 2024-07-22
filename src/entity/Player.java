@@ -51,7 +51,6 @@ public class Player extends Entity {
 
      public void alinharPersonagensCombate(Entity entity){
           if (entity instanceof Demonio){
-               System.out.println("alinhou");
                y = entity.y + gp.tamanhoJanela * 33 / 10;
                x = entity.x + gp.tamanhoJanela * 12 / 10;
           }else if (entity instanceof GolemGelo){
@@ -211,7 +210,7 @@ public class Player extends Entity {
 
      public void subirDeLevel(){
           if (gp.getPlayer().xp >= gp.getPlayer().xpMax) {
-               gp.getUi().addMensagem("Você aumentou o nível! C para abrir perfil");
+               gp.getUi().addMensagem("Você aumentou o nível! Pressione P para abrir o perfil");
                gp.getPlayer().level += 1;
                gp.getPlayer().xp -= gp.getPlayer().xpMax;
                vidaMaxima += level*2;
