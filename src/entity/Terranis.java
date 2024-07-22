@@ -11,7 +11,7 @@ public class Terranis extends Player{
     public Terranis(GamePanel gp, KeyHandler keyH) {
         super(gp, keyH);
         loadSprites();
-        speed = 16;
+        speed = 8;
         bounds.y = -40;
         bounds.x = -30;
         bounds.width = 50;

@@ -73,13 +73,19 @@ public class KeyHandler implements KeyListener {
                 gp.getPlayer().comprarCura();
             }
         }
+        // ar npc
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Vamos para o reino da ar? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n")){
+            if(code == KeyEvent.VK_1){
+                gp.getPlayer().irParaReinoAr();
+            } else if (code == KeyEvent.VK_2) {
+                gp.getDialogues().setDialogueText("Ok");
+            }
+        }
 
         // aquara npc
         if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Vamos para o reino da água? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n")){
             if(code == KeyEvent.VK_1){
-                //System.out.println("1boss morto?? " + gp.getCombate().bossMorto);
                 gp.getPlayer().irParaReinoAqua();
-                //System.out.println("2boss morto?? " + gp.getCombate().bossMorto);
             } else if (code == KeyEvent.VK_2) {
                 gp.getDialogues().setDialogueText("Ok");
             }
@@ -87,6 +93,7 @@ public class KeyHandler implements KeyListener {
         // pyroth npc
         if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Deseja voltar para o reino do fogo? \n" + "1 - Sim\n" + "2 - Não\n")){
             if(code == KeyEvent.VK_1){
+
                 gp.getPlayer().irParaReinoFogo();
             } else if (code == KeyEvent.VK_2) {
                 gp.getDialogues().setDialogueText("Ok");
@@ -178,9 +185,6 @@ public class KeyHandler implements KeyListener {
             gp.setChapter(GamePanel.Capitulos.chapterVoid);
         }
 
-        if((code==KeyEvent.VK_N)){
-            gp.setChapter(GamePanel.Capitulos.chapterAqua);
-        }
 
 
         //COMBATE

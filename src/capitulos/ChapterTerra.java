@@ -40,11 +40,15 @@ public class ChapterTerra {
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*37, gp.tamanhoJanela*10));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*19, gp.tamanhoJanela*11));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*14, gp.tamanhoJanela*12));
+
     }
 
     public void addEstatua(){
         entityManager.addEntity(new Estatua(gp,gp.tamanhoJanela*21,gp.tamanhoJanela*15));
+        entityManager.addEntity(new Estatua(gp,gp.tamanhoJanela*21,gp.tamanhoJanela*25));
         entityManager.addEntity(new Estatua(gp,gp.tamanhoJanela*29,gp.tamanhoJanela*15));
+        entityManager.addEntity(new Estatua(gp,gp.tamanhoJanela*29,gp.tamanhoJanela*25));
+
     }
 
 
@@ -61,12 +65,9 @@ public class ChapterTerra {
 
     public void draw(Graphics2D g2) {
         ui.draw(g2);
-        mapaTerra.draw(g2);
-        entityManager.desenhar(g2);
-        //if (ui.isAguaDesaparecido()) {
-
-
-        //}
+        if (ui.isTerraDesaparecido()) {
+            mapaTerra.draw(g2);
+            entityManager.desenhar(g2);
+        }
     }
-
 }

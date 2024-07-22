@@ -39,13 +39,10 @@ public class ChapterAr {
 
     public void draw(Graphics2D g2) {
         ui.draw(g2);
-        mapaAr.draw(g2);
-        entityManager.desenhar(g2);
-//        if (ui.isAguaDesaparecido()) {
-//
-//
-//
-//        }
+       if (ui.isArDesaparecido()) {
+           mapaAr.draw(g2);
+           entityManager.desenhar(g2);
+        }
     }
 
 }
