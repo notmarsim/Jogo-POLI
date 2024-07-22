@@ -7,25 +7,25 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Lojinha extends Entity{
+public class Iglu extends Entity{
     private GamePanel gp;
     private int startX;
     private int startY;
-    public Lojinha(GamePanel gp, int startX, int startY) {
+    public Iglu(GamePanel gp, int startX, int startY) {
         super(gp);
         this.gp = gp;
         this.x = startX;
         this.y = startY;
         loadSprites();
         bounds = new Rectangle();
-        bounds.x = -80;
-        bounds.y = -80;
+        bounds.x = -140;
+        bounds.y = -190;
         bounds.width = 180;
         bounds.height = 180;
     }
     private void loadSprites() {
         try {
-            image1 = ImageIO.read(getClass().getResourceAsStream("/objetos/lojinha.png"));
+            image1 = ImageIO.read(getClass().getResourceAsStream("/objetos/iglu.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

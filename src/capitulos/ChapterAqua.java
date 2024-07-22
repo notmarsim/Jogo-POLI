@@ -20,11 +20,21 @@ public class ChapterAqua {
         this.ui = gp.getUi();
         this.mapaAqua = new Maps(gp, "res/maps/mapaAqua.txt", GamePanel.Capitulos.chapterAqua);
         entityManager = new EntityManager(gp ,gp.getPlayer());
+        inicializarConstrucoes();
+        inicializarNPCs();
+    }
+
+    private void inicializarNPCs(){
         entityManager.addEntity(new Mercante(gp,gp.tamanhoJanela*5,gp.tamanhoJanela*15));
         entityManager.addEntity(new GolemGelo(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*35));
         entityManager.addEntity(new PyrothNPC(gp, gp.tamanhoJanela*15, gp.tamanhoJanela*16));
         entityManager.addEntity(new TerranisNPC(gp, gp.tamanhoJanela*13, gp.tamanhoJanela*16));
+    }
 
+    private void inicializarConstrucoes(){
+        entityManager.addEntity(new Iglu(gp,gp.tamanhoJanela*2,gp.tamanhoJanela*3));
+        entityManager.addEntity(new Iglu(gp,gp.tamanhoJanela*8,gp.tamanhoJanela*3));
+        entityManager.addEntity(new Bonfire(gp, gp.tamanhoJanela*5, gp.tamanhoJanela*5 ));
     }
 
 
