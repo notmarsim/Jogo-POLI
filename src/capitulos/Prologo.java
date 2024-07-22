@@ -19,8 +19,6 @@ public class Prologo {
     public Prologo(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
         entityManager = new EntityManager(gamePanel, gamePanel.getPlayer());
-        this.pyroth = new Pyroth(gamePanel, keyHandler);
-        entityManager.addEntity(pyroth);
         entityManager.addEntity(new Elder(gamePanel, gamePanel.tamanhoJanela * 14, gamePanel.tamanhoJanela * 8));
         this.ui = gamePanel.getUi();
         this.mapaPrologo = new Maps(gamePanel, "res/maps/mapaPrologo.txt", GamePanel.Capitulos.Prologo);

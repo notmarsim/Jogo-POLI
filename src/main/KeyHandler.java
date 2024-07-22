@@ -118,7 +118,7 @@ public class KeyHandler implements KeyListener {
 
 
         // Profile
-        if (code == KeyEvent.VK_C && gp.getGameState() == GamePanel.GameState.Jogando && gp.getCharacterState() != GamePanel.CharacterState.Combate) {
+        if (code == KeyEvent.VK_P && gp.getGameState() == GamePanel.GameState.Jogando && gp.getCharacterState() != GamePanel.CharacterState.Combate) {
 
             if (gp.getCharacterState() != GamePanel.CharacterState.Profile) {
                 gp.setCharacterState(GamePanel.CharacterState.Profile);
@@ -167,7 +167,7 @@ public class KeyHandler implements KeyListener {
             gp.getEntityManager().getEntities().clear();
             gp.setChapter(GamePanel.Capitulos.chapterFogo);
         }
-        if(code == KeyEvent.VK_P) {
+        if(code == KeyEvent.VK_B) {
             gp.setChapter(GamePanel.Capitulos.Prologo);
         }
 

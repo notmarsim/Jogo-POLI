@@ -2,10 +2,8 @@ package main;
 
 import Objetos.SuperObject;
 import capitulos.*;
-import entity.Combate;
+import entity.*;
 import UI.Dialogues;
-import entity.EntityManager;
-import entity.Player;
 import gfx.Camera;
 import mapas.Maps;
 
@@ -126,11 +124,16 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public Player getPlayer() {
+        System.out.println(player);
         return player;
     }
 
     public UI getUi() {
         return ui;
+    }
+
+    public void setPlayer(Player player){
+        this.player = player;
     }
 
     public void setChapter(Capitulos chapter) {
@@ -139,17 +142,23 @@ public class GamePanel extends JPanel implements Runnable {
         switch (chapter) {
             case Prologo:
                 if (prologo == null) {
+                    setPlayer(new Pyroth(this,keyH));
                     prologo = new Prologo(this, keyH);
                 }
                 this.currentMap = prologo.getMap();
                 break;
             case chapterFogo:
                 if (chapterFogo == null) {
+                    Pyroth pyroth = new Pyroth(this,keyH);
+                    setPlayer(pyroth);
+                    pyroth.x = tamanhoJanela*2;
+                    pyroth.y = tamanhoJanela*18;
                     chapterFogo = new ChapterFogo(this, keyH);
                 }
                 this.currentMap = chapterFogo.getMap();
                 break;
             case chapterAqua:
+                setPlayer(new Aquara(this,keyH));
                 if (chapterAqua == null) {
                     chapterAqua = new ChapterAqua(this, keyH);
                 }
@@ -162,6 +171,10 @@ public class GamePanel extends JPanel implements Runnable {
                 this.currentMap = chapterAr.getMap();
                 break;
             case chapterEarth:
+                Terranis terranis = new Terranis(this,keyH);
+                setPlayer(terranis);
+                terranis.x = tamanhoJanela*25;
+                terranis.y = tamanhoJanela*2;
                 if (chapterTerra == null) {
                     chapterTerra = new ChapterTerra(this, keyH);
                 }
