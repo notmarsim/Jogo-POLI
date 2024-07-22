@@ -116,6 +116,7 @@ public class Player extends Entity {
           if(moeda>=40){
                PocaoForca pocao = new PocaoForca();
                inventario.add(pocao);
+               gp.getUi().addMensagem("Você recebeu uma poção! I para abrir inventário");
                moeda -= 40;
           }
 
@@ -150,6 +151,7 @@ public class Player extends Entity {
           if(moeda>=60){
                PocaoCura pocaoCura = new PocaoCura();
                inventario.add(pocaoCura);
+               gp.getUi().addMensagem("Você recebeu uma poção! I para abrir inventário");
                moeda -= 60;
           }
 
@@ -191,6 +193,7 @@ public class Player extends Entity {
 
      public void subirDeLevel(){
           if (gp.getPlayer().xp >= gp.getPlayer().xpMax) {
+               gp.getUi().addMensagem("Você aumentou o nível! C para abrir perfil");
                gp.getPlayer().level += 1;
                gp.getPlayer().xp -= gp.getPlayer().xpMax;
                vidaMaxima += level*2;
