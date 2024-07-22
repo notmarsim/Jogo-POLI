@@ -23,8 +23,8 @@ public class GamePanel extends JPanel implements Runnable {
     private ChapterVoid chapterVoid;
     private UI ui;
     KeyHandler keyH = new KeyHandler(this);
-    Player player = new Player(this,keyH);
-    EntityManager entityManager = new EntityManager(this,player);
+    Player player = new Player(this, keyH);
+    EntityManager entityManager = new EntityManager(this, player);
     private Combate combate;
     public Dialogues dialogues;
     private Sound sound = new Sound();
@@ -32,7 +32,6 @@ public class GamePanel extends JPanel implements Runnable {
     // combate
     public boolean lutando;
     public boolean defendendo;
-
 
     public enum Capitulos {
         Prologo,
@@ -42,9 +41,6 @@ public class GamePanel extends JPanel implements Runnable {
         chapterEarth,
         chapterVoid
     }
-
-
-
 
     public Capitulos currentCapitulo = Capitulos.Prologo;
 
@@ -111,23 +107,17 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-        dialogues = new Dialogues(this,25);
+        dialogues = new Dialogues(this, 25);
         this.ui = new UI(this, 80);
-        this.prologo = new Prologo(this, keyH);
-        this.chapterFogo = new ChapterFogo(this,keyH);
-        this.chapterAqua = new ChapterAqua(this,keyH);
-        this.chapterAr = new ChapterAr(this,keyH);
-        this.chapterVoid = new ChapterVoid(this,keyH);
-        this.chapterTerra = new ChapterTerra(this,keyH);
         setChapter(Capitulos.Prologo);
-        this.combate = new Combate(this,player.atualEntity);
-
+        this.combate = new Combate(this, player.atualEntity);
     }
-    public Combate getCombate(){
+
+    public Combate getCombate() {
         return combate;
     }
 
-    public Dialogues getDialogues(){
+    public Dialogues getDialogues() {
         return dialogues;
     }
 
@@ -143,31 +133,47 @@ public class GamePanel extends JPanel implements Runnable {
         return ui;
     }
 
-
     public void setChapter(Capitulos chapter) {
         this.currentCapitulo = chapter;
         ui.iniciarCapitulo();
         switch (chapter) {
             case Prologo:
+                if (prologo == null) {
+                    prologo = new Prologo(this, keyH);
+                }
                 this.currentMap = prologo.getMap();
                 break;
             case chapterFogo:
-                //playMusic(1);
+                if (chapterFogo == null) {
+                    chapterFogo = new ChapterFogo(this, keyH);
+                }
                 this.currentMap = chapterFogo.getMap();
                 break;
             case chapterAqua:
+                if (chapterAqua == null) {
+                    chapterAqua = new ChapterAqua(this, keyH);
+                }
                 this.currentMap = chapterAqua.getMap();
                 break;
             case chapterAr:
+                if (chapterAr == null) {
+                    chapterAr = new ChapterAr(this, keyH);
+                }
                 this.currentMap = chapterAr.getMap();
                 break;
             case chapterEarth:
+                if (chapterTerra == null) {
+                    chapterTerra = new ChapterTerra(this, keyH);
+                }
                 this.currentMap = chapterTerra.getMap();
                 break;
             case chapterVoid:
+                if (chapterVoid == null) {
+                    chapterVoid = new ChapterVoid(this, keyH);
+                }
                 this.currentMap = chapterVoid.getMap();
+                break;
         }
-
     }
 
     public Maps getCurrentMap() {
@@ -203,41 +209,78 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
         getPlayer().subirDeLevel();
         System.out.println(gameState);
-        //System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel() + " xp max: " + getPlayer().xpMax);
-        if (currentCapitulo == Capitulos.Prologo) {
-            prologo.up();
-        } else if (currentCapitulo == Capitulos.chapterFogo) {
-            chapterFogo.up();
-        } else if (currentCapitulo == Capitulos.chapterAqua) {
-            chapterAqua.up();
-        } else if (currentCapitulo == Capitulos.chapterAr){
-            chapterAr.up();
-        } else if(currentCapitulo == Capitulos.chapterEarth){
-            chapterTerra.up();
-        } else if (currentCapitulo == Capitulos.chapterVoid){
-            chapterVoid.up();
+        // System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel() + " xp max: " + getPlayer().xpMax);
+
+        switch (currentCapitulo) {
+            case Prologo:
+                if (prologo != null) {
+                    prologo.up();
+                }
+                break;
+            case chapterFogo:
+                if (chapterFogo != null) {
+                    chapterFogo.up();
+                }
+                break;
+            case chapterAqua:
+                if (chapterAqua != null) {
+                    chapterAqua.up();
+                }
+                break;
+            case chapterAr:
+                if (chapterAr != null) {
+                    chapterAr.up();
+                }
+                break;
+            case chapterEarth:
+                if (chapterTerra != null) {
+                    chapterTerra.up();
+                }
+                break;
+            case chapterVoid:
+                if (chapterVoid != null) {
+                    chapterVoid.up();
+                }
+                break;
         }
-
     }
-
 
     // pintar
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if (currentCapitulo == Capitulos.Prologo) {
-            prologo.draw(g2);
-        }else if (currentCapitulo == Capitulos.chapterFogo) {
-            chapterFogo.draw(g2);
-        } else if (currentCapitulo == Capitulos.chapterAqua) {
-            chapterAqua.draw(g2);
-        } else if(currentCapitulo == Capitulos.chapterAr){
-            chapterAr.draw(g2);
-        }  else if(currentCapitulo == Capitulos.chapterEarth){
-            chapterTerra.draw(g2);
-        } else if (currentCapitulo == Capitulos.chapterVoid){
-            chapterVoid.draw(g2);
+        switch (currentCapitulo) {
+            case Prologo:
+                if (prologo != null) {
+                    prologo.draw(g2);
+                }
+                break;
+            case chapterFogo:
+                if (chapterFogo != null) {
+                    chapterFogo.draw(g2);
+                }
+                break;
+            case chapterAqua:
+                if (chapterAqua != null) {
+                    chapterAqua.draw(g2);
+                }
+                break;
+            case chapterAr:
+                if (chapterAr != null) {
+                    chapterAr.draw(g2);
+                }
+                break;
+            case chapterEarth:
+                if (chapterTerra != null) {
+                    chapterTerra.draw(g2);
+                }
+                break;
+            case chapterVoid:
+                if (chapterVoid != null) {
+                    chapterVoid.draw(g2);
+                }
+                break;
         }
 
         if (gameState == GameState.Jogando) {
@@ -251,15 +294,15 @@ public class GamePanel extends JPanel implements Runnable {
                 dialogues.drawDialogueScreen(g2);
             } else if (characterState == CharacterState.Combate) {
                 ui.draw(g2);
-            }else if (characterState == characterState.Profile){
+            } else if (characterState == CharacterState.Profile) {
                 ui.draw(g2);
             }
         }
         g2.dispose();
     }
 
-    public void setAcao(int acao){
-        if(acao == 0){
+    public void setAcao(int acao) {
+        if (acao == 0) {
             getCombate().golpeSimples = true;
         } else if (acao == 1) {
             getCombate().golpeEspecial = true;
