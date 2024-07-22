@@ -2,20 +2,26 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-
+import tile.Tile;
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 public class Aeris extends Player {
-
+    private Random rand = new Random();
+    private KeyHandler keyH;
     public Aeris(GamePanel gp, KeyHandler keyH) {
         super(gp, keyH);
+        this.keyH = keyH;
         loadSprites();
         speed = 10;
         bounds.y = -40;
         bounds.x = -30;
         bounds.width = 50;
         bounds.height = 80;
+
     }
 
 
@@ -101,9 +107,11 @@ public class Aeris extends Player {
             specialAttack29 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_29.png"));
             specialAttack30 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_30.png"));
 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }
 

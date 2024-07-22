@@ -145,7 +145,7 @@ public class TileManager {
     public void carregarTilesVoid(){
         addTile(GamePanel.Capitulos.chapterVoid,1,"/tiles/PrologoTiles/pisoTijoloPedra.png", true);
         addTile(GamePanel.Capitulos.chapterVoid,2,"/tiles/VoidTiles/tile1.png", false);
-        addTile(GamePanel.Capitulos.chapterVoid,3,"/tiles/VoidTiles/tile2.png", true);
+        addTile(GamePanel.Capitulos.chapterVoid,3,"/tiles/VoidTiles/tile2.png", false);
     }
 
     public void carregarTilesTerra(){

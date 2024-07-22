@@ -31,6 +31,7 @@ public class ChapterVoid  {
         entityManager = new EntityManager(gp ,gp.getPlayer());
         entityManager.addEntity(aeris);
         entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
+        entityManager.addEntity(new FinalBoss(gp, gp.tamanhoJanela*12, gp.tamanhoJanela*14));
     }
     public Maps getMap() {
         return mapaVoid;

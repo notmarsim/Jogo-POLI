@@ -6,7 +6,7 @@ import Objetos.SuperObject;
 import main.GamePanel;
 import main.KeyHandler;
 import tile.Tile;
-
+import java.util.Random;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -20,11 +20,11 @@ public class Player extends Entity {
      public Entity atualEntity;
      public int mana,manaMax;
      public int xpMax;
-     private boolean isSpecialAttack = false;
+     protected boolean isSpecialAttack = false;
      public int specialAttackSpriteCounter = 0;
      public int specialAttackSpriteNum = 1;
      public int moeda,dano;
-
+     private Random rand = new Random();
 
      public Player(GamePanel gp, KeyHandler keyH) {
           super(gp);
@@ -57,6 +57,9 @@ public class Player extends Entity {
           }else if (entity instanceof GolemGelo){
                y = entity.y + gp.tamanhoJanela * 24 / 10;
                x = entity.x + gp.tamanhoJanela * 12 / 10;
+          }else if (entity instanceof FinalBoss){
+               y = entity.y + gp.tamanhoJanela * 50 / 10;
+               x = entity.x + gp.tamanhoJanela * 30 / 10;
           }
      }
 
@@ -76,7 +79,7 @@ public class Player extends Entity {
           gp.setCharacterState(GamePanel.CharacterState.Dialogo);
      }
 
-     private void handleCollision(Entity entity) {
+     protected void handleCollision(Entity entity) {
           int entityType = entity.tipo();
           boolean jaDialogou = false;
           switch (entityType) {
@@ -241,10 +244,17 @@ public class Player extends Entity {
           dano = dano + aumento;
      }
 
+
+     public void variacaoAtaque() {
+          atacando = true;
+          variacaoDeAtaque = 1 + rand.nextInt(2);
+     }
+
+
      @Override
      public void update() {
           Entity collidedEntity = null;
-        //  System.out.println("mana: " + gp.getMana());
+
 
           if (gp.getCharacterState() == GamePanel.CharacterState.Combate  && combate != null) {
                direcao = "frente";
