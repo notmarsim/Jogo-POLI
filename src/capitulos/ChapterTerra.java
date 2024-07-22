@@ -25,13 +25,27 @@ public class ChapterTerra {
         inicializarArvores();
         terranis.x = gp.tamanhoJanela*25;
         terranis.y = gp.tamanhoJanela*2;
-        entityManager.addEntity(new Buda(gp, gp.tamanhoJanela*25, gp.tamanhoJanela*20));
-        entityManager.addEntity(new GolemTerra(gp, gp.tamanhoJanela*22, gp.tamanhoJanela*20)); // BOSS
+        inicializarConstruções();
+        inicializarMonstros();
+        inicializarNPCs();
+        addMonumentos();
+    }
 
+    public void inicializarConstruções(){
+        entityManager.addEntity(new Lojinha(gp, gp.tamanhoJanela*40, gp.tamanhoJanela*3 ));
+        entityManager.addEntity(new EntradaDungeon(gp, gp.tamanhoJanela*7, gp.tamanhoJanela));
+        entityManager.addEntity(new GrandeRochas(gp, gp.tamanhoJanela*2, gp.tamanhoJanela));
+        entityManager.addEntity(new GrandeRochas(gp, gp.tamanhoJanela, gp.tamanhoJanela*4));
+    }
+    public void inicializarNPCs(){
         entityManager.addEntity(new AerisNPC(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*5));
         entityManager.addEntity(new PyrothNPC(gp, gp.tamanhoJanela*18, gp.tamanhoJanela*5));
         entityManager.addEntity(new AquaraNPC(gp, gp.tamanhoJanela*14, gp.tamanhoJanela*5));
-        addEstatua();
+    }
+
+
+    public void inicializarMonstros(){
+        entityManager.addEntity(new GolemTerra(gp, gp.tamanhoJanela*22, gp.tamanhoJanela*20)); // BOSS
     }
 
     public void inicializarArvores(){
@@ -41,15 +55,17 @@ public class ChapterTerra {
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*37, gp.tamanhoJanela*10));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*19, gp.tamanhoJanela*11));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*14, gp.tamanhoJanela*12));
+        entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*5, gp.tamanhoJanela*11));
+        entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*2, gp.tamanhoJanela*14));
 
     }
 
-    public void addEstatua(){
+    public void addMonumentos(){
         entityManager.addEntity(new Estatua(gp,gp.tamanhoJanela*21,gp.tamanhoJanela*15));
-        entityManager.addEntity(new Estatua(gp,gp.tamanhoJanela*21,gp.tamanhoJanela*25));
+        entityManager.addEntity(new Estatua(gp,gp.tamanhoJanela*21,gp.tamanhoJanela*32));
         entityManager.addEntity(new Estatua(gp,gp.tamanhoJanela*29,gp.tamanhoJanela*15));
-        entityManager.addEntity(new Estatua(gp,gp.tamanhoJanela*29,gp.tamanhoJanela*25));
-
+        entityManager.addEntity(new Estatua(gp,gp.tamanhoJanela*29,gp.tamanhoJanela*32));
+        entityManager.addEntity(new Buda(gp, gp.tamanhoJanela*25, gp.tamanhoJanela*20));
     }
 
 

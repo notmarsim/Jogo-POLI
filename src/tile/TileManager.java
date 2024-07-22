@@ -150,7 +150,7 @@ public class TileManager {
 
     public void carregarTilesTerra(){
         addTile(GamePanel.Capitulos.chapterEarth,1,"/tiles/PrologoTiles/pisoTijoloPedra.png", true);
-        addTile(GamePanel.Capitulos.chapterEarth,2,"/tiles/TerraTiles/tile02.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,2,"/tiles/TerraTiles/tile02.png",true);
         addTile(GamePanel.Capitulos.chapterEarth,3,"/tiles/TerraTiles/tile03.png",false);
         addTile(GamePanel.Capitulos.chapterEarth,4,"/tiles/TerraTiles/tile04.png",false);
         addTile(GamePanel.Capitulos.chapterEarth,5,"/tiles/TerraTiles/tile5.png",false);
