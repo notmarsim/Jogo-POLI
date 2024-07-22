@@ -20,6 +20,7 @@ public class GamePanel extends JPanel implements Runnable {
     private ChapterTerra chapterTerra;
     private ChapterAqua chapterAqua;
     private ChapterAr chapterAr;
+    private ChapterVoid chapterVoid;
     private UI ui;
     KeyHandler keyH = new KeyHandler(this);
     Player player = new Player(this,keyH);
@@ -38,7 +39,8 @@ public class GamePanel extends JPanel implements Runnable {
         chapterFogo,
         chapterAqua,
         chapterAr,
-        chapterEarth
+        chapterEarth,
+        chapterVoid
     }
 
 
@@ -115,6 +117,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.chapterFogo = new ChapterFogo(this,keyH);
         this.chapterAqua = new ChapterAqua(this,keyH);
         this.chapterAr = new ChapterAr(this,keyH);
+        this.chapterVoid = new ChapterVoid(this,keyH);
         this.chapterTerra = new ChapterTerra(this,keyH);
         setChapter(Capitulos.Prologo);
         this.combate = new Combate(this,player.atualEntity);
@@ -161,6 +164,8 @@ public class GamePanel extends JPanel implements Runnable {
             case chapterEarth:
                 this.currentMap = chapterTerra.getMap();
                 break;
+            case chapterVoid:
+                this.currentMap = chapterVoid.getMap();
         }
 
     }
@@ -208,6 +213,8 @@ public class GamePanel extends JPanel implements Runnable {
             chapterAr.up();
         } else if(currentCapitulo == Capitulos.chapterEarth){
             chapterTerra.up();
+        } else if (currentCapitulo == Capitulos.chapterVoid){
+            chapterVoid.up();
         }
 
     }
@@ -228,6 +235,8 @@ public class GamePanel extends JPanel implements Runnable {
             chapterAr.draw(g2);
         }  else if(currentCapitulo == Capitulos.chapterEarth){
             chapterTerra.draw(g2);
+        } else if (currentCapitulo == Capitulos.chapterVoid){
+            chapterVoid.draw(g2);
         }
 
         if (gameState == GameState.Jogando) {

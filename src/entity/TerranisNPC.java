@@ -7,28 +7,29 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class PyrothNPC extends Entity {
+public class TerranisNPC extends Entity {
 
-    public PyrothNPC(GamePanel gp, int startX, int startY) {
+    public TerranisNPC(GamePanel gp, int startX, int startY) {
         super(gp);
         this.gp = gp;
         this.x = startX;
         this.y = startY;
         loadSprites();
         bounds = new Rectangle();
-        bounds.y = -40;
-        bounds.x = -30;
-        bounds.width = 50;
-        bounds.height = 80;
+        bounds.x = -45;
+        bounds.y = -70;
+        bounds.width = 80;
+        bounds.height = 100;
     }
 
 
     private void loadSprites() {
         try {
-            image1 = ImageIO.read(getClass().getResourceAsStream("/npcs/pyrothNPC/fire_knight_1.png"));
-            image2 = ImageIO.read(getClass().getResourceAsStream("/npcs/pyrothNPC/fire_knight_2.png"));
-            image3 = ImageIO.read(getClass().getResourceAsStream("/npcs/pyrothNPC/fire_knight_3.png"));
-            image4 = ImageIO.read(getClass().getResourceAsStream("/npcs/pyrothNPC/fire_knight_4.png"));
+            image1 = ImageIO.read(getClass().getResourceAsStream("/npcs/terranisNPC/ground_monk_1.png"));
+            image2 = ImageIO.read(getClass().getResourceAsStream("/npcs/terranisNPC/ground_monk_2.png"));
+            image3 = ImageIO.read(getClass().getResourceAsStream("/npcs/terranisNPC/ground_monk_3.png"));
+            image4 = ImageIO.read(getClass().getResourceAsStream("/npcs/terranisNPC/ground_monk_4.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,7 +71,10 @@ public class PyrothNPC extends Entity {
     }
 
     public String getFala(){
-        return "Deseja voltar para o reino do fogo? \n" + "1 - Sim\n" + "2 - Não\n";
+        return "Vamos para o reino da terra? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n";
+    }
+    public String getResposta(){
+        return "Ok";
     }
 
 }

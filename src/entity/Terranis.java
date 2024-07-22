@@ -11,7 +11,11 @@ public class Terranis extends Player{
     public Terranis(GamePanel gp, KeyHandler keyH) {
         super(gp, keyH);
         loadSprites();
-        speed = 6;
+        speed = 16;
+        bounds.y = -40;
+        bounds.x = -30;
+        bounds.width = 50;
+        bounds.height = 80;
     }
 
 
@@ -55,7 +59,36 @@ public class Terranis extends Player{
             runcostas7 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/run/run_7back.png"));
             runcostas8 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/run/run_8back.png"));
 
+            attack1 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/AtkNormal/2_atk_1.png"));
+            attack2 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/AtkNormal/2_atk_2.png"));
+            attack3 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/AtkNormal/2_atk_3.png"));
+            attack4 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/AtkNormal/2_atk_4.png"));
+            attack5 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/AtkNormal/2_atk_5.png"));
+            attack6 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/AtkNormal/2_atk_6.png"));
+            attack7 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/AtkNormal/2_atk_7.png"));
+            attack8 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/AtkNormal/2_atk_8.png"));
+            attack9 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/AtkNormal/2_atk_9.png"));
+            attack10 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/AtkNormal/2_atk_10.png"));
 
+
+            specialAttack1 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_1.png"));
+            specialAttack2 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_2.png"));
+            specialAttack3 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_3.png"));
+            specialAttack4 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_4.png"));
+            specialAttack5 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_5.png"));
+            specialAttack6 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_6.png"));
+            specialAttack7 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_7.png"));
+            specialAttack8 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_8.png"));
+            specialAttack9 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_9.png"));
+            specialAttack10 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_10.png"));
+            specialAttack11 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_11.png"));
+            specialAttack12 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_12.png"));
+            specialAttack13 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_13.png"));
+            specialAttack14 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_14.png"));
+            specialAttack15 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_15.png"));
+            specialAttack16 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_16.png"));
+            specialAttack17 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_17.png"));
+            specialAttack18 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_18.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -63,8 +63,8 @@ public class Pyroth extends Player {
             attack6 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_6.png"));
             attack7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_7.png"));
             attack8 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_8.png"));
-            attack9 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_1.png"));
-            attack10 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_1.png"));
+            attack9 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_9.png"));
+            attack10 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/AtkNormal/1_atk_10.png"));
 
 
             specialAttack1 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_1.png"));

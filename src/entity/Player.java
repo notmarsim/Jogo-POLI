@@ -134,6 +134,13 @@ public class Player extends Entity {
                System.out.println("boss morto: "+ gp.getCombate().bossMorto);
           }
      }
+     public void irParaReinoTerra(){
+          if(gp.getCombate().bossMorto){
+               gp.setChapter(GamePanel.Capitulos.chapterEarth);
+               gp.getCombate().bossMorto = false;
+               System.out.println("boss morto: "+ gp.getCombate().bossMorto);
+          }
+     }
      public void irParaReinoFogo(){
           gp.getCombate().bossMorto = true;
           gp.setChapter(GamePanel.Capitulos.chapterFogo);

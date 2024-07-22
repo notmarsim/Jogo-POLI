@@ -58,7 +58,7 @@ public class AquaraNPC extends Entity {
         } else if (spriteNum == 4) {
             image = image4;
         }
-        g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*15/10, gp.tamanhoJanela*15/10, null);
+        g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*14/10, gp.tamanhoJanela*14/10, null);
 
 
 

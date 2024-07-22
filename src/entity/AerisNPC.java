@@ -7,28 +7,28 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class PyrothNPC extends Entity {
+public class AerisNPC extends Entity {
 
-    public PyrothNPC(GamePanel gp, int startX, int startY) {
+    public AerisNPC(GamePanel gp, int startX, int startY) {
         super(gp);
         this.gp = gp;
         this.x = startX;
         this.y = startY;
         loadSprites();
         bounds = new Rectangle();
-        bounds.y = -40;
-        bounds.x = -30;
-        bounds.width = 50;
-        bounds.height = 80;
+        bounds.x = -45;
+        bounds.y = -70;
+        bounds.width = 80;
+        bounds.height = 100;
     }
 
 
     private void loadSprites() {
         try {
-            image1 = ImageIO.read(getClass().getResourceAsStream("/npcs/pyrothNPC/fire_knight_1.png"));
-            image2 = ImageIO.read(getClass().getResourceAsStream("/npcs/pyrothNPC/fire_knight_2.png"));
-            image3 = ImageIO.read(getClass().getResourceAsStream("/npcs/pyrothNPC/fire_knight_3.png"));
-            image4 = ImageIO.read(getClass().getResourceAsStream("/npcs/pyrothNPC/fire_knight_4.png"));
+            image1 = ImageIO.read(getClass().getResourceAsStream("/npcs/aerisNPC/wind_hashashin_1.png"));
+            image2 = ImageIO.read(getClass().getResourceAsStream("/npcs/aerisNPC/wind_hashashin_2.png"));
+            image3 = ImageIO.read(getClass().getResourceAsStream("/npcs/aerisNPC/wind_hashashin_3.png"));
+            image4 = ImageIO.read(getClass().getResourceAsStream("/npcs/aerisNPC/wind_hashashin_4.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,7 +70,10 @@ public class PyrothNPC extends Entity {
     }
 
     public String getFala(){
-        return "Deseja voltar para o reino do fogo? \n" + "1 - Sim\n" + "2 - Não\n";
+        return "Vamos para o reino da água? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n";
+    }
+    public String getResposta(){
+        return "Ok";
     }
 
 }

@@ -25,6 +25,7 @@ public class ChapterAqua {
         entityManager.addEntity(new Mercante(gp,gp.tamanhoJanela*5,gp.tamanhoJanela*15));
         entityManager.addEntity(new GolemGelo(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*35));
         entityManager.addEntity(new PyrothNPC(gp, gp.tamanhoJanela*15, gp.tamanhoJanela*16));
+        entityManager.addEntity(new TerranisNPC(gp, gp.tamanhoJanela*13, gp.tamanhoJanela*16));
 
     }
 
