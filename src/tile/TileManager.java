@@ -23,6 +23,8 @@ public class TileManager {
             carregarTilesAr();
         } else if (capitulo.equals(GamePanel.Capitulos.chapterEarth)) {
             carregarTilesTerra();
+        } else if(capitulo.equals(GamePanel.Capitulos.chapterVoid)) {
+            carregarTilesVoid();
         }
     }
 
@@ -34,6 +36,7 @@ public class TileManager {
     }
 
     private void carregarTilesChapterFogo() {
+        addTile(GamePanel.Capitulos.chapterFogo,1,"/tiles/PrologoTiles/pisoTijoloPedra.png", true);
         addTile(GamePanel.Capitulos.chapterFogo, 5, "/tiles/FogoTiles/tile5.png", false);
         addTile(GamePanel.Capitulos.chapterFogo, 6, "/tiles/FogoTiles/bolha.png", false);
         addTile(GamePanel.Capitulos.chapterFogo, 7,"/tiles/FogoTiles/genericoColisao.png",true);
@@ -94,13 +97,15 @@ public class TileManager {
     }
 
     private void carregarTilesAqua(){
-        addTile(GamePanel.Capitulos.chapterAqua, 1, "/tiles/GeloTiles/caminho.png", false);
+        addTile(GamePanel.Capitulos.chapterAqua,1,"/tiles/PrologoTiles/pisoTijoloPedra.png", true);
+        addTile(GamePanel.Capitulos.chapterAqua, 4, "/tiles/GeloTiles/caminho.png", false);
         //addTile(GamePanel.Capitulos.chapterAqua, 4, "/tiles/GeloTiles/snow.png", false);
         addTile(GamePanel.Capitulos.chapterAqua, 2, "/tiles/GeloTiles/agua.png", true);
         addTile(GamePanel.Capitulos.chapterAqua, 3, "/tiles/GeloTiles/snow.png", false);
     }
 
     private void carregarTilesAr(){
+        addTile(GamePanel.Capitulos.chapterAr,1,"/tiles/PrologoTiles/pisoTijoloPedra.png", true);
         addTile(GamePanel.Capitulos.chapterAr, 3, "/tiles/ArTiles/tile002.png", false);
         addTile(GamePanel.Capitulos.chapterAr, 17, "/tiles/ArTiles/tile016.png", false);
         addTile(GamePanel.Capitulos.chapterAr, 22, "/tiles/ArTiles/tile021.png", false);
@@ -136,6 +141,11 @@ public class TileManager {
         addTile(GamePanel.Capitulos.chapterAr, 166, "/tiles/ArTiles/tile165.png", true);
         addTile(GamePanel.Capitulos.chapterAr, 167, "/tiles/ArTiles/tile166.png", true);
         addTile(GamePanel.Capitulos.chapterAr, 168, "/tiles/ArTiles/tile167.png", true);
+    }
+    public void carregarTilesVoid(){
+        addTile(GamePanel.Capitulos.chapterVoid,1,"/tiles/PrologoTiles/pisoTijoloPedra.png", true);
+        addTile(GamePanel.Capitulos.chapterVoid,2,"/tiles/VoidTiles/tile1.png", false);
+        addTile(GamePanel.Capitulos.chapterVoid,3,"/tiles/VoidTiles/tile2.png", true);
     }
 
     public void carregarTilesTerra(){

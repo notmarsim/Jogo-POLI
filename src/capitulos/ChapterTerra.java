@@ -11,7 +11,7 @@ import java.awt.*;
 public class ChapterTerra {
     private GamePanel gp;
     private Maps mapaTerra;
-    private Aquara aquara;
+    private Terranis terranis;
     private UI ui;
     private EntityManager entityManager;
 
@@ -19,13 +19,17 @@ public class ChapterTerra {
         this.gp = gp;
         this.ui = gp.getUi();
         this.mapaTerra = new Maps(gp, "res/maps/mapaTerra.txt", GamePanel.Capitulos.chapterEarth);
-        this.aquara = new Aquara(gp, keyHandler);
+        this.terranis = new Terranis(gp, keyHandler);
         entityManager = new EntityManager(gp ,gp.getPlayer());
-        entityManager.addEntity(aquara);
+        entityManager.addEntity(terranis);
         inicializarArvores();
-        aquara.x = gp.tamanhoJanela*25;
-        aquara.y = gp.tamanhoJanela*2;
+        terranis.x = gp.tamanhoJanela*25;
+        terranis.y = gp.tamanhoJanela*2;
         entityManager.addEntity(new Buda(gp, gp.tamanhoJanela*25, gp.tamanhoJanela*20));
+        entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
+        entityManager.addEntity(new AerisNPC(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*5));
+        entityManager.addEntity(new PyrothNPC(gp, gp.tamanhoJanela*18, gp.tamanhoJanela*5));
+        entityManager.addEntity(new AquaraNPC(gp, gp.tamanhoJanela*14, gp.tamanhoJanela*5));
         addEstatua();
     }
 

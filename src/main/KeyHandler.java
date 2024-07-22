@@ -75,7 +75,7 @@ public class KeyHandler implements KeyListener {
         }
 
         // aquara npc
-        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Deseja ir para o reino da água? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n")){
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Vamos para o reino da água? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n")){
             if(code == KeyEvent.VK_1){
                 //System.out.println("1boss morto?? " + gp.getCombate().bossMorto);
                 gp.getPlayer().irParaReinoAqua();
@@ -88,6 +88,14 @@ public class KeyHandler implements KeyListener {
         if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Deseja voltar para o reino do fogo? \n" + "1 - Sim\n" + "2 - Não\n")){
             if(code == KeyEvent.VK_1){
                 gp.getPlayer().irParaReinoFogo();
+            } else if (code == KeyEvent.VK_2) {
+                gp.getDialogues().setDialogueText("Ok");
+            }
+        }
+        //terranis npc
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Vamos para o reino da terra? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n")){
+            if(code == KeyEvent.VK_1){
+                gp.getPlayer().irParaReinoTerra();
             } else if (code == KeyEvent.VK_2) {
                 gp.getDialogues().setDialogueText("Ok");
             }
@@ -157,11 +165,17 @@ public class KeyHandler implements KeyListener {
         }
 
         if(code == KeyEvent.VK_L) {
+            gp.setChapter(GamePanel.Capitulos.chapterAqua);
+        }
+        if(code == KeyEvent.VK_T) {
             gp.setChapter(GamePanel.Capitulos.chapterAr);
         }
 
         if ((code==KeyEvent.VK_M)){
             gp.setChapter(GamePanel.Capitulos.chapterEarth);
+        }
+        if ((code==KeyEvent.VK_V)){
+            gp.setChapter(GamePanel.Capitulos.chapterVoid);
         }
 
 
