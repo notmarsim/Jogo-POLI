@@ -25,6 +25,7 @@ public class Combate {
 
     public void turnoJogador() {
         if (turnoDoJogador ) {
+            gp.getPlayer().variacaoAtaque();
             if (gp.getCombate().golpeSimples) {
                 golpeFraco();
             } else if (gp.getCombate().golpeEspecial){
@@ -38,6 +39,7 @@ public class Combate {
 
     public void turnoInimigo() {
         if (!turnoDoJogador) {
+            inimigo.variacaoAtaque();
             if (gp.defendendo) {
                 danoInimigo = inimigo.dano / 2;
                 System.out.println("dano com defesa");
