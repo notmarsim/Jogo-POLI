@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Sound sound = new Sound();
 
     // combate
-    public boolean lutando;
+    public boolean atacando;
     public boolean defendendo;
 
     public enum Capitulos {
@@ -166,6 +166,7 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             case chapterAr:
                 if (chapterAr == null) {
+                    setPlayer(new Aeris(this,keyH));
                     chapterAr = new ChapterAr(this, keyH);
                 }
                 this.currentMap = chapterAr.getMap();
@@ -320,7 +321,7 @@ public class GamePanel extends JPanel implements Runnable {
         } else if (acao == 1) {
             getCombate().golpeEspecial = true;
         } else if (acao == 2) {
-            defendendo = true;
+            getCombate().defendendo = true;
         }
     }
 

@@ -18,7 +18,7 @@ public class CasaVermelha extends Entity {
         bounds.x = -230;
         bounds.y = -400;
         bounds.width = 450;
-        bounds.height = 400;
+        bounds.height = 420;
         loadSprites();
     }
 
@@ -33,13 +33,6 @@ public class CasaVermelha extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage image = image1;
         g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)*4), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)*7), gp.tamanhoJanela*8 , gp.tamanhoJanela *8, null);
-
-        g2.setColor(Color.RED);
-        g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
-                (int) (y + bounds.y - gp.getCamera().getyOffSet()),
-                bounds.width, bounds.height);
-
-
     }
 
     public int tipo(){
