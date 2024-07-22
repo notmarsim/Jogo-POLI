@@ -58,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
         Combate,
         Ocioso,
         Profile,
+        Morto
     }
 
     private CharacterState characterState = CharacterState.Ocioso;
@@ -255,7 +256,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         getPlayer().subirDeLevel();
-        System.out.println(gameState);
         // System.out.println("xp :" + getPlayer().getXp() +" level :" + getPlayer().getLevel() + " xp max: " + getPlayer().xpMax);
 
         switch (currentCapitulo) {
@@ -342,6 +342,8 @@ public class GamePanel extends JPanel implements Runnable {
             } else if (characterState == CharacterState.Combate) {
                 ui.draw(g2);
             } else if (characterState == CharacterState.Profile) {
+                ui.draw(g2);
+            } else if (characterState==CharacterState.Morto) {
                 ui.draw(g2);
             }
         }

@@ -83,6 +83,8 @@ public class UI {
             drawCombate();
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Profile){
             drawProfile();
+        } else if (gamePanel.getCharacterState()== GamePanel.CharacterState.Morto) {
+            desenharMorte();
         }
 
         switch (gamePanel.currentCapitulo) {
@@ -355,6 +357,13 @@ public class UI {
         return x;
     }
 
+    public int textoCentralizadoY(String text) {
+        int y;
+        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getHeight();
+        y = gamePanel.alturaTela / 2 - length / 2;
+        return y;
+    }
+
 
 
     public void drawHealthAndManaBars(Graphics2D g2) {
@@ -586,7 +595,7 @@ public class UI {
     public void desenharMensagem(){
         int messageX = gamePanel.tamanhoJanela;
         int messageY = gamePanel.tamanhoJanela*5;
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 25));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 22));
 
         for(int i = 0;i<message.size();i++){
 
@@ -607,6 +616,21 @@ public class UI {
 
     }
 
+
+    public void desenharMorte(){
+
+        Composite originalComposite = g2.getComposite();
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f)); // Define a transparência
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gamePanel.larguraTela, gamePanel.alturaTela); // Substitua larguraDaTela e alturaDaTela pelos valores reais
+        g2.setComposite(originalComposite);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,90));
+        g2.setColor(Color.red);
+        String text = "Você Morreu";
+        int x = textoCentralizadoX(text);
+        int y = textoCentralizadoY(text);
+        g2.drawString(text,x,y);
+    }
 
 
     public void drawInventory() {

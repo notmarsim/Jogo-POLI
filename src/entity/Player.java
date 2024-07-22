@@ -29,6 +29,7 @@ public class Player extends Entity {
      public int defesaSpriteCounter = 0;
      public int defesaSpriteNum = 1;
 
+
      public Player(GamePanel gp, KeyHandler keyH) {
           super(gp);
           this.keyH = keyH;
@@ -320,6 +321,23 @@ public class Player extends Entity {
                     }
                }
 
+          } else if (gp.getCharacterState().equals(GamePanel.CharacterState.Morto)) {
+               if(this==gp.getPlayer()){
+                    deathSpriteCounter++;
+                    if(deathSpriteCounter>5){
+                         deathSpriteCounter =0;
+                         deathSpriteNum++;
+                         if(deathSpriteNum>14){
+                              deathSpriteNum = 14;
+                              try {
+                                   Thread.sleep(2000);
+                              } catch (InterruptedException e) {
+                                   e.printStackTrace();
+                              }
+                              System.exit(0);
+                         }
+                    }
+               }
           } else {
                if (keyH.upPressed) {
                     if (direcao.equals("frente")) {
@@ -407,7 +425,7 @@ public class Player extends Entity {
 
           if (gp.atacando) {
                if (gp.getPlayer().isSpecialAttack) {
-                    specialAttackSpriteNum = gp.getPlayer().specialAttackSpriteNum;
+
                     switch (specialAttackSpriteNum) {
                          case 1:
                               image = specialAttack1;
@@ -466,7 +484,7 @@ public class Player extends Entity {
 
                     }
                } else {
-                    attackSpriteNum = gp.getPlayer().attackSpriteNum;
+
                     switch (attackSpriteNum) {
                          case 1:
                               image = attack1;
@@ -502,7 +520,6 @@ public class Player extends Entity {
 
                }
           } else if (gp.defendendo) {
-               defesaSpriteNum = gp.getPlayer().defesaSpriteNum;
                switch (defesaSpriteNum){
                     case 1:
                          image = defesa;
@@ -534,6 +551,53 @@ public class Player extends Entity {
                     case 10:
                          image = defesa10;
                          break;
+               }
+
+          } else if (gp.getCharacterState().equals(GamePanel.CharacterState.Morto)) {
+               switch (deathSpriteNum){
+                    case 1:
+                         image = death1;
+                         break;
+                    case 2:
+                         image = death2;
+                         break;
+                    case 3:
+                         image = death3;
+                         break;
+                    case 4:
+                         image = death4;
+                         break;
+                    case 5:
+                         image = death5;
+                         break;
+                    case 6:
+                         image = death6;
+                         break;
+                    case 7:
+                         image = death7;
+                         break;
+                    case 8:
+                         image = death8;
+                         break;
+                    case 9:
+                         image = death9;
+                         break;
+                    case 10:
+                         image = death10;
+                         break;
+                    case 11:
+                         image = death11;
+                         break;
+                    case 12:
+                         image = death12;
+                         break;
+                    case 13:
+                         image = death13;
+                         break;
+                    case 14:
+                         image = death14;
+                         break;
+
                }
 
           } else {

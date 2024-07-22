@@ -19,9 +19,9 @@ public class Iglu extends Entity{
         loadSprites();
         bounds = new Rectangle();
         bounds.x = -140;
-        bounds.y = -190;
-        bounds.width = 180;
-        bounds.height = 180;
+        bounds.y = -180;
+        bounds.width = 280;
+        bounds.height = 260;
     }
     private void loadSprites() {
         try {
