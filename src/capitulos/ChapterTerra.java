@@ -26,7 +26,8 @@ public class ChapterTerra {
         terranis.x = gp.tamanhoJanela*25;
         terranis.y = gp.tamanhoJanela*2;
         entityManager.addEntity(new Buda(gp, gp.tamanhoJanela*25, gp.tamanhoJanela*20));
-        entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
+        entityManager.addEntity(new GolemTerra(gp, gp.tamanhoJanela*22, gp.tamanhoJanela*20)); // BOSS
+
         entityManager.addEntity(new AerisNPC(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*5));
         entityManager.addEntity(new PyrothNPC(gp, gp.tamanhoJanela*18, gp.tamanhoJanela*5));
         entityManager.addEntity(new AquaraNPC(gp, gp.tamanhoJanela*14, gp.tamanhoJanela*5));

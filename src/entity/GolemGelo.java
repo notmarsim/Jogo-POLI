@@ -21,10 +21,10 @@ public class GolemGelo extends Entity{
         bounds.y = 120;
         bounds.width = 160;
         bounds.height = 170;
-        vida = 20;
-        dano = 10;
-        xpDrop = 50;
-        moedaDrop = 100;
+        vida = 200;
+        dano = 40;
+        xpDrop = 100;
+        moedaDrop = 200;
         boss = true;
     }
 

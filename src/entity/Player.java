@@ -248,7 +248,7 @@ public class Player extends Entity {
      }
 
      public void curarVida(){
-          vida = vidaMaxima*75/100;
+          vida += vidaMaxima*75/100;
      }
 
      public int getDano(){
