@@ -37,6 +37,9 @@ public class ChapterTerra {
         entityManager.addEntity(new AerisNPC(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*5));
         entityManager.addEntity(new PyrothNPC(gp, gp.tamanhoJanela*18, gp.tamanhoJanela*5));
         entityManager.addEntity(new AquaraNPC(gp, gp.tamanhoJanela*14, gp.tamanhoJanela*5));
+        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*32, gp.tamanhoJanela*5));
+        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*30, gp.tamanhoJanela*8));
+        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*27, gp.tamanhoJanela*10));
     }
 
 

@@ -16,23 +16,36 @@ import java.io.IOException;
 public class ChapterVoid  {
     private Maps mapaVoid;
     private GamePanel gp;
-    private Aeris aeris;
     private UI ui;
     private EntityManager entityManager;
 
     public ChapterVoid(GamePanel gp, KeyHandler keyHandler){
         this.gp = gp;
         this.ui = gp.getUi();
-
         this.mapaVoid = new Maps(gp, "res/maps/mapaVoid.txt", GamePanel.Capitulos.chapterVoid);
-        this.aeris = new Aeris(gp, keyHandler);
-        this.aeris.x = 200;
-        this.aeris.y=900;
         entityManager = new EntityManager(gp ,gp.getPlayer());
-        entityManager.addEntity(aeris);
-        entityManager.addEntity(new Demonio(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
-        entityManager.addEntity(new FinalBoss(gp, gp.tamanhoJanela*12, gp.tamanhoJanela*14));
+        inicializarNPCs();
+        inicializarConstruções();
+        inicializarMonstros();
     }
+    public void inicializarMonstros(){
+        entityManager.addEntity(new Bringer(gp, gp.tamanhoJanela*22, gp.tamanhoJanela*20));
+        entityManager.addEntity(new Bringer(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
+        entityManager.addEntity(new FinalBoss(gp, gp.tamanhoJanela*12, gp.tamanhoJanela*14));
+        entityManager.addEntity(new Nightborne(gp, gp.tamanhoJanela*10, gp.tamanhoJanela*18));
+    }
+    public void inicializarConstruções(){
+
+    }
+    public void inicializarNPCs(){
+
+        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*32, gp.tamanhoJanela*5));
+        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*30, gp.tamanhoJanela*8));
+        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*27, gp.tamanhoJanela*10));
+    }
+
+
+
     public Maps getMap() {
         return mapaVoid;
     }

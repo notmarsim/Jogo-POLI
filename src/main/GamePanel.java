@@ -207,7 +207,15 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             case chapterVoid:
                 if (chapterVoid == null) {
+                    if(aeris == null){
+                        aeris = new Aeris(this,keyH);
+                    }
+                    setPlayer(aeris);
+                    aeris.x = 200;
+                    aeris.y=900;
                     chapterVoid = new ChapterVoid(this, keyH);
+                } else{
+                    setPlayer(aeris);
                 }
                 this.currentMap = chapterVoid.getMap();
                 break;
