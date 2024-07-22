@@ -153,7 +153,7 @@ public class GolemTerra extends Entity{
 
     @Override
     public void update() {
-        if (atacando && !gp.lutando) {
+        if (atacando && !gp.atacando) {
             attackSpriteCounter++;
             if (attackSpriteCounter >= 5) {
                 attackSpriteCounter = 0;
@@ -163,7 +163,7 @@ public class GolemTerra extends Entity{
                 attackSpriteNum = 1;
                 atacando = false;
             }
-        } else if (morrendo && !gp.lutando) {
+        } else if (morrendo && !gp.atacando) {
             deathSpriteCounter++;
             if(deathSpriteCounter>=5){
                 deathSpriteCounter = 0;

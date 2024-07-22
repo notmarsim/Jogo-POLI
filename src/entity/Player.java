@@ -25,6 +25,9 @@ public class Player extends Entity {
      public int specialAttackSpriteNum = 1;
      public int moeda,dano;
      private Random rand = new Random();
+     protected BufferedImage defesa,defesa2,defesa3,defesa4,defesa5,defesa6,defesa7,defesa8,defesa9,defesa10;
+     public int defesaSpriteCounter = 0;
+     public int defesaSpriteNum = 1;
 
      public Player(GamePanel gp, KeyHandler keyH) {
           super(gp);
@@ -118,7 +121,7 @@ public class Player extends Entity {
           if(moeda>=40){
                PocaoForca pocao = new PocaoForca();
                inventario.add(pocao);
-               gp.getUi().addMensagem("Você recebeu uma poção! I para abrir inventário");
+               gp.getUi().addMensagem("Você recebeu uma poção! Pressione i para abrir inventário");
                moeda -= 40;
           }
 
@@ -278,8 +281,8 @@ public class Player extends Entity {
                System.out.println(gp.getPlayer().isSpecialAttack + "gp");
           }
 
-          if (gp.lutando) {
-               // pra nao ter mais de uma instancia atualizando / gambiarra
+          if (gp.atacando) {
+               // pra nao ter mais de uma instancia atualizando
                if (this == gp.getPlayer()) {
                     if (gp.getPlayer().isSpecialAttack) {
                          specialAttackSpriteCounter++;
@@ -288,7 +291,7 @@ public class Player extends Entity {
                               specialAttackSpriteNum++;
                               if (specialAttackSpriteNum > 18) {
                                    specialAttackSpriteNum = 1;
-                                   gp.lutando = false;
+                                   gp.atacando = false;
                                    isSpecialAttack = false;
                               }
                          }
@@ -299,11 +302,24 @@ public class Player extends Entity {
                               attackSpriteNum++;
                               if (attackSpriteNum > 10) {
                                    attackSpriteNum = 1;
-                                   gp.lutando = false;
+                                   gp.atacando = false;
                               }
                          }
                     }
                }
+          } else if (gp.defendendo) {
+               if(this==gp.getPlayer()){
+                    defesaSpriteCounter++;
+                    if(defesaSpriteCounter>5){
+                         defesaSpriteCounter = 0;
+                         defesaSpriteNum ++;
+                         if(defesaSpriteNum>10){
+                              defesaSpriteNum = 1;
+                              gp.defendendo = false;
+                         }
+                    }
+               }
+
           } else {
                if (keyH.upPressed) {
                     if (direcao.equals("frente")) {
@@ -389,7 +405,7 @@ public class Player extends Entity {
      public void draw(Graphics2D g2) {
           BufferedImage image = null;
 
-          if (gp.lutando) {
+          if (gp.atacando) {
                if (gp.getPlayer().isSpecialAttack) {
                     specialAttackSpriteNum = gp.getPlayer().specialAttackSpriteNum;
                     switch (specialAttackSpriteNum) {
@@ -485,6 +501,41 @@ public class Player extends Entity {
                     }
 
                }
+          } else if (gp.defendendo) {
+               defesaSpriteNum = gp.getPlayer().defesaSpriteNum;
+               switch (defesaSpriteNum){
+                    case 1:
+                         image = defesa;
+                         break;
+                    case 2:
+                         image = defesa2;
+                         break;
+                    case 3 :
+                         image = defesa3;
+                         break;
+                    case 4:
+                         image = defesa4;
+                         break;
+                    case 5:
+                         image = defesa5;
+                         break;
+                    case 6:
+                         image = defesa6;
+                         break;
+                    case 7:
+                         image = defesa7;
+                         break;
+                    case 8:
+                         image = defesa8;
+                         break;
+                    case 9:
+                         image = defesa9;
+                         break;
+                    case 10:
+                         image = defesa10;
+                         break;
+               }
+
           } else {
                if (movimentacao != null && movimentacao.equals("parado")) {
                     if (spriteNum == 1) {

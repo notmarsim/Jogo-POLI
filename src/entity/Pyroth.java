@@ -86,6 +86,20 @@ public class Pyroth extends Player {
             specialAttack17 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_17.png"));
             specialAttack18 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/Especial/sp_atk_18.png"));
 
+            defesa = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_1.png"));
+            defesa2 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_2.png"));
+            defesa3 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_3.png"));
+            defesa4 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_4.png"));
+            defesa5 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_5.png"));
+            defesa6 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_6.png"));
+            defesa7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_7.png"));
+            defesa8 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_8.png"));
+            defesa9 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_9.png"));
+            defesa10 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_10.png"));
+
+
+
+
 
 
         } catch (IOException e) {

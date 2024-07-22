@@ -30,7 +30,7 @@ public class Combate {
                 golpeFraco();
             } else if (gp.getCombate().golpeEspecial){
                 golpeForte();
-            } else if (gp.defendendo) {
+            } else if (gp.getCombate().defendendo) {
                 System.out.println("DEFENDEU!");
                 defender();
             }
@@ -51,13 +51,13 @@ public class Combate {
             player.receberDamage(danoInimigo);
             System.out.println("Inimigo atacou e causou " + danoInimigo + " de dano.");
             turnoDoJogador = true;
-            gp.defendendo = false;
+
         }
     }
 
     public void golpeFraco() {
         if (gp.getPlayer().mana >= 3 && !gp.getPlayer().getSpecialAttack()) {
-            gp.lutando = true;
+            gp.atacando = true;
             gp.getPlayer().mana -= 3;
             inimigo.receberDamage(gp.getPlayer().getDano() + rand.nextInt(6));
             System.out.println("vida inimigo: " + inimigo.getVida());
@@ -71,7 +71,7 @@ public class Combate {
     public void golpeForte() {
         if (gp.getPlayer().mana >= 7) {
             gp.getPlayer().setSpecialAttack(true);
-            gp.lutando = true;
+            gp.atacando = true;
             gp.getPlayer().mana -= 7;
             inimigo.receberDamage((gp.getPlayer().getDano() * 2) + rand.nextInt(6));
             System.out.println("Vida do inimigo: " + inimigo.getVida());
@@ -85,12 +85,13 @@ public class Combate {
     public void defender() {
         if(!gp.getPlayer().getSpecialAttack() && !gp.getCombate().golpeSimples && !gp.getCombate().golpeEspecial) {
             gp.getPlayer().mana += 5;
+            gp.defendendo = true;
             if(gp.getPlayer().mana > gp.getPlayer().manaMax) {
                 gp.getPlayer().mana = gp.getPlayer().manaMax;
             }
             turnoDoJogador = false;
         }
-
+        gp.getCombate().defendendo = false;
     }
 
     public boolean fimCombate() {
@@ -102,7 +103,6 @@ public class Combate {
         if (fimCombate()) {
             if(inimigo.getVida() <= 0) {
                 inimigo.morrendo = true;
-
             }
             System.out.println("player:" + player.getVida() + "inimigo: " + inimigo.getVida());
             if(inimigo.morto){

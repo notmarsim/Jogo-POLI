@@ -19,9 +19,7 @@ public class ChapterAr {
         this.gp = gp;
         this.ui = gp.getUi();
         this.mapaAr = new Maps(gp, "res/maps/mapaAr.txt", GamePanel.Capitulos.chapterAr);
-        this.aeris = new Aeris(gp, keyHandler);
         entityManager = new EntityManager(gp ,gp.getPlayer());
-        entityManager.addEntity(aeris);
         entityManager.addEntity(new Guerreiro(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*26));
     }
 
