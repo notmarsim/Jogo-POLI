@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class UI {
     Graphics2D g2;
@@ -19,6 +20,8 @@ public class UI {
     int fontSize;
     private int prologoOpacity, fogoOpacity, aguaOpacity, terraOpacity, arOpacity;
     private boolean fadingOutPrologo, fadingOutFogo, fadingOutAgua, fadingOutTerra, fadingOutAr;
+    public ArrayList<String> message = new ArrayList<>();
+    public ArrayList<Integer> messageCounter = new ArrayList<>();
     long startTime;
     long duration;
     private Dialogues dialogues;
@@ -30,6 +33,8 @@ public class UI {
     private BufferedImage enterImage;
     private BufferedImage facePyroth;
     private BufferedImage faceAquara;
+    private BufferedImage faceAeris;
+    private BufferedImage faceTerranis;
     BufferedImage image;
 
 
@@ -74,8 +79,6 @@ public class UI {
             drawPrompt();
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Inventario) {
             drawInventory();
-
-
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Combate){
             drawCombate();
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Profile){
@@ -352,19 +355,19 @@ public class UI {
         int barY = 50;
         int barWidth = 200; // Largura total das barras
         int barHeight = 20; // Altura das barras
-        int spacing = 10; // Espaçamento entre as barras
+        int spacing = 10;
 
-        // Calcula a largura proporcional da barra de vida baseada na vida atual
+
         int currentHealthBarWidth = (int) ((double) gamePanel.getPlayer().getVida() / gamePanel.getPlayer().vidaMaxima * barWidth);
 
-        // Calcula a largura proporcional da barra de mana baseada na mana atual
+
         int currentManaBarWidth = (int) ((double) gamePanel.getPlayer().mana / gamePanel.getPlayer().manaMax * barWidth);
 
-        // Desenha o contorno da barra de vida
+
         g2.setColor(Color.gray); // Cor do fundo da barra
         g2.fillRect(barX, barY, barWidth, barHeight);
 
-        // Desenha a barra de vida atual
+
         g2.setColor(Color.red); // Cor da vida
         g2.fillRect(barX, barY, currentHealthBarWidth, barHeight);
 
@@ -372,7 +375,7 @@ public class UI {
         g2.setColor(Color.black);
         g2.drawRect(barX, barY, barWidth, barHeight);
 
-        // Texto da vida
+
         g2.setColor(Color.white);
         g2.setFont(maruMonica.deriveFont(Font.BOLD, 14)); // Fonte do texto
         String vidaTexto = gamePanel.getPlayer().getVida() + "/" + gamePanel.getPlayer().vidaMaxima;
@@ -380,14 +383,14 @@ public class UI {
         int vidaTextoY = barY + barHeight - 5;
         g2.drawString(vidaTexto, vidaTextoX, vidaTextoY);
 
-        // Posição da barra de mana (abaixo da barra de vida)
+
         int manaBarY = barY + barHeight + spacing;
 
-        // Desenha o contorno da barra de mana
+
         g2.setColor(Color.gray); // Cor do fundo da barra
         g2.fillRect(barX, manaBarY, barWidth, barHeight);
 
-        // Desenha a barra de mana atual
+
         g2.setColor(Color.blue); // Cor da mana
         g2.fillRect(barX, manaBarY, currentManaBarWidth, barHeight);
 
@@ -440,14 +443,14 @@ public class UI {
         int frameX = (screenWidth - frameWidth) / 2;
         int frameY = screenHeight - frameHeight - 50;
 
-        // Desenhe o quadro do combate
+
         g2.setColor(new Color(50, 50, 50, 200));
         g2.fillRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
 
         g2.setColor(Color.white);
         g2.drawRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
 
-        // Título do combate
+
         g2.setColor(Color.white);
         g2.setFont(maruMonica.deriveFont(Font.BOLD, 25));
         String titulo = "Combate";
@@ -482,6 +485,8 @@ public class UI {
         try {
             faceAquara = ImageIO.read(getClass().getResourceAsStream("/player/Aquara/faceAquara.png"));
             facePyroth = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/face.png"));
+            faceAeris = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/face.png"));
+            faceTerranis =   ImageIO.read(getClass().getResourceAsStream("/player/Terranis/face.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -493,10 +498,10 @@ public class UI {
         int screenHeight = gamePanel.getHeight();
 
         // Dimensões do perfil
-        int profileWidth = 370; // largura
+        int profileWidth = 400; // largura
         int profileHeight = 270; // altura
-        int profileX = (screenWidth - profileWidth) / 2;
-        int profileY = (screenHeight - profileHeight) / 2;
+        int profileX = (screenWidth - profileWidth) / 18;
+        int profileY = (screenHeight - profileHeight) / 6;
         int spacing = 15;
         Color backgroundColor = new Color(0, 0, 0, 128);
 
@@ -510,6 +515,10 @@ public class UI {
         } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterAqua)) {
             image =  faceAquara;
             backgroundColor = new Color(0, 0, 255, 128);
+        } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterEarth)) {
+            image  = faceTerranis;
+        } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterAr)) {
+            image = faceAeris;
         }
 
 
@@ -561,7 +570,34 @@ public class UI {
     }
 
 
+    public void addMensagem(String mensagem){
+        message.add(mensagem);
+        messageCounter.add(0);
+    }
 
+    public void desenharMensagem(){
+        int messageX = gamePanel.tamanhoJanela;
+        int messageY = gamePanel.tamanhoJanela*5;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 25));
+
+        for(int i = 0;i<message.size();i++){
+
+            if(message.get(i)!= null){
+                g2.setColor(Color.white);
+                g2.drawString(message.get(i),messageX,messageY);
+                int counter = messageCounter.get(i) + 1;
+                messageCounter.set(i,counter);
+                messageY+= 50;
+
+
+                if(messageCounter.get(i)>180){
+                    message.remove(i);
+                    messageCounter.remove(i);
+                }
+            }
+        }
+
+    }
 
 
 
@@ -643,9 +679,9 @@ public class UI {
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAqua) {
             missao = "Missão: Limpe a fonte da vila.";
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterEarth) {
-            missao = "Missão: Construa a defesa da vila.";
+            missao = "Missão: Investigue o templo de pedra.";
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAr) {
-            missao = "Missão: Investigue o templo do vento.";
+            missao = "Missão: .";
         }
 
         g2.setFont(maruMonica.deriveFont(Font.PLAIN, 19));

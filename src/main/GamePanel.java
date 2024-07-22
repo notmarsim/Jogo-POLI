@@ -231,7 +231,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if (gameState == GameState.Jogando) {
-            //ui.drawHealthBar(g2);
+            ui.desenharMensagem();
             ui.drawHealthAndManaBars(g2);
             ui.desenharMissao();
             if (characterState == CharacterState.Inventario) {

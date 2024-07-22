@@ -164,6 +164,10 @@ public class KeyHandler implements KeyListener {
             gp.setChapter(GamePanel.Capitulos.chapterEarth);
         }
 
+        if((code==KeyEvent.VK_N)){
+            gp.setChapter(GamePanel.Capitulos.chapterAqua);
+        }
+
 
         //COMBATE
         if(gp.getCharacterState() == GamePanel.CharacterState.Combate) {
