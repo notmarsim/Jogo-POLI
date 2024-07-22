@@ -133,28 +133,43 @@ public class Player extends Entity {
      }
      public void irParaReinoAqua(){
           if(gp.getCombate().bossMorto){
+               gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+               gp.setGameState(GamePanel.GameState.Menu);
                gp.setChapter(GamePanel.Capitulos.chapterAqua);
-               gp.getCombate().bossMorto = false;
                System.out.println("boss morto: "+ gp.getCombate().bossMorto);
           }
      }
      public void irParaReinoTerra(){
           if(gp.getCombate().bossMorto){
+               gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+               gp.setGameState(GamePanel.GameState.Menu);
                gp.setChapter(GamePanel.Capitulos.chapterEarth);
-               gp.getCombate().bossMorto = false;
                System.out.println("boss morto: "+ gp.getCombate().bossMorto);
           }
      }
+
+     public void irParaReinoAr(){
+          if(gp.getCombate().bossMorto){
+               gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+               gp.setGameState(GamePanel.GameState.Menu);
+               gp.setChapter(GamePanel.Capitulos.chapterAr);
+               System.out.println("boss morto: "+ gp.getCombate().bossMorto);
+          }
+     }
+
      public void irParaReinoFogo(){
-          gp.getCombate().bossMorto = true;
-          gp.setChapter(GamePanel.Capitulos.chapterFogo);
+          if(gp.getCombate().bossMorto){
+               gp.setCharacterState(GamePanel.CharacterState.Ocioso);
+               gp.setGameState(GamePanel.GameState.Menu);
+               gp.setChapter(GamePanel.Capitulos.chapterFogo);
+          }
      }
 
      public void comprarCura(){
           if(moeda>=60){
                PocaoCura pocaoCura = new PocaoCura();
                inventario.add(pocaoCura);
-               gp.getUi().addMensagem("Você recebeu uma poção! I para abrir inventário");
+               gp.getUi().addMensagem("Você recebeu uma poção! i para abrir inventário");
                moeda -= 60;
           }
 

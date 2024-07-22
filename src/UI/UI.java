@@ -211,7 +211,15 @@ public class UI {
         return fogoOpacity == 0;
     }
 
-    private void drawAgua() {
+    public boolean isTerraDesaparecido(){
+        return terraOpacity == 0;
+    }
+
+    public boolean isArDesaparecido(){
+        return arOpacity == 0;
+    }
+
+    public void drawAgua() {
         g2.setColor(new Color(100, 100, 255, aguaOpacity));
         printarTexto("AGUA");
     }
