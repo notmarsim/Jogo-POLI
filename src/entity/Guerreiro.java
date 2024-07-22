@@ -21,10 +21,10 @@ public class Guerreiro extends Entity{
         bounds.y = 120;
         bounds.width = 160;
         bounds.height = 170;
-        vida = 300;
-        dano = 60;
-        xpDrop = 750;
-        moedaDrop = 720;
+        vida = 100;
+        dano = 20;
+        xpDrop = 50;
+        moedaDrop = 100;
         boss = true;
     }
 

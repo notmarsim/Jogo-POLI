@@ -21,10 +21,10 @@ public class GolemTerra extends Entity{
         bounds.y = 120;
         bounds.width = 160;
         bounds.height = 170;
-        vida = 500;
-        dano = 30;
-        xpDrop = 500;
-        moedaDrop = 500;
+        vida = 100;
+        dano = 20;
+        xpDrop = 50;
+        moedaDrop = 100;
         boss = true;
     }
 

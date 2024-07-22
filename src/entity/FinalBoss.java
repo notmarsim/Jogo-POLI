@@ -24,8 +24,8 @@ public class FinalBoss extends Entity{
         bounds.y = 250;
         bounds.width = 400;
         bounds.height = 400;
-        vida = 2000;
-        dano = 100;
+        vida = 100;
+        dano = 20;
         xpDrop = 9999;
         moedaDrop = 9999;
         boss = true;
