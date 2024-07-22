@@ -107,6 +107,21 @@ public class Aeris extends Player {
             specialAttack29 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_29.png"));
             specialAttack30 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/combate/Especial/sp_atk_30.png"));
 
+            death1 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_1.png"));
+            death2 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_4.png"));
+            death3 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_5.png"));
+            death4 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_7.png"));
+            death5 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_8.png"));
+            death6 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_10.png"));
+            death7 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_11.png"));
+            death8 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_12.png"));
+            death9 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_13.png"));
+            death10 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_14.png"));
+            death11 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_15.png"));
+            death12 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_16.png"));
+            death13 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_17.png"));
+            death14 = ImageIO.read(getClass().getResourceAsStream("/player/Aeris/death/death_18.png"));
+
 
         } catch (IOException e) {
             e.printStackTrace();

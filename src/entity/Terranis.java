@@ -90,6 +90,34 @@ public class Terranis extends Player{
             specialAttack17 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_17.png"));
             specialAttack18 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/Especial/sp_atk_18.png"));
 
+
+            defesa = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/defesa/defend_1.png"));
+            defesa2 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/defesa/defend_2.png"));
+            defesa3 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/defesa/defend_3.png"));
+            defesa4 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/defesa/defend_4.png"));
+            defesa5 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/defesa/defend_5.png"));
+            defesa6 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/defesa/defend_6.png"));
+            defesa7 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/defesa/defend_7.png"));
+            defesa8 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/defesa/defend_8.png"));
+            defesa9 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/defesa/defend_9.png"));
+            defesa10 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/combate/defesa/defend_10.png"));
+
+            death1 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_2.png"));
+            death2 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_3.png"));
+            death3 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_4.png"));
+            death4 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_5.png"));
+            death5 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_6.png"));
+            death6 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_7.png"));
+            death7 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_8.png"));
+            death8 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_9.png"));
+            death9 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_10.png"));
+            death10 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_11.png"));
+            death11 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_12.png"));
+            death12 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_13.png"));
+            death13 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_14.png"));
+            death14 = ImageIO.read(getClass().getResourceAsStream("/player/Terranis/death/death_15.png"));
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }

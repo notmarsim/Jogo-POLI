@@ -35,6 +35,11 @@ public class ChapterAqua {
         entityManager.addEntity(new Iglu(gp,gp.tamanhoJanela*2,gp.tamanhoJanela*3));
         entityManager.addEntity(new Iglu(gp,gp.tamanhoJanela*8,gp.tamanhoJanela*3));
         entityManager.addEntity(new Bonfire(gp, gp.tamanhoJanela*5, gp.tamanhoJanela*5 ));
+        entityManager.addEntity(new ArvoresSnow(gp,gp.tamanhoJanela*16, gp.tamanhoJanela));
+        entityManager.addEntity(new ArvoresSnow(gp,gp.tamanhoJanela*14, gp.tamanhoJanela*3));
+        entityManager.addEntity(new ArvoresSnow(gp,gp.tamanhoJanela*24, gp.tamanhoJanela));
+        entityManager.addEntity(new ArvoresSnow(gp,gp.tamanhoJanela*20, gp.tamanhoJanela*2));
+        entityManager.addEntity(new ArvoresSnow(gp,gp.tamanhoJanela*21, gp.tamanhoJanela*5));
     }
 
 

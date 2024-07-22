@@ -98,6 +98,21 @@ public class Pyroth extends Player {
             defesa10 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/combate/defesa/defend_10.png"));
 
 
+            death1 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_1.png"));
+            death2 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_2.png"));
+            death3 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_3.png"));
+            death4 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_4.png"));
+            death5 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_5.png"));
+            death6 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_6.png"));
+            death7 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_7.png"));
+            death8 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_8.png"));
+            death9 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_9.png"));
+            death10 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_10.png"));
+            death11 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_11.png"));
+            death12 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_12.png"));
+            death13 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_13.png"));
+            death14 = ImageIO.read(getClass().getResourceAsStream("/player/Pyroth/death/death_13.png"));
+
 
 
 

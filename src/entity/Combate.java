@@ -14,6 +14,7 @@ public class Combate {
     public boolean golpeEspecial;
     public boolean defendendo;
     public boolean bossMorto;
+    public int dano;
 
     public Combate(GamePanel gp, Entity inimigo) {
         this.gp = gp;
@@ -56,10 +57,12 @@ public class Combate {
     }
 
     public void golpeFraco() {
-        if (gp.getPlayer().mana >= 3 && !gp.getPlayer().getSpecialAttack()) {
+        if (gp.getPlayer().mana >= 3 && !gp.getPlayer().getSpecialAttack() && !inimigo.atacando) {
             gp.atacando = true;
             gp.getPlayer().mana -= 3;
-            inimigo.receberDamage(gp.getPlayer().getDano() + rand.nextInt(6));
+            dano = gp.getPlayer().getDano() + rand.nextInt(6);
+            gp.getUi().addMensagem("Você deu "+dano+" de dano!");
+            inimigo.receberDamage(dano);
             System.out.println("vida inimigo: " + inimigo.getVida());
             turnoDoJogador = false;
         } else {
@@ -69,11 +72,13 @@ public class Combate {
     }
 
     public void golpeForte() {
-        if (gp.getPlayer().mana >= 7) {
+        if (gp.getPlayer().mana >= 7 && !inimigo.atacando) {
             gp.getPlayer().setSpecialAttack(true);
             gp.atacando = true;
             gp.getPlayer().mana -= 7;
-            inimigo.receberDamage((gp.getPlayer().getDano() * 2) + rand.nextInt(6));
+            dano = (gp.getPlayer().getDano() * 2) + rand.nextInt(6);
+            inimigo.receberDamage(dano);
+            gp.getUi().addMensagem("Você deu "+dano+" de dano!");
             System.out.println("Vida do inimigo: " + inimigo.getVida());
             turnoDoJogador = false;
         } else {
@@ -101,8 +106,14 @@ public class Combate {
     public void update() {
         System.out.println(inimigo.atacando+"atacando do combate");
         if (fimCombate()) {
+
+
+
             if(inimigo.getVida() <= 0) {
                 inimigo.morrendo = true;
+            } else if (player.getVida()<=0 && !inimigo.atacando){
+                gp.setCharacterState(GamePanel.CharacterState.Morto);
+                gp.stopMusic();
             }
             System.out.println("player:" + player.getVida() + "inimigo: " + inimigo.getVida());
             if(inimigo.morto){
