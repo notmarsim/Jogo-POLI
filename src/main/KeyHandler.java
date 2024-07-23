@@ -52,6 +52,27 @@ public class KeyHandler implements KeyListener {
                 gp.setCharacterState(GamePanel.CharacterState.Ocioso);
             }
         }
+
+        // FALA COM ESTATUA
+
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Usar a Pedra Celestial?")){
+            if(code == KeyEvent.VK_E){
+                if(gp.getPlayer().revitalizouEsfera){
+                    gp.setGameState(GamePanel.GameState.SelecaoPersonagem);
+                } else {
+                    gp.getDialogues().setDialogueText("Você precisa da pedra para ir ao reino das sombras!");
+                }
+
+            }
+        }
+
+        if(code==KeyEvent.VK_ENTER && gp.getGameState().equals(GamePanel.GameState.SelecaoPersonagem)){
+            gp.getUi().selecionarPersonagem();
+        }
+
+
+
+
         // SKIPAR DIALOGO
 
         if(code == KeyEvent.VK_ENTER && gp.getCharacterState() == GamePanel.CharacterState.Dialogo) {
@@ -189,6 +210,19 @@ public class KeyHandler implements KeyListener {
             gp.setChapter(GamePanel.Capitulos.chapterVoid);
         }
 
+
+        if(gp.getGameState()== GamePanel.GameState.SelecaoPersonagem){
+            if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                if(gp.getUi().selectedPersonagem!=0){
+                    gp.getUi().selectedPersonagem--;
+                }
+            }
+            if(code==KeyEvent.VK_S ||code == KeyEvent.VK_DOWN){
+                if (gp.getUi().selectedPersonagem!=3){
+                    gp.getUi().selectedPersonagem++;
+                }
+            }
+        }
 
 
         //COMBATE

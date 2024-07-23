@@ -1,5 +1,6 @@
 package UI;
 
+import Objetos.BlueSphere;
 import Objetos.SuperObject;
 
 import entity.Player;
@@ -18,8 +19,8 @@ public class UI {
     Font maruMonica;
     GamePanel gamePanel;
     int fontSize;
-    private int prologoOpacity, fogoOpacity, aguaOpacity, terraOpacity, arOpacity;
-    private boolean fadingOutPrologo, fadingOutFogo, fadingOutAgua, fadingOutTerra, fadingOutAr;
+    private int prologoOpacity, fogoOpacity, aguaOpacity, terraOpacity, arOpacity,voidOpacity;
+    private boolean fadingOutPrologo, fadingOutFogo, fadingOutAgua, fadingOutTerra, fadingOutAr,fadingOutVoid;
     public ArrayList<String> message = new ArrayList<>();
     public ArrayList<Integer> messageCounter = new ArrayList<>();
     long startTime;
@@ -27,16 +28,19 @@ public class UI {
     private Dialogues dialogues;
     public int slotRow = 0;
     public int slotCol = 0;
+    public int selectedPersonagem = 0;
     public int selectedOption = 0;
     private String currentDialogueText;
     private Player player;
     private BufferedImage enterImage;
+    private BufferedImage eImage;
     private BufferedImage facePyroth;
     private BufferedImage faceAquara;
     private BufferedImage faceAeris;
     private BufferedImage faceTerranis;
     BufferedImage image;
     private String descricaoItem;
+
 
 
     // Construtor
@@ -103,6 +107,9 @@ public class UI {
             case chapterAr:
                 drawAr();
                 break;
+            case chapterVoid:
+                drawVoid();
+                break;    
         }
         if(gamePanel.getGameState() != GamePanel.GameState.Menu){
             desenharMissao();
@@ -110,36 +117,37 @@ public class UI {
 
     }
 
+    private void drawVoid() {
+        g2.setColor(new Color(50, 50, 50, voidOpacity)); // Você pode ajustar a cor conforme necessário
+        printarTexto("VOID");
+    }
+
     public void update() {
         long elapsedTime = System.currentTimeMillis() - startTime;
-        // System.out.println(gamePanel.getPlayer().atualEntidade);
-        //System.out.println(gamePanel.getCharacterState());
-        //System.out.println("Estado do jogo: " + gamePanel.getGameState());
-
         if (gamePanel.getGameState() == GamePanel.GameState.Menu) {
             switch (gamePanel.currentCapitulo) {
                 case Prologo:
                     updatePrologo(elapsedTime);
                     break;
                 case chapterFogo:
-                    //System.out.println("Atualizando Fogo");
                     updateFogo(elapsedTime);
                     break;
                 case chapterAqua:
-                    System.out.println("Atualizando Água");
                     updateAgua(elapsedTime);
                     break;
                 case chapterEarth:
-                    System.out.println("Atualizando Terra");
                     updateTerra(elapsedTime);
                     break;
                 case chapterAr:
-                    System.out.println("Atualizando Ar");
                     updateAr(elapsedTime);
+                    break;
+                case chapterVoid:
+                    updateVoid(elapsedTime);
                     break;
             }
         }
     }
+
 
 
     private void drawPrologo() {
@@ -215,6 +223,10 @@ public class UI {
 
     public boolean isTerraDesaparecido(){
         return terraOpacity == 0;
+    }
+
+    public boolean isVoidDesaparecido(){
+        return voidOpacity == 0;
     }
 
     public boolean isArDesaparecido(){
@@ -340,6 +352,30 @@ public class UI {
         resetTimer();
     }
 
+    private void updateVoid(long elapsedTime) {
+        if (elapsedTime >= duration && !fadingOutVoid) {
+            iniciarDesaparecimentoVoid();
+        }
+        if (fadingOutVoid) {
+            voidOpacity -= 5;
+            if (voidOpacity <= 0) {
+                voidOpacity = 0;
+                gamePanel.setGameState(GamePanel.GameState.Jogando);
+            }
+        } else {
+            if (voidOpacity < 255) {
+                voidOpacity += 5;
+                if (voidOpacity >= 255) {
+                    voidOpacity = 255;
+                }
+            }
+        }
+    }
+
+    private void iniciarDesaparecimentoVoid() {
+        fadingOutVoid = true;
+    }
+
     private void iniciarDesaparecimentoAr() {
         fadingOutAr = true;
     }
@@ -420,6 +456,52 @@ public class UI {
         g2.drawString(manaTexto, manaTextoX, manaTextoY);
     }
 
+    public void drawSelecaoPersonagens(){
+        int screenWidth = gamePanel.getWidth();
+        int screenHeight = gamePanel.getHeight();
+
+        int frameWidth = gamePanel.tamanhoJanela * 15;
+        int frameHeight = gamePanel.tamanhoJanela * 12;
+
+        int frameX = (screenWidth - frameWidth) / 2;
+        int frameY = screenHeight - frameHeight / 2;
+
+        g2.setColor(new Color(50, 50, 50, 200));
+        g2.fillRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
+
+        g2.setColor(Color.white);
+        g2.drawRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
+
+        g2.setColor(Color.white);
+        g2.setFont(maruMonica.deriveFont(Font.BOLD, 30));
+        String titulo = "Selecione um Personagem";
+        int tituloWidth = g2.getFontMetrics().stringWidth(titulo);
+        int tituloX = frameX + (frameWidth - tituloWidth) / 2;
+        int tituloY = frameY + 30;
+        g2.drawString(titulo, tituloX, tituloY);
+
+        // Opções de personagem
+        g2.setFont(maruMonica.deriveFont(Font.PLAIN, 20));
+        String[] opcoes = {"Pyroth", "Aquara", "Aeris","Terranis"};
+        int opcaoYstart = frameY + 80; // Ponto de início vertical para as opções
+
+        for (int i = 0; i < opcoes.length; i++) {
+            String opcao = opcoes[i];
+            int opcaoWidth = g2.getFontMetrics().stringWidth(opcao);
+            int opcaoX = frameX + (frameWidth - opcaoWidth) / 2;
+            int opcaoY = opcaoYstart + (i * 55);
+            g2.drawString(opcao, opcaoX, opcaoY);
+
+            // Desenha a borda ao redor da opção selecionada
+            if (i == selectedPersonagem) {
+                g2.setColor(Color.yellow);
+                g2.drawRoundRect(opcaoX - 10, opcaoY - 20, opcaoWidth + 20, 30, 10, 10);
+                g2.setColor(Color.white); // Restaura a cor branca para o texto
+            }
+
+        }
+    }
+
 
     public void usarItemSelecionado() {
         int selectedIndex = slotRow * 5 + slotCol; // Índice do item selecionado
@@ -427,7 +509,13 @@ public class UI {
             SuperObject selectedItem = gamePanel.getPlayer().inventario.get(selectedIndex);
 
             selectedItem.usouItem(gamePanel.getPlayer());
+            if(selectedItem instanceof BlueSphere){
+                if(gamePanel.getPlayer().revitalizouEsfera){
+                    gamePanel.setCharacterState(GamePanel.CharacterState.Dialogo);
+                    gamePanel.getDialogues().setDialogueText("O Necromancer quer roubar a energia vital dos nossos reinos... Isso precisa parar! Temos que descer até as profundezas asquerosas onde ele se esconde.");
+                }
 
+            }
 
             System.out.println("Dano:"+gamePanel.getPlayer().getDano());
             gamePanel.getPlayer().inventario.remove(selectedIndex);
@@ -436,7 +524,18 @@ public class UI {
         }
     }
 
-
+    public void selecionarPersonagem(){
+        if(selectedPersonagem == 0) {
+            gamePanel.personagemSelecionado = 0;
+        } else if (selectedPersonagem == 1) {
+            gamePanel.personagemSelecionado = 1;
+        } else if(selectedPersonagem ==2){
+            gamePanel.personagemSelecionado = 2;
+        } else if (selectedPersonagem ==3) {
+            gamePanel.personagemSelecionado = 3;
+        }
+        gamePanel.setChapter(GamePanel.Capitulos.chapterVoid);
+    }
 
 
     public void usarAtaqueSelecionado() {
@@ -539,6 +638,16 @@ public class UI {
             image  = faceTerranis;
         } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterAr)) {
             image = faceAeris;
+        } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterVoid)) {
+            if(gamePanel.getPlayer().getClass().getSimpleName().equals("Pyroth")){
+                image = facePyroth;
+            } else if (gamePanel.getPlayer().getClass().getSimpleName().equals("Aquara")) {
+                image = faceAquara;
+            } else if (gamePanel.getPlayer().getClass().getSimpleName().equals("Aeris")) {
+                image = faceAeris;
+            } else if (gamePanel.getPlayer().getClass().getSimpleName().equals("Terranis")) {
+                image = faceTerranis;
+            }
         }
 
 
@@ -768,7 +877,10 @@ public class UI {
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAqua) {
             missao = "Missão: Limpe a fonte da vila.";
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterEarth) {
-            missao = "Missão: Investigue o templo de pedra.";
+            missao = "Missão: Recupere a Pedra Celestial do Templo.";
+            if(gamePanel.getPlayer().revitalizouEsfera){
+                missao = "Missão: Vá para o monumento.";
+            }
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAr) {
             missao = "Missão: .";
         }
@@ -783,12 +895,22 @@ public class UI {
     private void loadInputsImage(){
         try{
             enterImage = ImageIO.read(getClass().getResourceAsStream("/prompts/enter.png"));
+            eImage = ImageIO.read(getClass().getResourceAsStream("/prompts/ePrompt.png"));
         } catch (IOException e){
             e.printStackTrace();
         }
     }
     private void drawPrompt() {
-        BufferedImage promptImage = enterImage;
+        BufferedImage promptImage = null;
+        if(gamePanel.getCharacterState().equals(GamePanel.CharacterState.Dialogo)){
+            if(gamePanel.getPlayer().interagindoComBuda){
+                promptImage = eImage;
+            } else {
+                promptImage = enterImage;
+            }
+
+        }
+
         if (promptImage != null) {
             int promptX = gamePanel.larguraTela - promptImage.getWidth() - gamePanel.tamanhoJanela;
             int promptY = gamePanel.alturaTela - promptImage.getHeight() - gamePanel.tamanhoJanela;

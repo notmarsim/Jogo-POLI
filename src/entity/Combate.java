@@ -1,6 +1,9 @@
 package entity;
 
 import java.util.Random;
+
+import Objetos.BlueSphere;
+import UI.Dialogues;
 import main.GamePanel;
 
 public class Combate {
@@ -135,6 +138,13 @@ public class Combate {
                     gp.getCombate().bossMorto = true;
                     System.out.println("inimigo morto: "+ bossMorto);
                     gp.stopMusic();
+                    if(inimigo instanceof GolemTerra){
+                        gp.getUi().addMensagem("Você recebeu a Esfera Celestial!");
+                        BlueSphere blueSphere = new BlueSphere();
+                        gp.getPlayer().inventario.add(blueSphere);
+                        gp.setCharacterState(GamePanel.CharacterState.Dialogo);
+                        gp.getDialogues().setDialogueText("Parece que o Golem havia roubado a Pedra Celestial do nosso Monumento sagrado...Vou recoloca-lá para revitalizar a força elementar do reino.");
+                    }
                 }
                 //gp.stopMusic();
                 //gp.playMusic(1);

@@ -24,18 +24,29 @@ public class Buda extends Entity {
 
     private void loadSprites() {
         try {
-            idle = ImageIO.read(getClass().getResourceAsStream("/objetos/Buda.png"));
+            idle = ImageIO.read(getClass().getResourceAsStream("/objetos/BudaNada.png"));
+            idle2  = ImageIO.read(getClass().getResourceAsStream("/objetos/Buda.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void draw(Graphics2D g2) {
-        BufferedImage image = idle;
+        BufferedImage image = null;
+        if(!gp.getPlayer().revitalizouEsfera){
+            image = idle;
+        } else {
+            image = idle2;
+        }
         g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela ) ), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*25/10 , gp.tamanhoJanela*25/10 , null);
+
     }
 
     public int tipo() {
-        return 1;
+        return 2;
+    }
+
+    public String getFala(){
+        return "Usar a Pedra Celestial?";
     }
 }

@@ -41,7 +41,7 @@ public class ChapterAqua {
     }
 
     private void inicializarConstrucoes(){
-        entityManager.addEntity(new Iglu(gp,gp.tamanhoJanela*20,gp.tamanhoJanela*15));
+        entityManager.addEntity(new Iglu(gp,gp.tamanhoJanela*23,gp.tamanhoJanela*16));
         entityManager.addEntity(new Iglu(gp,gp.tamanhoJanela*2,gp.tamanhoJanela*3));
         entityManager.addEntity(new Iglu(gp,gp.tamanhoJanela*8,gp.tamanhoJanela*3));
         entityManager.addEntity(new Bonfire(gp, gp.tamanhoJanela*5, gp.tamanhoJanela*5 ));
