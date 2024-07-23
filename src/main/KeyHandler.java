@@ -111,7 +111,13 @@ public class KeyHandler implements KeyListener {
                 gp.getPlayer().ganharRumLendario();
             }
         }
-
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Deseja comprar algo Guardião? Tenho coisas boas aqui. \n" + "1 - Rum alcoólico \n" + "2 - Poção de mana\n")) {
+            if (code == KeyEvent.VK_1) {
+                gp.getPlayer().comprarRum();
+            } else if(code == KeyEvent.VK_2) {
+                gp.getPlayer().comprarPocaoMana();
+            }
+        }
 
 
 
