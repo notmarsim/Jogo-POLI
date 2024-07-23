@@ -25,7 +25,7 @@ public class Player extends Entity {
      protected BufferedImage defesa,defesa2,defesa3,defesa4,defesa5,defesa6,defesa7,defesa8,defesa9,defesa10;
      public int defesaSpriteCounter = 0;
      public int defesaSpriteNum = 1;
-     public boolean encostouBau;
+     public boolean jaColidiu = false;
 
 
 
@@ -98,9 +98,7 @@ public class Player extends Entity {
                     if (!jaDialogou) {
                          iniciarDialogo();
                          String fala = entity.getFala();
-
                          gp.getDialogues().setDialogueText(fala);
-
                          jaDialogou = true;
                     }
                     break;
@@ -110,13 +108,18 @@ public class Player extends Entity {
                     keyH.downPressed = false;
                     keyH.leftPressed = false;
                     keyH.rightPressed = false;
-//                    gp.stopMusic();
                     gp.playMusic(0);
                     gp.setCharacterState(GamePanel.CharacterState.Combate);
                     iniciarCombate(entity);
                     break;
                case 4:
-                    encostouBau = true;
+                    if (!entity.encostouBau) {
+                         ganharMoeda(entity.moedaDrop);
+                         ganharXp(entity.xpDrop);
+                         gp.getUi().addMensagem("Você abriu um baú! Você ganhou: " + entity.xpDrop + " de XP e " + entity.moedaDrop + " moedas");
+                         entity.encostouBau = true;
+                    }
+                    break;
           }
      }
 

@@ -4,7 +4,7 @@ import main.GamePanel;
 
 public class TileManager {
     private static final int MAX_CAPITULOS = 6;
-    private static final int MAX_TILES = 3000;
+    private static final int MAX_TILES = 300;
     private static Tile[][] tiles = new Tile[MAX_CAPITULOS][MAX_TILES];
     private GamePanel gp;
 
@@ -43,7 +43,6 @@ public class TileManager {
         addTile(GamePanel.Capitulos.chapterFogo,9, "/tiles/FogoTiles/rochaafundada.png", false);
         addTile(GamePanel.Capitulos.chapterFogo,12, "/tiles/FogoTiles/pedraafundada.png", true);
         addTile(GamePanel.Capitulos.chapterFogo,13, "/tiles/FogoTiles/tocha.png", true);
-        addTile(GamePanel.Capitulos.chapterFogo,14, "/tiles/FogoTiles/goldchest1.png", true);
         addTile(GamePanel.Capitulos.chapterFogo,17, "/tiles/FogoTiles/lava.png", true);
         addTile(GamePanel.Capitulos.chapterFogo,25,"/tiles/FogoTiles/tile25.png",false);
         addTile(GamePanel.Capitulos.chapterFogo,26,"/tiles/FogoTiles/tile26.png",true);
