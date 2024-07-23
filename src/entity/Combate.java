@@ -125,6 +125,7 @@ public class Combate {
                 if(inimigo.boss){
                     gp.getCombate().bossMorto = true;
                     System.out.println("inimigo morto: "+ bossMorto);
+                    gp.stopMusic();
                 }
                 //gp.stopMusic();
                 //gp.playMusic(1);

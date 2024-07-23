@@ -175,6 +175,7 @@ public class TileManager {
         addTile(GamePanel.Capitulos.chapterEarth,24,"/tiles/TerraTiles/tile24.png",false);
         addTile(GamePanel.Capitulos.chapterEarth,25,"/tiles/TerraTiles/tile25.png",false);
         addTile(GamePanel.Capitulos.chapterEarth,27,"/tiles/TerraTiles/tile27.png",false);
+        addTile(GamePanel.Capitulos.chapterEarth,28,"/tiles/TerraTiles/tile28.png",false);
         addTile(GamePanel.Capitulos.chapterEarth,155,"/tiles/TerraTiles/tile154.png",false);
         addTile(GamePanel.Capitulos.chapterEarth,156,"/tiles/TerraTiles/tile155.png",false);
         addTile(GamePanel.Capitulos.chapterEarth,157,"/tiles/TerraTiles/tile156.png",false);

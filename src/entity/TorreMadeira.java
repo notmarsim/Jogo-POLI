@@ -7,11 +7,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Lojinha extends Entity{
+public class TorreMadeira extends Entity{
     private GamePanel gp;
     private int startX;
     private int startY;
-    public Lojinha(GamePanel gp, int startX, int startY) {
+    public TorreMadeira(GamePanel gp, int startX, int startY) {
         super(gp);
         this.gp = gp;
         this.x = startX;
@@ -21,11 +21,11 @@ public class Lojinha extends Entity{
         bounds.x = -160;
         bounds.y = -180;
         bounds.width = 300;
-        bounds.height = 250;
+        bounds.height = 420;
     }
     private void loadSprites() {
         try {
-            image1 = ImageIO.read(getClass().getResourceAsStream("/objetos/lojinha.png"));
+            image1 = ImageIO.read(getClass().getResourceAsStream("/objetos/TorreMadeira.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,8 +33,7 @@ public class Lojinha extends Entity{
 
     public void draw(Graphics2D g2){
         BufferedImage image = image1;
-        g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)*2), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela*3)), gp.tamanhoJanela*4 , gp.tamanhoJanela*4,null);
-
+        g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)*2), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela*3)), gp.tamanhoJanela*4 , gp.tamanhoJanela*6,null);
     }
 
     public int tipo() {

@@ -593,14 +593,20 @@ public class UI {
     }
 
     public void desenharMensagem(){
+        Color color;
         int messageX = gamePanel.tamanhoJanela;
         int messageY = gamePanel.tamanhoJanela*5;
+        if(gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterAqua)){
+             color = new Color(0,0,0);
+        } else {
+             color = Color.white;
+        }
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 22));
 
         for(int i = 0;i<message.size();i++){
 
             if(message.get(i)!= null){
-                g2.setColor(Color.white);
+                g2.setColor(color);
                 g2.drawString(message.get(i),messageX,messageY);
                 int counter = messageCounter.get(i) + 1;
                 messageCounter.set(i,counter);
