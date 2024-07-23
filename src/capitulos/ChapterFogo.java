@@ -43,6 +43,8 @@ public class ChapterFogo {
         entityManager.addEntity(new AquaraNPC(gp, gp.tamanhoJanela*15, gp.tamanhoJanela*16));
         entityManager.addEntity(new Mendigo(gp, gp.tamanhoJanela*2, gp.tamanhoJanela*9));
         entityManager.addEntity(new Aldeao(gp, gp.tamanhoJanela*22, gp.tamanhoJanela*15));
+        entityManager.addEntity(new Bau(gp,gp.tamanhoJanela*37,gp.tamanhoJanela*3));
+        entityManager.addEntity(new Bau(gp,gp.tamanhoJanela*34,gp.tamanhoJanela*35));
     }
 
 
@@ -63,7 +65,7 @@ public class ChapterFogo {
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*28,gp.tamanhoJanela*4));
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*40,gp.tamanhoJanela*3));
         entityManager.addEntity(new Tocha(gp,gp.tamanhoJanela*38,gp.tamanhoJanela*7));
-        entityManager.addEntity(new Bau(gp,gp.tamanhoJanela*3,gp.tamanhoJanela*15));
+
     }
 
 
