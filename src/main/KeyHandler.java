@@ -102,7 +102,7 @@ public class KeyHandler implements KeyListener {
         }
 
         // aquara npc
-        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Vamos para o reino da água? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n")){
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Vamos para o reino da água? \n" + "1 - Sim\n" + "2 - Não\n")){
             if(code == KeyEvent.VK_1){
                 gp.getPlayer().irParaReinoAqua();
             } else if (code == KeyEvent.VK_2) {
@@ -119,9 +119,17 @@ public class KeyHandler implements KeyListener {
             }
         }
         //terranis npc
-        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Vamos para o reino da terra? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n")){
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Vamos para o reino da terra? \n" + "1 - Sim\n" + "2 - Não\n")){
             if(code == KeyEvent.VK_1){
                 gp.getPlayer().irParaReinoTerra();
+            } else if (code == KeyEvent.VK_2) {
+                gp.getDialogues().setDialogueText("Ok");
+            }
+        }
+        // aeris npc
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Vamos para o reino do ar? \n" + "1 - Sim\n" + "2 - Não\n")){
+            if(code == KeyEvent.VK_1){
+                gp.getPlayer().irParaReinoAr();
             } else if (code == KeyEvent.VK_2) {
                 gp.getDialogues().setDialogueText("Ok");
             }

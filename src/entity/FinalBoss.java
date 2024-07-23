@@ -29,7 +29,7 @@ public class FinalBoss extends Entity{
         xpDrop = 9999;
         moedaDrop = 9999;
         boss = true;
-
+        finalBossMorto = false;
     }
 
     private void loadSprites() {
@@ -196,11 +196,6 @@ public class FinalBoss extends Entity{
 
 
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela * 18, gp.tamanhoJanela * 10, null);
-        g2.setColor(Color.RED);
-        g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
-                (int) (y + bounds.y - gp.getCamera().getyOffSet()),
-                bounds.width, bounds.height);
-
 
     }
 
@@ -231,6 +226,7 @@ public class FinalBoss extends Entity{
                 morrendo = false;
                 morto = true;
                 setShouldBeRemoved(true);
+                finalBossMorto = true;
                 gp.stopMusic();
             }
         } else {

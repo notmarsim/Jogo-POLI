@@ -34,10 +34,7 @@ public class CasaDeserto2 extends Entity{
     public void draw(Graphics2D g2){
         BufferedImage image = image1;
         g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)*2), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela*3)), gp.tamanhoJanela*8 , gp.tamanhoJanela*4,null);
-        g2.setColor(Color.RED);
-        g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
-                (int) (y + bounds.y - gp.getCamera().getyOffSet()),
-                bounds.width, bounds.height);
+
     }
 
     public int tipo() {
