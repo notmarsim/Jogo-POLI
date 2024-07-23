@@ -52,6 +52,25 @@ public class KeyHandler implements KeyListener {
                 gp.setCharacterState(GamePanel.CharacterState.Ocioso);
             }
         }
+
+        // FALA COM ESTATUA
+
+        if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Usar a Pedra Celestial?")){
+            if(code == KeyEvent.VK_E){
+                if(gp.getPlayer().revitalizouEsfera){
+                    gp.getPlayer().irParaReinoFogo();
+                } else {
+                    gp.getDialogues().setDialogueText("Você precisa da pedra para ir ao reino das sombras!");
+                }
+
+            }
+        }
+
+
+
+
+
+
         // SKIPAR DIALOGO
 
         if(code == KeyEvent.VK_ENTER && gp.getCharacterState() == GamePanel.CharacterState.Dialogo) {

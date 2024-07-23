@@ -26,6 +26,8 @@ public class Player extends Entity {
      public int defesaSpriteCounter = 0;
      public int defesaSpriteNum = 1;
      public boolean jaColidiu = false;
+     public boolean revitalizouEsfera = false;
+     public boolean interagindoComBuda = false;
 
 
 
@@ -113,6 +115,9 @@ public class Player extends Entity {
                     if (!jaDialogou) {
                          iniciarDialogo();
                          String fala = entity.getFala();
+                         if(entity instanceof Buda){
+                              interagindoComBuda = true;
+                         }
                          gp.getDialogues().setDialogueText(fala);
                          jaDialogou = true;
                     }
