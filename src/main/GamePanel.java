@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Aquara aquara;
     private Aeris aeris;
     private Terranis terranis;
+    public int personagemSelecionado;
     private UI ui;
     KeyHandler keyH = new KeyHandler(this);
     Player player = new Player(this, keyH);
@@ -49,7 +50,8 @@ public class GamePanel extends JPanel implements Runnable {
     public enum GameState {
         Menu,
         Pausado,
-        Jogando
+        Jogando,
+        SelecaoPersonagem
     }
 
     public enum CharacterState {
@@ -110,6 +112,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        pyroth = new Pyroth(this,keyH);
+        aquara = new Aquara(this,keyH);
+        aeris = new Aeris(this,keyH);
+        terranis = new Terranis(this,keyH);
         dialogues = new Dialogues(this, 25);
         this.ui = new UI(this, 80);
         setChapter(Capitulos.Prologo);
@@ -149,7 +155,7 @@ public class GamePanel extends JPanel implements Runnable {
         switch (chapter) {
             case Prologo:
                 if (prologo == null) {
-                    setPlayer(new Pyroth(this,keyH));
+                    setPlayer(pyroth);
                     prologo = new Prologo(this, keyH);
                 }
                 this.currentMap = prologo.getMap();
@@ -160,6 +166,7 @@ public class GamePanel extends JPanel implements Runnable {
                         pyroth = new Pyroth(this,keyH);
                     }
                     setPlayer(pyroth);
+
                     pyroth.x = tamanhoJanela * 2;
                     pyroth.y = tamanhoJanela * 18;
                     chapterFogo = new ChapterFogo(this, keyH);
@@ -170,9 +177,7 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             case chapterAqua:
                 if (chapterAqua == null) {
-                    if(aquara == null){
-                        aquara = new Aquara(this,keyH);
-                    }
+
                     setPlayer(aquara);
                     chapterAqua = new ChapterAqua(this, keyH);
                 } else {
@@ -182,9 +187,6 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             case chapterAr:
                 if (chapterAr == null) {
-                    if(aeris == null){
-                        aeris = new Aeris(this,keyH);
-                    }
                     setPlayer(aeris);
                     chapterAr = new ChapterAr(this, keyH);
                 } else {
@@ -194,9 +196,6 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             case chapterEarth:
                 if (chapterTerra == null) {
-                    if(terranis == null){
-                        terranis = new Terranis(this,keyH);
-                    }
                     setPlayer(terranis);
                     terranis.x = tamanhoJanela * 25;
                     terranis.y = tamanhoJanela * 2;
@@ -208,12 +207,24 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             case chapterVoid:
                 if (chapterVoid == null) {
-                    if(aeris == null){
-                        aeris = new Aeris(this,keyH);
+                    if(personagemSelecionado==0){
+                            setPlayer(pyroth);
+                            pyroth.x = 200;
+                            pyroth.y = 900;
+                    } else if (personagemSelecionado == 1) {
+                        setPlayer(aquara);
+                        aquara.x = 200;
+                        aquara.y = 900;
+                    } else if (personagemSelecionado ==2) {
+                        setPlayer(aeris);
+                        aeris.x=200;
+                        aeris.y=900;
+                    } else if (personagemSelecionado==3){
+                        setPlayer(terranis);
+                        terranis.x = 200;
+                        terranis.y = 900;
                     }
-                    setPlayer(aeris);
-                    aeris.x = 200;
-                    aeris.y=900;
+
                     chapterVoid = new ChapterVoid(this, keyH);
                 } else{
                     setPlayer(aeris);
@@ -346,9 +357,13 @@ public class GamePanel extends JPanel implements Runnable {
             } else if (characterState==CharacterState.Morto) {
                 ui.draw(g2);
             }
+        } else if (gameState==GameState.SelecaoPersonagem){
+            getUi().drawSelecaoPersonagens();
         }
         g2.dispose();
     }
+
+
 
     public void setAcao(int acao) {
         if (acao == 0) {

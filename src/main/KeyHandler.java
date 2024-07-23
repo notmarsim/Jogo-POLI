@@ -58,7 +58,7 @@ public class KeyHandler implements KeyListener {
         if(gp.getCharacterState() == GamePanel.CharacterState.Dialogo && gp.getDialogues().getDialogueText().contains("Usar a Pedra Celestial?")){
             if(code == KeyEvent.VK_E){
                 if(gp.getPlayer().revitalizouEsfera){
-                    gp.getPlayer().irParaReinoFogo();
+                    gp.setGameState(GamePanel.GameState.SelecaoPersonagem);
                 } else {
                     gp.getDialogues().setDialogueText("Você precisa da pedra para ir ao reino das sombras!");
                 }
@@ -66,7 +66,9 @@ public class KeyHandler implements KeyListener {
             }
         }
 
-
+        if(code==KeyEvent.VK_ENTER && gp.getGameState().equals(GamePanel.GameState.SelecaoPersonagem)){
+            gp.getUi().selecionarPersonagem();
+        }
 
 
 

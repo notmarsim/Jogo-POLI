@@ -28,6 +28,7 @@ public class UI {
     private Dialogues dialogues;
     public int slotRow = 0;
     public int slotCol = 0;
+    public int selectedPersonagem = 0;
     public int selectedOption = 0;
     private String currentDialogueText;
     private Player player;
@@ -455,6 +456,52 @@ public class UI {
         g2.drawString(manaTexto, manaTextoX, manaTextoY);
     }
 
+    public void drawSelecaoPersonagens(){
+        int screenWidth = gamePanel.getWidth();
+        int screenHeight = gamePanel.getHeight();
+
+        int frameWidth = gamePanel.tamanhoJanela * 15;
+        int frameHeight = gamePanel.tamanhoJanela * 12;
+
+        int frameX = (screenWidth - frameWidth) / 2;
+        int frameY = screenHeight - frameHeight / 2;
+
+        g2.setColor(new Color(50, 50, 50, 200));
+        g2.fillRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
+
+        g2.setColor(Color.white);
+        g2.drawRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
+
+        g2.setColor(Color.white);
+        g2.setFont(maruMonica.deriveFont(Font.BOLD, 30));
+        String titulo = "Selecione um Personagem";
+        int tituloWidth = g2.getFontMetrics().stringWidth(titulo);
+        int tituloX = frameX + (frameWidth - tituloWidth) / 2;
+        int tituloY = frameY + 30;
+        g2.drawString(titulo, tituloX, tituloY);
+
+        // Opções de personagem
+        g2.setFont(maruMonica.deriveFont(Font.PLAIN, 20));
+        String[] opcoes = {"Pyroth", "Aquara", "Aeris","Terranis"};
+        int opcaoYstart = frameY + 80; // Ponto de início vertical para as opções
+
+        for (int i = 0; i < opcoes.length; i++) {
+            String opcao = opcoes[i];
+            int opcaoWidth = g2.getFontMetrics().stringWidth(opcao);
+            int opcaoX = frameX + (frameWidth - opcaoWidth) / 2;
+            int opcaoY = opcaoYstart + (i * 55);
+            g2.drawString(opcao, opcaoX, opcaoY);
+
+            // Desenha a borda ao redor da opção selecionada
+            if (i == selectedPersonagem) {
+                g2.setColor(Color.yellow);
+                g2.drawRoundRect(opcaoX - 10, opcaoY - 20, opcaoWidth + 20, 30, 10, 10);
+                g2.setColor(Color.white); // Restaura a cor branca para o texto
+            }
+
+        }
+    }
+
 
     public void usarItemSelecionado() {
         int selectedIndex = slotRow * 5 + slotCol; // Índice do item selecionado
@@ -477,7 +524,18 @@ public class UI {
         }
     }
 
-
+    public void selecionarPersonagem(){
+        if(selectedPersonagem == 0) {
+            gamePanel.personagemSelecionado = 0;
+        } else if (selectedPersonagem == 1) {
+            gamePanel.personagemSelecionado = 1;
+        } else if(selectedPersonagem ==2){
+            gamePanel.personagemSelecionado = 2;
+        } else if (selectedPersonagem ==3) {
+            gamePanel.personagemSelecionado = 3;
+        }
+        gamePanel.setChapter(GamePanel.Capitulos.chapterVoid);
+    }
 
 
     public void usarAtaqueSelecionado() {
