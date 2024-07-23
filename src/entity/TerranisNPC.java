@@ -71,7 +71,7 @@ public class TerranisNPC extends Entity {
     }
 
     public String getFala(){
-        return "Vamos para o reino da terra? \n" + "1 - Sim  (Mate o boss dessa região)\n" + "2 - Não\n";
+        return "Vamos para o reino da terra? \n" + "1 - Sim\n" + "2 - Não\n";
     }
     public String getResposta(){
         return "Ok";

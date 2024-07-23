@@ -90,6 +90,9 @@ public class UI {
             drawProfile();
         } else if (gamePanel.getCharacterState()== GamePanel.CharacterState.Morto) {
             desenharMorte();
+        }else if(gamePanel.getCharacterState()== GamePanel.CharacterState.Zerou){
+            drawZerou();
+
         }
         switch (gamePanel.currentCapitulo) {
             case Prologo:
@@ -747,6 +750,20 @@ public class UI {
         int y = textoCentralizadoY(text);
         g2.drawString(text,x,y);
     }
+    public void drawZerou(){
+
+        Composite originalComposite = g2.getComposite();
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gamePanel.larguraTela, gamePanel.alturaTela);
+        g2.setComposite(originalComposite);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,90));
+        g2.setColor(Color.red);
+        String text = "Parabéns";
+        int x = textoCentralizadoX(text);
+        int y = textoCentralizadoY(text);
+        g2.drawString(text,x,y);
+    }
 
 
     public void drawInventory() {
@@ -865,14 +882,14 @@ public class UI {
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterFogo) {
             missao = "Missão: Encontre os monstros infiltrados na vila.";
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAqua) {
-            missao = "Missão: Limpe a fonte da vila.";
+            missao = "Missão: Limpe a vila dos monstros.";
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterEarth) {
             missao = "Missão: Recupere a Pedra Celestial do Templo.";
             if(gamePanel.getPlayer().revitalizouEsfera){
                 missao = "Missão: Vá para o monumento.";
             }
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAr) {
-            missao = "Missão: .";
+            missao = "Missão: Elimine o guerreiro da espada da esfinge";
         }
 
         g2.setFont(maruMonica.deriveFont(Font.PLAIN, 19));

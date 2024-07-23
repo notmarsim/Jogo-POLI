@@ -37,13 +37,7 @@ public class Elder extends Entity {
         BufferedImage image = idle;
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*3, gp.tamanhoJanela*3, null);
 
-        //debug
-        /*
-        g2.setColor(Color.RED);
-        g2.drawRect((int) (x - gp.getCamera().getxOffSet() + bounds.x),
-                (int) (y - gp.getCamera().getyOffSet() + bounds.y),
-                bounds.width, bounds.height);
-                */
+
 
     }
 

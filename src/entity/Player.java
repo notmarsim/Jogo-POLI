@@ -224,6 +224,7 @@ public class Player extends Entity {
                System.out.println("boss morto: "+ gp.getCombate().bossMorto);
           }
      }
+
      public void irParaReinoTerra(){
           if(gp.getCombate().bossMorto){
                gp.setCharacterState(GamePanel.CharacterState.Ocioso);

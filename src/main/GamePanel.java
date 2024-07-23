@@ -61,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
         Ocioso,
         Profile,
         Morto,
+        Zerou,
     }
 
     private CharacterState characterState = CharacterState.Ocioso;
@@ -354,11 +355,13 @@ public class GamePanel extends JPanel implements Runnable {
                 ui.draw(g2);
             } else if (characterState == CharacterState.Profile) {
                 ui.draw(g2);
-            } else if (characterState==CharacterState.Morto) {
+            } else if (characterState == CharacterState.Morto) {
                 ui.draw(g2);
+            } else if (characterState == CharacterState.Zerou) {
+                ui.draw(g2);
+            } else if (gameState == GameState.SelecaoPersonagem) {
+                getUi().drawSelecaoPersonagens();
             }
-        } else if (gameState==GameState.SelecaoPersonagem){
-            getUi().drawSelecaoPersonagens();
         }
         g2.dispose();
     }

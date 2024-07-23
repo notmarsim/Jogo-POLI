@@ -138,6 +138,10 @@ public class Combate {
                     gp.getCombate().bossMorto = true;
                     System.out.println("inimigo morto: "+ bossMorto);
                     gp.stopMusic();
+                    if(inimigo.finalBossMorto){
+                        gp.setCharacterState(GamePanel.CharacterState.Zerou);
+
+                    }
                     if(inimigo instanceof GolemTerra){
                         gp.getUi().addMensagem("Você recebeu a Esfera Celestial!");
                         BlueSphere blueSphere = new BlueSphere();
