@@ -1,8 +1,5 @@
 package entity;
-import Objetos.PocaoCura;
-import Objetos.PocaoForca;
-import Objetos.Rum;
-import Objetos.SuperObject;
+import Objetos.*;
 import main.GamePanel;
 import main.KeyHandler;
 import tile.Tile;
@@ -18,7 +15,7 @@ public class Player extends Entity {
      public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
      public final int maxInventarioSize = 20;
      public Entity atualEntity;
-     public int mana,manaMax;
+     public int mana,manaMax, reducaoDeDano;
      public int xpMax;
      protected boolean isSpecialAttack = false;
      public int specialAttackSpriteCounter = 0;
@@ -28,6 +25,8 @@ public class Player extends Entity {
      protected BufferedImage defesa,defesa2,defesa3,defesa4,defesa5,defesa6,defesa7,defesa8,defesa9,defesa10;
      public int defesaSpriteCounter = 0;
      public int defesaSpriteNum = 1;
+     public boolean encostouBau;
+
 
 
      public Player(GamePanel gp, KeyHandler keyH) {
@@ -40,7 +39,7 @@ public class Player extends Entity {
 
      }
 
-
+     public int getReducaoDeDano(){return reducaoDeDano;}
      public int getMana(){
           return mana;
      }
@@ -69,6 +68,8 @@ public class Player extends Entity {
      public void setMana(int mana) {
           this.mana = mana;
      }
+
+
 
      public void iniciarCombate(Entity entity) {
           //System.out.println(entity.x);
@@ -109,6 +110,8 @@ public class Player extends Entity {
                     gp.setCharacterState(GamePanel.CharacterState.Combate);
                     iniciarCombate(entity);
                     break;
+               case 4:
+                    encostouBau = true;
           }
      }
 
@@ -127,6 +130,16 @@ public class Player extends Entity {
           }
 
      }
+     public void ganharLoot() {
+               int loot = 1 + rand.nextInt(100);
+               if (loot <= 100) {
+                    Campeao campeao = new Campeao();
+                    inventario.add(campeao);
+                    loot = 101;
+               }
+
+     }
+
      public void ganharRumLendario(){
           if(moeda >= 99){
                Rum rum = new Rum();
@@ -195,7 +208,7 @@ public class Player extends Entity {
           xp = 0;
           xpMax = 10;
           level = 1;
-
+          reducaoDeDano = 3;
           moeda = 100;
 
      }
@@ -221,6 +234,7 @@ public class Player extends Entity {
                vida = vidaMaxima;
                gp.getPlayer().manaMax += level*2;
                mana = manaMax;
+               reducaoDeDano += 1;
                dano += 1;
                // defesa += 1;
                setXpMax();
@@ -263,10 +277,6 @@ public class Player extends Entity {
      }
 
 
-     public void variacaoAtaque() {
-          atacando = true;
-          variacaoDeAtaque = 1 + rand.nextInt(2);
-     }
 
 
      @Override

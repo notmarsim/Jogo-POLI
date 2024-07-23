@@ -14,7 +14,9 @@ public class Combate {
     public boolean golpeEspecial;
     public boolean defendendo;
     public boolean bossMorto;
+    public boolean inimigoMorto;
     public int dano;
+    public boolean ganharLoot;
 
     public Combate(GamePanel gp, Entity inimigo) {
         this.gp = gp;
@@ -22,6 +24,8 @@ public class Combate {
         this.inimigo = inimigo;
         this.turnoDoJogador = true;
         this.bossMorto = false;
+        this.inimigoMorto = false;
+        this.ganharLoot = true;
     }
 
     public void turnoJogador() {
@@ -42,7 +46,7 @@ public class Combate {
         if (!turnoDoJogador) {
             inimigo.variacaoAtaque();
             if (gp.defendendo) {
-                danoInimigo = inimigo.dano / 2;
+                danoInimigo = inimigo.dano - gp.getPlayer().getReducaoDeDano();
                 System.out.println("dano com defesa");
             } else {
                 danoInimigo = rand.nextInt(5) + inimigo.dano;
@@ -110,10 +114,14 @@ public class Combate {
 
 
             if(inimigo.getVida() <= 0) {
+
+                gp.getPlayer().ganharLoot();
                 inimigo.morrendo = true;
+
             } else if (player.getVida()<=0 && !inimigo.atacando){
                 gp.setCharacterState(GamePanel.CharacterState.Morto);
                 gp.stopMusic();
+
             }
             System.out.println("player:" + player.getVida() + "inimigo: " + inimigo.getVida());
             if(inimigo.morto){
