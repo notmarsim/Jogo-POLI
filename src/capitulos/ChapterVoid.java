@@ -62,8 +62,11 @@ public class ChapterVoid  {
 
     public void draw(Graphics2D g2) {
         ui.draw(g2);
-        mapaVoid.draw(g2);
-        entityManager.desenhar(g2);
+        if(ui.isVoidDesaparecido()){
+            mapaVoid.draw(g2);
+            entityManager.desenhar(g2);
+        }
+
     }
 
 
