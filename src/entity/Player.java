@@ -67,6 +67,12 @@ public class Player extends Entity {
           } else if (entity instanceof DemonPequeno) {
                y = entity.y ;
                x = entity.x - gp.tamanhoJanela*2;
+          }else if (entity instanceof GolemTerra) {
+               y = entity.y + gp.tamanhoJanela*33 / 10;
+               x = entity.x + gp.tamanhoJanela*12 / 10;
+          }else if (entity instanceof Guerreiro) {
+               y = entity.y + gp.tamanhoJanela*5/10;;
+               x = entity.x + gp.tamanhoJanela*9/10;
           }
      }
 
@@ -138,6 +144,15 @@ public class Player extends Entity {
           }
 
      }
+     public void comprarPocaoMana() {
+          if(moeda>=20){
+               PocaoMana mana = new PocaoMana();
+               inventario.add(mana);
+               gp.getUi().addMensagem("Você recebeu uma poção! Pressione i para abrir inventário");
+               moeda -= 20;
+          }
+
+     }
      public void ganharLoot() {
                int chanceDeGanharLoot = 1 + rand.nextInt(100);
                System.out.println("chance1: "+ chanceDeGanharLoot);
@@ -178,6 +193,13 @@ public class Player extends Entity {
                Rum rum = new Rum();
                inventario.add(rum);
                moeda -= 99;
+          }
+     }
+     public void comprarRum(){
+          if(moeda >=30){
+               RumNormal rumNormal = new RumNormal();
+               inventario.add(rumNormal);
+               moeda -= 30;
           }
      }
      public void irParaReinoAqua(){
@@ -299,6 +321,15 @@ public class Player extends Entity {
 
      public void curarVida(){
           vida += vidaMaxima*75/100;
+          if(vida > vidaMaxima){
+               vida = vidaMaxima;
+          }
+     }
+     public void recuperarMana(){
+          mana += manaMax*75/100;
+          if(mana > manaMax){
+               mana = manaMax;
+          }
      }
 
      public int getDano(){

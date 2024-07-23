@@ -17,10 +17,10 @@ public class Guerreiro extends Entity{
         atacando = false;
         loadSprites();
         bounds = new Rectangle();
-        bounds.x = 220;
-        bounds.y = 120;
-        bounds.width = 160;
-        bounds.height = 170;
+        bounds.x = 110;
+        bounds.y = -30;
+        bounds.width = 90;
+        bounds.height = 130;
         vida = 100;
         dano = 20;
         xpDrop = 50;
@@ -113,7 +113,10 @@ public class Guerreiro extends Entity{
         }
 
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*9/2, gp.tamanhoJanela*5/2, null);
-
+        g2.setColor(Color.RED);
+        g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
+                (int) (y + bounds.y - gp.getCamera().getyOffSet()),
+                bounds.width, bounds.height);
     }
 
     @Override
