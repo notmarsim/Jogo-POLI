@@ -10,6 +10,7 @@ import java.util.List;
 public abstract class SuperObject {
     public BufferedImage image;
     public String nome;
+    public String descricao;
     public List<SuperObject> listaItens;
 
     public SuperObject() {

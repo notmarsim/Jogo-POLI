@@ -36,7 +36,7 @@ public class UI {
     private BufferedImage faceAeris;
     private BufferedImage faceTerranis;
     BufferedImage image;
-
+    private String descricaoItem;
 
 
     // Construtor
@@ -79,6 +79,7 @@ public class UI {
             drawPrompt();
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Inventario) {
             drawInventory();
+
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Combate){
             drawCombate();
         } else if (gamePanel.getCharacterState() == GamePanel.CharacterState.Profile){
@@ -86,7 +87,6 @@ public class UI {
         } else if (gamePanel.getCharacterState()== GamePanel.CharacterState.Morto) {
             desenharMorte();
         }
-
         switch (gamePanel.currentCapitulo) {
             case Prologo:
                 drawPrologo();
@@ -374,16 +374,12 @@ public class UI {
         int barHeight = 20; // Altura das barras
         int spacing = 10;
 
-
         int currentHealthBarWidth = (int) ((double) gamePanel.getPlayer().getVida() / gamePanel.getPlayer().vidaMaxima * barWidth);
-
 
         int currentManaBarWidth = (int) ((double) gamePanel.getPlayer().mana / gamePanel.getPlayer().manaMax * barWidth);
 
-
         g2.setColor(Color.gray); // Cor do fundo da barra
         g2.fillRect(barX, barY, barWidth, barHeight);
-
 
         g2.setColor(Color.red); // Cor da vida
         g2.fillRect(barX, barY, currentHealthBarWidth, barHeight);
@@ -429,12 +425,20 @@ public class UI {
         int selectedIndex = slotRow * 5 + slotCol; // Índice do item selecionado
         if (selectedIndex >= 0 && selectedIndex < gamePanel.getPlayer().inventario.size()) {
             SuperObject selectedItem = gamePanel.getPlayer().inventario.get(selectedIndex);
+
             selectedItem.usouItem(gamePanel.getPlayer());
+
+
             System.out.println("Dano:"+gamePanel.getPlayer().getDano());
             gamePanel.getPlayer().inventario.remove(selectedIndex);
+            descricaoItem = "";
             gamePanel.repaint();
         }
     }
+
+
+
+
     public void usarAtaqueSelecionado() {
         if (selectedOption == 0){  // 0 = golpe simples
             gamePanel.setAcao(0);
@@ -648,9 +652,9 @@ public class UI {
 
     public void drawInventory() {
         int frameX = gamePanel.tamanhoJanela * 9;
-        int frameY = gamePanel.tamanhoJanela;
+        int frameY = gamePanel.tamanhoJanela + 70; // Desloca a janela para baixo
         int frameWidth = gamePanel.tamanhoJanela * 6;
-        int frameHeight = gamePanel.tamanhoJanela * 11 / 2;
+        int frameHeight = gamePanel.tamanhoJanela * 7; // Ajustar altura para 5 linhas de slots
 
         // Desenhe o quadro do inventário
         g2.setColor(new Color(50, 50, 50, 200)); // Um fundo semitransparente
@@ -671,9 +675,11 @@ public class UI {
         // Descrição do item selecionado
         g2.setFont(maruMonica.deriveFont(Font.PLAIN, 14)); // Fonte menor para a descrição
         int selectedIndex = slotRow * 5 + slotCol; // Índice do item selecionado
+
         if (selectedIndex >= 0 && selectedIndex < gamePanel.getPlayer().inventario.size()) {
             SuperObject selectedItem = gamePanel.getPlayer().inventario.get(selectedIndex);
             String descricao = selectedItem.nome;
+            descricaoItem = selectedItem.descricao;
             int descricaoWidth = g2.getFontMetrics().stringWidth(descricao);
             int descricaoX = frameX + (frameWidth - descricaoWidth) / 2;
             int descricaoY = frameY + 50;
@@ -685,8 +691,8 @@ public class UI {
         final int slotXstart = frameX + 20;
         final int slotYstart = frameY + 80;
 
-        for (int row = 0; row < 4; row++) {
-            for (int col = 0; col < 5; col++) {
+        for (int row = 0; row < 5; row++) { // Ajustar para 5 linhas
+            for (int col = 0; col < 5; col++) { // Ajustar para 5 colunas
                 int slotX = slotXstart + (col * (slotSize + 10));
                 int slotY = slotYstart + (row * (slotSize + 10));
                 g2.drawRect(slotX, slotY, slotSize, slotSize);
@@ -713,7 +719,33 @@ public class UI {
         int cursorY = slotYstart + (slotSize + 10) * slotRow;
         g2.setColor(Color.yellow);
         g2.drawRoundRect(cursorX, cursorY, slotSize, slotSize, 10, 10);
+
+        // Janela da descrição do item
+        int descFrameX = frameX - frameWidth - 20; // 20 pixels de distância do inventário
+        int descFrameY = frameY + 50; // Desloca a janela para baixo
+        int descFrameWidth = frameWidth;
+        int descFrameHeight = frameHeight / 2;
+
+        g2.setColor(new Color(50, 50, 50, 200)); // Fundo semitransparente
+        g2.fillRoundRect(descFrameX, descFrameY, descFrameWidth, descFrameHeight, 10, 10);
+
+        g2.setColor(Color.white);
+        g2.drawRoundRect(descFrameX, descFrameY, descFrameWidth, descFrameHeight, 10, 10); // Borda
+
+        // Texto da descrição
+        g2.setFont(maruMonica.deriveFont(Font.PLAIN, 14)); // Fonte menor para a descrição
+        if (descricaoItem != null) {
+            int descTextX = descFrameX + 10;
+            int descTextY = descFrameY + 20; // Margem superior
+            for (String line : descricaoItem.split("\n")) { // Suporte para múltiplas linhas
+                g2.drawString(line, descTextX, descTextY);
+                descTextY += g2.getFontMetrics().getHeight(); // Avança para a próxima linha
+            }
+        }
     }
+
+
+
 
     public void desenharMissao() {
         String missao = "";

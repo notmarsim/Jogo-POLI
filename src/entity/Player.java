@@ -139,11 +139,36 @@ public class Player extends Entity {
 
      }
      public void ganharLoot() {
-               int loot = 1 + rand.nextInt(100);
-               if (loot <= 100) {
-                    Campeao campeao = new Campeao();
-                    inventario.add(campeao);
-                    loot = 101;
+               int chanceDeGanharLoot = 1 + rand.nextInt(100);
+               System.out.println("chance1: "+ chanceDeGanharLoot);
+               if(chanceDeGanharLoot <= 30) {
+                    int chanceDeGanharLoot2 = 1 + rand.nextInt(100);
+                    System.out.println("chance2: "+ chanceDeGanharLoot2);
+                    if (chanceDeGanharLoot2 <= 5) {
+                         Campeao campeao = new Campeao();
+                         inventario.add(campeao);
+                    } else if (chanceDeGanharLoot2 > 5 && chanceDeGanharLoot <= 10) {
+                         Devocao devocao = new Devocao();
+                         inventario.add(devocao);
+                    } else if (chanceDeGanharLoot2 > 10 && chanceDeGanharLoot <= 15) {
+                         GuerreiroStatue guerreiro = new GuerreiroStatue();
+                         inventario.add(guerreiro);
+                    } else if (chanceDeGanharLoot2 > 15 && chanceDeGanharLoot <= 20) {
+                         Sabedoria sabedoria = new Sabedoria();
+                         inventario.add(sabedoria);
+                    } else if (chanceDeGanharLoot2 > 20 && chanceDeGanharLoot <= 25) {
+                         Semente semente = new Semente();
+                         inventario.add(semente);
+                    } else if (chanceDeGanharLoot2 > 25 && chanceDeGanharLoot <= 28) {
+                         PedraSolar pedraSolar = new PedraSolar();
+                         inventario.add(pedraSolar);
+                    } else if (chanceDeGanharLoot2 == 29) {
+                         MaldicaoDoGuerreiro maldicaoDoGuerreiro = new MaldicaoDoGuerreiro();
+                         inventario.add(maldicaoDoGuerreiro);
+                    } else if (chanceDeGanharLoot2 == 30) {
+                         MaldicaoDoMago maldicaoDoMago = new MaldicaoDoMago();
+                         inventario.add(maldicaoDoMago);
+                    }
                }
 
      }
@@ -280,9 +305,7 @@ public class Player extends Entity {
           return dano;
      }
 
-     public void aumentarDano(int aumento){
-          dano = dano + aumento;
-     }
+
 
 
 

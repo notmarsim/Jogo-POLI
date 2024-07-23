@@ -6,23 +6,24 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class Rum extends SuperObject{
-    private int aumentoForca;
+
 
     public Rum() {
 
         nome = "Rum lendário do mendigo";
+        descricao = "O que será que isso faz?";
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/Rum.png"));
         } catch (IOException e) {
             e.printStackTrace();
 
         }
-        aumentoForca = 10;
+
 
     }
     @Override
     public void usouItem(Player player) {
-        player.aumentarDano(aumentoForca);
+        player.dano += 10;
         player.vidaMaxima += 30;
     }
 

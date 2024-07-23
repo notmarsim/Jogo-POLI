@@ -48,7 +48,6 @@ public class KeyHandler implements KeyListener {
             if (gp.getCharacterState() != GamePanel.CharacterState.Inventario) {
                 gp.setCharacterState(GamePanel.CharacterState.Inventario);
             } else {
-
                 gp.setGameState(GamePanel.GameState.Jogando);
                 gp.setCharacterState(GamePanel.CharacterState.Ocioso);
             }
