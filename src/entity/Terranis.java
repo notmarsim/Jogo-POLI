@@ -12,7 +12,6 @@ public class Terranis extends Player{
         super(gp, keyH);
         loadSprites();
         speed = 8;
-        dano = 200;
         bounds.y = -40;
         bounds.x = -30;
         bounds.width = 50;
