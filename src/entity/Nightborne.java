@@ -17,8 +17,8 @@ public class Nightborne extends Entity{
         atacando = false;
         loadSprites();
         bounds = new Rectangle();
-        bounds.x = -60;
-        bounds.y = -70;
+        bounds.x = 30;
+        bounds.y = 60;
         bounds.width = 80;
         bounds.height = 100;
 
@@ -186,12 +186,12 @@ public class Nightborne extends Entity{
         }
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela * 4, gp.tamanhoJanela * 4, null);
 
-/*
+
         g2.setColor(Color.RED);
         g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
                 (int) (y + bounds.y - gp.getCamera().getyOffSet()),
                 bounds.width, bounds.height);
-*/
+
 
 
 

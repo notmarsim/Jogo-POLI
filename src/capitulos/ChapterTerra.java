@@ -37,6 +37,8 @@ public class ChapterTerra {
         entityManager.addEntity(new RochaGrande(gp, gp.tamanhoJanela*13,gp.tamanhoJanela*2));
         entityManager.addEntity(new RochaGrande(gp, gp.tamanhoJanela*45,gp.tamanhoJanela*20));
         entityManager.addEntity(new RochaGrande(gp, gp.tamanhoJanela*48,gp.tamanhoJanela*30));
+        entityManager.addEntity(new Bau(gp,gp.tamanhoJanela*38,gp.tamanhoJanela*3));
+        entityManager.addEntity(new Bau(gp,gp.tamanhoJanela*10,gp.tamanhoJanela*38));
 
     }
     public void inicializarNPCs(){
