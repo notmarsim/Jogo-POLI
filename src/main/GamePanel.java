@@ -61,7 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
         Ocioso,
         Profile,
         Morto,
-        Zerou,
+        Zerou
     }
 
     private CharacterState characterState = CharacterState.Ocioso;
@@ -209,9 +209,9 @@ public class GamePanel extends JPanel implements Runnable {
             case chapterVoid:
                 if (chapterVoid == null) {
                     if(personagemSelecionado==0){
-                            setPlayer(pyroth);
-                            pyroth.x = 200;
-                            pyroth.y = 900;
+                        setPlayer(pyroth);
+                        pyroth.x = 200;
+                        pyroth.y = 900;
                     } else if (personagemSelecionado == 1) {
                         setPlayer(aquara);
                         aquara.x = 200;
@@ -225,7 +225,8 @@ public class GamePanel extends JPanel implements Runnable {
                         terranis.x = 200;
                         terranis.y = 900;
                     }
-
+                    getPlayer().setVida(getPlayer().getVida());
+                    getPlayer().mana = getPlayer().manaMax;
                     chapterVoid = new ChapterVoid(this, keyH);
                 } else{
                     setPlayer(aeris);
@@ -355,13 +356,13 @@ public class GamePanel extends JPanel implements Runnable {
                 ui.draw(g2);
             } else if (characterState == CharacterState.Profile) {
                 ui.draw(g2);
-            } else if (characterState == CharacterState.Morto) {
+            } else if (characterState==CharacterState.Morto) {
                 ui.draw(g2);
-            } else if (characterState == CharacterState.Zerou) {
+            }else if(characterState == CharacterState.Zerou){
                 ui.draw(g2);
-            } else if (gameState == GameState.SelecaoPersonagem) {
-                getUi().drawSelecaoPersonagens();
             }
+        } else if (gameState==GameState.SelecaoPersonagem){
+            getUi().drawSelecaoPersonagens();
         }
         g2.dispose();
     }

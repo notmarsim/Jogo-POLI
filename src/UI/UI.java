@@ -90,9 +90,8 @@ public class UI {
             drawProfile();
         } else if (gamePanel.getCharacterState()== GamePanel.CharacterState.Morto) {
             desenharMorte();
-        }else if(gamePanel.getCharacterState()== GamePanel.CharacterState.Zerou){
+        } else if (gamePanel.getCharacterState()== GamePanel.CharacterState.Zerou) {
             drawZerou();
-
         }
         switch (gamePanel.currentCapitulo) {
             case Prologo:
@@ -112,7 +111,7 @@ public class UI {
                 break;
             case chapterVoid:
                 drawVoid();
-                break;    
+                break;
         }
         if(gamePanel.getGameState() != GamePanel.GameState.Menu){
             desenharMissao();
@@ -720,9 +719,9 @@ public class UI {
         int messageX = gamePanel.tamanhoJanela;
         int messageY = gamePanel.tamanhoJanela*5;
         if(gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterAqua)){
-             color = new Color(0,0,0);
+            color = new Color(0,0,0);
         } else {
-             color = Color.white;
+            color = Color.white;
         }
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 22));
 
@@ -763,9 +762,9 @@ public class UI {
     public void drawZerou(){
 
         Composite originalComposite = g2.getComposite();
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f)); // Define a transparência
         g2.setColor(Color.black);
-        g2.fillRect(0, 0, gamePanel.larguraTela, gamePanel.alturaTela);
+        g2.fillRect(0, 0, gamePanel.larguraTela, gamePanel.alturaTela); // Substitua larguraDaTela e alturaDaTela pelos valores reais
         g2.setComposite(originalComposite);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,90));
         g2.setColor(Color.red);
@@ -892,14 +891,14 @@ public class UI {
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterFogo) {
             missao = "Missão: Encontre os monstros infiltrados na vila.";
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAqua) {
-            missao = "Missão: Limpe a vila dos monstros.";
+            missao = "Missão: Limpe a fonte da vila.";
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterEarth) {
             missao = "Missão: Recupere a Pedra Celestial do Templo.";
             if(gamePanel.getPlayer().revitalizouEsfera){
                 missao = "Missão: Vá para o monumento.";
             }
         } else if (gamePanel.currentCapitulo == GamePanel.Capitulos.chapterAr) {
-            missao = "Missão: Elimine o guerreiro da espada da esfinge";
+            missao = "Missão: .";
         }
 
         g2.setFont(maruMonica.deriveFont(Font.PLAIN, 19));

@@ -53,7 +53,9 @@ public abstract class Entity {
     public Entity(GamePanel gp) {
         this.gp = gp;
     }
-
+    public void setVida(int vida){
+        this.vida = vida;
+    }
     public void update() {
         if(morrendo){
             morto = true;
