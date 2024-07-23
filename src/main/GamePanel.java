@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
         Combate,
         Ocioso,
         Profile,
-        Morto
+        Morto,
     }
 
     private CharacterState characterState = CharacterState.Ocioso;

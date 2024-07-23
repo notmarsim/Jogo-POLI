@@ -11,6 +11,7 @@ public class Sabedoria extends SuperObject{
     public Sabedoria() {
 
         nome = "Estátua da Sabedoria";
+        descricao = "Aumenta consideravelmente a mana";
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/sabedoria.png"));
         } catch (IOException e) {

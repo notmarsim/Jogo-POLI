@@ -11,6 +11,7 @@ public class PocaoCura extends SuperObject{
     public PocaoCura() {
 
         nome = "Poção de Cura";
+        descricao = "Cura parte de sua vida";
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/pocaoCura.png"));
         } catch (IOException e) {

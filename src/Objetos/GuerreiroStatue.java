@@ -5,22 +5,23 @@ import entity.Player;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class Guerreiro extends SuperObject{
-    private int aumentoForca;
+public class GuerreiroStatue extends SuperObject{
 
-    public Guerreiro() {
+
+    public GuerreiroStatue() {
 
         nome = "Estátua do Guerreiro";
+        descricao = "Aumenta consideravelmente o dano";
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/guerreiro.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        aumentoForca = 8;
+
     }
     @Override
     public void usouItem(Player player) {
-        player.aumentarDano(aumentoForca);
+        player.dano += 8;
 
     }
 

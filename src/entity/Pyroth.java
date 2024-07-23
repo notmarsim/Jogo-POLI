@@ -10,12 +10,12 @@ public class Pyroth extends Player {
     public Pyroth(GamePanel gp, KeyHandler keyH) {
         super(gp, keyH);
         loadSprites();
-        speed = 6;
+        speed = 15;
         bounds.y = -40;
         bounds.x = -30;
         bounds.width = 50;
         bounds.height = 80;
-
+        dano = 100;
     }
 
 

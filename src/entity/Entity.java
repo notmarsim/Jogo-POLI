@@ -55,6 +55,7 @@ public abstract class Entity {
     public void update() {
         if(morrendo){
             morto = true;
+
             setShouldBeRemoved(true);
             gp.stopMusic();
         }
@@ -151,6 +152,7 @@ public abstract class Entity {
     }
 
     public void setShouldBeRemoved(boolean shouldBeRemoved) {
+        gp.getPlayer().ganharLoot();
         this.shouldBeRemoved = shouldBeRemoved;
     }
 }
