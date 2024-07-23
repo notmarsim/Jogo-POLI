@@ -35,7 +35,6 @@ public class Player extends Entity {
           setDefaultValues();
           bounds = new Rectangle();
           direcao = "frente";
-          System.out.println("instancia criada");
 
      }
 
@@ -60,8 +59,14 @@ public class Player extends Entity {
                y = entity.y + gp.tamanhoJanela * 24 / 10;
                x = entity.x + gp.tamanhoJanela * 12 / 10;
           }else if (entity instanceof FinalBoss){
-               y = entity.y + gp.tamanhoJanela * 50 / 10;
-               x = entity.x + gp.tamanhoJanela * 30 / 10;
+               y = entity.y + gp.tamanhoJanela * 5;
+               x = entity.x + gp.tamanhoJanela * 3;
+          } else if (entity instanceof Esqueleto) {
+               y = entity.y ;
+               x = entity.x - gp.tamanhoJanela;
+          } else if (entity instanceof DemonPequeno) {
+               y = entity.y ;
+               x = entity.x - gp.tamanhoJanela*2;
           }
      }
 

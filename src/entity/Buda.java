@@ -33,10 +33,6 @@ public class Buda extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage image = idle;
         g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela ) ), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*25/10 , gp.tamanhoJanela*25/10 , null);
-        g2.setColor(Color.RED);
-        g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
-                (int) (y + bounds.y - gp.getCamera().getyOffSet()),
-                bounds.width, bounds.height);
     }
 
     public int tipo() {

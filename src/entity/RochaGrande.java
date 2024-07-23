@@ -7,11 +7,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Lojinha extends Entity{
+public class RochaGrande extends Entity{
     private GamePanel gp;
     private int startX;
     private int startY;
-    public Lojinha(GamePanel gp, int startX, int startY) {
+    public RochaGrande(GamePanel gp, int startX, int startY) {
         super(gp);
         this.gp = gp;
         this.x = startX;
@@ -25,7 +25,7 @@ public class Lojinha extends Entity{
     }
     private void loadSprites() {
         try {
-            image1 = ImageIO.read(getClass().getResourceAsStream("/objetos/lojinha.png"));
+            image1 = ImageIO.read(getClass().getResourceAsStream("/objetos/rochagrande.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

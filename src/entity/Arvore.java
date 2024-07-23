@@ -16,10 +16,10 @@ public class Arvore extends Entity {
         this.y = startY;
         loadSprites();
         bounds = new Rectangle();
-        bounds.x = -60;
+        bounds.x = -45;
         bounds.y = -50;
-        bounds.width = 110;
-        bounds.height = 120;
+        bounds.width = 130;
+        bounds.height = 140;
     }
 
     private void loadSprites() {
@@ -33,10 +33,6 @@ public class Arvore extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage image = idle;
         g2.drawImage(image,(int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela ) ), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela*3 , gp.tamanhoJanela*3 , null);
-        g2.setColor(Color.RED);
-        g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
-                (int) (y + bounds.y - gp.getCamera().getyOffSet()),
-                bounds.width, bounds.height);
     }
 
     public int tipo() {

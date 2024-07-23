@@ -32,14 +32,22 @@ public class ChapterTerra {
         entityManager.addEntity(new EntradaDungeon(gp, gp.tamanhoJanela*8, gp.tamanhoJanela));
         entityManager.addEntity(new GrandeRochas(gp, gp.tamanhoJanela*2, gp.tamanhoJanela));
         entityManager.addEntity(new GrandeRochas(gp, gp.tamanhoJanela, gp.tamanhoJanela*4));
+        entityManager.addEntity(new CasaGrande(gp,gp.tamanhoJanela*12, gp.tamanhoJanela*35));
+        entityManager.addEntity(new TorreMadeira(gp,gp.tamanhoJanela*25,gp.tamanhoJanela*45));
+        entityManager.addEntity(new RochaGrande(gp, gp.tamanhoJanela*11,gp.tamanhoJanela));
+        entityManager.addEntity(new RochaGrande(gp, gp.tamanhoJanela*45,gp.tamanhoJanela*20));
+        entityManager.addEntity(new RochaGrande(gp, gp.tamanhoJanela*48,gp.tamanhoJanela*30));
+
     }
     public void inicializarNPCs(){
         entityManager.addEntity(new AerisNPC(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*5));
         entityManager.addEntity(new PyrothNPC(gp, gp.tamanhoJanela*18, gp.tamanhoJanela*5));
         entityManager.addEntity(new AquaraNPC(gp, gp.tamanhoJanela*14, gp.tamanhoJanela*5));
-        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*32, gp.tamanhoJanela*5));
-        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*30, gp.tamanhoJanela*8));
-        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*27, gp.tamanhoJanela*10));
+        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*44, gp.tamanhoJanela*25));
+        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*43, gp.tamanhoJanela*22));
+        entityManager.addEntity(new Esqueleto(gp, gp.tamanhoJanela*46, gp.tamanhoJanela*24));
+        entityManager.addEntity(new Merchant(gp,gp.tamanhoJanela*17,gp.tamanhoJanela*38));
+        entityManager.addEntity(new Farmer(gp, gp.tamanhoJanela*6,gp.tamanhoJanela*25 ));
     }
 
 
@@ -49,13 +57,21 @@ public class ChapterTerra {
 
     public void inicializarArvores(){
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*19, gp.tamanhoJanela*2));
+        entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*45, gp.tamanhoJanela*6));
+        entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*40, gp.tamanhoJanela*14));
+        entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*43, gp.tamanhoJanela*11));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*30, gp.tamanhoJanela*2));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*30, gp.tamanhoJanela*11));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*37, gp.tamanhoJanela*10));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*19, gp.tamanhoJanela*11));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*14, gp.tamanhoJanela*12));
+        entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*15, gp.tamanhoJanela*25));
+        entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*4, gp.tamanhoJanela*42));
+        entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*7, gp.tamanhoJanela*44));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*5, gp.tamanhoJanela*11));
         entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*2, gp.tamanhoJanela*14));
+        entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*2, gp.tamanhoJanela*30));
+        entityManager.addEntity(new Arvore(gp, gp.tamanhoJanela*36, gp.tamanhoJanela*24));
 
     }
 
