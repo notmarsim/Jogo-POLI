@@ -104,6 +104,7 @@ public class Combate {
     }
 
     public boolean fimCombate() {
+
         return player.getVida() <= 0 || inimigo.getVida() <= 0;
     }
 
@@ -115,7 +116,7 @@ public class Combate {
 
             if(inimigo.getVida() <= 0) {
 
-                gp.getPlayer().ganharLoot();
+
                 inimigo.morrendo = true;
 
             } else if (player.getVida()<=0 && !inimigo.atacando){
