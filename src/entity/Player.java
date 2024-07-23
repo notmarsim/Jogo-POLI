@@ -71,8 +71,17 @@ public class Player extends Entity {
                y = entity.y + gp.tamanhoJanela*33 / 10;
                x = entity.x + gp.tamanhoJanela*12 / 10;
           }else if (entity instanceof Guerreiro) {
-               y = entity.y + gp.tamanhoJanela*5/10;;
+               y = entity.y + gp.tamanhoJanela*5/10;
                x = entity.x + gp.tamanhoJanela*9/10;
+          }else if (entity instanceof Bringer) {
+               y = entity.y + gp.tamanhoJanela*5/10;
+               x = entity.x - gp.tamanhoJanela;
+          }else if (entity instanceof GolemPequeno) {
+               y = entity.y;
+               x = entity.x - gp.tamanhoJanela*15/10;
+          }else if (entity instanceof Nightborne) {
+               y = entity.y + gp.tamanhoJanela*15/10;
+               x = entity.x - gp.tamanhoJanela;
           }
      }
 

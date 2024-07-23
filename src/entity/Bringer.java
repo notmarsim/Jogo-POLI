@@ -17,10 +17,10 @@ public class Bringer extends Entity{
         atacando = false;
         loadSprites();
         bounds = new Rectangle();
-        bounds.x = -60;
-        bounds.y = -70;
-        bounds.width = 80;
-        bounds.height = 100;
+        bounds.x = 40;
+        bounds.y = -20;
+        bounds.width = 60;
+        bounds.height = 90;
 
         vida = 40;
         dano = 10;
@@ -138,12 +138,11 @@ public class Bringer extends Entity{
         }
         g2.drawImage(image, (int) (x - gp.getCamera().getxOffSet() - (gp.tamanhoJanela)), (int) (y - gp.getCamera().getyOffSet() - (gp.tamanhoJanela)), gp.tamanhoJanela * 23/10, gp.tamanhoJanela * 2, null);
 
-/*
         g2.setColor(Color.RED);
         g2.drawRect((int) (x + bounds.x - gp.getCamera().getxOffSet()),
                 (int) (y + bounds.y - gp.getCamera().getyOffSet()),
                 bounds.width, bounds.height);
-*/
+
 
 
 

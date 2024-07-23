@@ -26,6 +26,8 @@ public class ChapterAqua {
 
     private void inicializarNPCs(){
         entityManager.addEntity(new Princesa(gp, gp.tamanhoJanela*6,gp.tamanhoJanela*5));
+        entityManager.addEntity(new Bau(gp,gp.tamanhoJanela*20,gp.tamanhoJanela*12));
+        entityManager.addEntity(new Bau(gp,gp.tamanhoJanela*5,gp.tamanhoJanela*4));
         entityManager.addEntity(new Sereia(gp,gp.tamanhoJanela*16,gp.tamanhoJanela*28));
         entityManager.addEntity(new Sereia(gp,gp.tamanhoJanela*28,gp.tamanhoJanela*28));
         entityManager.addEntity(new Mercante(gp,gp.tamanhoJanela*5,gp.tamanhoJanela*15));

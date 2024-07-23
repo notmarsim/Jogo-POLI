@@ -45,6 +45,8 @@ public class ChapterAr {
         entityManager.addEntity(new CasaDeserto2(gp, gp.tamanhoJanela*27, gp.tamanhoJanela*35));
         entityManager.addEntity(new CasaDeserto2(gp, gp.tamanhoJanela*5, gp.tamanhoJanela*17));
         entityManager.addEntity(new CasaDeserto2(gp, gp.tamanhoJanela*35, gp.tamanhoJanela*20));
+        entityManager.addEntity(new Bau(gp,gp.tamanhoJanela*30,gp.tamanhoJanela*5));
+        entityManager.addEntity(new Bau(gp,gp.tamanhoJanela*25,gp.tamanhoJanela*10));
     }
     public void inicializarNPCs(){
         entityManager.addEntity(new TerranisNPC(gp, gp.tamanhoJanela*16, gp.tamanhoJanela*5));
