@@ -211,6 +211,19 @@ public class KeyHandler implements KeyListener {
         }
 
 
+        if(gp.getGameState()== GamePanel.GameState.SelecaoPersonagem){
+            if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                if(gp.getUi().selectedPersonagem!=0){
+                    gp.getUi().selectedPersonagem--;
+                }
+            }
+            if(code==KeyEvent.VK_S ||code == KeyEvent.VK_DOWN){
+                if (gp.getUi().selectedPersonagem!=3){
+                    gp.getUi().selectedPersonagem++;
+                }
+            }
+        }
+
 
         //COMBATE
         if(gp.getCharacterState() == GamePanel.CharacterState.Combate) {

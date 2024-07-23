@@ -638,6 +638,16 @@ public class UI {
             image  = faceTerranis;
         } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterAr)) {
             image = faceAeris;
+        } else if (gamePanel.currentCapitulo.equals(GamePanel.Capitulos.chapterVoid)) {
+            if(gamePanel.getPlayer().getClass().getSimpleName().equals("Pyroth")){
+                image = facePyroth;
+            } else if (gamePanel.getPlayer().getClass().getSimpleName().equals("Aquara")) {
+                image = faceAquara;
+            } else if (gamePanel.getPlayer().getClass().getSimpleName().equals("Aeris")) {
+                image = faceAeris;
+            } else if (gamePanel.getPlayer().getClass().getSimpleName().equals("Terranis")) {
+                image = faceTerranis;
+            }
         }
 
 
