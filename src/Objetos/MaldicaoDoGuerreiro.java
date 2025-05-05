@@ -12,6 +12,7 @@ public class MaldicaoDoGuerreiro extends SuperObject{
 
         nome = "Maldicao do Guerreiro";
         descricao = "Duplica o dano, mas reduz a vida máxima pela metade";
+        peso = 5.5;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/maldicao1.png"));
         } catch (IOException e) {

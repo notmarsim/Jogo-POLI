@@ -12,6 +12,7 @@ public class MaldicaoDoMago extends SuperObject{
 
         nome = "Maldicao do Mago das Sombras";
         descricao = "Triplica a mana máxima, mas reduz o dano pela metade";
+        peso = 22.7;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/maldicao2.png"));
         } catch (IOException e) {

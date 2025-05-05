@@ -12,6 +12,7 @@ public class BlueSphere extends SuperObject{
 
         nome = "Esfera Elementar da Pedra";
         descricao = "Concede energia ao reino da Terra";
+        peso = 0.0;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/esfera.png"));
         } catch (IOException e) {

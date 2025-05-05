@@ -12,6 +12,7 @@ public class Semente extends SuperObject{
 
         nome = "Semente do Caos";
         descricao = "Aumenta consideravelmente a vida máxima, aumenta o dano e a mana máxima";
+        peso = 0.5;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/semente.png"));
         } catch (IOException e) {

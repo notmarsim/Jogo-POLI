@@ -12,6 +12,7 @@ public class Rum extends SuperObject{
 
         nome = "Rum lendário do mendigo";
         descricao = "O que será que isso faz?";
+        peso = 2.5;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/Rum.png"));
         } catch (IOException e) {

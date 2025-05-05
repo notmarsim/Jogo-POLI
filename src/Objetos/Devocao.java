@@ -12,6 +12,7 @@ public class Devocao extends SuperObject{
 
         nome = "Estátua da Devoção";
         descricao = "Aumenta a redução de dano e a mana máxima";
+        peso = 20.0;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/devoção.png"));
         } catch (IOException e) {

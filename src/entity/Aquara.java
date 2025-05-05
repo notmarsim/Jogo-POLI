@@ -12,6 +12,7 @@ public class Aquara extends Player {
         super(gp, keyH);
         loadSprites();
         speed = 7;
+        pesoMax = 60;
         bounds.y = -40;
         bounds.x = -30;
         bounds.width = 50;

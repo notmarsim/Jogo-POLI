@@ -12,6 +12,7 @@ public class Campeao extends SuperObject{
 
         nome = "Estátua do Campeão";
         descricao = "Aumenta o dano, a vida máxima e mana máxima";
+        peso = 25.0;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/campeão.png"));
         } catch (IOException e) {
