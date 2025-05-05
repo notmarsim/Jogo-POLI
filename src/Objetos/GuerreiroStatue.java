@@ -12,6 +12,7 @@ public class GuerreiroStatue extends SuperObject{
 
         nome = "Estátua do Guerreiro";
         descricao = "Aumenta consideravelmente o dano";
+        peso = 23.5;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/guerreiro.png"));
         } catch (IOException e) {

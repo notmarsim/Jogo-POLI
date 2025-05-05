@@ -196,27 +196,27 @@ public class KeyHandler implements KeyListener {
         }
 
         // TESTE CAPITULOS
-//        if(code == KeyEvent.VK_F) {
-//            gp.getEntityManager().getEntities().clear();
-//            gp.setChapter(GamePanel.Capitulos.chapterFogo);
-//        }
-//        if(code == KeyEvent.VK_B) {
-//            gp.setChapter(GamePanel.Capitulos.Prologo);
-//        }
-//
-//        if(code == KeyEvent.VK_L) {
-//            gp.setChapter(GamePanel.Capitulos.chapterAqua);
-//        }
-//        if(code == KeyEvent.VK_T) {
-//            gp.setChapter(GamePanel.Capitulos.chapterAr);
-//        }
-//
-//      if ((code==KeyEvent.VK_M)){
-//           gp.setChapter(GamePanel.Capitulos.chapterEarth);
-//       }
-//        if ((code==KeyEvent.VK_V)){
-//            gp.setChapter(GamePanel.Capitulos.chapterVoid);
-//        }
+        if(code == KeyEvent.VK_F) {
+            gp.getEntityManager().getEntities().clear();
+            gp.setChapter(GamePanel.Capitulos.chapterFogo);
+        }
+        if(code == KeyEvent.VK_B) {
+            gp.setChapter(GamePanel.Capitulos.Prologo);
+        }
+
+        if(code == KeyEvent.VK_L) {
+            gp.setChapter(GamePanel.Capitulos.chapterAqua);
+        }
+        if(code == KeyEvent.VK_T) {
+            gp.setChapter(GamePanel.Capitulos.chapterAr);
+        }
+
+      if ((code==KeyEvent.VK_M)){
+           gp.setChapter(GamePanel.Capitulos.chapterEarth);
+       }
+        if ((code==KeyEvent.VK_V)){
+            gp.setChapter(GamePanel.Capitulos.chapterVoid);
+        }
 
 
         if(gp.getGameState()== GamePanel.GameState.SelecaoPersonagem){

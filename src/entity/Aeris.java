@@ -2,10 +2,8 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import tile.Tile;
+
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
@@ -17,6 +15,7 @@ public class Aeris extends Player {
         this.keyH = keyH;
         loadSprites();
         speed = 10;
+        pesoMax = 70;
         bounds.y = -40;
         bounds.x = -30;
         bounds.width = 50;

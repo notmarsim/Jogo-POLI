@@ -13,6 +13,7 @@ public class PocaoMana extends SuperObject{
 
         nome = "Poção de Aumento de Força";
         descricao = "Recupera parte da sua mana";
+        peso = 3.2;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/pocaoMana.png"));
         } catch (IOException e) {

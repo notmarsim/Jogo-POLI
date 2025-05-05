@@ -12,6 +12,7 @@ public class PedraSolar extends SuperObject{
 
         nome = "Pedra Solar";
         descricao = "Aumenta consideravelmente a redução de dano, mas diminui o seu dano";
+        peso = 10.0;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/pedraSolar.png"));
         } catch (IOException e) {

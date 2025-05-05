@@ -12,6 +12,7 @@ public abstract class SuperObject {
     public String nome;
     public String descricao;
     public List<SuperObject> listaItens;
+    public double peso;
 
     public SuperObject() {
         listaItens = new ArrayList<>();

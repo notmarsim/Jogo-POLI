@@ -50,6 +50,9 @@ public class Combate {
             inimigo.variacaoAtaque();
             if (gp.defendendo) {
                 danoInimigo = inimigo.dano - gp.getPlayer().getReducaoDeDano();
+                if (danoInimigo < 0){
+                    danoInimigo = 0;
+                }
                 System.out.println("dano com defesa");
             } else {
                 danoInimigo = rand.nextInt(5) + inimigo.dano;

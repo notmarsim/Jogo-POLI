@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Player extends Entity {
      private KeyHandler keyH;
      public int xp;
+     public double pesoMax;
      private Combate combate;
      public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
      public final int maxInventarioSize = 20;
@@ -158,6 +159,7 @@ public class Player extends Entity {
           }
 
      }
+
      public void comprarPocaoMana() {
           if(moeda>=20){
                PocaoMana mana = new PocaoMana();
@@ -306,6 +308,7 @@ public class Player extends Entity {
                mana = manaMax;
                reducaoDeDano += 1;
                dano += 1;
+               pesoMax += 10;
                // defesa += 1;
                setXpMax();
           }
@@ -333,7 +336,9 @@ public class Player extends Entity {
                this.vida = vida - dano;
           }
      }
-
+     public double getPesoMax(){
+          return pesoMax;
+     }
      public void curarVida(){
           vida += vidaMaxima*75/100;
           if(vida > vidaMaxima){
