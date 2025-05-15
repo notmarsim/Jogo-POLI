@@ -521,6 +521,7 @@ public class UI {
 
             System.out.println("Dano:"+gamePanel.getPlayer().getDano());
             gamePanel.getPlayer().inventario.remove(selectedIndex);
+            gamePanel.getPlayer().pesoAtual -= selectedItem.getPeso();
             descricaoItem = "";
             gamePanel.repaint();
         }
@@ -674,6 +675,7 @@ public class UI {
         String xpTexto = "XP: " + gamePanel.getPlayer().xp + "/" + gamePanel.getPlayer().xpMax;
         String moedaTexto = "Moeda: " + gamePanel.getPlayer().moeda;
         String danoTexto = "Dano: " + gamePanel.getPlayer().dano;
+        String pesoTexto = "Peso: " + gamePanel.getPlayer().pesoAtual + "/" + gamePanel.getPlayer().pesoMax;
 
         int imageWidth = gamePanel.tamanhoJanela * 2;
         int imageHeight = gamePanel.tamanhoJanela * 2;
@@ -696,6 +698,7 @@ public class UI {
         int xpTextoY = manaTextoY + g2.getFontMetrics().getHeight() + spacing;
         int moedaTextoY = xpTextoY + g2.getFontMetrics().getHeight() + spacing;
         int danoTextoY = moedaTextoY + g2.getFontMetrics().getHeight() + spacing;
+        int pesoTextoY = danoTextoY + g2.getFontMetrics().getHeight() + spacing;
 
 
         g2.drawString(levelTexto, textX , levelTextoY);
@@ -704,6 +707,7 @@ public class UI {
         g2.drawString(xpTexto, textX, xpTextoY);
         g2.drawString(moedaTexto, textX, moedaTextoY);
         g2.drawString(danoTexto, textX, danoTextoY);
+        g2.drawString(pesoTexto, textX, pesoTextoY);
     }
 
 

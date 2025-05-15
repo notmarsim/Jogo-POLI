@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Player extends Entity {
      private KeyHandler keyH;
      public int xp;
-     public double pesoMax;
+     public double pesoMax, pesoAtual;
      private Combate combate;
      public ArrayList<SuperObject> inventario = new ArrayList<SuperObject>();
      public final int maxInventarioSize = 20;
@@ -29,6 +29,7 @@ public class Player extends Entity {
      public boolean jaColidiu = false;
      public boolean revitalizouEsfera = false;
      public boolean interagindoComBuda = false;
+
 
 
 
@@ -150,25 +151,7 @@ public class Player extends Entity {
      }
 
 
-     public void comprarPocaoForca() {
-          if(moeda>=40){
-               PocaoForca pocao = new PocaoForca();
-               inventario.add(pocao);
-               gp.getUi().addMensagem("Você recebeu uma poção! Pressione i para abrir inventário");
-               moeda -= 40;
-          }
 
-     }
-
-     public void comprarPocaoMana() {
-          if(moeda>=20){
-               PocaoMana mana = new PocaoMana();
-               inventario.add(mana);
-               gp.getUi().addMensagem("Você recebeu uma poção! Pressione i para abrir inventário");
-               moeda -= 20;
-          }
-
-     }
      public void ganharLoot() {
                int chanceDeGanharLoot = 1 + rand.nextInt(100);
                System.out.println("chance1: "+ chanceDeGanharLoot);
@@ -177,28 +160,76 @@ public class Player extends Entity {
                     System.out.println("chance2: "+ chanceDeGanharLoot2);
                     if (chanceDeGanharLoot2 <= 5) {
                          Campeao campeao = new Campeao();
-                         inventario.add(campeao);
+                         if (getPesoAtual() + campeao.getPeso() <= getPesoMax()) {
+                              inventario.add(campeao);
+                              gp.getUi().addMensagem("Você recebeu um item! i para abrir inventário");
+                              pesoAtual += campeao.getPeso();
+                         }else{
+                              gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+                         }
                     } else if (chanceDeGanharLoot2 > 5 && chanceDeGanharLoot <= 10) {
                          Devocao devocao = new Devocao();
-                         inventario.add(devocao);
-                    } else if (chanceDeGanharLoot2 > 10 && chanceDeGanharLoot <= 15) {
+                         if (getPesoAtual() + devocao.getPeso() <= getPesoMax()){
+                              inventario.add(devocao);
+                              gp.getUi().addMensagem("Você recebeu um item! i para abrir inventário");
+                              pesoAtual += devocao.getPeso();
+                         }else{
+                              gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+                         }
+                    } else if (chanceDeGanharLoot2 <= 15) {
                          GuerreiroStatue guerreiro = new GuerreiroStatue();
-                         inventario.add(guerreiro);
-                    } else if (chanceDeGanharLoot2 > 15 && chanceDeGanharLoot <= 20) {
+                         if (getPesoAtual() + guerreiro.getPeso() <= getPesoMax()) {
+                              inventario.add(guerreiro);
+                              gp.getUi().addMensagem("Você recebeu uma Estátua do Guerreiro!");
+                              pesoAtual += guerreiro.getPeso();
+                         } else {
+                              gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+                         }
+                    } else if (chanceDeGanharLoot2 <= 20) {
                          Sabedoria sabedoria = new Sabedoria();
-                         inventario.add(sabedoria);
-                    } else if (chanceDeGanharLoot2 > 20 && chanceDeGanharLoot <= 25) {
+                         if (getPesoAtual() + sabedoria.getPeso() <= getPesoMax()) {
+                              inventario.add(sabedoria);
+                              gp.getUi().addMensagem("Você recebeu Sabedoria!");
+                              pesoAtual += sabedoria.getPeso();
+                         } else {
+                              gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+                         }
+                    } else if (chanceDeGanharLoot2 <= 25) {
                          Semente semente = new Semente();
-                         inventario.add(semente);
-                    } else if (chanceDeGanharLoot2 > 25 && chanceDeGanharLoot <= 28) {
+                         if (getPesoAtual() + semente.getPeso() <= getPesoMax()) {
+                              inventario.add(semente);
+                              gp.getUi().addMensagem("Você recebeu uma Semente!");
+                              pesoAtual += semente.getPeso();
+                         } else {
+                              gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+                         }
+                    } else if (chanceDeGanharLoot2 <= 28) {
                          PedraSolar pedraSolar = new PedraSolar();
-                         inventario.add(pedraSolar);
+                         if (getPesoAtual() + pedraSolar.getPeso() <= getPesoMax()) {
+                              inventario.add(pedraSolar);
+                              gp.getUi().addMensagem("Você recebeu uma Pedra Solar!");
+                              pesoAtual += pedraSolar.getPeso();
+                         } else {
+                              gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+                         }
                     } else if (chanceDeGanharLoot2 == 29) {
                          MaldicaoDoGuerreiro maldicaoDoGuerreiro = new MaldicaoDoGuerreiro();
-                         inventario.add(maldicaoDoGuerreiro);
+                         if (getPesoAtual() + maldicaoDoGuerreiro.getPeso() <= getPesoMax()) {
+                              inventario.add(maldicaoDoGuerreiro);
+                              gp.getUi().addMensagem("Você recebeu a Maldição do Guerreiro...");
+                              pesoAtual += maldicaoDoGuerreiro.getPeso();
+                         } else {
+                              gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+                         }
                     } else if (chanceDeGanharLoot2 == 30) {
                          MaldicaoDoMago maldicaoDoMago = new MaldicaoDoMago();
-                         inventario.add(maldicaoDoMago);
+                         if (getPesoAtual() + maldicaoDoMago.getPeso() <= getPesoMax()) {
+                              inventario.add(maldicaoDoMago);
+                              gp.getUi().addMensagem("Você recebeu a Maldição do Mago...");
+                              pesoAtual += maldicaoDoMago.getPeso();
+                         } else {
+                              gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+                         }
                     }
                }
 
@@ -207,16 +238,74 @@ public class Player extends Entity {
      public void ganharRumLendario(){
           if(moeda >= 99){
                Rum rum = new Rum();
-               inventario.add(rum);
-               moeda -= 99;
+               if (getPesoAtual() + rum.getPeso() <= getPesoMax()) {
+                    inventario.add(rum);
+                    pesoAtual += rum.getPeso();
+                    gp.getUi().addMensagem("Você recebeu um item! i para abrir inventário");
+                    moeda -= 99;
+               }else{
+                    gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+               }
+
           }
      }
      public void comprarRum(){
           if(moeda >=30){
                RumNormal rumNormal = new RumNormal();
-               inventario.add(rumNormal);
-               moeda -= 30;
+               if (getPesoAtual() + rumNormal.getPeso() <= getPesoMax()) {
+                    inventario.add(rumNormal);
+                    pesoAtual += rumNormal.getPeso();
+                    gp.getUi().addMensagem("Você recebeu um item! i para abrir inventário");
+                    moeda -= 30;
+               }else{
+                    gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+               }
+
           }
+     }
+     public void comprarCura(){
+          if(moeda>=60){
+               PocaoCura pocaoCura = new PocaoCura();
+               if (getPesoAtual() + pocaoCura.getPeso() <= getPesoMax()) {
+                    inventario.add(pocaoCura);
+                    pesoAtual += pocaoCura.getPeso();
+                    gp.getUi().addMensagem("Você recebeu uma poção! i para abrir inventário");
+                    moeda -= 60;
+
+               }else{
+                    gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+               }
+          }
+
+     }
+     public void comprarPocaoForca() {
+          if(moeda>=40){
+               PocaoForca pocao = new PocaoForca();
+               if (getPesoAtual() + pocao.getPeso() <= getPesoMax()) {
+                    inventario.add(pocao);
+                    pesoAtual += pocao.getPeso();
+                    gp.getUi().addMensagem("Você recebeu uma poção! Pressione i para abrir inventário");
+                    moeda -= 40;
+               }else{
+                    gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+               }
+          }
+
+     }
+
+     public void comprarPocaoMana() {
+          if(moeda>=20){
+               PocaoMana mana = new PocaoMana();
+               if (getPesoAtual() + mana.getPeso() <= getPesoMax()) {
+                    inventario.add(mana);
+                    pesoAtual += mana.getPeso();
+                    gp.getUi().addMensagem("Você recebeu uma poção! Pressione i para abrir inventário");
+                    moeda -= 20;
+               }else{
+                    gp.getUi().addMensagem("PESO MÁXIMO ATINGIDO");
+               }
+          }
+
      }
      public void irParaReinoAqua(){
           if(gp.getCombate().bossMorto){
@@ -253,15 +342,7 @@ public class Player extends Entity {
           }
      }
 
-     public void comprarCura(){
-          if(moeda>=60){
-               PocaoCura pocaoCura = new PocaoCura();
-               inventario.add(pocaoCura);
-               gp.getUi().addMensagem("Você recebeu uma poção! i para abrir inventário");
-               moeda -= 60;
-          }
 
-     }
 
 
      protected boolean collisionWithTile(int x, int y) {
@@ -282,6 +363,7 @@ public class Player extends Entity {
           level = 1;
           reducaoDeDano = 3;
           moeda = 100;
+          pesoAtual = 0;
 
      }
      public void ganharXp(int xpGanho){
@@ -339,6 +421,11 @@ public class Player extends Entity {
      public double getPesoMax(){
           return pesoMax;
      }
+     public double getPesoAtual(){
+          return pesoAtual;
+     }
+
+
      public void curarVida(){
           vida += vidaMaxima*75/100;
           if(vida > vidaMaxima){

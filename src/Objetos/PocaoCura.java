@@ -12,7 +12,7 @@ public class PocaoCura extends SuperObject{
 
         nome = "Poção de Cura";
         descricao = "Cura parte de sua vida";
-        peso = 3.2;
+        peso = 60.0;
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/objetos/pocaoCura.png"));
         } catch (IOException e) {
