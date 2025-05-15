@@ -21,6 +21,8 @@ public abstract class SuperObject {
     public void addItem(SuperObject item) {
         listaItens.add(item);
     }
-
+    public double getPeso(){
+        return peso;
+    }
     public abstract void usouItem(Player player);
 }
